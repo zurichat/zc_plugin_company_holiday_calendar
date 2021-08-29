@@ -1,4 +1,13 @@
+
+# virtual environment
 .venv
 env
 env/
 venv/
+
+# python compiled folders and files
+__pycache__/
+*.pyc
+
+# database
+db.sqlite3
