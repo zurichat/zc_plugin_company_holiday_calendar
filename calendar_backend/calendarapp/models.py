@@ -7,4 +7,6 @@ class Event(models.Model):
 
 
 class Reminder(models.Model):
-    pass
+    booked_date = models.DateField(help_text=u'Booked day')
+    booked_time = models.TimeField(help_text=u'Booked time')
+   
