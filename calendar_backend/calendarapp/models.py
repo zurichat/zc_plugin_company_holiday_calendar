@@ -14,7 +14,7 @@ class Event(models.Model):
     description = models.CharField(max_length=100000)
     event_tag = models.CharField(max_length=100)
     event_color = models.CharField(max_length=100)
-    availability = models.BooleanField()
+    availability = models.BooleanField(default=True)
     visibility = models.CharField(max_length=100)
     
 
