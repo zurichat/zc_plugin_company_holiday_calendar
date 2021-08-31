@@ -13,7 +13,7 @@ This plug in is a monolithic plugin.
 # Backend framework used
 * Django.
 * Django rest framework.
-# Steps to install virtualenv
+# Steps to install virtualenv for for backend:
 * Browse to the calendar_backend folder.
 * type pip install virtualenv to install virtualenv
 * type virtualenv venv to create venv folder
