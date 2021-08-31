@@ -47,11 +47,14 @@ button.rbc-input::-moz-focus-inner {
   direction: rtl; }
 
 .rbc-off-range {
-  color: #c91313; }
+  color: #e5e3eb; }
 
 .rbc-off-range-bg {
-  background: #90ad0c; }
+  background: #eeeded; 
+}
   
+
+
 
 .rbc-header {
   overflow: hidden;
@@ -64,9 +67,12 @@ button.rbc-input::-moz-focus-inner {
   font-weight: bold;
   font-size: 90%;
   min-height: 0;
-  border-bottom: 1px solid #DDD; }
+  border-bottom: 1px solid #DDD;
+ }
   .rbc-header + .rbc-header {
-    border-left: 1px solid #DDD; }
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    /* border-left: 1px solid rgb(230, 28, 28);  */
+  }
   .rbc-rtl .rbc-header + .rbc-header {
     border-left-width: 0;
     border-right: 1px solid #DDD; }
@@ -96,21 +102,30 @@ button.rbc-input::-moz-focus-inner {
       display: none; }
 
 .rbc-today {
-  background-color: #a714ac; }
+  background-color: #fffffffd; }
 
 .rbc-toolbar {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  font-size: 16px; }
+  top: 20px;
+  font-size: 16px;
+  position: relative;
+ }
   .rbc-toolbar .rbc-toolbar-label {
-    flex-grow: 1;
-    padding: 0 10px;
-    text-align: center; }
+    text-align: left;
+    position: absolute;
+    top: 10px;
+    font-size: 35px;
+    margin: 0px  20px;
+    font-weight: 600;
+    line-height: 10px;
+    left: 20px;
+   }
   .rbc-toolbar button {
-    color: #373a3c;
+    color: #3c3738;
     display: inline-block;
     margin: 0;
     text-align: center;
@@ -139,9 +154,41 @@ button.rbc-input::-moz-focus-inner {
       color: #373a3c;
       background-color: #e6e6e6;
       border-color: #adadad; }
+       
+      .rbc-btn-group:first-child button{
+        font-family: 'Courier New', Courier, monospace;
+      }
+      .rbc-btn-group:first-child button:nth-child(2){
+        color: rgb(8, 8, 15);
+      
+        font-size: 0;
+        border: none;
+        font-weight: 900;
+
+      }
+      .rbc-btn-group:first-child button:nth-child(2)::before{
+        content: "<";
+        font-size: 20px;
+      }
+      .rbc-btn-group:first-child button:nth-child(3){
+        color: rgb(3, 3, 17);
+        font-size: 0;
+        font-weight: 900;
+        border: none;
+
+      }
+      .rbc-btn-group:first-child button:nth-child(3)::before{
+        content: ">";
+        font-size: 20px;
+      }
+
 
 .rbc-btn-group {
+  position: relative;
   display: inline-block;
+  top: 70px;
+  font-size: 16px;
+  position: relative;
   white-space: nowrap; }
   .rbc-btn-group > button:first-child:not(:last-child) {
     border-top-right-radius: 0;
@@ -175,7 +222,7 @@ button.rbc-input::-moz-focus-inner {
   box-shadow: none;
   margin: 0;
   padding: 2px 5px;
-  background-color: #31ad46;
+  background-color: #cfdad0;
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
@@ -231,10 +278,12 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-month-view {
   position: relative;
+  top: 100px;
   border: 1px solid #DDD;
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
+ 
   width: 100%;
   user-select: none;
   -webkit-user-select: none;
@@ -242,7 +291,8 @@ button.rbc-input::-moz-focus-inner {
 
 .rbc-month-header {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+ }
 
 .rbc-month-row {
   display: flex;
@@ -255,16 +305,31 @@ button.rbc-input::-moz-focus-inner {
   .rbc-month-row + .rbc-month-row {
     border-top: 1px solid #DDD; }
 
+
+
+/* Edited by Fas3a (Akintola Oluwafemi). I edited the days on the calender */
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 .rbc-date-cell {
   flex: 1 1 0;
   min-width: 0;
-  padding-right: 5px;
-  text-align: right; }
+  color: rgba(36, 36, 36, 1);
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: bold;
+  font-family: lato;
+  text-align: center; }
   .rbc-date-cell.rbc-now {
-    font-weight: bold; }
+    font-weight: bold;
+  }
   .rbc-date-cell > a, .rbc-date-cell > a:active, .rbc-date-cell > a:visited {
     color: inherit;
     text-decoration: none; }
+
+ /* End of edit */
+
 
 .rbc-row-bg {
   display: flex;
@@ -272,14 +337,14 @@ button.rbc-input::-moz-focus-inner {
   flex: 1 0 0;
   overflow: hidden; }
 
-.rbc-day-bg {
-  flex: 1 0 0%; }
-  .rbc-day-bg + .rbc-day-bg {
-    border-left: 1px solid #DDD; }
-  .rbc-rtl .rbc-day-bg + .rbc-day-bg {
-    border-left-width: 0;
-    border-right: 1px solid #DDD; }
 
+  .rbc-day-bg {
+    flex: 1 0 0%; }
+    .rbc-day-bg + .rbc-day-bg {
+      border-left: 1px solid #DDD; }
+    .rbc-rtl .rbc-day-bg + .rbc-day-bg {
+      border-left-width: 0;
+      border-right: 1px solid #DDD; }
 .rbc-overlay {
   position: absolute;
   z-index: 5;
@@ -299,7 +364,10 @@ button.rbc-input::-moz-focus-inner {
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
-  overflow: auto; }
+  overflow: auto; 
+  position: relative;
+  top: 100px;
+}
   .rbc-agenda-view table.rbc-agenda-table {
     width: 100%;
     border: 1px solid #DDD;
@@ -455,7 +523,10 @@ button.rbc-input::-moz-focus-inner {
   flex: 1;
   width: 100%;
   border: 1px solid #DDD;
-  min-height: 0; }
+  min-height: 0; 
+  position: relative;
+  top: 100px;
+}
   .rbc-time-view .rbc-time-gutter {
     white-space: nowrap; }
   .rbc-time-view .rbc-allday-cell {
