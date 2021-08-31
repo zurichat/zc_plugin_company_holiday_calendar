@@ -41,11 +41,7 @@ function App() {
 
     return (
         <div className="App">
-          <div style={{padding: "30px 47px 0px"}}>
-            <h1>Calendar</h1>
-            <h2>Add New Event</h2>
-            </div>
-            <Calendar className="calendar" localizer={localizer} events={events} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
+            <Calendar className="calendar" localizer={localizer} events={events} startAccessor="start" endAccessor="end" style={{ height: 700, margin: "50px" }} />
         </div>
     );
 }
