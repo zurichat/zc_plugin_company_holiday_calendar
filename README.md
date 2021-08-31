@@ -80,3 +80,11 @@ Otherwise, there's no need to `pip freeze`.
 ``` 
 deactivate 
 ```
+=======
+# Steps to install virtualenv for for backend:
+* Browse to the calendar_backend folder.
+* type pip install virtualenv to install virtualenv
+* type virtualenv venv to create venv folder
+* activate the venv by typing source venv/bin/activate if you are using linux or type venv/Scripts/activate.bat if you are using windows.
+* install all dependencies on the requirements.txt by typing pip install -r requirements.txt to install all at once.
+
