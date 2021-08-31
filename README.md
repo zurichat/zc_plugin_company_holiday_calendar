@@ -35,11 +35,19 @@ DO NOT ADD THE ZURI_HOLIDAY_CALENDAR PLUGIN REPO AS YOUR REMOTE.
 
 * Navigate to the relevant folder (calendar_frontend or calendar_backend)
 * Do your work
+* Stage the changed files you'll like to upload:
+```
+git add * 
+```
+for all files. replace `*` with specific file names if you're only interested in those files.
 * Commit to the develop branch with a clear, descriptive message and issue number, e.g. 
 ```
 git commit -m "Fixed models and bugs for leave request as per issue #1299."
 ```
-* Push to the remote repo
+* Push to the develop branch of the remote repo:
+```
+git push -u origin develop
+```
 * Do a pull request to the develop branch
 
 ## Installation instructions for frontend
