@@ -1,3 +1,10 @@
 from django.db import models
 
-# Create your models here.
+
+
+class Event(models.Model):
+    pass
+
+
+class Reminder(models.Model):
+    pass
