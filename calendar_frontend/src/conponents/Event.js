@@ -20,7 +20,7 @@ const Event = () => {
               onClick={() => setIsEventOpen(false)}
             />
           </header>
-          <h2>Add New Event</h2>
+          <h3>Add New Event</h3>
             <div>
                 <input type="text" placeholder="Add Title"  />
                 <DateInput
