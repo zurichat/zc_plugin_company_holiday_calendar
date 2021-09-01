@@ -16,6 +16,8 @@ class Event(models.Model):
     availability = models.BooleanField(default=True)
     visibility = models.CharField(max_length=100)
     
+    def __str__(self):
+        return self.title
 
 
 
