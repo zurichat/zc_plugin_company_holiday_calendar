@@ -12,6 +12,8 @@ import "./css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./index.css";
+import Event from './conponents/Event'
+
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -53,6 +55,7 @@ function App() {
 
     return (
         <div className="App">
+              <Event />
             <h1>Calendar</h1>
             <h2>Add New Event</h2>
             <div>
