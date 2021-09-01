@@ -6,15 +6,12 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .views import *
 
 
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('', homepage, name="home_page"),
     path('zuricalender', include('calendarapp.urls'))
 ]
-
 
 
 urlpatterns += staticfiles_urlpatterns()
