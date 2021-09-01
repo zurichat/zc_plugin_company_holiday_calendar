@@ -1,9 +1,6 @@
-from django.contrib.staticfiles.urls import urlpatterns
 from django.urls import path
-from .views import *
-
-
+from .views import calendar_view
 
 urlpatterns = [
-    path('', calendar_view, name="calendar_view")
+    path('', calendar_view, name="calendar_view"),
 ]
