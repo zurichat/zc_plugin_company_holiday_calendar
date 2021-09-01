@@ -3,7 +3,7 @@ from django.urls import path
 from .views import *
 
 
-
 urlpatterns = [
-    path('', calendar_view, name="calendar_view")
+    path('', calendar_view, name="calendar_view"),
+    path('<pk>/delete/', DeleteEventView.as_view()),
 ]
