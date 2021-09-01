@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.http import JsonResponse
 from django.shortcuts import HttpResponse
 from django.views.generic import DeleteView
 
@@ -12,4 +12,9 @@ def calendar_view(request):
 
 class DeleteEventView(DeleteView):
     model = Event
-    success_url = "/"
+
+    def delete(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.delete()
+        payload = {"message": "Deleted event successfully"}
+        return JsonResponse(payload)

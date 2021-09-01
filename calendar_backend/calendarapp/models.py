@@ -2,7 +2,6 @@ from django.db import models
 # from django.utils.timezone import now
 
 
-
 class Event(models.Model):
     event_name = models.CharField(max_length=500)
     start_date = models.DateField()
@@ -18,7 +17,6 @@ class Event(models.Model):
     
     def __str__(self):
         return self.event_name
-
 
 
 class Reminder(models.Model):
