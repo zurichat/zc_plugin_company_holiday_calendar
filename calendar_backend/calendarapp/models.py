@@ -1,9 +1,11 @@
 from django.db import models
+from django.db.models.deletion import SET_NULL
 # from django.utils.timezone import now
 
 
 
 class Event(models.Model):
+    
     event_name = models.CharField(max_length=500)
     start_date = models.DateField()
     end_date = models.DateField()
