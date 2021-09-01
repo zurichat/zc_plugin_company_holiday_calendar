@@ -12,5 +12,8 @@ code {
     monospace;
 }
 .calendar{
-    
+  width: 70%;
+  position: relative;
+  top: 50%;
+  left: 20%;
 }
