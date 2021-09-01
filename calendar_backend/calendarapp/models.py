@@ -1,8 +1,13 @@
+#from os import O_NDELAY
+from types import DynamicClassAttribute
 from django.db import models
+
+from django.db.models.fields import AutoField
 # from django.utils.timezone import now
 
 
 class Event(models.Model):
+    
     event_name = models.CharField(max_length=500)
     start_date = models.DateField()
     end_date = models.DateField()
@@ -20,4 +25,25 @@ class Event(models.Model):
 
 
 class Reminder(models.Model):
-    pass
+    reminder_id = models.CharField(max_length=100000)
+    event_name = models.CharField(max_length=500)
+    date = models.DateField()
+    time = models.TimeField()
+    event_description = models.CharField(max_length=100000)
+    custom_occurence = models.CharField(max_length=1000)
+    repeat_every = models.IntegerField()
+    repeat_on = models.CharField(max_length=10)
+    ends = models.CharField(max_length=50)
+    never = models.CharField(max_length=500)
+    on_occurence = models.DateField()
+    after_occurence = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.event_name
+
+    
+
+    
+
+
+
