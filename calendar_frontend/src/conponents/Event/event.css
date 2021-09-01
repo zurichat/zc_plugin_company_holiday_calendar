@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+#add-event {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  color: #f6f6f6;
+  background-color: #00b87c;
+  border: none;
+  padding: 15px 40px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 900;
+  font-family: Lato;
+  z-index: 4;
+}
+
+.event-form {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 425px;
+  height: 100%;
+  background-color: #fff;
+  z-index: 5;
+}
+@media only screen and (max-width: 425x) {
+  .event-form {
+    width: 100vw;
+  }
+}
+.event-form h2 {
+  color: #f6f6f6;
+  font-family: Lato;
+  font-weight: 900;
+  margin-left: 30px;
+  font-size: 25px;
+}
+.event-form header {
+  background-color: #00b87c;
+  width: 100%;
+  display: flex;
+  padding: 15px;
+  justify-content: space-between;
+}
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+}
+
+.faTimes {
+  cursor: pointer;
+  font-size: 25px;
+  background: #f6f6f6;
+  border-radius: 50%;
+  color: #00b87c;
+  margin-right: 20px;
+}
