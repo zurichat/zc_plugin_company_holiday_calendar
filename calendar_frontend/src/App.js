@@ -9,10 +9,10 @@ import startOfWeek from "date-fns/startOfWeek";
 import React, { useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "./css/react-big-calendar.css";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import "./index.css";
 import Event from './conponents/Event'
+import DateInput from './conponents/DateInput';
+
 
 
 const locales = {
@@ -60,8 +60,16 @@ function App() {
             <h2>Add New Event</h2>
             <div>
                 <input type="text" placeholder="Add Title" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-                <DatePicker placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-                <DatePicker placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
+                <DateInput
+                    placeholder="Start Date" 
+                    selected={newEvent.start} 
+                    onChange={(start) => setNewEvent({ ...newEvent, start })} 
+                />
+                <DateInput
+                    placeholder="End Date" 
+                    selected={newEvent.end} 
+                    onChange={(end) => setNewEvent({ ...newEvent, end })} 
+                />
                 <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
                     Add Event
                 </button>
