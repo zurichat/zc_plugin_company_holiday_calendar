@@ -12,7 +12,8 @@ import "./css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./index.css";
-import Event from './conponents/Event'
+import Event from './conponents/Event';
+import Reminder from './conponents/Reminder'
 
 
 const locales = {
@@ -55,7 +56,9 @@ function App() {
 
     return (
         <div className="App">
+
               <Event />
+                <Reminder/>
             <h1>Calendar</h1>
             <h2>Add New Event</h2>
             <div>
