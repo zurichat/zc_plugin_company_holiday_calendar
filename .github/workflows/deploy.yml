@@ -32,5 +32,5 @@ jobs:
             cd calendar_backend
             python3 manage.py makemigrations
             python3 manage.py migrate
-            pkill -u zc_calendar gunicorn
+            pkill -u ${{secrets.USERNAME}} gunicorn
             gunicorn --bind 0.0.0.0:8000 calendar_backend.wsgi --daemon
