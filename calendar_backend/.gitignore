@@ -5,5 +5,5 @@ env/
 # Fix: files ought not to be in production
 venv/
 db.sqlite3
-.vscode
+.vscode/
 ./__pycache__

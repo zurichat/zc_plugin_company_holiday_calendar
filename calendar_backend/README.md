@@ -3,18 +3,18 @@
 # Welcome to the Backend codebase of the workspace's feature
 ## Developed & Maintained by Team HemmingWay
 
-# This is a textual sitemap for Developers' ease access through our codebase.
+This is a textual sitemap for Developers' ease access through our codebase.
 
 
 # About the Development
 =======================
-
 
 # Model Map
 ===========
 
 
 # Demo & Proof-of-Concept
+=========================
 # Contributors
 ==============
 See **docs/AUTHORS** for more details
