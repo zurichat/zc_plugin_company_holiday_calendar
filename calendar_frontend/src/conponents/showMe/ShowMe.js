@@ -2,6 +2,8 @@ import React from 'react';
 import './ShowMe.css';
 
 function ShowMe() {
+  //const [isChecked, setIsChecked] = useState(false);
+
   return (
     <div className='showMeGrp'>
       <div className='rowGrp'>
@@ -15,6 +17,8 @@ function ShowMe() {
               name='showMe'
               id='busy'
               className='radioBtnItem'
+              value='busy'
+              defaultChecked
             />
             <label htmlFor='busy' className='radioBtnLabel'>
               Busy
@@ -26,6 +30,7 @@ function ShowMe() {
               name='showMe'
               id='available'
               className='radioBtnItem'
+              value='available'
             />
             <label htmlFor='available' className='radioBtnLabel'>
               Available
@@ -44,6 +49,8 @@ function ShowMe() {
               name='visibility'
               id='default'
               className='radioBtnItem'
+              value='default'
+              defaultChecked
             />
             <label htmlFor='default' className='radioBtnLabel'>
               Default
@@ -55,6 +62,7 @@ function ShowMe() {
               name='visibility'
               id='private'
               className='radioBtnItem'
+              value='private'
             />
             <label htmlFor='private' className='radioBtnLabel'>
               Private
@@ -66,6 +74,7 @@ function ShowMe() {
               name='visibility'
               id='public'
               className='radioBtnItem'
+              value='public'
             />
             <label htmlFor='public' className='radioBtnLabel'>
               Public

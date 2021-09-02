@@ -42,6 +42,9 @@
   font-weight: 700;
   transition: all 400ms ease-in-out;
 }
+.radioBtnLabel:hover {
+  cursor: pointer;
+}
 .radioBtnLabel::before {
   position: absolute;
   content: '';
@@ -66,5 +69,12 @@
   color: #bebebe;
 }
 .radioBtnItem:not(:checked) + .radioBtnLabel {
+  transition: all 400ms ease-in-out;
   color: #bebebe;
+}
+.radioBtnItem:not(:checked) + .radioBtnLabel:hover {
+  color: #3a3a3a;
+}
+.radioBtnItem:not(:checked) + .radioBtnLabel:hover::before {
+  border-color: #3a3a3a;
 }
