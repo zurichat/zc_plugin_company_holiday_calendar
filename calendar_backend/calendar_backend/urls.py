@@ -10,7 +10,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('', homepage, name="home_page"),
-    path('zuricalender', include('calendarapp.urls'))
+    path('zuricalendar/', include('calendarapp.urls'))
 ]
 
 
