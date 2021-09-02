@@ -14,6 +14,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./index.css";
 import Event from './conponents/Event';
 import Reminder from './conponents/Reminder'
+import CancelButton from "./conponents/CancelButton";
 
 
 const locales = {
@@ -58,7 +59,9 @@ function App() {
         <div className="App">
 
               <Event />
+            <CancelButton/>
                 <Reminder/>
+
             <h1>Calendar</h1>
             <h2>Add New Event</h2>
             <div>

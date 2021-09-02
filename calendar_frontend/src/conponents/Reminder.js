@@ -1,5 +1,6 @@
 // Import the necessary libraries.
 import React, { useState } from 'react';
+import { FaChevronDown } from 'react-icons/fa'
 
 
 // Import the css files
@@ -8,18 +9,18 @@ import './reminder.css'
 
 // Create Reminder Component.
 const Reminder = () => {
-    const [isButtonClick, setIsButtonClick] = useState("none");
+    const [isButtonClick, setIsButtonClick] = useState(false);
     return (
         <div className='dropdown'>
-            <button className='dropbtn' onClick={() => {setIsButtonClick("block")}}>Set a Reminder</button>
-            <div className='dropdown-content' style={{display: isButtonClick}}>
-                <p>Do not repeat</p>
-                <p>Daily</p>
-                <p>Weekly on Wednesday</p>
-                <p>Monthly</p>
-                <p>Yearly</p>
-                <p>Every week day (Monday to Friday)</p>
-                <a href='#'>Custom...</a>
+            <button className='dropbtn' onClick={() => {setIsButtonClick(!isButtonClick)}}>Create <FaChevronDown className='faChevron'/></button>
+            <div className='dropdown-content' style={{display: `${isButtonClick ? "block" : "none"}`}}>
+                <option>Do not repeat</option>
+                <option>Daily</option>
+                <option>Weekly on Wednesday</option>
+                <option>Monthly</option>
+                <option>Yearly</option>
+                <option>Every week day (Monday to Friday)</option>
+                <option>Custom...</option>
             </div>
         </div>
     )
