@@ -103,9 +103,9 @@ button.rbc-input::-moz-focus-inner {
         display: none; }
 
         /* Edited by Kanika (KanikaMittal). I styled current date in order to achive this deleted .rbc-today element*/
-        .rbc-today {
-          /* color: #1A61DB;border-radius: 50%; */
-        }
+       /* .rbc-today {
+           color: #1A61DB;border-radius: 50%; 
+        }*/
 
         /* Edited by Kanika (KanikaMittal). I styled current date, added circle to current date*/
         .rbc-current  a[role=cell]{
