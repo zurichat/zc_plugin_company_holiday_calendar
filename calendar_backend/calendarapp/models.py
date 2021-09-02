@@ -27,11 +27,8 @@ class Event(models.Model):
 
 
 class Reminder(models.Model):
-    reminder_id = models.CharField(max_length=100000)
-    event_name = models.CharField(max_length=500)
     date = models.DateField()
     time = models.TimeField()
-    event_description = models.CharField(max_length=100000)
     custom_occurence = models.CharField(max_length=1000)
     repeat_every = models.IntegerField()
     repeat_on = models.CharField(max_length=10)
@@ -41,4 +38,4 @@ class Reminder(models.Model):
     after_occurence = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.event_name
+        return self.ends

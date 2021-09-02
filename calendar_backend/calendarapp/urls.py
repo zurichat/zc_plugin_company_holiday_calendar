@@ -5,5 +5,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('', calendar_view, name="calendar_view")
+    path('', calendar_view, name="calendar_view"),
+    path('reminders/', ReminderListView.as_view(), name='reminders')
 ]
