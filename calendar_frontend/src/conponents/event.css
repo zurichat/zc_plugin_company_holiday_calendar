@@ -16,11 +16,12 @@
   border-radius: 5px;
 }
 
+
 .event-form {
   position: fixed;
-    right: 23px;
+    right: 10px;
     top: 12px;
-    height: 78%;
+    height: 93%;
     width: 516px;
   background-color: #fff;
   z-index: 5;
