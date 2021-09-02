@@ -2,8 +2,6 @@
 env
 env/
 
-# Fix: files ought not to be in production
 venv/
-db.sqlite3
 .vscode/
-./__pycache__
+__pycache__
