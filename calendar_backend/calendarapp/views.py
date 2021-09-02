@@ -11,7 +11,7 @@ def calendar_view(request):
     return HttpResponse("This is where all calender activities are performed and displayed")
 
 class ReminderListView(generics.ListCreateAPIView):
-    queryset = Event.objects.all()
+    queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
 
     # def list(self, request):
