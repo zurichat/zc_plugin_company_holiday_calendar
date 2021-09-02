@@ -8,6 +8,7 @@ from django.db.models.fields import AutoField
 
 
 class Event(models.Model):
+    
     event_name = models.CharField(max_length=500)
     start_date = models.DateField()
     end_date = models.DateField()
@@ -41,10 +42,3 @@ class Reminder(models.Model):
 
     def __str__(self):
         return self.event_name
-
-    
-
-    
-
-
-
