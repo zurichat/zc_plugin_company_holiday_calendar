@@ -101,14 +101,21 @@ button.rbc-input::-moz-focus-inner {
       /* Firefox */ }
       .rbc-row-content-scrollable .rbc-row-content-scroll-container::-webkit-scrollbar {
         display: none; }
-  
 
-        .rbc-today {
-          background-color: #b2e2fd4d;
-          color: #1A61DB;
-         }
+        /* Edited by Kanika (KanikaMittal). I styled current date in order to achive this deleted .rbc-today element*/
+       /* .rbc-today {
+           color: #1A61DB;border-radius: 50%; 
+        }*/
+
+        /* Edited by Kanika (KanikaMittal). I styled current date, added circle to current date*/
+        .rbc-current  a[role=cell]{
+          background-color: #acffe6;
+          border-radius: 50%;
+        }
 
          
+/* Edited by Beck (Kanno Beck). I styled and positioned the toolbar labels on the calender and the today, next and previous buttons */
+
 .rbc-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -118,86 +125,110 @@ button.rbc-input::-moz-focus-inner {
   top: 20px;
   font-size: 16px;
   position: relative;
- }
-  .rbc-toolbar .rbc-toolbar-label {
-    text-align: left;
-    position: absolute;
-    top: -29px;
-    font-size: 45px;
-    margin: 0px  20px;
-    width: 600px;
-    font-weight: 500;
-    line-height: 0px;
-    left: 20px;
-   }
-  .rbc-toolbar button {
-    color: #3c3738;
-    display: inline-block;
-    margin: 0;
-    text-align: center;
-    vertical-align: middle;
-    background: none;
-    background-image: none;
-    border: 1px solid #ccc;
-    padding: .375rem 1rem;
-    border-radius: 4px;
-    line-height: normal;
-    white-space: nowrap; }
-    .rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
-      background-image: none;
-      box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-      background-color: #e6e6e6;
-      border-color: #adadad; }
-      /* .rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
+}
+.rbc-toolbar .rbc-toolbar-label {
+  text-align: left;
+  position: absolute;
+  top: -30px;
+  font-size: 45px;
+  margin: 0px 20px;
+  width: 600px;
+  font-weight: 500;
+  line-height: 0px;
+  left: -20px;
+}
+.rbc-toolbar button {
+  color: #3c3738;
+  display: inline-block;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  background: none;
+  background-image: none;
+  border: 1px solid #ccc;
+  padding: 0.375rem 1rem;
+  border-radius: 4px;
+  line-height: normal;
+  white-space: nowrap;
+}
+.rbc-toolbar button:active,
+.rbc-toolbar button.rbc-active {
+  background-image: none;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+/* .rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
         color: #373a3c;
         background-color: #d4d4d4;
         border-color: #800404; } */
-    /* .rbc-toolbar button:focus {
+/* .rbc-toolbar button:focus {
       color: #373a3c;
       background-color: #e6e6e6;
       border-color: #adadad; } */
-    /* .rbc-toolbar button:hover {
+/* .rbc-toolbar button:hover {
       color: #373a3c;
       background-color: #e6e6e6;
       border-color: #adadad; } */
-       
-      .rbc-btn-group:first-child button{
-        font-family: 'Courier New', Courier, monospace;
-      }
-      .rbc-btn-group:first-child button:nth-child(2){
-        color: rgb(8, 8, 15);
-      
-        font-size: 0;
-        border: none;
-        font-weight: 900;
 
-      }
-      .rbc-btn-group:first-child button:nth-child(2)::before{
-        content: "<";
-        font-size: 30px;
-        color: rgb(180, 180, 180);
-        position: absolute; 
-    top: -56px;
-    left: 191px;
+.rbc-btn-group:first-child button {
+  font-family: 'Arial', "Courier New", Courier, monospace;
+}
+.rbc-btn-group:first-child button:nth-child(1) {
+  color: rgb(8, 8, 15);
+  font-size: 0;
+  border: none;
+  font-weight: 900;
+}
 
+.rbc-btn-group:first-child button:nth-child(1)::before {
+  content: "Today";
+  position: absolute;
+  color: #f6f6f6;
+  background-color: #00b87c;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 16px;
+  font-family: "Arial";
+  font-size: 13.333px;
+  font-weight: 300;
+  top: -2px;
+  left: 0;
+}
 
-      }
-      .rbc-btn-group:first-child button:nth-child(3){
-        color: rgb(3, 3, 17);
-        font-size: 0;
-        font-weight: 900;
-        border: none;
+.rbc-btn-group:first-child button:nth-child(2) {
+  color: rgb(8, 8, 15);
+  font-size: 0;
+  border: none;
+  font-weight: 900;
+}
 
-      }
-      .rbc-btn-group:first-child button:nth-child(3)::before{
-        content: ">";
-        font-size: 30px;
-        position: absolute; 
-        color: rgb(180, 180, 180);
+.rbc-btn-group:first-child button:nth-child(2)::before {
+  content: "<";
+  position: absolute;
+  font-size: 30px;
+  color: rgb(153, 153, 153);
+  top: -56px;
+  left: 1px;
+}
 
-        top: -56px;
-        left: 230px;
-      }
+.rbc-btn-group:first-child button:nth-child(3) {
+  color: rgb(3, 3, 17);
+  font-size: 0;
+  font-weight: 900;
+  border: none;
+}
+
+.rbc-btn-group:first-child button:nth-child(3)::before {
+  content: ">";
+  position: absolute;
+  font-size: 30px;
+  color: rgb(153, 153, 153);
+  top: -56px;
+  left: 50px;
+}
+
+/* End of Edit */
 
 
 .rbc-btn-group {
@@ -316,6 +347,9 @@ button.rbc-input::-moz-focus-inner {
   position: relative;
   flex-direction: column;
   flex: 1 0 0;
+
+  /*Edited by Kanika (KanikaMittal). corrected for current date div, justified content to center*/
+  justify-content: center;
   flex-basis: 0px;
   overflow: hidden;
   height: 100%; }
@@ -331,8 +365,9 @@ button.rbc-input::-moz-focus-inner {
   flex: 1 1 0;
   min-width: 0;
   color: rgba(36, 36, 36, 1);
-  padding-left: 10px;
-  padding-top: 10px;
+  /* Edited by Kanika (KanikaMittal). I styled for current date, removed padding left and padding top*/
+  /* padding-left: 10px;
+  padding-top: 10px; */
   font-size: 36px;
   font-style: normal;
   font-weight: bold;
@@ -343,10 +378,9 @@ button.rbc-input::-moz-focus-inner {
   }
   .rbc-date-cell > a, .rbc-date-cell > a:active, .rbc-date-cell > a:visited {
     color: inherit;
-    text-decoration: none; }
-
- /* End of edit */
-
+    text-decoration: none; 
+  
+  }
 
 .rbc-row-bg {
   display: flex;
@@ -618,3 +652,6 @@ button.rbc-input::-moz-focus-inner {
   height: 1px;
   background-color: #74ad31;
   pointer-events: none; }
+
+
+  

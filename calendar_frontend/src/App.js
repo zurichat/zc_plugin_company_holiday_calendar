@@ -17,34 +17,35 @@ import Reminder from './conponents/Reminder'
 import CancelButton from "./conponents/CancelButton";
 
 
+
 const locales = {
-    "en-US": require("date-fns/locale/en-US"),
+  'en-US': require('date-fns/locale/en-US'),
 };
 const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales,
+  format,
+  parse,
+  startOfWeek,
+  getDay,
+  locales,
 });
 
 const events = [
-    {
-        title: "Big Meeting",
-        allDay: true,
-        start: new Date(2021, 6, 0),
-        end: new Date(2021, 6, 0),
-    },
-    {
-        title: "Vacation",
-        start: new Date(2021, 6, 7),
-        end: new Date(2021, 6, 10),
-    },
-    {
-        title: "Conference",
-        start: new Date(2021, 6, 20),
-        end: new Date(2021, 6, 23),
-    },
+  {
+    title: 'Big Meeting',
+    allDay: true,
+    start: new Date(2021, 6, 0),
+    end: new Date(2021, 6, 0),
+  },
+  {
+    title: 'Vacation',
+    start: new Date(2021, 6, 7),
+    end: new Date(2021, 6, 10),
+  },
+  {
+    title: 'Conference',
+    start: new Date(2021, 6, 20),
+    end: new Date(2021, 6, 23),
+  },
 ];
 
 function App() {
