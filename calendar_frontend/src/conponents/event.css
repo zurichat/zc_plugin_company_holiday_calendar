@@ -61,3 +61,34 @@
   color: #00b87c;
   margin-right: 20px;
 }
+
+#event{
+  display: inline-block;
+  border: none;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #00b87c;
+}
+
+#reminder{
+  display: inline-block;
+  border: none;
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #00b87c;
+}
+
+.btn-container{
+  margin-top: 40px;
+  margin-left: 25px;
+ 
+}
+
+.btn-active{
+  background-color: #ACFFE6;
+}
+
+.btn-unactive{
+  background-color: #fff;
+}
+
