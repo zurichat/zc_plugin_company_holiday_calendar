@@ -3,7 +3,7 @@
 #add-event {
   position: fixed;
   top: 50px;
-  right: 50px;
+  right: 157px;
   color: #f6f6f6;
   background-color: #00b87c;
   border: none;
@@ -13,16 +13,18 @@
   font-weight: 900;
   font-family: Lato;
   z-index: 4;
+  border-radius: 5px;
 }
 
 .event-form {
   position: fixed;
-  right: 0;
-  top: 0;
-  width: 425px;
-  height: 100%;
+    right: 23px;
+    top: 12px;
+    height: 78%;
+    width: 516px;
   background-color: #fff;
   z-index: 5;
+  border-radius: 3px;
 }
 @media only screen and (max-width: 425px){
  .event-form{
@@ -40,7 +42,7 @@
   background-color: #00b87c;
   width: 100%;
   display: flex;
-  padding: 15px;
+  padding: 23px;
   justify-content: space-between;
 }
 .overlay {
