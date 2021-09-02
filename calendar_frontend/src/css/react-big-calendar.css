@@ -101,12 +101,17 @@ button.rbc-input::-moz-focus-inner {
       /* Firefox */ }
       .rbc-row-content-scrollable .rbc-row-content-scroll-container::-webkit-scrollbar {
         display: none; }
-  
 
-        .rbc-today {
-          background-color: #b2e2fd4d;
-          color: #1A61DB;
-         }
+        /* Edited by Kanika (KanikaMittal). I styled current date in order to achive this deleted .rbc-today element*/
+       /* .rbc-today {
+           color: #1A61DB;border-radius: 50%; 
+        }*/
+
+        /* Edited by Kanika (KanikaMittal). I styled current date, added circle to current date*/
+        .rbc-current  a[role=cell]{
+          background-color: #acffe6;
+          border-radius: 50%;
+        }
 
          
 /* Edited by Beck (Kanno Beck). I styled and positioned the toolbar labels on the calender and the today, next and previous buttons */
@@ -342,6 +347,9 @@ button.rbc-input::-moz-focus-inner {
   position: relative;
   flex-direction: column;
   flex: 1 0 0;
+
+  /*Edited by Kanika (KanikaMittal). corrected for current date div, justified content to center*/
+  justify-content: center;
   flex-basis: 0px;
   overflow: hidden;
   height: 100%; }
@@ -357,8 +365,9 @@ button.rbc-input::-moz-focus-inner {
   flex: 1 1 0;
   min-width: 0;
   color: rgba(36, 36, 36, 1);
-  padding-left: 10px;
-  padding-top: 10px;
+  /* Edited by Kanika (KanikaMittal). I styled for current date, removed padding left and padding top*/
+  /* padding-left: 10px;
+  padding-top: 10px; */
   font-size: 36px;
   font-style: normal;
   font-weight: bold;
@@ -369,10 +378,9 @@ button.rbc-input::-moz-focus-inner {
   }
   .rbc-date-cell > a, .rbc-date-cell > a:active, .rbc-date-cell > a:visited {
     color: inherit;
-    text-decoration: none; }
-
- /* End of edit */
-
+    text-decoration: none; 
+  
+  }
 
 .rbc-row-bg {
   display: flex;
@@ -644,3 +652,6 @@ button.rbc-input::-moz-focus-inner {
   height: 1px;
   background-color: #74ad31;
   pointer-events: none; }
+
+
+  
