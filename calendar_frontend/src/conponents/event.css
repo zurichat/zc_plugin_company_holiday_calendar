@@ -62,12 +62,14 @@
   margin-right: 20px;
 }
 
+/* Style for section container holding cancel and create button */
 .cancel-create {
-  position: fixed;
+  position: absolute;
   bottom: 30px;
   right: 10px;
 }
 
+/* Style for Create and Cancel botton on Event form */
 .cancel-create button {
   border: none;
   padding: 15px 40px;
@@ -88,3 +90,4 @@
   color: #f6f6f6;
   background: #00b87c;
 }
+/* Style for Create and cancel Botton Ends here */
