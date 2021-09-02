@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
 
 #add-event {
   position: fixed;
@@ -18,10 +18,10 @@
 
 .event-form {
   position: fixed;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 425px;
+  right: 10px;
+  top: 12px;
+  height: 93%;
+  width: 516px;
   background-color: #fff;
   z-index: 5;
   border-radius: 3px;
@@ -63,3 +63,33 @@
   color: #00b87c;
   margin-right: 20px;
 }
+
+/* Style for section container holding cancel and create button */
+.cancel-create {
+  position: absolute;
+  bottom: 30px;
+  right: 10px;
+}
+
+/* Style for Create and Cancel botton on Event form */
+.cancel-create button {
+  border: none;
+  padding: 10px 30px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 900;
+  font-family: Lato;
+  z-index: 4;
+  border-radius: 5px;
+}
+
+#cancelButton {
+  color: #000;
+  background: #f6f6f6;
+}
+
+#createButton {
+  color: #f6f6f6;
+  background: #00b87c;
+}
+/* Style for Create and cancel Botton Ends here */
