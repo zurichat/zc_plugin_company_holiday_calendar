@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
 
 #add-event {
   position: fixed;
@@ -24,10 +24,10 @@
   background-color: #fff;
   z-index: 5;
 }
-@media only screen and (max-width: 425px){
- .event-form{
-  width: 100vw;
- }
+@media only screen and (max-width: 425px) {
+  .event-form {
+    width: 100vw;
+  }
 }
 .event-form h2 {
   color: #f6f6f6;
@@ -60,4 +60,31 @@
   border-radius: 50%;
   color: #00b87c;
   margin-right: 20px;
+}
+
+.cancel-create {
+  position: fixed;
+  bottom: 30px;
+  right: 10px;
+}
+
+.cancel-create button {
+  border: none;
+  padding: 15px 40px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 900;
+  font-family: Lato;
+  z-index: 4;
+  border-radius: 5px;
+}
+
+#cancelButton {
+  color: #000;
+  background: #f6f6f6;
+}
+
+#createButton {
+  color: #f6f6f6;
+  background: #00b87c;
 }

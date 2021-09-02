@@ -11,6 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-.calendar{
-    
+.calendar {
+}
+
+.create-cancel {
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 900;
+  font-family: Lato;
 }
