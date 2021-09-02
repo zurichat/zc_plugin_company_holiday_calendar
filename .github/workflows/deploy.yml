@@ -30,5 +30,7 @@ jobs:
             cd zc_plugin_company_holiday_calendar
             git pull
             cd calendar_backend
+            python3 manage.py makemigrations
+            python3 manage.py migrate
             pkill gunicorn
             gunicorn --bind 0.0.0.0:8000 calendar_backend.wsgi --daemon
