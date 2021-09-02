@@ -18,10 +18,10 @@ def calendar_view(request):
     return HttpResponse("This is where all calender activities are performed and displayed")
 
 
-
 class EventUpdateView(generics.UpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
 
 class EventSearch(generics.ListAPIView):
     search_fields = ['event_name','start_date']
