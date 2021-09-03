@@ -20,11 +20,10 @@ class EventUpdateView(generics.UpdateAPIView):
 
 
 class EventSearch(generics.ListAPIView):
-    search_fields = ['event_name','start_date']
+    search_fields = ['event_name','start','event_tag']
     filter_backends = (filters.SearchFilter,)
     queryset = Event.objects.all()
-    serializer_class = EventSerializer #Eventserializer needed!
-    serializer_class = EventSerializer #Eventserializer needed!
+    serializer_class = EventSerializer
 
 class ReminderListView(generics.ListCreateAPIView):
     queryset = Reminder.objects.all()
