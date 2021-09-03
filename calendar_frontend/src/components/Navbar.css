@@ -105,3 +105,17 @@ select {
   border-radius: 5px;
   box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
 }
+.event_btn_cancel{
+  border: none;
+  background-color: white;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 13px;
+  margin: 50px 5px 20px 270px;
+  padding: 10PX 15px;
+  color: #3A3A3A;
+}
+.event_btn_cancel:hover{
+  color:rgb(129, 126, 126)
+}

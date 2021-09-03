@@ -67,6 +67,7 @@ function Navbar() {
                 </div>
 
                 <ShowMe />
+                <button className="event_btn_cancel" onClick={() => setIsEventOpen(false)}>Cancel</button>
               </>
             ) : (
               <div>
