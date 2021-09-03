@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import EventDescription from "./EventDescription";
 import "./Navbar.css";
 
 function Navbar() {
@@ -62,7 +63,7 @@ function Navbar() {
             {showEventPage ? (
               <div>
                 <h1>event page</h1>
-                <h1>event detail go here</h1>
+                <EventDescription />
               </div>
             ) : (
               <div>
