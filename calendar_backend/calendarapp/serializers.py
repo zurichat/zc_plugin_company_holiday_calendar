@@ -1,4 +1,3 @@
-
 from calendarapp.models import Event, Reminder
 from rest_framework import serializers
 from .models import Event, Reminder
@@ -18,4 +17,3 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         fields = '__all__'
-

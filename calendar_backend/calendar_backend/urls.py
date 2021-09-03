@@ -5,8 +5,7 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from .views import homepage
 from calendarapp.views import *
-
-
+from .views import *
 
 
 urlpatterns = [
@@ -20,6 +19,7 @@ urlpatterns = [
     path('ping', ping_view, name="ping")
 
 ]
+
 
 
 urlpatterns += staticfiles_urlpatterns()

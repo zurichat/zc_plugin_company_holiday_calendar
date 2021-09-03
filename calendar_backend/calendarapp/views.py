@@ -62,8 +62,6 @@ def ping_view(request):
 
 
 
-
-
 class EventUpdateView(generics.UpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
@@ -74,10 +72,8 @@ class EventSearch(generics.ListAPIView):
     filter_backends = (filters.SearchFilter,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer #Eventserializer needed!
-
     serializer_class = EventSerializer #Eventserializer needed!
 
 class ReminderListView(generics.ListCreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
-
