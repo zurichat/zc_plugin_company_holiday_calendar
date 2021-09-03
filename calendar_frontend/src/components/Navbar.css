@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap');
+
+.navbar {
+  background-color: #00b87c;
+  padding: 20px 60px;
+  width: 100%;
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+select {
+  display: inline;
+  font-size: 24px;
+  border: none;
+  outline: none;
+  background-color: #00b87c;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  padding: 0 8px;
+  font-weight: 600;
+}
+.fal {
+  font-size: 22px;
+  color: white;
+}
+.open-btn {
+  border: none;
+  padding: 10px 14px;
+  background: #fff;
+  color: #00b87c;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+}
+.event-form {
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  height: 100%;
+  width: 425px;
+  background-color: #fff;
+  z-index: 5;
+  border-radius: 3px;
+}
+@media only screen and (max-width: 425px) {
+  .event-form {
+    width: 100vw;
+  }
+}
+.event-form h2 {
+  color: #f6f6f6;
+  font-family: Lato;
+  font-weight: 900;
+  margin-left: 30px;
+  font-size: 25px;
+}
+.event-form header {
+  background-color: #00b87c;
+  width: 100%;
+  display: flex;
+  padding: 23px;
+  justify-content: space-between;
+}
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.far{
+  cursor: pointer;
+  font-size: 25px;
+  color: #fff;
+  margin-right: 20px;
+}
