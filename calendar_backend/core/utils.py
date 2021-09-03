@@ -1,7 +1,7 @@
 import pytz
 
 # Assume the calendar is for Africans only (as it currently has only English language).
-TIMEZONE_CONTINENT = ["Africa", "Europe", "Asia", "America"]
+TIMEZONE_CONTINENT = "Africa"
 
 DEFAULT_TIMEZONE = "Africa/Lagos"
 
