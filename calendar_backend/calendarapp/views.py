@@ -33,6 +33,6 @@ class EventSearch(generics.ListAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer #Eventserializer needed!
 
-class ReminderViews(generics.CreateAPIView):
+class CreateReminder(generics.CreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
