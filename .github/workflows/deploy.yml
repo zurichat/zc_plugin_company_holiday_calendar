@@ -45,7 +45,7 @@ jobs:
             cd calendar_backend
             python3 manage.py makemigrations
             python3 manage.py migrate
-            python3 manage.py collectstatic
+            python3 manage.py collectstatic --no-input
             pkill -u ${{secrets.USERNAME}} gunicorn
             gunicorn --bind 0.0.0.0:8000 calendar_backend.wsgi --daemon
       
