@@ -2,6 +2,7 @@
 * {
   margin: 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
   padding: 0;
   box-sizing: border-box;
 }
@@ -14,10 +15,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+=======
+  padding: 0;
+  box-sizing: border-box;
+>>>>>>> zurichat-develop
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  font-family: Lato;
 }
 >>>>>>> 46ae85551e73252a7f0d6964819cd51d8075aff5
