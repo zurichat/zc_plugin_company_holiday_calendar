@@ -59,7 +59,7 @@ select {
   background-color: #00b87c;
   width: 100%;
   display: flex;
-  padding: 23px;
+  padding: 20px;
   justify-content: space-between;
 }
 .overlay {
@@ -72,7 +72,7 @@ select {
   z-index: 2;
 }
 
-.far{
+.far {
   cursor: pointer;
   font-size: 25px;
   color: #fff;
