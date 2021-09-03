@@ -29,3 +29,9 @@ class EventSearch(generics.ListAPIView):
 class ReminderListView(generics.ListCreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
+
+
+class CreateReminder(generics.CreateAPIView):
+    queryset = Reminder.objects.all()
+    serializer_class = ReminderSerializer
+    serializer_class = ReminderSerializer
