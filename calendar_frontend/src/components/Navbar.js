@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./Navbar.css";
+import Reminder from './Reminder';
+import CancelButton from './CancelButton';
+import './reminder.css';
 
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false);
@@ -68,6 +71,10 @@ function Navbar() {
               <div>
                 <h1>reminder page</h1>
                 <h1>reminder details go here</h1>
+                <div className= 'reminder-button'>
+                <CancelButton/> <Reminder/>
+                </div>
+                
               </div>
             )}
           </div>
