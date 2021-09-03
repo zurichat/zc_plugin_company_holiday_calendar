@@ -9,8 +9,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('', homepage, name="home_page"),
+<<<<<<< HEAD
     path('zuricalender', include('calendarapp.urls')),
     path('api/', include('api.urls')),
+=======
+    path('zuricalendar/', include('calendarapp.urls'))
+>>>>>>> d43110e8f8683454fb53ae99ae965aa0d47bb6be
 ]
 
 
