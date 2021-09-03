@@ -1,7 +1,11 @@
 from django.contrib.staticfiles.urls import urlpatterns
 from django.urls import path
+<<<<<<< HEAD
 from .views import *
 from . import views
+=======
+from .views import calendar_view, EventUpdateView, EventSearch
+>>>>>>> d43110e8f8683454fb53ae99ae965aa0d47bb6be
 
 
 
