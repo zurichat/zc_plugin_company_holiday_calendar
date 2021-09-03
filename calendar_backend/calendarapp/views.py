@@ -56,7 +56,7 @@ def ping_view(request):
 class EventUpdateView(generics.UpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny,]
 
 
 class EventSearch(generics.ListAPIView):
@@ -64,28 +64,28 @@ class EventSearch(generics.ListAPIView):
     filter_backends = (filters.SearchFilter,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny,]
     
 
 class ReminderListView(generics.ListCreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny,]
 
 
 class ReminderDetailView(generics.RetrieveAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny,]
 
 
 class CreateEventView(generics.CreateAPIView):
     queryset = Event.objects.all()
     serializer_class = ReminderSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny,]
 
 
 class CreateReminder(generics.CreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny,]
