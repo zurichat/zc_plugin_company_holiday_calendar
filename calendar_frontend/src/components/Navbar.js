@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import './Navbar.css'
 import { FaTimesCircle } from 'react-icons/fa'
+import Card from './Card'
 
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false)
 
   return (
-    <div className='navbar'>
+   <div>
+      <div className='navbar'>
       <div className='month'>
         <label>
           <i className='fal fa-calendar-alt'></i>
@@ -39,8 +41,13 @@ function Navbar() {
           </header>
         </div>
       )}
+
+      
     </div>
-  )
+    <Card></Card>
+ 
+   </div>
+ )
 }
 
 export default Navbar
