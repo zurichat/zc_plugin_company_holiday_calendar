@@ -1,12 +1,14 @@
 # from os import O_NDELAY
+from types import DynamicClassAttribute
 from django.db import models
 from django.utils import timezone as _timezone
 from core.utils import get_timezones, DEFAULT_TIMEZONE
 
+from django.db.models.fields import AutoField
 
 
 def get_sentinel_event():
-    return Event.objects.get_or_create(event_name="deleted", )[0]
+    return Event.objects.get_or_create(event_name="")[0]
 
 
 # Create an additional method to return only the id - default expects an id and not a Model object
@@ -14,10 +16,22 @@ def get_sentinel_event_id():
     return get_sentinel_event().id
 
 
+class EventMixin(object):
+    # Common mixin for events
+
+    NORMAL = 'NM'
+    ALL_DAY = 'AD'
+    TYPE_CHOICES = (
+        (NORMAL, 'normal'),
+        (ALL_DAY, 'all day'),
+    )
+
+
 class Event(models.Model):
     event_name = models.CharField(max_length=500)
-    start_date = models.DateTimeField('Start event date', default=_timezone.now)
-    end_date = models.DateTimeField('Stop event date', default=_timezone.now)
+    type = models.CharField(max_length=2, choices=EventMixin.TYPE_CHOICES, default=EventMixin.NORMAL)
+    start = models.DateTimeField('Start event', default=_timezone.now)
+    end = models.DateTimeField('Stop event', default=_timezone.now)
     time_zone = models.CharField(max_length=250, choices=get_timezones(), default=DEFAULT_TIMEZONE)
     description = models.CharField(max_length=100000)
     event_tag = models.CharField(max_length=100)
@@ -42,5 +56,5 @@ class Reminder(models.Model):
     on_occurrence = models.DateField(default=_timezone.now)
     after_occurrence = models.CharField(max_length=500)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.event_name
