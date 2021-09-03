@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import './Navbar.css'
+import './Navbar.css';
+import ShowMe from './showMe/ShowMe';
+
 
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false)
@@ -58,10 +60,14 @@ function Navbar() {
             </div>
 
             {showEventPage ? (
-              <div>
-                <h1>event page</h1>
-                <h1>event detail go here</h1>
-              </div>
+              <>
+                <div>
+                  <h1>event page</h1>
+                  <h1>event detail go here</h1>
+                </div>
+
+                <ShowMe />
+              </>
             ) : (
               <div>
                 <h1>reminder page</h1>
