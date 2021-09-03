@@ -1,13 +1,16 @@
 .card {
-    margin: 30px 20px;
-    border-left: 5px solid blue;
-
+  margin: 30px 20px;
+  border-left: 5px solid blue;
 }
 
-.timings,.description{
-    color: blue;
+.timings,
+.description {
+  color: blue;
 }
 
-.timings{
-    font-size: 12px;
+.timings {
+  font-size: 12px;
+}
+.fa-sun {
+  color: grey;
 }

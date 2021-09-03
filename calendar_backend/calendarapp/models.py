@@ -4,7 +4,6 @@ from django.db import models
 from django.utils import timezone as _timezone
 from core.utils import get_timezones, DEFAULT_TIMEZONE
 
-from django.db.models.fields import AutoField
 
 
 def get_sentinel_event():
