@@ -7,6 +7,9 @@ from .models import Event, Reminder
 # creating a model serializer
 
 
+class EventSerializer(serializers.ModelSerializer):
+    pass
+
 
 class ReminderSerializer(serializers.ModelSerializer):
 
