@@ -1,5 +1,3 @@
-// packages to install before use
-
 // npm i --save react-big-calendar react-datepicker date-fns
 
 import format from "date-fns/format";
@@ -15,6 +13,9 @@ import "./index.css";
 import Event from './conponents/Event';
 import Reminder from './conponents/Reminder'
 import CancelButton from "./conponents/CancelButton";
+import './App.css'
+import Card from './components/Card'
+import Navbar from './components/Navbar'
 
 
 
@@ -58,7 +59,8 @@ function App() {
 
     return (
         <div className="App">
-
+               <Navbar />
+              <Card></Card>
               <Event />
             <CancelButton/>
                 <Reminder/>
@@ -74,9 +76,9 @@ function App() {
                 </button>
             </div>
             <Calendar className="calendar" localizer={localizer} events={events} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
-
         </div>
     );
 }
 
 export default App;
+
