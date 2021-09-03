@@ -9,21 +9,21 @@ const randomData=[
     },
     {
         day:"Thursday",
-        date:'01',
+        date:'02',
         timings:'All Day',
-        description:"Company Break"
+        description:"HNGi8 Hangout"
     },
     {   
-        day:"Monday",
-        date:'01',
+        day:"Friday",
+        date:'03',
         timings:'All Day',
         description:"Company Break"
     },
     {
-        day:"Friday",
-        date:'01',
-        timings:'All Day',
-        description:"Company Break"
+        day:"Saturday",
+        date:'04',
+        timings:'12:00pm - 8:00',
+        description:"Zuri Picnic"
     }
 ]
 const Card=()=>{
@@ -35,7 +35,7 @@ const Card=()=>{
                     <div className="d-flex flex-column">
                         <div className="d-flex fw-bolder">
                             <div className="card-text">{data.day}</div>
-                            <div className="card-text ms-3">{data.date}</div>
+                            <div className="card-text ms-3">{data.date}</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-sun"></i>
                         </div>
                     <div className="timings">{data.timings}</div>
                 <div className="description">{data.description}</div>
