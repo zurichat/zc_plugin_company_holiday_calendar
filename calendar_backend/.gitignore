@@ -14,6 +14,7 @@ db.sqlite3-journal
 media
 __pycache__/
 __pycache__
+db.sqlite3
 
 
 
@@ -127,12 +128,9 @@ celerybeat.pid
 .env
 .venv
 env/
-<<<<<<< HEAD
-
 venv/
 .vscode/
 __pycache__
-=======
 venv/
 venv
 ENV/
@@ -166,4 +164,4 @@ cython_debug/
 
 
 # End of https://www.toptal.com/developers/gitignore/api/django,python
->>>>>>> d43110e8f8683454fb53ae99ae965aa0d47bb6be
+
