@@ -36,6 +36,7 @@ function Navbar() {
         <div className='event-form'>
           <header>
             <h2>Add New Event</h2>
+            <i class="far fa-times-circle" onClick={() => setIsEventOpen(false)} aria-hidden="true"></i>
           </header>
         </div>
       )}

@@ -72,11 +72,9 @@ select {
   z-index: 2;
 }
 
-.faTimes {
+.far{
   cursor: pointer;
   font-size: 25px;
-  background: #f6f6f6;
-  border-radius: 50%;
-  color: #00b87c;
+  color: #fff;
   margin-right: 20px;
 }
