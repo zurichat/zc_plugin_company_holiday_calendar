@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './event.css';
 import { FaTimesCircle } from 'react-icons/fa';
-import DateInput from './DateInput';
+import DateInput from './DateInput/DateInput';
 import ShowMe from './showMe/ShowMe';
 
 const Event = () => {
@@ -24,8 +24,8 @@ const Event = () => {
           <h3>Add New Event</h3>
           <div>
             <input type='text' placeholder='Add Title' />
-            <DateInput placeholder='Start Date' />
-            <DateInput placeholder='End Date' />
+            <DateInput className = 'event-form__dateInput' placeholder='Start Date' showIcon = {true} />
+            <DateInput className = 'event-form__dateInput' placeholder='End Date' showIcon = {true} />
             <button stlye={{ marginTop: '10px' }}>Add Event</button>
           </div>
           <ShowMe />
