@@ -39,22 +39,7 @@ class Event(models.Model):
     event_color = models.CharField(max_length=100)
     availability = models.BooleanField(default=True)
     visibility = models.CharField(max_length=100)
-<<<<<<< HEAD
-    
-    # Added Suggestion
-    class Meta:
-        verbose_name = ('event')
-        verbose_name_plural = ('events')
-        ordering = ('-event_name', 'availability')
-        app_label = 'calendarapp'
-        
-    # def get_absolute_url(self):
-    #     from django.urls import reverse
-    #     return reverse('event-detail', kwargs={'pk': self.pk})    
-    
-=======
 
->>>>>>> d43110e8f8683454fb53ae99ae965aa0d47bb6be
     def __str__(self):
         return self.event_name
 
