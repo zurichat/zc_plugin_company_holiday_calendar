@@ -4,11 +4,15 @@ from rest_framework import generics
 from rest_framework import filters
 from .serializers import EventSerializer
 from . models import *
+from rest_framework import status
+from rest_framework.response import Response
+from .models import Reminder
+from .serializers import ReminderSerializer
 
 # update event view imports
 from rest_framework import generics
 from .models import Event, Reminder
-from .serializers import EventSerializer, ReminderSerializer
+#from .serializers import EventSerializer, ReminderSerializer
 
 # Create your views here.
 
@@ -34,3 +38,6 @@ class ReminderListView(generics.ListCreateAPIView):
     serializer_class = ReminderSerializer
 
 
+class CreateReminder(generics.CreateAPIView):
+    queryset = Reminder.objects.all()
+    serializer_class = ReminderSerializer
