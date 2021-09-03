@@ -78,3 +78,30 @@ select {
   color: #fff;
   margin-right: 20px;
 }
+
+
+/* event form styles */
+
+
+.btn__group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 11rem;
+  margin: 2rem 0 1rem 3rem;
+}
+
+.btn {
+  color: #00b87c;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btn.active {
+  background: #acffe6;
+  height: 36px;
+  border-radius: 5px;
+  box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+}
