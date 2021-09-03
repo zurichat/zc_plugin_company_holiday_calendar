@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap");
 
 .navbar {
   background-color: #00b87c;
@@ -9,14 +9,14 @@
   align-items: center;
   justify-content: space-between;
 }
-select {
+.select {
   display: inline;
   font-size: 24px;
   border: none;
   outline: none;
   background-color: #00b87c;
   color: white;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   padding: 0 8px;
   font-weight: 600;
 }
@@ -79,9 +79,7 @@ select {
   margin-right: 20px;
 }
 
-
 /* event form styles */
-
 
 .btn__group {
   display: flex;

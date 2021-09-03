@@ -1,13 +1,21 @@
 .card {
-    margin: 30px 20px;
-    border-left: 5px solid blue;
-
+  margin: 30px 20px;
+  border-left: 5px solid blue;
 }
 
-.timings,.description{
-    color: blue;
+.pop_up {
+    position: absolute;
+    top: 155%;
+    left: 50%;
+    transform: translate(-50%,-50% ) scale(0.7);
+    z-index: 50;
+}
+.timings,
+.description {
+  color: blue;
 }
 
-.timings{
-    font-size: 12px;
+.timings {
+  font-size: 12px;
 }
+

@@ -12,7 +12,7 @@ function Navbar() {
           <label>
             <i className="fal fa-calendar-alt"></i>
           </label>
-          <select id="month">
+          <select className="select" id="month">
             <option value="january">January</option>
             <option value="February">February</option>
             <option value="March">March</option>
