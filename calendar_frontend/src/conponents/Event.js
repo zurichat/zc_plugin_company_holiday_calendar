@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './event.css'
 import { FaTimesCircle } from 'react-icons/fa'
-import './Reminder.js'
+
 
 
 const Event = () => {
