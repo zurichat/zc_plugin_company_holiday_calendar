@@ -5,11 +5,19 @@
 *.log
 *.pot
 *.pyc
-__pycache__/
+.__pycache__/
+.__pycache__
 local_settings.py
+.db.sqlite3
 db.sqlite3
 db.sqlite3-journal
 media
+__pycache__/
+__pycache__
+db.sqlite3
+
+
+
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
 # in your Git repository. Update and uncomment the following line accordingly.
@@ -55,7 +63,7 @@ pip-delete-this-directory.txt
 
 # Unit test / coverage reports
 htmlcov/
-.tox/
+.tox/ 
 .nox/
 .coverage
 .coverage.*
@@ -121,6 +129,9 @@ celerybeat.pid
 .venv
 env/
 venv/
+.vscode/
+__pycache__
+venv/
 venv
 ENV/
 env.bak/
@@ -153,3 +164,4 @@ cython_debug/
 
 
 # End of https://www.toptal.com/developers/gitignore/api/django,python
+
