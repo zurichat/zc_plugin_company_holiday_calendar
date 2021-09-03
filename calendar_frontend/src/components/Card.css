@@ -19,3 +19,16 @@
   font-size: 12px;
 }
 
+}
+
+.timings,
+.description {
+  color: blue;
+}
+
+.timings {
+  font-size: 12px;
+}
+.fa-sun {
+  color: grey;
+}

@@ -1,19 +1,10 @@
-from django.shortcuts import render
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
 from django.http import JsonResponse
-from rest_framework import generics
-from rest_framework import filters
-from .serializers import EventSerializer
+from rest_framework import generics, filters, permissions
+from .serializers import *
 from .models import *
-from rest_framework import generics
-from .serializers import EventSerializer
-from .models import Event, Reminder
-from .serializers import EventSerializer, ReminderSerializer
 
 
-# Create your views here.
-
-# Create your views here.
 
 def calendar_view(request):
     return HttpResponse("This is where all calender activities are performed and displayed")
@@ -65,26 +56,36 @@ def ping_view(request):
 class EventUpdateView(generics.UpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny,]
 
 
 class EventSearch(generics.ListAPIView):
-    search_fields = ['event_name', 'start_date']
+    search_fields = ['event_name', 'end']
     filter_backends = (filters.SearchFilter,)
     queryset = Event.objects.all()
-    serializer_class = EventSerializer  # Eventserializer needed!
-    serializer_class = EventSerializer  # Eventserializer needed!
-
+    serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny,]
+    
 
 class ReminderListView(generics.ListCreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
+    permission_classes = [permissions.AllowAny,]
+
 
 class ReminderDetailView(generics.RetrieveAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
+    permission_classes = [permissions.AllowAny,]
+
+
+class CreateEventView(generics.CreateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = ReminderSerializer
+    permission_classes = [permissions.AllowAny,]
 
 
 class CreateReminder(generics.CreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
-    serializer_class = ReminderSerializer
+    permission_classes = [permissions.AllowAny,]

@@ -14,6 +14,7 @@ const Card = () => {
       event: false,
     },
     {
+
       day: "Thursday",
       date: "01",
       timings: "All Day",
@@ -57,6 +58,22 @@ const Card = () => {
               <div className="timings">{data.timings}</div>
               <div className="description">{data.description}</div>
              
+
+ 
+const Card=()=>{
+
+    const Eventfunction=()=>{
+        return randomData.map((data)=>{
+            return <div className="card" >
+                <div className="card-body">
+                    <div className="d-flex flex-column">
+                        <div className="d-flex fw-bolder">
+                            <div className="card-text">{data.day}</div>
+                            <div className="card-text ms-3">{data.date}</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-sun"></i>
+                        </div>
+                    <div className="timings">{data.timings}</div>
+                <div className="description">{data.description}</div>
+
             </div>
           </div>
           <div className="pop_up">{data.event ? <EventCard />  : null}</div>

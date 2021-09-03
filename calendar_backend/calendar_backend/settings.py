@@ -55,7 +55,7 @@ ROOT_URLCONF = 'calendar_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'static')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,9 +128,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-
-
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS =[ '../calendar_frontend/build', '../calendar_frontend/build/static' ]
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
