@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import DateInput from './DateInput/DateInput';
+import DateInput from './DateInput';
 import './Navbar.css'
 
 function Navbar() {
@@ -43,7 +43,10 @@ function Navbar() {
                 aria-hidden='true'
               ></i>
             </header>
-            <DateInput/>
+            <div className='event-form-content'>
+              <DateInput className='start-date' placeholder='Start Date' showIcon={true}/>
+              <DateInput className='end-date' placeholder='End Date' showIcon={true}/>
+            </div>
           </div>
         )}
       </div>
