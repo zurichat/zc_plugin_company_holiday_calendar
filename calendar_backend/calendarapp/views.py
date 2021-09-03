@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponse
+from rest_framework import generics
+from .models import Event
 from django.http import JsonResponse
 from rest_framework import generics
 from rest_framework import filters
@@ -19,6 +21,10 @@ def calendar_view(request):
     return HttpResponse("This is where all calender activities are performed and displayed")
 
 
+class CreateEventView(generics.CreateAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    
 # creating a  view for  displaying  the plugin information as a static Json object.
 
 def plugin_info_view(request):
@@ -87,4 +93,4 @@ class ReminderDetailView(generics.RetrieveAPIView):
 class CreateReminder(generics.CreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
-    
+    serializer_class = ReminderSerializer
