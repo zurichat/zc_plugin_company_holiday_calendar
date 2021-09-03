@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.shortcuts import HttpResponse
 from rest_framework import generics
 from rest_framework import filters
-# from .serializers import EventSerializer
+from .serializers import EventSerializer
 from . models import *
 
 # update event view imports
 from rest_framework import generics
-from .models import Event
-from .serializers import EventSerializer
+from .models import Event, Reminder
+from .serializers import EventSerializer, ReminderSerializer
 
 # Create your views here.
 
@@ -28,4 +28,9 @@ class EventSearch(generics.ListAPIView):
     filter_backends = (filters.SearchFilter,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer #Eventserializer needed!
+
+class ReminderListView(generics.ListCreateAPIView):
+    queryset = Reminder.objects.all()
+    serializer_class = ReminderSerializer
+
 
