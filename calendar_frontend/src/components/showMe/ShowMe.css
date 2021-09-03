@@ -17,10 +17,12 @@
   padding: 0.3rem;
 }
 .radioBtnText {
+  margin: auto;
   font-size: 0.9rem;
   font-weight: 700;
   color: #3a3a3a;
   margin-right: 1rem;
+  text-align: center;
 }
 .showMeGrp {
   width: 100%;
