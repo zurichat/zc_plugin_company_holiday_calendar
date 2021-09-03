@@ -5,5 +5,6 @@ from .views import *
 
 
 urlpatterns = [
-    path('', calendar_view, name="calendar_view")
+    path('', calendar_view, name="calendar_view"),
+    path('create_event/', CreateEventView.as_view()),
 ]
