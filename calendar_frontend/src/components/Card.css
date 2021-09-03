@@ -3,9 +3,31 @@
     border-left: 5px solid blue;
 
 }
+.card:nth-child(3){
+    border-left: 5px solid #FF9800;
+ 
+}
+.card:nth-child(4){
+    border-left: 5px solid #8F3985;
+    
+}
+
 
 .timings,.description{
     color: blue;
+}
+
+/* for the secondary colors*/
+.timing, .descriptions {
+    color: #FF9800;
+}
+
+.timing1, .descriptions1 {
+    color: #8F3985;
+}
+
+.timings:last-child{
+    color: #8F3985;
 }
 
 .timings{

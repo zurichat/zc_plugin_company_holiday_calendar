@@ -16,14 +16,14 @@ const randomData=[
     {   
         day:"Monday",
         date:'01',
-        timings:'All Day',
-        description:"Company Break"
+        timing:'All Day',
+        descriptions:"Company Break"
     },
     {
         day:"Friday",
         date:'01',
-        timings:'All Day',
-        description:"Company Break"
+        timing1:'All Day',
+        descriptions1:"Company Break"
     }
 ]
 const Card=()=>{
@@ -38,7 +38,11 @@ const Card=()=>{
                             <div className="card-text ms-3">{data.date}</div>
                         </div>
                     <div className="timings">{data.timings}</div>
+                    <div className="timing">{data.timing}</div>
+                    <div className="timing1">{data.timing1}</div>
                 <div className="description">{data.description}</div>
+                <div className="descriptions">{data.descriptions}</div>
+                <div className="descriptions1">{data.descriptions1}</div>
             </div>
            
         </div>
