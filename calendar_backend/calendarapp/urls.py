@@ -1,6 +1,6 @@
 from django.contrib.staticfiles.urls import urlpatterns
 from django.urls import path
-from .views import calendar_view, EventUpdateView, EventSearch
+from .views import calendar_view, EventUpdateView, EventSearch, ReminderListView
 
 
 
