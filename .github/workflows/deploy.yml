@@ -8,10 +8,11 @@ on:
       - master
   pull_request:
     branches: 
-      - main
+      - develop
       - master
 
   # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -29,5 +30,7 @@ jobs:
             cd zc_plugin_company_holiday_calendar
             git pull
             cd calendar_backend
-            pkill gunicorn
+            python3 manage.py makemigrations
+            python3 manage.py migrate
+            pkill -u ${{secrets.USERNAME}} gunicorn
             gunicorn --bind 0.0.0.0:8000 calendar_backend.wsgi --daemon
