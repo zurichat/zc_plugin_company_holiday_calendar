@@ -1,6 +1,6 @@
 import React from 'react';
 import './Card.css'
-const randomData=[
+const randomEventData=[
     {
         day:"Wednesday",
         date:'01',
@@ -29,7 +29,7 @@ const randomData=[
 const Card=()=>{
 
     const Eventfunction=()=>{
-        return randomData.map((data)=>{
+        return randomEventData.map((data)=>{
             return <div className="card" >
                 <div className="card-body">
                     <div className="d-flex flex-column">
