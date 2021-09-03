@@ -24,6 +24,7 @@ class EventSearch(generics.ListAPIView):
     filter_backends = (filters.SearchFilter,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 class ReminderListView(generics.ListCreateAPIView):
     queryset = Reminder.objects.all()
