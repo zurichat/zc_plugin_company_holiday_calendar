@@ -1,6 +1,12 @@
-import React, { useState } from 'react';
-import './Navbar.css';
+
+import React, { useState } from "react";
+import "./Navbar.css";
+import Reminder from './Reminder';
+import CancelButton from './CancelButton';
+import './reminder.css';
 import ShowMe from './showMe/ShowMe';
+import DateInput from './DateInput';
+
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false);
   const [showEventPage, setShowEventPage] = useState(true);
@@ -69,13 +75,20 @@ function Navbar() {
                   <h1>event page</h1>
                   <h1>event detail go here</h1>
                 </div>
-
-                <ShowMe />
+                <div className='event-form-content'>
+                  <DateInput className='start-date' placeholder='Start Date' showIcon={true}/>
+                  <DateInput className='end-date' placeholder='End Date' showIcon={true}/>
+                  <ShowMe />
+                </div>
               </>
             ) : (
               <div>
                 <h1>reminder page</h1>
                 <h1>reminder details go here</h1>
+                <div className= 'reminder-button'>
+                <CancelButton/> <Reminder/>
+                </div>
+                
               </div>
             )}
           </div>
