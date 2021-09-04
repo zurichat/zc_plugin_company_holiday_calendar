@@ -4,7 +4,6 @@ from django.db import models
 from django.utils import timezone as _timezone
 from core.utils import get_timezones, DEFAULT_TIMEZONE
 
-from django.db.models.fields import AutoField
 
 
 def get_sentinel_event():
@@ -29,7 +28,6 @@ class EventMixin(object):
 class Event(models.Model):
     event_name = models.CharField(max_length=500)
     type = models.CharField(max_length=2, choices=EventMixin.TYPE_CHOICES, default=EventMixin.NORMAL)
-    start = models.DateTimeField('Start event', default=_timezone.now)
     end = models.DateTimeField('Stop event', default=_timezone.now)
     time_zone = models.CharField(max_length=250, choices=get_timezones(), default=DEFAULT_TIMEZONE)
     description = models.CharField(max_length=100000)

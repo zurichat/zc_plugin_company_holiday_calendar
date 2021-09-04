@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: Lato;
+}
+
+.cards {
+  padding: 25px;
+  width: 400px;
+  z-index: 100;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  transitions:2s
+}
+
+.card_title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size:21px
+}
+
+._pointer {
+  position: absolute;
+  top: 140px;
+  left: -32px;
+}
+
+.schedule {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.schedule_title {
+  margin-top: 5px;
+}
+._eventImage {
+  width: 100%;
+}
+
+._timeDetails {
+  display:flex;
+  align-items:center
+}
+
+.time_desc {
+  margin-left:6px
+}
+.event_desc {
+  text-align: justify;
+  margin-top: 10px;
+}
+
+.event_desc h5 {
+  margin-bottom: 5px;
+  font-weight:bold
+}
+
+.schedule_title {
+  margin-bottom: 5px;
+}
+
+.event_desc p {
+  font-size: 15px;
+  color: rgba(153, 153, 153, 1);
+}
+.schedule p {
+  font-size: 15px;
+}
+.reminder-dropdown {
+  background: rgba(0, 184, 124, 1);
+  outline: none;
+  display: inline-block;
+  padding: 10px;
+  border: none;
+  color: white;
+  margin-top: 30px;
+  position:relative
+}
+
+.reminder-dropdown .option-one {
+  background-color: white;
+  color: black;
+ 
+}
+
+.reminder-dropdown option{
+  background-color: white;
+  color: black;
+ 
+}
+
+

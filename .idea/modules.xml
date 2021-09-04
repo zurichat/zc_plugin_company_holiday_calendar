@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/zc_plugin_company_holiday_calendar.iml" filepath="$PROJECT_DIR$/.idea/zc_plugin_company_holiday_calendar.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/calendar-plugin-frontend.iml" filepath="$PROJECT_DIR$/.idea/calendar-plugin-frontend.iml" />
+>>>>>>> 5eb385d9c19df55a9da650b8f5429d5dac1fd9be
     </modules>
   </component>
 </project>
