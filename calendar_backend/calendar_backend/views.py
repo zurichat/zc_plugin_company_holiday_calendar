@@ -1,6 +1,5 @@
-from django.shortcuts import HttpResponse, render
-
+from django.shortcuts import render
 
 
 def homepage(request):
-    return HttpResponse('<h1>Welcome to Zuri Chat Company Holiday Calendar: Edited with ci/cd</h1>')
+    return render(request, "index.html")
