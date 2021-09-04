@@ -51,6 +51,11 @@ const EventForm = ({ setIsEventOpen }) => {
           </>
         ) : (
           <div>
+          <div className='reminder-contents'>
+    <i class='fal fa-bell-slash' id='bell-off-active'></i>
+    <p id='no-reminder'>No Reminder</p>
+    <p id='remember'> Remember events by creating a reminder</p>
+  </div>
             <div className='reminder-button'>
               <CancelButton /> <Reminder />
             </div>

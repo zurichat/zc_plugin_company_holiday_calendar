@@ -42,6 +42,7 @@ function Navbar() {
           Add Event
         </button>
         {isEventOpen && <div className='overlay'></div>}
+<<<
         {isEventOpen && (
           <div className='event-form'>
             <header>
@@ -91,7 +92,6 @@ function Navbar() {
             )}
           </div>
         )}
-
       </div>
     </div>
   );
