@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import './App.css';
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -7,10 +8,23 @@ import Navbar from './components/Navbar';
 =======
 import Navbar from './components/Navbar';
 >>>>>>> zurichat-develop
+=======
+
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Card from "./components/Card";
+
+  
+import './App.css'
+import Navbar from './components/Navbar'
+import Card from './components/Card'
+
+>>>>>>> zurichat-develop
 
 function App() {
   return (
     <div className="App">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
        <Navbar/>
@@ -20,8 +34,13 @@ function App() {
 =======
        <Navbar/>
 >>>>>>> zurichat-develop
+=======
+      <Navbar />
+      <Card></Card>
+>>>>>>> zurichat-develop
     </div>
   );
 }
+export default App; 
 
-export default App;
+
