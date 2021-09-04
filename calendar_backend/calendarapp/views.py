@@ -10,7 +10,7 @@ from .models import *
 
 
 def calendar_view(request):
-    return HttpResponse("This is where all calender activities are performed and displayed")
+    return HttpResponse("<h1>This is where all calender activities are performed and displayed</h1>")
 
 # creating a  view for  displaying  the plugin information as a static Json object.
 
