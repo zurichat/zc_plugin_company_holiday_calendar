@@ -4,11 +4,10 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: 
-      - main
+      - develop
       - master
   pull_request:
     branches: 
-      - develop
       - master
 
   # Allows you to run this workflow manually from the Actions tab
@@ -20,7 +19,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Git Pull on Server
+      - name: Build frontend
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd zc_plugin_company_holiday_calendar
+            git pull
+            cd calendar_frontend
+            yarn install
+            yarn build
+      
+      - name: Deploy backend
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -32,5 +44,8 @@ jobs:
             cd calendar_backend
             python3 manage.py makemigrations
             python3 manage.py migrate
+            python3 manage.py collectstatic --no-input
             pkill -u ${{secrets.USERNAME}} gunicorn
             gunicorn --bind 0.0.0.0:8000 calendar_backend.wsgi --daemon
+      
+      

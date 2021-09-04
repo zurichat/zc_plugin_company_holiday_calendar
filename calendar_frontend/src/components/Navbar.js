@@ -1,28 +1,37 @@
-import React, { useState } from 'react';
-import './Navbar.css';
+
+import React, { useState } from "react";
+import "./Navbar.css";
+import Reminder from './Reminder';
+import CancelButton from './CancelButton';
+import './reminder.css';
 import ShowMe from './showMe/ShowMe';
+import DateInput from './DateInput';
+
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false);
   const [showEventPage, setShowEventPage] = useState(true);
 
   return (
     <div>
+      <div className="Search">
+        <input type="text" placeholder="search here"/> <i className='fas fa-search'></i>
+         <i class="fa fa-cog" aria-hidden="true"></i>
+      </div>
       <div className='navbar'>
         <div className='month'>
           <label>
             <i className='fal fa-calendar-alt'></i>
           </label>
-          <select id='month'>
-            <option value='january'>January</option>
-            <option value='February'>February</option>
-            <option value='March'>March</option>
-            <option value='April'>April</option>
-            <option value='May'>May</option>
-            <option value='June'>June</option>
-            <option value='July'>July</option>
-            <option value='August'>August</option>
-            <option value='September' selected>
-              September
+          <select className="select" id="month">
+            <option value="january">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September" selected> September
             </option>
             <option value='October'>October</option>
             <option value='November'>November</option>
@@ -65,13 +74,20 @@ function Navbar() {
                   <h1>event page</h1>
                   <h1>event detail go here</h1>
                 </div>
-
-                <ShowMe />
+                <div className='event-form-content'>
+                  <DateInput className='start-date' placeholder='Start Date' showIcon={true}/>
+                  <DateInput className='end-date' placeholder='End Date' showIcon={true}/>
+                  <ShowMe />
+                </div>
               </>
             ) : (
               <div>
                 <h1>reminder page</h1>
                 <h1>reminder details go here</h1>
+                <div className= 'reminder-button'>
+                <CancelButton/> <Reminder/>
+                </div>
+                
               </div>
             )}
           </div>

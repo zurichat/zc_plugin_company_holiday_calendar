@@ -1,6 +1,9 @@
 from django.shortcuts import HttpResponse, render
 from django.http import JsonResponse
 from rest_framework import generics, filters, permissions
+from rest_framework.generics import DestroyAPIView
+from rest_framework.response import Response
+
 from .serializers import *
 from .models import *
 
@@ -8,7 +11,6 @@ from .models import *
 
 def calendar_view(request):
     return HttpResponse("This is where all calender activities are performed and displayed")
-
 
 # creating a  view for  displaying  the plugin information as a static Json object.
 
@@ -51,6 +53,17 @@ def ping_view(request):
          'Report': ['This server is working']}
     ]
     return JsonResponse({'server': server})
+
+
+class DeleteEventView(DestroyAPIView):
+    model = Event
+    queryset = Event.objects.all()
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        payload = {"message": "Deleted event successfully"}
+        return Response(payload)
 
 
 class EventUpdateView(generics.UpdateAPIView):
