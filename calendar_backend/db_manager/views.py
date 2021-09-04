@@ -20,7 +20,8 @@ class EventCreateDBView(generics.ListCreateAPIView):
         serializer = Test_EventSerializer(data=request.data)
         if serializer.is_valid():
             data = serializer.data 
-            data['date'] = json.dumps(datetime.datetime.now().isoformat())   
+            data['date'] = datetime.datetime.now().isoformat()
+            data = json.dumps(data)
             response = write_data_to_db(data, many=False, object_id= random.randint(10000,99999))
             return Response({"status":True,"detail":"Successfully created event"})     
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
