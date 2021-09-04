@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
-import './Navbar.css'
-import Reminder from './Reminder'
-import CancelButton from './CancelButton'
-import './reminder.css'
-import ShowMe from './showMe/ShowMe'
-import DateInput from './DateInput'
-import StartDate from './Startdate'
-import './CancelBtn.css'
+import React, { useState } from "react";
+import "./Navbar.css";
+import Reminder from "./Reminder";
+import CancelButton from "./CancelButton";
+import "./reminder.css";
+import ShowMe from "./showMe/ShowMe";
+import DateInput from "./DateInput";
+import StartDate from "./Startdate";
+import EventDescription from "./EventDescription";
+
+import "./CancelBtn.css";
 import EventTag from "./EventTag";
 
 function Navbar() {
@@ -82,9 +84,17 @@ function Navbar() {
                   />
                 </div>
                 <StartDate></StartDate>
+                <EventDescription />
+                <ShowMe />
                 <EventTag />
-                  <ShowMe />
-                  <button className="event_btn_cancel" onClick={() => setIsEventOpen(false)}> Cancel</button>
+                <ShowMe />
+                <button
+                  className="event_btn_cancel"
+                  onClick={() => setIsEventOpen(false)}
+                >
+                  {" "}
+                  Cancel
+                </button>
               </>
             ) : (
               <div>
