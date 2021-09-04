@@ -66,7 +66,7 @@ function Navbar() {
 
             {showEventPage ? (
               <>
-                <div className='event-form-content'>
+                <div className='event-form-date'>
                   <DateInput
                     className='start-date'
                     placeholder='Start Date'
@@ -77,8 +77,8 @@ function Navbar() {
                     placeholder='End Date'
                     showIcon={true}
                   />
-                  <ShowMe />
                 </div>
+                <ShowMe />
               </>
             ) : (
               <div>
