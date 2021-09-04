@@ -43,6 +43,19 @@ select {
   z-index: 5;
   border-radius: 3px;
 }
+.event-form-content{
+  display: grid;
+  grid-gap: 20px;
+  grid-template-areas:
+    'startDate endDate';
+  padding: 20px;
+}
+.event-form-content .start-date{
+  grid-area: startDate;
+}
+.event-form-content .end-date{
+  grid-area: endDate;
+}
 @media only screen and (max-width: 425px) {
   .event-form {
     width: 100vw;

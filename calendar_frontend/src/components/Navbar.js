@@ -5,6 +5,7 @@ import Reminder from './Reminder';
 import CancelButton from './CancelButton';
 import './reminder.css';
 import ShowMe from './showMe/ShowMe';
+import DateInput from './DateInput';
 
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false);
@@ -70,8 +71,11 @@ function Navbar() {
                   <h1>event page</h1>
                   <h1>event detail go here</h1>
                 </div>
-
-                <ShowMe />
+                <div className='event-form-content'>
+                  <DateInput className='start-date' placeholder='Start Date' showIcon={true}/>
+                  <DateInput className='end-date' placeholder='End Date' showIcon={true}/>
+                  <ShowMe />
+                </div>
               </>
             ) : (
               <div>
