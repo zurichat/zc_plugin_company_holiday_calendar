@@ -1,9 +1,12 @@
+
 import React, { useState } from "react";
 import EventCard from "./EventCard/EventCard";
 import "./Card.css";
 
 const Card = () => {
-  const [randomData, setRandomData] = useState([
+
+const randomEventData=[
+
     {
       day: "Wednesday",
       date: "01",
@@ -55,6 +58,7 @@ const Card = () => {
               </div>
               <div className="timings">{data.timings}</div>
               <div className="description">{data.description}</div>
+
             </div>
           </div>
           <div className="pop_up">{data.event ? <EventCard /> : null}</div>

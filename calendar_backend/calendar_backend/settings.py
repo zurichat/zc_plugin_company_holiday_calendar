@@ -34,7 +34,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    
+    'db_manager',
     'calendarapp',
+
 ]
 
 MIDDLEWARE = [

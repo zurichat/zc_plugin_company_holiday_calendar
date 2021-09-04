@@ -20,6 +20,31 @@
   padding: 0 8px;
   font-weight: 600;
 }
+.Search {
+  max-width: 400px;
+  width: 300%;
+  border: 100px;
+  margin-left: 900px;
+  padding: 0px 16px;
+  cursor: pointer;
+  justify-content: space-around;
+} 
+.Search input {
+  height: 100%;
+  border-radius: .5em;
+  border: .5px grey;
+  color: black;
+  width: 70%;
+}
+.fas {
+  color: grey;
+  width: 20%;
+}
+.fa {
+  color: grey;
+  justify-self: left;
+  width: 10px;
+}
 .fal {
   font-size: 22px;
   color: white;
@@ -32,6 +57,7 @@
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
+  border-radius: 10px;
 }
 .event-form {
   position: fixed;
@@ -42,6 +68,19 @@
   background-color: #fff;
   z-index: 5;
   border-radius: 3px;
+}
+.event-form-content{
+  display: grid;
+  grid-gap: 20px;
+  grid-template-areas:
+    'startDate endDate';
+  padding: 20px;
+}
+.event-form-content .start-date{
+  grid-area: startDate;
+}
+.event-form-content .end-date{
+  grid-area: endDate;
 }
 @media only screen and (max-width: 425px) {
   .event-form {
@@ -103,3 +142,10 @@
   border-radius: 5px;
   box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
 }
+
+
+
+.reminder-button  {
+  margin-left: 40px;
+}
+
