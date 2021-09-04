@@ -47,7 +47,8 @@ select {
   display: grid;
   grid-gap: 20px;
   grid-template-areas:
-    'startDate endDate';
+    'startDate startDate startDate endDate endDate endDate'
+    'showMeGrp showMeGrp showMeGrp showMeGrp showMeGrp showMeGrp';
   padding: 20px;
 }
 .event-form-content .start-date{
@@ -55,6 +56,9 @@ select {
 }
 .event-form-content .end-date{
   grid-area: endDate;
+}
+.event-form-content .showMeGrp{
+  grid-area: showMeGrp;
 }
 @media only screen and (max-width: 425px) {
   .event-form {
