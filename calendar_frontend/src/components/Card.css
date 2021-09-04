@@ -13,11 +13,11 @@
 }
 
 
-.timings,.description{
+.timings, .description{
     color: blue;
 }
 
-/* for the secondary colors*/
+/* for the secondary color*/
 .timing, .descriptions {
     color: #FF9800;
 }
@@ -25,7 +25,6 @@
 .timing1, .descriptions1 {
     color: #8F3985;
 }
-
 
 .timings, .timing1, .timing{
     font-size: 12px;
