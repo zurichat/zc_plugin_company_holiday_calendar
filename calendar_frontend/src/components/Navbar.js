@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.css";
+import StartDate from "./Startdate";
 
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false);
@@ -61,8 +62,7 @@ function Navbar() {
 
             {showEventPage ? (
               <div>
-                <h1>event page</h1>
-                <h1>event detail go here</h1>
+                <StartDate></StartDate>
               </div>
             ) : (
               <div>
