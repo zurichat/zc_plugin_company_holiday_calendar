@@ -27,6 +27,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd zc_plugin_company_holiday_calendar
+            git stash
             git pull
             cd calendar_frontend
             yarn install
