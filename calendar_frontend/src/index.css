@@ -1,9 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap");
 * {
   margin: 0;
+<<<<<<< HEAD
+<<<<<<< HEAD
   padding: 0;
   box-sizing: border-box;
 }
 body {
   font-family: Lato;
 }
+=======
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+=======
+  padding: 0;
+  box-sizing: border-box;
+>>>>>>> zurichat-develop
+}
+body {
+  font-family: Lato;
+}
+>>>>>>> 46ae85551e73252a7f0d6964819cd51d8075aff5
