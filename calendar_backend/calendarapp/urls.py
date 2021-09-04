@@ -13,4 +13,5 @@ urlpatterns = [
     path('detail-reminder/<int:pk>/', ReminderDetailView.as_view(), name='reminder-details'),
     path('create-reminder/', CreateReminder.as_view(), name='createReminders'),
     path("create_event_db/", EventCreateDBView.as_view(), name='api_create_event'),
-] 
+    path("delete-reminder/<int:pk>/", DeleteReminderView.as_view()),
+]

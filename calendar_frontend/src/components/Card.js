@@ -1,12 +1,9 @@
-
 import React, { useState } from "react";
 import EventCard from "./EventCard/EventCard";
 import "./Card.css";
 
 const Card = () => {
-
-const randomEventData=[
-
+  const randomEventData = [
     {
       day: "Wednesday",
       date: "01",
@@ -35,7 +32,8 @@ const randomEventData=[
       description: "Company Break",
       event: false,
     },
-  ]);
+  ];
+  const [randomData, setRandomData] = useState(randomEventData);
 
   const handleClick = (id, e) => {
     setRandomData(
@@ -58,7 +56,6 @@ const randomEventData=[
               </div>
               <div className="timings">{data.timings}</div>
               <div className="description">{data.description}</div>
-
             </div>
           </div>
           <div className="pop_up">{data.event ? <EventCard /> : null}</div>
@@ -70,3 +67,4 @@ const randomEventData=[
 };
 
 export default Card;
+
