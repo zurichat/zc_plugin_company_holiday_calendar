@@ -6,6 +6,7 @@ import './reminder.css'
 import ShowMe from './showMe/ShowMe'
 import DateInput from './DateInput'
 import StartDate from './Startdate'
+import './CancelBtn.css'
 
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false)
@@ -81,6 +82,7 @@ function Navbar() {
                 </div>
                 <StartDate></StartDate>
                   <ShowMe />
+                  <button className="event_btn_cancel" onClick={() => setIsEventOpen(false)}> Cancel</button>
               </>
             ) : (
               <div>
