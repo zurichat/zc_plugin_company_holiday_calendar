@@ -65,9 +65,10 @@ function Navbar() {
                 <h1>event detail go here</h1>
               </div>
             ) : (
-              <div>
-                <h1>reminder page</h1>
-                <h1>reminder details go here</h1>
+              <div className="reminder-contents">
+                <i class="fal fa-bell-slash" id="bell-off-active"></i>
+                <p id="no-reminder">No Reminder</p>
+                <p id="remember"> Remember events by creating a reminder</p>
               </div>
             )}
           </div>

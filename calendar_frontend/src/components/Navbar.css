@@ -105,3 +105,35 @@ select {
   border-radius: 5px;
   box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
 }
+
+.reminder-contents{
+  width: 198px;
+  height: 13px;
+  margin: 60px 20px 100px 80px;
+  font-family: Lato;
+  font-style: normal;
+}
+
+#no-reminder{
+  font-size: 20px;
+  line-height: 18px;
+  color: #3A3A3A;
+}
+
+#remember{
+  color: #999999;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 5px 0px;
+}
+
+#bell-off-active{
+  position: absolute;
+  margin-top: 50px -80px;
+  left: 40px;
+  color: #999999;
+}
