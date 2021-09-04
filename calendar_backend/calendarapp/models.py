@@ -25,7 +25,6 @@ class EventMixin(object):
         (ALL_DAY, 'all day'),
     )
 
-
 class Event(models.Model):
     event_name = models.CharField(max_length=500)
     type = models.CharField(max_length=2, choices=EventMixin.TYPE_CHOICES, default=EventMixin.NORMAL)

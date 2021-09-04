@@ -13,22 +13,25 @@ function Navbar() {
 
   return (
     <div>
+      <div className="Search">
+        <input type="text" placeholder="search here"/> <i className='fas fa-search'></i>
+         <i class="fa fa-cog" aria-hidden="true"></i>
+      </div>
       <div className='navbar'>
         <div className='month'>
           <label>
             <i className='fal fa-calendar-alt'></i>
           </label>
-          <select id='month'>
-            <option value='january'>January</option>
-            <option value='February'>February</option>
-            <option value='March'>March</option>
-            <option value='April'>April</option>
-            <option value='May'>May</option>
-            <option value='June'>June</option>
-            <option value='July'>July</option>
-            <option value='August'>August</option>
-            <option value='September' selected>
-              September
+          <select className="select" id="month">
+            <option value="january">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September" selected> September
             </option>
             <option value='October'>October</option>
             <option value='November'>November</option>

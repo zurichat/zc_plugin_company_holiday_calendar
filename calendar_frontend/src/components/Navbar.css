@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap");
 
 .navbar {
   background-color: #00b87c;
@@ -9,16 +9,41 @@
   align-items: center;
   justify-content: space-between;
 }
-select {
+.select {
   display: inline;
   font-size: 24px;
   border: none;
   outline: none;
   background-color: #00b87c;
   color: white;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   padding: 0 8px;
   font-weight: 600;
+}
+.Search {
+  max-width: 400px;
+  width: 300%;
+  border: 100px;
+  margin-left: 900px;
+  padding: 0px 16px;
+  cursor: pointer;
+  justify-content: space-around;
+} 
+.Search input {
+  height: 100%;
+  border-radius: .5em;
+  border: .5px grey;
+  color: black;
+  width: 70%;
+}
+.fas {
+  color: grey;
+  width: 20%;
+}
+.fa {
+  color: grey;
+  justify-self: left;
+  width: 10px;
 }
 .fal {
   font-size: 22px;
@@ -32,6 +57,7 @@ select {
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
+  border-radius: 10px;
 }
 .event-form {
   position: fixed;
@@ -96,9 +122,7 @@ select {
   margin-right: 20px;
 }
 
-
 /* event form styles */
-
 
 .btn__group {
   display: flex;
@@ -123,6 +147,9 @@ select {
   box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
 }
 
+
+
 .reminder-button  {
   margin-left: 40px;
 }
+
