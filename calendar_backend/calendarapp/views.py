@@ -84,7 +84,7 @@ class EventSearch(generics.ListAPIView):
     permission_classes = [permissions.AllowAny,]
     
 
-class ReminderListView(generics.ListCreateAPIView):
+class ReminderListView(generics.ListAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
     permission_classes = [permissions.AllowAny,]
