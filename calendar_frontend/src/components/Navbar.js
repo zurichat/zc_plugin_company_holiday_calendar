@@ -8,6 +8,9 @@ import DateInput from "./DateInput";
 import StartDate from "./Startdate";
 import EventDescription from "./EventDescription";
 
+import "./CancelBtn.css";
+import EventTag from "./EventTag";
+
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false);
   const [showEventPage, setShowEventPage] = useState(true);
@@ -83,6 +86,15 @@ function Navbar() {
                 <StartDate></StartDate>
                 <EventDescription />
                 <ShowMe />
+                <EventTag />
+                <ShowMe />
+                <button
+                  className="event_btn_cancel"
+                  onClick={() => setIsEventOpen(false)}
+                >
+                  {" "}
+                  Cancel
+                </button>
               </>
             ) : (
               <div>

@@ -1,0 +1,26 @@
+.event-tag h6 {
+  width: 48px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 11px;
+  line-height: 13px;
+  color: #3a3a3a;
+}
+.event-tag input {
+  border: none;
+  outline: none;
+  width: 167.34px;
+  border-bottom: 1px solid #999999;
+  padding: 0.5em 0;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #242424;
+}
+.event-tag {
+  margin-left: 1.7rem;
+  margin-top: 1.2rem;
+}
