@@ -3,6 +3,7 @@ import ShowMe from './showMe/ShowMe'
 import DateInput from './DateInput'
 import Reminder from './Reminder'
 import CancelButton from './CancelButton'
+import CreateButton from './CreateButton'
 
 const EventForm = ({ setIsEventOpen }) => {
   const [showEventPage, setShowEventPage] = useState(true)
@@ -48,6 +49,7 @@ const EventForm = ({ setIsEventOpen }) => {
               />
             </div>
             <ShowMe />
+            <CreateButton />
           </>
         ) : (
           <div>
