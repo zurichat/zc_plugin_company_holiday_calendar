@@ -94,7 +94,7 @@ class ReminderDetailView(generics.RetrieveAPIView):
 
 class CreateEventView(generics.CreateAPIView):
     queryset = Event.objects.all()
-    serializer_class = ReminderSerializer
+    serializer_class = EventSerializer
     permission_classes = [permissions.AllowAny,]
 
 
