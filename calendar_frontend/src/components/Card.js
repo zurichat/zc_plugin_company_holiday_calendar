@@ -35,7 +35,7 @@ const randomEventData=[
       description: "Company Break",
       event: false,
     },
-  ]);
+  ];
 
   const handleClick = (id, e) => {
     setRandomData(
