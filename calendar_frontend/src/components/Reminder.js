@@ -1,6 +1,7 @@
 // Import the necessary libraries.
 import React, { useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa'
+import CustomRecurrence from './customRecurrence';
 
 
 // Import the css files
@@ -10,6 +11,7 @@ import './reminder.css'
 // Create Reminder Component.
 const Reminder = () => {
     const [isButtonClick, setIsButtonClick] = useState(false);
+    const [showCustom, setShowCustom] = useState(false)
     return (
         <div className='dropdown'>
             <button className='dropbtn' onClick={() => {setIsButtonClick(!isButtonClick)}}>Create <FaChevronDown className='faChevron'/></button>
@@ -20,8 +22,12 @@ const Reminder = () => {
                 <option>Monthly</option>
                 <option>Yearly</option>
                 <option>Every week day (Monday to Friday)</option>
-                <option>Custom...</option>
+                <option onClick = {() => {
+                    setShowCustom(!showCustom)
+                    setIsButtonClick(!isButtonClick)
+                }}>Custom...</option>
             </div>
+            {showCustom && <CustomRecurrence/>}
         </div>
     )
 }

@@ -82,8 +82,8 @@ function Navbar() {
               </>
             ) : (
               <div>
-                <h1>reminder page</h1>
-                <h1>reminder details go here</h1>
+                {/* <h1>reminder page</h1>
+                <h1>reminder details go here</h1> */}
                 <div className= 'reminder-button'>
                 <CancelButton/> <Reminder/>
                 </div>
