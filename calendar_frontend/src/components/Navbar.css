@@ -105,3 +105,25 @@ select {
   border-radius: 5px;
   box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
 }
+
+/* Style for create botton */
+.create-button {
+  border: none;
+  margin: 20px 0;
+}
+
+#createButton {
+  color: #f6f6f6;
+  background-color: #00b87c;
+  border: none;
+  padding: 15px 40px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 900;
+  font-family: Lato;
+  z-index: 4;
+  border-radius: 5px;
+}
+
+/* Style for create botton ends here */

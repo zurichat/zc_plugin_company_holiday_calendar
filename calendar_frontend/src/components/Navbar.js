@@ -63,6 +63,9 @@ function Navbar() {
               <div>
                 <h1>event page</h1>
                 <h1>event detail go here</h1>
+                <section className="create-button">
+            		<button id="createButton">Create</button>
+        		</section>
               </div>
             ) : (
               <div>
