@@ -5,6 +5,7 @@ import CancelButton from './CancelButton'
 import './reminder.css'
 import ShowMe from './showMe/ShowMe'
 import DateInput from './DateInput'
+import StartDate from './Startdate'
 
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false)
@@ -77,8 +78,10 @@ function Navbar() {
                     placeholder='End Date'
                     showIcon={true}
                   />
-                  <ShowMe />
+                  
                 </div>
+                <StartDate></StartDate>
+                  <ShowMe />
               </>
             ) : (
               <div>
