@@ -2,14 +2,9 @@ import React from "react";
 import "./EventCard.css";
 import image from "./Rectangle.png";
 import pointer from "./Polygon.png";
-import {FaClock} from 'react-icons/fa'
+import { FaClock } from "react-icons/fa";
 
-import Shape  from './Shape.png'
 const EventCard = () => {
-
-
-
-
   return (
     <div className="cards">
       <p className="card_title">Company Break</p>
@@ -23,7 +18,10 @@ const EventCard = () => {
 
         <div className="date">
           <p className="schedule_title">Time</p>
-         <p className ="_timeDetails"> <FaClock color="gray"/> <span className ="time_desc">All Day</span> </p>
+          <p className="_timeDetails">
+            {" "}
+            <FaClock color="gray" /> <span className="time_desc">All Day</span>{" "}
+          </p>
         </div>
       </div>
       <div className="event_desc">
@@ -34,14 +32,12 @@ const EventCard = () => {
           id pretium feugiat ipsum egestas. Molestie cursus urna eu vel cursus
           et feugiat. Quis elementum, blandit cursus turpis consequat.......
         </p>
-
-  
       </div>
 
       <div className="reminder">
         <select className="reminder-dropdown">
           <option selected className="option-one" value="0">
-          Set Reminder
+            Set Reminder
           </option>
           <option>Do not Repeat</option>
           <option>Daily</option>
