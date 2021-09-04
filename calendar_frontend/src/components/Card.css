@@ -4,11 +4,11 @@
 }
 
 .pop_up {
-    position: absolute;
-    top: 155%;
-    left: 50%;
-    transform: translate(-50%,-50% ) scale(0.7);
-    z-index: 50;
+  position: absolute;
+  top: 155%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.7);
+  z-index: 50;
 }
 .timings,
 .description {
@@ -17,8 +17,6 @@
 
 .timings {
   font-size: 12px;
-}
-
 }
 
 .timings,
