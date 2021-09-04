@@ -1,13 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap');
 
 .navbar {
   background-color: #00b87c;
   padding: 20px 60px;
   width: 100%;
   display: flex;
-  display: flex;
   align-items: center;
   justify-content: space-between;
+  height: 96px;
+  position: relative;
 }
 .select {
   display: inline;
@@ -16,34 +17,9 @@
   outline: none;
   background-color: #00b87c;
   color: white;
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   padding: 0 8px;
   font-weight: 600;
-}
-.Search {
-  max-width: 400px;
-  width: 300%;
-  border: 100px;
-  margin-left: 900px;
-  padding: 0px 16px;
-  cursor: pointer;
-  justify-content: space-around;
-} 
-.Search input {
-  height: 100%;
-  border-radius: .5em;
-  border: .5px grey;
-  color: black;
-  width: 70%;
-}
-.fas {
-  color: grey;
-  width: 20%;
-}
-.fa {
-  color: grey;
-  justify-self: left;
-  width: 10px;
 }
 .fal {
   font-size: 22px;
@@ -57,35 +33,31 @@
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 3px;
+  height: 36px;
 }
 .event-form {
-  position: fixed;
+  position: absolute;
   right: 0px;
   top: 0px;
-  height: 100%;
-  width: 425px;
+  height: 871px;
+  min-width: 425px;
+  max-width: 425px;
   background-color: #fff;
   z-index: 5;
   border-radius: 3px;
 }
-.event-form-content{
-  display: grid;
-  grid-gap: 20px;
-  grid-template-areas:
-    'startDate endDate';
-  padding: 20px;
+.event-form-content {
+  display: flex;
+  justify-content: space-around;
 }
-.event-form-content .start-date{
-  grid-area: startDate;
+.start-date {
+  width: 170px;
+  margin-left: 20px;
 }
-.event-form-content .end-date{
-  grid-area: endDate;
-}
-@media only screen and (max-width: 425px) {
-  .event-form {
-    width: 100vw;
-  }
+.end-date {
+  width: 170px;
+  margin-right: 20px;
 }
 .event-form h2 {
   color: #f6f6f6;
@@ -95,6 +67,7 @@
   font-size: 25px;
 }
 .event-form header {
+  height: 76px;
   background-color: #00b87c;
   width: 100%;
   display: flex;
@@ -143,6 +116,23 @@
   box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
 }
 
+
+@media only screen and (max-width: 425px) {
+  .event-form {
+    width: 100vw;
+  }
+  .navbar {
+    padding: 20px 15px;
+  }
+  .start-date {
+    font-size: 13px;
+    width: 150px;
+  }
+  .end-date {
+    font-size: 13px;
+    width: 150px;
+  }
+}
 .reminder-contents{
   width: 198px;
   height: 13px;
@@ -174,10 +164,6 @@
   left: 40px;
   color: #999999;
 }
-
-
-
-.reminder-button  {
+.reminder-button {
   margin-left: 40px;
 }
-
