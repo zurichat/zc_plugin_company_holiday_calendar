@@ -16,14 +16,20 @@ const randomData=[
     {   
         day:"Monday",
         date:'01',
-        timing:'All Day',
-        descriptions:"Company Break"
+        timings:'All Day',
+        description:"Company Break"
     },
     {
         day:"Friday",
         date:'01',
-        timing1:'All Day',
-        descriptions1:"Company Break"
+        timing:'All Day',
+        descriptions:"Company Break"
+    },
+    {
+        day:"Saturday",
+        date:'04',
+        timing1:'12:00pm - 8:00',
+        descriptions1:"Zuri Picnic"
     }
 ]
 const Card=()=>{
