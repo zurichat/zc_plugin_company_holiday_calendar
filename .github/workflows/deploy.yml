@@ -27,6 +27,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd zc_plugin_company_holiday_calendar
+            git clean -fd
+            git stash
             git pull
             cd calendar_frontend
             yarn install
@@ -42,7 +44,8 @@ jobs:
             cd zc_plugin_company_holiday_calendar
             git pull
             cd calendar_backend
-            python3 manage.py makemigrations
+            python3 manage.py makemigrations calendarapp
+            python3 manage.py makemigrations db_manager
             python3 manage.py migrate
             python3 manage.py collectstatic --no-input
             pkill -u ${{secrets.USERNAME}} gunicorn
