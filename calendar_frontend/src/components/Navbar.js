@@ -36,54 +36,6 @@ function Navbar() {
           Add Event
         </button>
         {isEventOpen && <div className='overlay'></div>}
-        {isEventOpen && (
-          <div className='event-form'>
-            <header>
-              <h2>Add New Event</h2>
-              <i
-                class='far fa-times-circle'
-                onClick={() => setIsEventOpen(false)}
-                aria-hidden='true'
-              ></i>
-            </header>
-
-            <div className='btn__group'>
-              <button
-                className={`btn ${showEventPage && 'active'}`}
-                onClick={() => setShowEventPage(true)}
-              >
-                Event
-              </button>
-              <button
-                className={`btn btn__reminder ${!showEventPage && 'active'}`}
-                onClick={() => setShowEventPage(false)}
-              >
-                Reminder
-              </button>
-            </div>
-
-            {showEventPage ? (
-              <>
-                <div>
-                  <h1>event page</h1>
-                  <h1>event detail go here</h1>
-                </div>
-                <div className='event-form-content'>
-                  <DateInput className='start-date' placeholder='Start Date' showIcon={true}/>
-                  <DateInput className='end-date' placeholder='End Date' showIcon={true}/>
-                  <ShowMe />
-                </div>
-              </>
-            ) : (
-                
-                <div className= 'reminder-button'>
-                <CancelButton/> <Reminder/>
-                </div>
-                
-              </div>
-            )}
-          </div>
-        )}
         {isEventOpen && <EventForm setIsEventOpen={setIsEventOpen} />}
       </div>
     </div>
