@@ -20,6 +20,31 @@ select {
   padding: 0 8px;
   font-weight: 600;
 }
+.Search {
+  max-width: 400px;
+  width: 300%;
+  border: 100px;
+  margin-left: 900px;
+  padding: 0px 16px;
+  cursor: pointer;
+  justify-content: space-around;
+} 
+.Search input {
+  height: 100%;
+  border-radius: .5em;
+  border: .5px grey;
+  color: black;
+  width: 70%;
+}
+.fas {
+  color: grey;
+  width: 20%;
+}
+.fa {
+  color: grey;
+  justify-self: left;
+  width: 10px;
+}
 .fal {
   font-size: 22px;
   color: white;
@@ -32,6 +57,7 @@ select {
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
+  border-radius: 10px;
 }
 .event-form {
   position: fixed;

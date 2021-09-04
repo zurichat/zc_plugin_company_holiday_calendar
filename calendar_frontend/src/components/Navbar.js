@@ -7,6 +7,10 @@ function Navbar() {
 
   return (
     <div>
+      <div className="Search">
+        <input type="text" placeholder="search here"/> <i className='fas fa-search'></i>
+         <i class="fa fa-cog" aria-hidden="true"></i>
+      </div>
       <div className='navbar'>
         <div className='month'>
           <label>
