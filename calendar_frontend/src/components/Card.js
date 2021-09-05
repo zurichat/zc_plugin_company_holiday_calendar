@@ -74,7 +74,7 @@ const Card = () => {
               <div className="d-flex fw-bolder">
                 <div className="card-text">{data.day}</div>
                 <div className="card-text ms-3">{data.date}</div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i className="fas fa-sun"></i>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-sun"></i>
               </div>
               <div
                 className="timings"

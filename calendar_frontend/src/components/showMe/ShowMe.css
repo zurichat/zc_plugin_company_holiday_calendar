@@ -51,7 +51,7 @@
 }
 .radioBtnLabel::before {
   position: absolute;
-  content: "";
+  content: '';
   display: inline-flex;
   border: 1px solid #00b87c;
   width: 20px;
