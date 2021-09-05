@@ -84,7 +84,7 @@ class EventSearch(generics.ListAPIView):
     permission_classes = [permissions.AllowAny,]
     
 
-class ReminderListView(generics.ListCreateAPIView):
+class ReminderListView(generics.ListAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
     permission_classes = [permissions.AllowAny,]
@@ -106,6 +106,15 @@ class CreateReminder(generics.CreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
     permission_classes = [permissions.AllowAny,]
+
+
+class ReminderUpdateView(generics.UpdateAPIView):
+    serializer_class = ReminderSerializer
+    permission_classes = [permissions.AllowAny,]
+
+    def get_queryset(self):
+        queryset = Reminder.objects.filter(id=self.kwargs['pk'])
+        return queryset
 
 
 class DeleteReminderView(DestroyAPIView):
