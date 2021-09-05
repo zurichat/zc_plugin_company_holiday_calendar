@@ -40,12 +40,13 @@
   position: absolute;
   right: 0px;
   top: 0px;
-  height: 871px;
+  min-height: 871px;
   min-width: 425px;
   max-width: 425px;
   background-color: #fff;
   z-index: 5;
   border-radius: 3px;
+  overflow-x: hidden;
 }
 .event-form-date {
   display: flex;

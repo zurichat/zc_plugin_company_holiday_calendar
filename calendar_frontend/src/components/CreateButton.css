@@ -7,6 +7,12 @@
   font-size: 13px;
   cursor: pointer;
   border-radius: 3px;
-  margin: 20px;
-  /*height: 36px;*/
+  margin: 10px;
+}
+
+.cancel-create {
+	margin-top: 60px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
 }
