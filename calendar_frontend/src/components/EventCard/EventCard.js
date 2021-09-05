@@ -4,10 +4,10 @@ import image from "./Rectangle.png";
 import pointer from "./Polygon.png";
 import { FaClock } from "react-icons/fa";
 
-const EventCard = () => {
+const EventCard = ({ eventDesc, eventTime }) => {
   return (
     <div className="cards">
-      <p className="card_title">Company Break</p>
+      <p className="card_title">{eventDesc}</p>
 
       <img className="_eventImage" src={image} alt="rect" />
       <div className="schedule">
@@ -20,7 +20,8 @@ const EventCard = () => {
           <p className="schedule_title">Time</p>
           <p className="_timeDetails">
             {" "}
-            <FaClock color="gray" /> <span className="time_desc">All Day</span>{" "}
+            <FaClock color="gray" />{" "}
+            <span className="time_desc">{eventTime}</span>{" "}
           </p>
         </div>
       </div>
