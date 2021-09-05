@@ -5,7 +5,11 @@ import CancelButton from "./CancelButton";
 import "./reminder.css";
 import ShowMe from "./showMe/ShowMe";
 import DateInput from "./DateInput";
-import TimeZone from "./Timezone";
+import StartDate from "./Startdate";
+import EventDescription from "./EventDescription";
+
+import "./CancelBtn.css";
+import EventTag from "./EventTag";
 
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false);
@@ -13,11 +17,6 @@ function Navbar() {
 
   return (
     <div>
-      <div className="Search">
-        <input type="text" placeholder="search here" />{" "}
-        <i className="fas fa-search"></i>
-        <i className="fa fa-cog" aria-hidden="true"></i>
-      </div>
       <div className="navbar">
         <div className="month">
           <label>
@@ -33,7 +32,6 @@ function Navbar() {
             <option value="July">July</option>
             <option value="August">August</option>
             <option value="September" selected>
-              {" "}
               September
             </option>
             <option value="October">October</option>
@@ -73,11 +71,7 @@ function Navbar() {
 
             {showEventPage ? (
               <>
-                <div>
-                  <h1>event page</h1>
-                  <h1>event detail go here</h1>
-                </div>
-                <div className="event-form-content">
+                <div className="event-form-date">
                   <DateInput
                     className="start-date"
                     placeholder="Start Date"
@@ -88,14 +82,27 @@ function Navbar() {
                     placeholder="End Date"
                     showIcon={true}
                   />
-                  <TimeZone />
-                  <ShowMe />
                 </div>
+                <StartDate></StartDate>
+                <EventDescription />
+
+                <EventTag />
+                <ShowMe />
+                <button
+                  className="event_btn_cancel"
+                  onClick={() => setIsEventOpen(false)}
+                >
+                  {" "}
+                  Cancel
+                </button>
               </>
             ) : (
               <div>
-                <h1>reminder page</h1>
-                <h1>reminder details go here</h1>
+                <div className="reminder-contents">
+                  <i class="fal fa-bell-slash" id="bell-off-active"></i>
+                  <p id="no-reminder">No Reminder</p>
+                  <p id="remember"> Remember events by creating a reminder</p>
+                </div>
                 <div className="reminder-button">
                   <CancelButton /> <Reminder />
                 </div>

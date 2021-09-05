@@ -10,7 +10,7 @@ from .models import *
 
 
 def calendar_view(request):
-    return HttpResponse("This is where all calender activities are performed and displayed")
+    return HttpResponse("<h1>This is where all calender activities are performed and displayed</h1>")
 
 # creating a  view for  displaying  the plugin information as a static Json object.
 
@@ -65,6 +65,10 @@ class DeleteEventView(DestroyAPIView):
         payload = {"message": "Deleted event successfully"}
         return Response(payload)
 
+class EventListView(generics.ListAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny,]
 
 class EventUpdateView(generics.UpdateAPIView):
     queryset = Event.objects.all()
@@ -102,3 +106,20 @@ class CreateReminder(generics.CreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
     permission_classes = [permissions.AllowAny,]
+
+
+class DeleteReminderView(DestroyAPIView):
+    serializer_class = ReminderSerializer
+
+    def get_queryset(self):
+        queryset = Reminder.objects.filter(id=self.kwargs['pk'])
+        return queryset
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        print(instance)
+        instance_id = instance.id
+        self.perform_destroy(instance)
+        payload = {"message": "Reminder({}) deleted successfully".format(instance_id)}
+
+        return Response(payload)
