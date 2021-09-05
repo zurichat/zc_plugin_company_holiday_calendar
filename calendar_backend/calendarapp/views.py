@@ -104,6 +104,15 @@ class CreateReminder(generics.CreateAPIView):
     permission_classes = [permissions.AllowAny,]
 
 
+class ReminderUpdateView(generics.UpdateAPIView):
+    serializer_class = ReminderSerializer
+    permission_classes = [permissions.AllowAny,]
+
+    def get_queryset(self):
+        queryset = Reminder.objects.filter(id=self.kwargs['pk'])
+        return queryset
+
+
 class DeleteReminderView(DestroyAPIView):
     serializer_class = ReminderSerializer
 
