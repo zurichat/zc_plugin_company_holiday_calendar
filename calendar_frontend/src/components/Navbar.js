@@ -10,8 +10,9 @@ function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false)
   const [showEventPage, setShowEventPage] = useState(true)
 
+
   return (
-    <div>
+    <div >
       <div className='navbar'>
         <div className='month'>
           <label>
@@ -37,10 +38,12 @@ function Navbar() {
         <button className='open-btn' onClick={() => setIsEventOpen(true)}>
           Add Event
         </button>
-        {isEventOpen && <div className='overlay'></div>}
+        {isEventOpen && <div className='overlay' onClick={
+          () => setIsEventOpen(false)}></div>}
         {isEventOpen && (
+
           <div className='event-form'>
-            <header>
+            <header >
               <h2>Add New Event</h2>
               <i
                 class='far fa-times-circle'
@@ -96,7 +99,10 @@ function Navbar() {
         )}
       </div>
     </div>
+
   )
+
 }
+
 
 export default Navbar
