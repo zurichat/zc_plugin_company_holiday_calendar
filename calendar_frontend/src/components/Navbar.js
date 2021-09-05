@@ -11,6 +11,7 @@ import Timezone from "./Timezone";
 
 import "./CancelBtn.css";
 import EventTag from "./EventTag";
+import CreateButton from "./CreateButton";
 
 function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false);
@@ -90,13 +91,14 @@ function Navbar() {
 
                 <EventTag />
                 <ShowMe />
-                <button
-                  className="event_btn_cancel"
-                  onClick={() => setIsEventOpen(false)}
-                >
-                  {" "}
-                  Cancel
-                </button>
+                <section className="cancel-create">
+                	<button
+                		className="event_btn_cancel"
+                		onClick={() => setIsEventOpen(false)}>{" "}
+                		Cancel
+                	</button>
+                	<CreateButton / >
+                </section>
               </>
             ) : (
               <div>
