@@ -9,7 +9,7 @@ const EventTag = () => {
     <div className="event-tag">
       <div className='eventHeader'>
       <h6>Event Tag</h6>
-      <span onClick={()=>setColor(true)}><i className="fas fa-angle-down arrowIcon"></i></span>
+      <span onClick={()=>setColor(!color)}><i className="fas fa-angle-down arrowIcon"></i></span>
       </div>
       
       <div className='eventTagInputContainer'>
