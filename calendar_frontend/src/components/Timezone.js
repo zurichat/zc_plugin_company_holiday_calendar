@@ -6,9 +6,6 @@ const Timezone = () => {
 
   return (
     <div className="timezone">
-      <label htmlFor="timezone" className="label-timezone">
-        Time Zone
-      </label>
       <select
         id="timezone"
         className="input-timezone"
