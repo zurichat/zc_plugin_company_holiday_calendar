@@ -65,10 +65,18 @@ class DeleteEventView(DestroyAPIView):
         payload = {"message": "Deleted event successfully"}
         return Response(payload)
 
+
 class EventListView(generics.ListAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [permissions.AllowAny,]
+
+
+class EventDetailView(generics.RetrieveAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny,]
+
 
 class EventUpdateView(generics.UpdateAPIView):
     queryset = Event.objects.all()
