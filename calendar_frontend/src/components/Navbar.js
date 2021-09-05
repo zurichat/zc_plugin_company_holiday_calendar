@@ -85,7 +85,7 @@ function Navbar() {
                 </div>
                 <StartDate></StartDate>
                 <EventDescription />
-                <ShowMe />
+                
                 <EventTag />
                 <ShowMe />
                 <button
