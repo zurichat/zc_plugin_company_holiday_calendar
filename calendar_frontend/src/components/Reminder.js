@@ -5,8 +5,7 @@ import CustomRecurrence from './customRecurrence';
 
 
 // Import the css files
-import './reminder.css'
-
+import "./reminder.css";
 
 // Create Reminder Component.
 const Reminder = () => {

@@ -1,0 +1,17 @@
+.timezone {
+  display: inline;
+  position: relative;
+}
+.input-timezone {
+  border: none;
+  border-bottom: 1px solid #999999;
+  padding: 2px 10px 10px 2px;
+  color: #777;
+  outline: none;
+  padding-top: 45px;
+}
+.input-timezone:focus {
+  border-bottom-color: black;
+  color: black;
+  transition: 500ms;
+}
