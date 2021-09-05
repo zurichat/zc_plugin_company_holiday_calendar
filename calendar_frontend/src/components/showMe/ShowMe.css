@@ -28,7 +28,7 @@
   width: 100%;
   padding: 1rem;
   font-family: Lato, sans-serif;
-  font-size:700;
+  font-size: 700;
 }
 .radioGrp {
   display: flex;
@@ -51,7 +51,7 @@
 }
 .radioBtnLabel::before {
   position: absolute;
-  content: '';
+  content: "";
   display: inline-flex;
   border: 1px solid #00b87c;
   width: 20px;
