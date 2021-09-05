@@ -5,6 +5,7 @@ from db_manager.views import EventCreateDBView
 
 urlpatterns = [
     path('', calendar_view, name="calendar_view"),
+    path('create_event/', CreateEventView().as_view()),
     path('list-events/', EventListView.as_view()),
     path('update-event/<int:pk>', EventUpdateView.as_view()),
     path('delete-event/<int:pk>', DeleteEventView.as_view()),
