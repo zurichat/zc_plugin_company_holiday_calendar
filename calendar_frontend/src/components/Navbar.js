@@ -8,7 +8,7 @@ import DateInput from "./DateInput";
 import EventTitle from "./EventTitle";
 import StartDate from "./Startdate";
 import EventDescription from "./EventDescription";
-
+import Timezone from "./Timezone";
 
 import "./CancelBtn.css";
 import EventTag from "./EventTag";
@@ -77,7 +77,7 @@ function Navbar() {
 
             {showEventPage ? (
               <>
-                  <EventTitle/>
+                <EventTitle />
                 <div className="event-form-date">
                   <DateInput
                     className="start-date"
@@ -89,19 +89,22 @@ function Navbar() {
                     placeholder="End Date"
                     showIcon={true}
                   />
-                </div> 
+                </div>
                 <StartDate></StartDate>
+                <Timezone />
                 <EventDescription />
 
                 <EventTag />
                 <ShowMe />
                 <section className="cancel-create">
-                	<button
-                		className="event_btn_cancel"
-                		onClick={() => setIsEventOpen(false)}>{" "}
-                		Cancel
-                	</button>
-                	<CreateButton />
+                  <button
+                    className="event_btn_cancel"
+                    onClick={() => setIsEventOpen(false)}
+                  >
+                    {" "}
+                    Cancel
+                  </button>
+                  <CreateButton />
                 </section>
               </>
             ) : (
