@@ -18,10 +18,11 @@ function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false);
   const [showEventPage, setShowEventPage] = useState(true);
 
+
   return (
-    <div>
-      <div className="navbar">
-        <div className="month">
+    <div >
+      <div className='navbar'>
+        <div className='month'>
           <label>
             <i className="fal fa-calendar-alt"></i>
           </label>
@@ -45,10 +46,12 @@ function Navbar() {
         <button className="open-btn" onClick={() => setIsEventOpen(true)}>
           Add Event
         </button>
-        {isEventOpen && <div className="overlay"></div>}
+        {isEventOpen && <div className='overlay' onClick={
+          () => setIsEventOpen(false)}></div>}
         {isEventOpen && (
-          <div className="event-form">
-            <header>
+
+          <div className='event-form'>
+            <header >
               <h2>Add New Event</h2>
               <i
                 class="far fa-times-circle"
@@ -120,7 +123,7 @@ function Navbar() {
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
