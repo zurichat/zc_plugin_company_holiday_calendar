@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(200, 200, 200);
+  position: fixed;
+  justify-content: center;
+}
+
+.modalContainer {
+  font-family: 'Lato';
+  width: 300px;
+  height: 300px;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.title {
+  font-size: 13px;
+  font-weight: 700;
+  padding-bottom: 20px;
+}
+
+.subtitle {
+  display: flex;
+  font-size: 13px;
+  padding-bottom: 20px;
+}
+
+span {
+  padding-left: 15px;
+}
+
+p {
+ font-weight: 500; 
+ font-size: 14px;
+}
+
+.week {
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.date {
+  position: absolute;
+  content: '';
+  left: 120px;
+  top: 180px;
+}
+
+
+.radioBtn:hover {
+  cursor: pointer;
+}
+
+.radioBtn::before {
+  position: absolute;
+  content: '';
+  border: 1px solid #00b87c;
+  border-radius: 50%;
+  transition: all 400ms ease-in-out;
+}
+
+.footer {
+  padding-left: 100px;
+  padding-top: 20px;
+}
+
+.cancel {
+  border: none;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.done {
+  background-color: #00b87c; 
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
