@@ -5,6 +5,7 @@ import CancelButton from "./CancelButton";
 import "./reminder.css";
 import ShowMe from "./showMe/ShowMe";
 import DateInput from "./DateInput";
+import EventTitle from "./EventTitle";
 import StartDate from "./Startdate";
 import EventDescription from "./EventDescription";
 import Timezone from "./Timezone";
@@ -73,6 +74,7 @@ function Navbar() {
 
             {showEventPage ? (
               <>
+                <EventTitle />
                 <div className="event-form-date">
                   <DateInput
                     className="start-date"
