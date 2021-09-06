@@ -7,6 +7,7 @@ import ShowMe from "./showMe/ShowMe";
 import DateInput from "./DateInput";
 import StartDate from "./Startdate";
 import EventDescription from "./EventDescription";
+import Timezone from "./Timezone";
 
 import "./CancelBtn.css";
 import EventTag from "./EventTag";
@@ -85,17 +86,20 @@ function Navbar() {
                   />
                 </div>
                 <StartDate></StartDate>
+                <Timezone />
                 <EventDescription />
-                
+
                 <EventTag />
                 <ShowMe />
                 <section className="cancel-create">
-                	<button
-                		className="event_btn_cancel"
-                		onClick={() => setIsEventOpen(false)}>{" "}
-                		Cancel
-                	</button>
-                	<CreateButton / >
+                  <button
+                    className="event_btn_cancel"
+                    onClick={() => setIsEventOpen(false)}
+                  >
+                    {" "}
+                    Cancel
+                  </button>
+                  <CreateButton />
                 </section>
               </>
             ) : (
