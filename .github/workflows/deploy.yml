@@ -45,6 +45,7 @@ jobs:
             git pull
             source venv/bin/activate
             cd calendar_backend
+            python3 -m pip install -r requirements.txt
             python3 manage.py makemigrations calendarapp
             python3 manage.py makemigrations db_manager
             python3 manage.py migrate
