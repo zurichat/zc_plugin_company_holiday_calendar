@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./CustomRecurrence.css";
-// import DateInput from "./DateInput";
+import DateInput from "./DateInput";
 
 function CustomRecurrence() {
   const [daysTag, setDaysTag] = useState("1");
@@ -109,12 +109,12 @@ function CustomRecurrence() {
             <div className="other_details">
               
               {/* Date Input goes here */}
-              {/* <DateInput
+              <DateInput
                 style={{ marginTop: "0" }}
                 selected={pickDate}
                 onChange={date => setPickDate(date)}
                 placeholder="Sept 1, 2021"
-              /> */}
+              /> 
             </div>
           </div>
           <div className="never_pick">

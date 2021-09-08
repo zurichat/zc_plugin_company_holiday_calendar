@@ -84,6 +84,7 @@ class EventUpdateView(generics.UpdateAPIView):
     permission_classes = [permissions.AllowAny,]
 
 
+
 class EventSearch(generics.ListAPIView):
     search_fields = ['event_name', 'end']
     filter_backends = (filters.SearchFilter,)
