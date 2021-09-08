@@ -17,4 +17,5 @@ urlpatterns = [
     path('update-reminder/<int:pk>/', ReminderUpdateView.as_view()),
     path("create_event_db/", EventCreateDBView.as_view(), name='api_create_event'),
     path("delete-reminder/<int:pk>/", DeleteReminderView.as_view()),
+    path('sidebar/', side_bar_view, name="side_bar"),
 ]
