@@ -1,13 +1,19 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
-import Card from "./components/Card";
+import React from 'react'
+import './App.css'
+import HolidayList from './components/HolidayList/HolidayList'
+import Navbar from './components/Navbar/Navbar'
+import Overlay from './components/OverLay/Overlay'
+import Sidebar from './components/Sidebar/Sidebar'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
+    <div className='App'>
+      <Overlay />
+      <Sidebar />
       <Navbar />
-      <Card></Card>
+      <HolidayList />
     </div>
-  );
+  )
 }
-export default App;
+
+export default App
