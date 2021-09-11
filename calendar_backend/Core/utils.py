@@ -1,8 +1,6 @@
 import pytz
 
-# Assume the calendar is for Africans only (as it currently has only English language).
-TIMEZONE_CONTINENT = "Africa"
-
+# Assume the calendar is for all timezones.
 DEFAULT_TIMEZONE = "Africa/Lagos"
 
 SYSTEM_TIMEZONE = "Africa/Lagos"
@@ -12,7 +10,7 @@ def get_timezones():
     """
     Return timezones.
     """
-    return tuple([(x, x) for x in pytz.all_timezones if TIMEZONE_CONTINENT in x])
+    return tuple([(x, x) for x in pytz.all_timezones])
 
 
 def normalize_to_utc(time, timezone):
