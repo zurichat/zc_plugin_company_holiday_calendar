@@ -16,20 +16,21 @@ def calendar_view(request):
 
 def plugin_info_view(request):
     plugin_information = [
-        {'status': 'Success',
-         'name': 'Company_Holiday_Calendar Plugin',
-         'type': 'Plugin Information',
-         'description': [
-             'Company Holiday Calender Plugin is a zuri.chat plugin  that enables  calender functions mainly to organize or schedule holidays or events for a company or a team']},
-
-        {'scaffold_structure': 'Monolith',
-         'team': 'HNG-8.0/Team-Hemingway',
-         'sidebar_url': 'http://calendar.zuri.chat/sidebar',
-         'homepage_url': "http://calendar.zuri.chat/",
+        {'plug_name': 'holiday calendar',
+         'type': 'Calendar',
+         'version':'v1',
+         'developer_name': 'HNG-8.0/Team-plugin-holiday-calendar',
+         'scaffold_structure': 'Monolith',
+         'description':'Company Holiday Calendar Plugin is a plugin  that enables  calendar functions mainly to organize or schedule holidays or events for a company or a team',
+         'template_url': "http://calendar.zuri.chat/",
+         'information_url':'http://calendar.zuri.chat/api/v1/info/',
+         'sidebar_url': 'http://calendar.zuri.chat/api/v1/sidebar',
+         'install_url': 'http://calendar.zuri.chat/install',
          'ping_url': 'http://calendar.zuri.chat/ping',
-         }
+         'icon_url': 'https://drive.google.com/file/d/15iq9nWBdEOsiB2rnU17GtiTSxlAK2oyj/view?usp=sharing',
+         'photos_list':'',
+        }   
     ]
-
     return JsonResponse({'plugin_information': plugin_information})
 
 
@@ -39,7 +40,9 @@ def side_bar_view(request):
     side_bars = [
         {'plugin': 'plugin for Zuri Chat that enables  calender functions',
          'status': 'Success',
-         'type': 'Plugin sidebar'}
+         'type': 'Plugin sidebar',
+         'url': "https://calendar.zuri.chat",
+         }
     ]
 
     return JsonResponse({'side_bars': side_bars})
