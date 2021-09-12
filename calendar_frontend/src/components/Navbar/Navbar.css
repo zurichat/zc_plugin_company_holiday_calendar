@@ -24,6 +24,9 @@
 .fa-calendar-alt {
   margin-right: 15px;
 }
+.fa-bars {
+  display: none;
+}
 .nav div .month {
   display: inline-block;
   margin-left: 5px;
@@ -34,4 +37,24 @@
 .fa-angle-down {
   display: inline-block;
   margin-left: 5px;
+}
+.fa-plus {
+  display: none;
+  color: #fff;
+}
+@media only screen and (max-width: 425px) {
+  .fa-plus {
+    display: block;
+    font-weight: normal;
+  }
+  .nav button {
+    display: none;
+  }
+  .fa-calendar-alt {
+    display: none;
+  }
+  .fa-bars {
+    display: inline-block;
+    margin-right: 5px;
+  }
 }
