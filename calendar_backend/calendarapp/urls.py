@@ -1,7 +1,7 @@
 from django.contrib.staticfiles.urls import urlpatterns
 from django.urls import path
 from .views import *
-from db_manager.views import EventCreateDBView
+# from db_manager.views import EventCreateDBView
 
 urlpatterns = [
     path('', calendar_view, name="calendar_view"),
@@ -15,7 +15,7 @@ urlpatterns = [
     path('detail-reminder/<int:pk>/', ReminderDetailView.as_view(), name='reminder-details'),
     path('create-reminder/', CreateReminder.as_view(), name='createReminders'),
     path('update-reminder/<int:pk>/', ReminderUpdateView.as_view()),
-    path("create_event_db/", EventCreateDBView.as_view(), name='api_create_event'),
+    # path("create_event_db/", EventCreateDBView.as_view(), name='api_create_event'),
     path("delete-reminder/<int:pk>/", DeleteReminderView.as_view()),
     path('sidebar/', side_bar_view, name="side_bar"),
 ]
