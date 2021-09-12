@@ -1,0 +1,45 @@
+.sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 425px;
+  background: #ffffff;
+  min-height: 100%;
+  z-index: 3;
+}
+.sidebar header {
+  padding: 20px;
+  background: #00b87c;
+  color: #f6f6f6;
+  display: flex;
+  justify-content: space-between;
+}
+.sidebar header h4 {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 130%;
+}
+.sidebar section {
+  background: #ffffff;
+  padding: 40px 20px;
+}
+.sidebar section .tabs {
+  background: none;
+}
+.sidebar section .tabs .btn {
+  border: none;
+  background: none;
+  color: #00b87c;
+  display: inline-block;
+  padding: 10px 14px;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 130%;
+}
+.sidebar section .tabs .btn.active {
+  background-color: #acffe6;
+  border-radius: 3px;
+}
+.event-tab form {
+  padding-top: 20px;
+}
