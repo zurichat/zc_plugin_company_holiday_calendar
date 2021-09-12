@@ -46,3 +46,8 @@
 .event-tab form {
   padding-top: 20px;
 }
+@media only screen and (max-width: 425px) {
+  .sidebar {
+    width: 100vw;
+  }
+}
