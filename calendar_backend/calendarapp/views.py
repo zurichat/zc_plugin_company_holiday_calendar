@@ -10,7 +10,7 @@ from .models import *
 
 
 def calendar_view(request):
-    return HttpResponse("This is where all calender activities are performed and displayed")
+    return HttpResponse("<h1>This is where all calender activities are performed and displayed</h1>")
 
 # creating a  view for  displaying  the plugin information as a static Json object.
 
@@ -66,10 +66,23 @@ class DeleteEventView(DestroyAPIView):
         return Response(payload)
 
 
+class EventListView(generics.ListAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny,]
+
+
+class EventDetailView(generics.RetrieveAPIView):
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny,]
+
+
 class EventUpdateView(generics.UpdateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [permissions.AllowAny,]
+
 
 
 class EventSearch(generics.ListAPIView):
@@ -80,7 +93,7 @@ class EventSearch(generics.ListAPIView):
     permission_classes = [permissions.AllowAny,]
     
 
-class ReminderListView(generics.ListCreateAPIView):
+class ReminderListView(generics.ListAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
     permission_classes = [permissions.AllowAny,]
@@ -102,6 +115,15 @@ class CreateReminder(generics.CreateAPIView):
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
     permission_classes = [permissions.AllowAny,]
+
+
+class ReminderUpdateView(generics.UpdateAPIView):
+    serializer_class = ReminderSerializer
+    permission_classes = [permissions.AllowAny,]
+
+    def get_queryset(self):
+        queryset = Reminder.objects.filter(id=self.kwargs['pk'])
+        return queryset
 
 
 class DeleteReminderView(DestroyAPIView):
