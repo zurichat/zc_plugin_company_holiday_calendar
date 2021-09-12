@@ -25,6 +25,7 @@ const App = () => {
         <Sidebar />
         <Navbar />
         <HolidayList />
+
       </AppContext.Provider>
     </div>
   )
