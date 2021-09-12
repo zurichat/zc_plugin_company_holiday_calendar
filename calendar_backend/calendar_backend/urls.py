@@ -15,7 +15,6 @@ urlpatterns = [
     path('api/v1/', include('calendarapp.urls')),
     path('info/', plugin_info_view, name="plugin_info"),
     path('ping/', ping_view, name="ping"),
-
 ]
 
 
