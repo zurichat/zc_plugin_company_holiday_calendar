@@ -26,12 +26,10 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', homepage, name="home_page"),
-    path('', include('calendarapp.urls')),
-    path('info/', plugin_info_view, name="plugin_info"),
-    path('ping/', ping_view, name="ping"),
     path('swagger/', schema_view.with_ui('swagger'), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc'), name='schema-redoc'),
+    path('api/v1/', include('calendarapp.urls')),
+    path('', homepage, name="home_page"),
 ]
 
 
