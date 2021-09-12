@@ -20,7 +20,7 @@ def plugin_info_view(request):
          'type': 'Calendar',
          'version':'v1',
          'developer_name': 'HNG-8.0/Team-plugin-holiday-calendar',
-         'plugin_structure': 'Monolith',
+         'scaffold_structure': 'Monolith',
          'description':'Company Holiday Calendar Plugin is a plugin  that enables  calendar functions mainly to organize or schedule holidays or events for a company or a team',
          'template_url': "http://calendar.zuri.chat/",
          'information_url':'http://calendar.zuri.chat/api/v1/info/',
@@ -31,7 +31,6 @@ def plugin_info_view(request):
          'photos_list':'',
         }   
     ]
-
     return JsonResponse({'plugin_information': plugin_information})
 
 

@@ -11,9 +11,7 @@ from .views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepage, name="home_page"),
-    path('', include('calendarapp.urls')),
-    path('info/', plugin_info_view, name="plugin_info"),
-    path('ping/', ping_view, name="ping"),
+    path('api/v1/', include('calendarapp.urls')),
 ]
 
 
