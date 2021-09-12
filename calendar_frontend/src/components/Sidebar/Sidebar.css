@@ -19,6 +19,9 @@
   font-weight: bold;
   line-height: 130%;
 }
+.fa-times-circle {
+  font-size: 18px;
+}
 .sidebar section {
   background: #ffffff;
   padding: 40px 20px;
