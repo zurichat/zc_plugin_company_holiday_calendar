@@ -13,11 +13,11 @@ from rest_framework import permissions
 # Swagger documentation setup
 schema_view = get_schema_view(
     openapi.Info(
-        title="Snippets API",
+        title="Calendars Zuri Chat Plugin API",
         default_version='v1',
-        description="Test description",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@snippets.local"),
+        description="Schedule and manage events",
+        terms_of_service="https://calendar.zuri.chat/info",
+        contact=openapi.Contact(email="help@calendars.zuri"),
         license=openapi.License(name="MIT License"),
     ),
     public=True,
