@@ -13,11 +13,12 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["calendar.zuri.chat", "127.0.0.1"]
+ALLOWED_HOSTS = ["calendar.zuri.chat", "127.0.0.1","localhost"]
 
 CORS_ALLOWED_ORIGINS = [
     "https://calendar.zuri.chat",
-    "http://calendar.zuri.chat"
+    "http://calendar.zuri.chat",
+    "localhost",
 ]
 
 REST_FRAMEWORK = {
@@ -145,4 +146,5 @@ CENTRIFUGO_TOKEN = ""
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000'
+    'http://localhost:8000'
 ]
