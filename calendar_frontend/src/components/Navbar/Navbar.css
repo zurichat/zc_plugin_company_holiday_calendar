@@ -60,6 +60,7 @@
   position: absolute;
   left: 15px;
   top: 50px;
+  z-index: 2;
 }
 
 .yearHeadGrp {
@@ -130,30 +131,25 @@
   left: calc(15px + 11.88px);
   top: 75px;
   width: 83px;
-  height: 441px;
+  height: 400px;
   background-color: #fff;
   overflow-y: scroll;
   color: var(--clr-gray-600);
   font-family: 'Lato', sans-serif;
   font-size: calc(1rem - 1px);
   font-weight: 400;
+  z-index: 3;
 }
 .yearGrp::-webkit-scrollbar {
-  background: var(--clr-gray-100);
-  width: 10px;
-  transition: var(--transition-effect);
-}
-.yearGrp::-webkit-scrollbar:hover {
   background: var(--clr-pri-100);
+  width: 5px;
+  transition: var(--transition-effect);
 }
 
 .yearGrp::-webkit-scrollbar-thumb {
-  background: var(--clr-gray-600);
+  background: var(--clr-pri);
   border-radius: 6px;
   transition: var(--transition-effect);
-}
-.yearGrp::-webkit-scrollbar-thumb:hover {
-  background: var(--clr-pri);
 }
 
 .yearList {

@@ -9,7 +9,6 @@ const Navbar = () => {
     setMonth,
     year,
     setYear,
-    isModalOpen,
     setIsModalOpen,
     showMonth,
     setShowMonth,
@@ -128,25 +127,6 @@ const Navbar = () => {
           </ul>
         </div>
       )}
-      <div className='yearGrp'>
-        <ul className='yearList'>
-          {Array.from(new Array(50), (v, i) => {
-            return (
-              <li
-                className='yearItem'
-                key={startYear + i}
-                onClick={() => {
-                  setYear(startYear + i);
-                  setShowMonth(!showMonth);
-                  setShowYear(!showYear);
-                }}
-              >
-                {startYear + i}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
     </>
   );
 };
