@@ -28,6 +28,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showEventPage, setShowEventPage] = useState(true);
   const [showMonth, setShowMonth] = useState(false);
+  const [showYear, setShowYear] = useState(false);
   return (
     <div className='App'>
       <AppContext.Provider
@@ -42,6 +43,8 @@ function App() {
           setShowEventPage,
           showMonth,
           setShowMonth,
+          showYear,
+          setShowYear,
         }}
       >
         <Overlay />

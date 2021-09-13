@@ -13,6 +13,8 @@ const Navbar = () => {
     setIsModalOpen,
     showMonth,
     setShowMonth,
+    showYear,
+    setShowYear,
   } = states;
   const months = [
     {
@@ -64,6 +66,8 @@ const Navbar = () => {
       name: 'Dec',
     },
   ];
+  const currentYear = new Date().getFullYear();
+  const startYear = currentYear - 8;
   return (
     <>
       <nav className='nav'>
@@ -79,8 +83,8 @@ const Navbar = () => {
       </nav>
       {showMonth && (
         <div className='grpHolder'>
-          <div className='yearGrp'>
-            <h3 className='yearItem'>2021</h3>
+          <div className='yearHeadGrp' onClick={() => setShowYear(!showYear)}>
+            <h3 className='yearHeadItem'>2021</h3>
             <i className='fal fa-angle-down'></i>
           </div>
           <div className='monthGrp'>
@@ -96,6 +100,27 @@ const Navbar = () => {
               );
             })}
           </div>
+        </div>
+      )}
+      {showYear && (
+        <div className='yearGrp'>
+          <ul className='yearList'>
+            {Array.from(new Array(50), (v, i) => {
+              return (
+                <li
+                  className='yearItem'
+                  key={startYear + i}
+                  onClick={() => {
+                    setYear(startYear + i);
+                    setShowMonth(!showMonth);
+                    setShowYear(!showYear);
+                  }}
+                >
+                  {startYear + i}
+                </li>
+              );
+            })}
+          </ul>
         </div>
       )}
     </>
