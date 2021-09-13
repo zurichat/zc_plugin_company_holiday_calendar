@@ -4,8 +4,16 @@ import './Navbar.css';
 
 const Navbar = () => {
   const states = useContext(AppContext);
-  const { month, setMonth, year, setYear, isModalOpen, setIsModalOpen } =
-    states;
+  const {
+    month,
+    setMonth,
+    year,
+    setYear,
+    isModalOpen,
+    setIsModalOpen,
+    showMonth,
+    setShowMonth,
+  } = states;
   const months = [
     {
       id: 'January',
@@ -59,7 +67,7 @@ const Navbar = () => {
   return (
     <>
       <nav className='nav'>
-        <div className='calendar'>
+        <div className='calendar' onClick={() => setShowMonth(!showMonth)}>
           <i className='fal fa-calendar-alt'></i>
           <span className='month'>{month}</span>
           <span className='year'>{year}</span>
@@ -69,25 +77,27 @@ const Navbar = () => {
           Add Event
         </button>
       </nav>
-      <div className='grpHolder'>
-        <div className='yearGrp'>
-          <h3 className='yearItem'>2021</h3>
-          <i className='fal fa-angle-down'></i>
+      {showMonth && (
+        <div className='grpHolder'>
+          <div className='yearGrp'>
+            <h3 className='yearItem'>2021</h3>
+            <i className='fal fa-angle-down'></i>
+          </div>
+          <div className='monthGrp'>
+            {months.map((month) => {
+              return (
+                <span
+                  className='monthItem'
+                  key={month.id}
+                  onClick={() => setMonth(month.id)}
+                >
+                  {month.name}
+                </span>
+              );
+            })}
+          </div>
         </div>
-        <div className='monthGrp'>
-          {months.map((month) => {
-            return (
-              <span
-                className='monthItem'
-                key={month.id}
-                onClick={() => setMonth(month.id)}
-              >
-                {month.name}
-              </span>
-            );
-          })}
-        </div>
-      </div>
+      )}
     </>
   );
 };
