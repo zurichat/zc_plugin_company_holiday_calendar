@@ -1,33 +1,25 @@
-import React, { useState } from 'react'
-import './App.css'
-import HolidayList from './components/HolidayList/HolidayList'
-import Navbar from './components/Navbar/Navbar'
-import Overlay from './components/OverLay/Overlay'
-import Sidebar from './components/Sidebar/Sidebar'
+import logo from './logo.svg';
+import './App.css';
 
-export const AppContext = React.createContext()
-
-const App = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const [showEventPage, setShowEventPage] = useState(true)
-
+function App() {
   return (
-    <div className='App'>
-      <AppContext.Provider
-        value={{
-          isSidebarOpen,
-          setIsSidebarOpen,
-          showEventPage,
-          setShowEventPage,
-        }}
-      >
-        <Overlay />
-        <Sidebar />
-        <Navbar />
-        <HolidayList />
-      </AppContext.Provider>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
