@@ -20,6 +20,14 @@
   background: #00b87c;
   border: none;
 }
+.fa-plus {
+  display: none;
+  color: #00b87c;
+}
+.fa-bars {
+  color: #00b87c;
+  display: none;
+}
 .month,
 .year,
 .fa-calendar-alt,
@@ -36,6 +44,23 @@
 .month,
 .year {
   font-size: 18px;
+}
+@media only screen and (max-width: 425px) {
+  .fa-calendar-alt {
+    display: none;
+  }
+  .open-modal-btn {
+    display: none;
+  }
+  .fa-plus {
+    display: block;
+  }
+  .nav {
+    padding: 15px;
+  }
+  .fa-bars {
+    display: block;
+  }
 }
 /* victor's css */
 

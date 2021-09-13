@@ -9,6 +9,11 @@
   margin-left: auto;
   margin-right: auto;
 }
+@media only screen and (max-width: 425px) {
+  .modal {
+    width: 100vw;
+  }
+}
 .modal header {
   padding: 20px;
   background: #00b87c;
