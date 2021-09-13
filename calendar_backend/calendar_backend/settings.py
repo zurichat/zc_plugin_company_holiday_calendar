@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'rest_framework',
     # local app
     'calendarapp',
-    # 'db_manager',
 
 ]
 
