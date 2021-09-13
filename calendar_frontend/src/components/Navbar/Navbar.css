@@ -48,6 +48,7 @@
   --clr-accent: #fff;
   --clr-text: hsla(300, 1%, 38%, 1);
   --clr-text-hover: hsla(300, 2%, 11%, 1);
+  --transition-effect: all 600ms ease-in-out;
 
   display: flex;
   flex-direction: column;
@@ -116,8 +117,18 @@
 /* Year Dropdown */
 
 .yearGrp {
+  --clr-pri: #00b87c;
+  --clr-pri-100: hsla(160, 100%, 36%, 0.1);
+  --clr-accent: #fff;
+  --clr-text: hsla(300, 1%, 38%, 1);
+  --clr-text-hover: hsla(300, 2%, 11%, 1);
   --clr-accent-100: hsla(160, 100%, 36%, 0.1);
   --clr-gray-600: hsl(0, 0%, 60%);
+  --clr-gray-100: hsl(0, 0%, 90%);
+  --transition-effect: all 600ms ease-in-out;
+  position: absolute;
+  left: calc(15px + 11.88px);
+  top: 75px;
   width: 83px;
   height: 441px;
   background-color: #fff;
@@ -128,17 +139,23 @@
   font-weight: 400;
 }
 .yearGrp::-webkit-scrollbar {
-  background: #fff;
+  background: var(--clr-gray-100);
+  width: 10px;
+  transition: var(--transition-effect);
 }
-.yearGrp::-webkit-scrollbar:active {
-  cursor: pointer;
+.yearGrp::-webkit-scrollbar:hover {
+  background: var(--clr-pri-100);
 }
+
 .yearGrp::-webkit-scrollbar-thumb {
-  background: var(--clr-accent-100);
+  background: var(--clr-gray-600);
+  border-radius: 6px;
+  transition: var(--transition-effect);
 }
-.yearGrp::-webkit-scrollbar-button {
-  background: var(--clr-accent-100);
+.yearGrp::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-pri);
 }
+
 .yearList {
   display: flex;
   flex-direction: column;
@@ -149,6 +166,7 @@
   height: 35.68px;
   text-align: center;
   padding: Calc(35.68px / 5);
+  transition: var(--transition-effect);
 }
 .yearItem:hover {
   background: var(--clr-accent-100);
