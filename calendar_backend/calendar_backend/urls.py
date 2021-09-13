@@ -16,7 +16,7 @@ schema_view = get_schema_view(
         title="Calendars Zuri Chat Plugin API",
         default_version='v1',
         description="Schedule and manage events",
-        terms_of_service="https://calendar.zuri.chat/info",
+        terms_of_service="https://calendar.zuri.chat/api/v1/info",
         contact=openapi.Contact(email="help@calendars.zuri"),
         license=openapi.License(name="MIT License"),
     ),
