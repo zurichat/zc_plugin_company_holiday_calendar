@@ -38,3 +38,67 @@
   font-size: 18px;
 }
 /* victor's css */
+
+/** MONTH AND YEAR POP UPS by mormeni **/
+.grpHolder {
+  --clr-pri: #00b87c;
+  --clr-pri-100: hsla(160, 100%, 36%, 0.1);
+  --clr-accent: #fff;
+  --clr-text: hsla(300, 1%, 38%, 1);
+  --clr-text-hover: hsla(300, 2%, 11%, 1);
+
+  display: flex;
+  flex-direction: column;
+  width: 243px;
+  height: 165px;
+  background: var(--clr-accent);
+  border-radius: 4px;
+  margin: 2rem auto;
+  border: 1px solid red;
+}
+
+.yearGrp {
+  display: flex;
+  width: 100%;
+  height: 25px;
+  background: var(--clr-pri);
+  color: var(--clr-accent);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 0 11.88px;
+}
+.yearGrp > * {
+  color: var(--clr-accent);
+  margin: auto 0;
+}
+.yearGrp:hover {
+  cursor: pointer;
+}
+.yearItem {
+  font-size: 18px;
+  font-weight: 700;
+}
+.yearItem + i {
+  margin-left: 5px;
+}
+
+.monthGrp {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 0 11.88px;
+  margin: auto 0;
+}
+.monthItem {
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  padding: 4px;
+  margin: 6px;
+  color: var(--clr-text);
+}
+.monthItem:hover {
+  background: var(--clr-pri-100);
+  color: var(--clr-text-hover);
+  cursor: pointer;
+}
