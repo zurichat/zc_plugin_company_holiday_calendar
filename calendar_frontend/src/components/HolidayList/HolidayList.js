@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { AppContext } from '../../App'
 import './HolidayList.css'
 
 const HolidayList = () => {
-  return <div className='holiday-list'></div>
+  return <div></div>
 }
 
 export default HolidayList

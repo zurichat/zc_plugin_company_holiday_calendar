@@ -2,7 +2,7 @@
 from types import DynamicClassAttribute
 from django.db import models
 from django.utils import timezone as _timezone
-from core.utils import get_timezones, DEFAULT_TIMEZONE
+from Core.utils import get_timezones, DEFAULT_TIMEZONE
 
 
 

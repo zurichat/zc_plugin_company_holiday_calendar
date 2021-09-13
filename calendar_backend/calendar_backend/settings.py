@@ -13,11 +13,11 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["calendar.zuri.chat", "127.0.0.1"]
+ALLOWED_HOSTS = ["calendar.zuri.chat", "127.0.0.1","localhost"]
 
 CORS_ALLOWED_ORIGINS = [
     "https://calendar.zuri.chat",
-    "http://calendar.zuri.chat"
+    "http://calendar.zuri.chat",
 ]
 
 REST_FRAMEWORK = {
@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # 3rd Party
+    'drf_yasg',
     'corsheaders',
     'rest_framework',
     # local app
@@ -88,9 +91,15 @@ WSGI_APPLICATION = 'calendar_backend.wsgi.application'
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        # "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
-    ]
+    ],
+
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
 # Password validation
@@ -145,4 +154,5 @@ CENTRIFUGO_TOKEN = ""
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000'
+    'http://localhost:8000'
 ]
