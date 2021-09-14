@@ -7,6 +7,7 @@ import ShowMe from "./showMe/ShowMe";
 import DateInput from "./DateInput";
 import StartDate from "./Startdate";
 import EventDescription from "./EventDescription";
+import Description from "./Description";
 
 import "./CancelBtn.css";
 import EventTag from "./EventTag";
@@ -84,7 +85,7 @@ function Navbar() {
                   />
                 </div>
                 <StartDate></StartDate>
-                <EventDescription />
+                <Description />
                 <ShowMe />
                 <EventTag />
                 <ShowMe />
