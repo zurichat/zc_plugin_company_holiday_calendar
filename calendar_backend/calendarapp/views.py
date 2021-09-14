@@ -1,11 +1,13 @@
 from django.shortcuts import HttpResponse, render
 from django.http import JsonResponse
-from rest_framework import generics, filters, permissions
+from rest_framework import generics, filters, permissions, status
 from rest_framework.generics import DestroyAPIView
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from drf_yasg.utils import swagger_auto_schema
 from .serializers import *
 from .models import *
+from .datastore import DataBase
 
 
 
@@ -108,15 +110,28 @@ class EventDetailView(generics.RetrieveAPIView):
     permission_classes = [permissions.AllowAny,]
 
 
-class EventUpdateView(generics.UpdateAPIView):
+# class EventUpdateView(generics.UpdateAPIView):
+#     """
+#     patch:
+#     Update Specific fields of individual events by ID without affecting others
+
+#     """
+#     # queryset = Event.objects.all()
+#     # serializer_class = EventSerializer
+#     # permission_classes = [permissions.AllowAny,]
+
+@api_view(['POST'])
+def update_event_view(request, pk):
     """
     patch:
     Update Specific fields of individual events by ID without affecting others
-
     """
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny,]
+    serialized_data = EventSerializer(request.data).data
+    response = DataBase.put(collection_name=event, data=serialized_data, object_id=pk)
+    
+    if response['error']:
+        return Response({'success':False, 'errors':response}, status=status.HTTP_400_BAD_REQUEST)
+    return Response({'success':True, 'response':response}, status=status.HTTP_200_OK)
 
 
 
