@@ -28,7 +28,9 @@ def plugin_info_view(request):
          'version':'v1',
          'developer_name': 'HNG-8.0/Team-plugin-holiday-calendar',
          'scaffold_structure': 'Monolith',
-         'description':'Company Holiday Calendar Plugin is a plugin  that enables  calendar functions mainly to organize or schedule holidays or events for a company or a team',
+         'description':'''Zurichat Company Holiday Calendar helps you and your team to stay organized with a shared calendar. 
+         From viewing your company monthly events in one screen to receiving up-to-the-minute reminders, 
+         the company holiday calendar has everything you need to create and manage events''',
          'template_url': "http://calendar.zuri.chat/",
          'information_url':'http://calendar.zuri.chat/api/v1/info/',
          'sidebar_url': 'http://calendar.zuri.chat/api/v1/sidebar',
