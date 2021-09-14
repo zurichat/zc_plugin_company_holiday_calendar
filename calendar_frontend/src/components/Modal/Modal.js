@@ -1,10 +1,12 @@
-// import { format } from "date-fns";
 import React, { useContext, useState } from "react";
-import { AppContext } from "../../App";
-import "./Modal.css";
+import { AppContext } from '../../App'
+import './Modal.css'
+import { HiOutlinePencilAlt, HiOutlineClockCircle } from 'react-icons/hi'
+import icon from './clock-icon.png'
+import icon2 from './calendar-icon.png'
+// import { format } from "date-fns";
 import { CirclePicker } from "react-color";
 import chevronDown from "./Shape.png";
-
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -13,6 +15,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
+
 
 const Modal = () => {
   const states = useContext(AppContext);
@@ -70,17 +73,15 @@ const Modal = () => {
           </header>
           <section>
             <button
-              className={`event-btn ${!showEventPage && "tab-border"} ${
-                showEventPage && "tab-background"
-              }`}
+              className={`event-btn ${!showEventPage && 'tab-border'} ${showEventPage && 'tab-background'
+                }`}
               onClick={() => setShowEventPage(true)}
             >
               Event
             </button>
             <button
-              className={`reminder-btn ${showEventPage && "tab-border"} ${
-                !showEventPage && "tab-background"
-              }`}
+              className={`reminder-btn ${showEventPage && 'tab-border'} ${!showEventPage && 'tab-background'
+                }`}
               onClick={() => setShowEventPage(false)}
             >
               Reminder
@@ -170,7 +171,29 @@ const Modal = () => {
                 </form>
               </div>
             ) : (
-              <div className="reminder-tab">reminder form goes here</div>
+              <div className="reminder-tab ">
+                <form>
+                  <div className="reminder-tab__title">
+                    <HiOutlinePencilAlt />
+                    <input type="text" placeholder="Enter event title"></input>
+
+                  </div>
+                  <div className="reminder-tab__timer">
+                    <div className="calendar">
+                      <img className='calendar-icon' src={icon2}></img>
+                      <input type="text" placeholder="Sep 4, 2021"></input>
+
+                    </div>
+                    <div className="clock">
+                      <img className='clock-icon' src={icon}></img>
+                      <input type="text" placeholder="10:30am"></input>
+
+                    </div>
+
+                  </div>
+
+                </form>
+              </div>
             )}
           </section>
         </div>

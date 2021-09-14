@@ -49,14 +49,32 @@
   border: 1px solid #00b87c;
 }
 .tab-background {
-  background: #acffe6;
+  background:  #ACFFAC;
 }
-/* 
-
-
-
-
-*/
+.reminder-tab__title, 
+.reminder-tab__timer .calendar,
+.reminder-tab__timer .clock{
+/* width: 97%; */
+    box-sizing: border-box;
+    padding: 0.5em;
+    margin: 10px auto 10px auto;
+    border-bottom: 1px solid #f6f6f6 ;
+    width: 100%;
+}
+.reminder-tab__title input, 
+.reminder-tab__timer .calendar input,
+.reminder-tab__timer .clock input{
+  display: inline;
+  border: none;
+  outline: none;
+  width: 70%;
+  margin-left: 0.9em;
+  font-family: 'Lato', sans-serif;
+  }
+  .reminder-tab__timer{
+    display:flex;
+    justify-content: space-between;
+  }
 
 /* GodswillEdet styles */
 
@@ -114,3 +132,4 @@
   margin-bottom: 2rem;
   bottom: 0;
 }
+
