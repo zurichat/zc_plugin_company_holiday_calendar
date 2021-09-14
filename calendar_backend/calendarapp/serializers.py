@@ -1,9 +1,8 @@
 from types import DynamicClassAttribute
 from django.utils import timezone as _timezone
 from Core.utils import get_timezones, DEFAULT_TIMEZONE
-# from colorfield.fields import Colorfield
 from rest_framework import serializers
-#from .models import Event, Reminder
+
 
 
 
@@ -12,17 +11,6 @@ from rest_framework import serializers
 Creating  a serializer class for events
 """
 class EventSerializer(serializers.Serializer):
-
-
-    # EVENT_COLOR_CHOICES = [
-
-    #     ("#FFFFFF", "white"),
-    #     ("#fafafa", "neutral"),
-    #     ("#8b0000", "red"),
-    #     ("#ffff00", "yellow"),
-    #     ("#006400","green")
-    #  ]
-
     id = serializers.ReadOnlyField()
     event_title = serializers.CharField(required=True)
     start_date = serializers.DateField(required=True)
@@ -36,7 +24,5 @@ class EventSerializer(serializers.Serializer):
     event_colour = serializers.CharField(required=True)
 
 
-    
-
-    class ReminderSerializer(serializers.Serializer):
+class ReminderSerializer(serializers.Serializer):
         pass

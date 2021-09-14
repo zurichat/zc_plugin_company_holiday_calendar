@@ -1,19 +1,19 @@
 # from datastore import DataBase
 from django.shortcuts import HttpResponse, render
 from django.http import JsonResponse
-from rest_framework import generics, filters, permissions, status
-from rest_framework.generics import DestroyAPIView
+from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import requests
 from requests import exceptions
 from .serializers import EventSerializer
-from environs import Env
-
-env = Env()
-env.read_env()
+from environ import Env
 from drf_yasg.utils import swagger_auto_schema
 from .serializers import *
+
+env=Env()
+env.read_env()
+
 
 
 
