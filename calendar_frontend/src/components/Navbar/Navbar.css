@@ -136,7 +136,7 @@
 .calendar {
   position: relative;
 }
-.calendar:hover {
+:is(.calendar, .open-modal-btn):hover {
   cursor: pointer;
 }
 
