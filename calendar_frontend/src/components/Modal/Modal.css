@@ -9,6 +9,11 @@
   margin-left: auto;
   margin-right: auto;
 }
+@media only screen and (max-width: 425px) {
+  .modal {
+    width: 100vw;
+  }
+}
 .modal header {
   padding: 20px;
   background: #00b87c;
@@ -46,7 +51,6 @@
 .tab-background {
   background:  #ACFFAC;
 }
-
 .reminder-tab__title, 
 .reminder-tab__timer .calendar,
 .reminder-tab__timer .clock{
@@ -71,3 +75,61 @@
     display:flex;
     justify-content: space-between;
   }
+
+/* GodswillEdet styles */
+
+.event__tag {
+  position: relative;
+}
+
+.event__tag--title {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #616061;
+}
+
+.event__tag--inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20rem;
+  height: 2rem;
+}
+
+.event__tag--color {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  position: relative;
+}
+
+.event__tag--color img {
+  width: 1rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}
+
+.color__box {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  padding-left: 1.5rem;
+  width: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+  position: absolute;
+  right: 2rem;
+  top: 0;
+}
+
+.eventButtons {
+  display: flex;
+  position: absolute;
+  right: 1.5rem;
+  margin-bottom: 2rem;
+  bottom: 0;
+}
+
