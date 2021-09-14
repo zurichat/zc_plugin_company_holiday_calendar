@@ -3,6 +3,7 @@ from .models import Event, Reminder
 
 
 class ReminderSerializer(serializers.ModelSerializer):
+  
     class Meta:
         model = Reminder
         fields = '__all__'

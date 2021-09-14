@@ -74,10 +74,10 @@ def ping_view(request):
     return JsonResponse({'server': server})
 
 
+# Delete events by id
 class DeleteEventView(DestroyAPIView):
     """
-    delete:
-    Delete event by ID
+    delete: Delete event by ID
     """
     model = Event
     queryset = Event.objects.all()
@@ -92,8 +92,7 @@ class DeleteEventView(DestroyAPIView):
 
 class EventListView(generics.ListAPIView):
     """
-    get: 
-    a list of all Events
+    get: a list of all Events
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
@@ -102,8 +101,7 @@ class EventListView(generics.ListAPIView):
 
 class EventDetailView(generics.RetrieveAPIView):
     """
-    get: 
-    Details of individual events by ID
+    get: Details of individual events by ID
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
@@ -137,8 +135,7 @@ class EventSearch(generics.ListAPIView):
 
 class ReminderListView(generics.ListAPIView):
     """
-    get: 
-    a List of all Reminders
+    get: a List of all Reminders
     """
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
@@ -147,8 +144,7 @@ class ReminderListView(generics.ListAPIView):
 
 class ReminderDetailView(generics.RetrieveAPIView):
     """
-    get: 
-    Get Reminder details by ID
+    get: Get Reminder details by ID
     """
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
@@ -157,8 +153,7 @@ class ReminderDetailView(generics.RetrieveAPIView):
 
 class CreateEventView(generics.CreateAPIView):
     """
-    post:
-    Create an event
+    post:Create an event
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
@@ -167,8 +162,7 @@ class CreateEventView(generics.CreateAPIView):
 
 class CreateReminder(generics.CreateAPIView):
     """
-    post:
-    Create new reminders
+    post:Create new reminders
     """
     queryset = Reminder.objects.all()
     serializer_class = ReminderSerializer
@@ -190,8 +184,7 @@ class ReminderUpdateView(generics.UpdateAPIView):
 
 class DeleteReminderView(DestroyAPIView):
     """
-    delete: 
-    Delete individual Reminders by ID
+    delete: Delete individual Reminders by ID
     """
     serializer_class = ReminderSerializer
 
