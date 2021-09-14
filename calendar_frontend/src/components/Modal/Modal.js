@@ -21,6 +21,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
+import Repeat from './Repeat';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant='filled' {...props} />;
@@ -196,6 +197,8 @@ const Modal = () => {
     }
     setOpenSnackbar(false);
   };
+
+  
 
   return (
     <>
@@ -456,6 +459,8 @@ const Modal = () => {
                       />
                       <i className='far fa-angle-down faIcons'></i>
                     </div>
+                        
+                    
 
                     {/* <div className='calendar'>
                       
@@ -467,7 +472,10 @@ const Modal = () => {
                       <input type='text' placeholder='10:30am'></input>
                     </div> */}
                   </div>
+
+                  
                 </form>
+                <Repeat />
               </div>
             )}
           </section>
