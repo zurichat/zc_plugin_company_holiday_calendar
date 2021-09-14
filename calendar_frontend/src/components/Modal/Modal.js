@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from "react";
+import { format } from 'date-fns'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaRegCalendar, FaAngleDown, FaRegEdit, FaRegClock } from 'react-icons/fa';
@@ -23,9 +24,7 @@ function Alert(props) {
 
 const Modal = () => {
   const states = useContext(AppContext);
-  const { isModalOpen, setIsModalOpen, showEventPage, setShowEventPage } =
-    states;
-
+  const { isModalOpen, setIsModalOpen, showEventPage, setShowEventPage } = states
   const { control } = useForm();
 
   const timeStrings = [
@@ -220,10 +219,10 @@ const Modal = () => {
             >
               Reminder
             </button>
-            {showEventPage ? (
-              <div className='event-tab'>
-                <form className='evenForm' onSubmit={handleNewEventSubmit}>
-                  <div className="firstRow">
+            {showEventPage ? (       
+              <div className="event-tab">
+                <form onSubmit={handleNewEventSubmit} className='evenForm'>
+                <div className="firstRow">
                     <div className="evenForm-title">
                       <FaRegEdit className="event-field-icon"/>
                       <input
@@ -308,7 +307,6 @@ const Modal = () => {
                       <label htmlFor="allDay"> All Day</label><br/>
                     </div>
                   </div>
-              
                   <div className="event__tag">
                     <p className="event__tag--title">Event Tag</p>
 
