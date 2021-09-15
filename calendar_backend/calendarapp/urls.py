@@ -5,7 +5,7 @@ from .views import *
 
 urlpatterns = [
     path('', calendar_view, name="calendar_view"),
-    path('create-event/', CreateEventView.as_view(), name='create-event'),
+    path('create-event/', CreateEventView.as_view(), name='create_event'),
     path('event-list/', event_list, name="event_lists"),
     path('sidebar/', side_bar_view, name="side_bar"),
     path('info/', plugin_info_view, name="plugin_info"),

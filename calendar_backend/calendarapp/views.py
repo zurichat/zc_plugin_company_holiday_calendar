@@ -102,7 +102,7 @@ class CreateEventView(generics.CreateAPIView):
         # posting data to zuri core after validation
         # the organization_id would be dynamic; based on the request data
         event = serializer.data
-        plugin_id =  PLUGIN_ID
+        plugin_id = plugin_id
         org_id = ORGANIZATION_ID
         coll_name = "event"
         event_payload = {
@@ -138,10 +138,10 @@ def event_list(request):
     collection_name = "event"
     
     if request.method == "GET":
-        
+
         #getting data from zuri core
         # api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}
-        url = "https://api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}/"
+        url = "https://api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}"
         try:
             response = requests.get(url=url)
             if response.status_code == 201:
@@ -151,3 +151,17 @@ def event_list(request):
                 return Response({"error": response.json()["message"]}, status=response.status_code)
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+
+
+{
+"event_title": "Team lead test", 
+"start_date": "2021-09-17", 
+"end_date": "2021-09-18", 
+"start_time": "20:47:00", 
+"end_time": "20:47:00", 
+"time_zone": "Africa/Ceuta", 
+"description": "writing data to zuri core", 
+"all_day": True, 
+"event_tag": "Writing data",
+"event_colour": 0
+ }
