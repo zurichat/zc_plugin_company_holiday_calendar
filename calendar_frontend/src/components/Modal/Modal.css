@@ -134,8 +134,17 @@
 }
 
 /* Event form */
-.evenForm {
+.input-error{
+  border-bottom: 1px solid #FF0000 !important;
+}
+
+.evenForm{
   margin-top: 30px;
+}
+
+.evenForm .row{
+  position: relative;
+  margin-bottom: 35px;
 }
 
 .evenForm .firstRow,
@@ -157,7 +166,6 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  margin-bottom: 35px;
 }
 
 .evenForm-title input {
@@ -183,7 +191,6 @@
   justify-content: space-around;
   align-items: center;
   width: 44%;
-  margin-bottom: 35px;
 }
 
 .react-datepicker {
@@ -354,7 +361,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 35px;
 }
 
 .time-select {
@@ -378,7 +384,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 35px;
 }
 
 .fourthRow div {
