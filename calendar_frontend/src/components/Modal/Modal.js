@@ -1,12 +1,6 @@
 import React, { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {
-  FaRegCalendar,
-  FaAngleDown,
-  FaRegEdit,
-  FaRegClock,
-} from "react-icons/fa";
 import { useForm, Controller } from "react-hook-form";
 import { AppContext } from '../../App'
 import './Modal.css'
