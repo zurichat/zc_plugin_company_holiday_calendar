@@ -37,106 +37,7 @@ const Modal = () => {
   const [eventTag, setEventTag] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
-  const { register, control, handleSubmit, formState: {errors}, clearErrors } = useForm();
-
-  const timeStrings = [
-    {value: "00:00:00", label: "12:00 AM"},
-    {value: "00:15:00", label: "12:15 AM"},
-    {value: "00:30:00", label: "12:30 AM"},
-    {value: "00:45:00", label: "12:45 AM"},
-    {value: "01:00:00", label: "01:00 AM"},
-    {value: "01:15:00", label: "01:15 AM"},
-    {value: "01:30:00", label: "01:30 AM"},
-    {value: "01:45:00", label: "01:45 AM"},
-    {value: "02:00:00", label: "02:00 AM"},
-    {value: "02:15:00", label: "02:15 AM"},
-    {value: "02:30:00", label: "02:30 AM"},
-    {value: "02:45:00", label: "02:45 AM"},
-    {value: "03:00:00", label: "03:00 AM"},
-    {value: "03:15:00", label: "03:15 AM"},
-    {value: "03:30:00", label: "03:30 AM"},
-    {value: "03:45:00", label: "03:45 AM"},
-    {value: "04:00:00", label: "04:00 AM"},
-    {value: "04:15:00", label: "04:15 AM"},
-    {value: "04:30:00", label: "04:30 AM"},
-    {value: "04:45:00", label: "04:45 AM"},
-    {value: "05:00:00", label: "05:00 AM"},
-    {value: "05:15:00", label: "05:15 AM"},
-    {value: "05:30:00", label: "05:30 AM"},
-    {value: "05:45:00", label: "05:45 AM"},
-    {value: "06:00:00", label: "06:00 AM"},
-    {value: "06:15:00", label: "06:15 AM"},
-    {value: "06:30:00", label: "06:30 AM"},
-    {value: "06:45:00", label: "06:45 AM"},
-    {value: "07:00:00", label: "07:00 AM"},
-    {value: "07:15:00", label: "07:15 AM"},
-    {value: "07:30:00", label: "07:30 AM"},
-    {value: "07:45:00", label: "07:45 AM"},
-    {value: "08:00:00", label: "08:00 AM"},
-    {value: "08:15:00", label: "08:15 AM"},
-    {value: "08:30:00", label: "08:30 AM"},
-    {value: "08:45:00", label: "08:45 AM"},
-    {value: "09:00:00", label: "09:00 AM"},
-    {value: "09:15:00", label: "09:15 AM"},
-    {value: "09:30:00", label: "09:30 AM"},
-    {value: "09:45:00", label: "09:45 AM"},
-    {value: "10:00:00", label: "10:00 AM"},
-    {value: "10:15:00", label: "10:15 AM"},
-    {value: "10:30:00", label: "10:30 AM"},
-    {value: "10:45:00", label: "10:45 AM"},
-    {value: "11:00:00", label: "11:00 AM"},
-    {value: "11:15:00", label: "11:15 AM"},
-    {value: "11:30:00", label: "11:30 AM"},
-    {value: "11:45:00", label: "11:45 AM"},
-    {value: "12:00:00", label: "12:00 PM"},
-    {value: "12:15:00", label: "12:15 PM"},
-    {value: "12:30:00", label: "12:30 PM"},
-    {value: "12:45:00", label: "12:45 PM"},
-    {value: "13:00:00", label: "01:00 PM"},
-    {value: "13:15:00", label: "01:15 PM"},
-    {value: "13:30:00", label: "01:30 PM"},
-    {value: "13:45:00", label: "01:45 PM"},
-    {value: "14:00:00", label: "02:00 PM"},
-    {value: "14:15:00", label: "02:15 PM"},
-    {value: "14:30:00", label: "02:30 PM"},
-    {value: "14:45:00", label: "02:45 PM"},
-    {value: "15:00:00", label: "03:00 PM"},
-    {value: "15:15:00", label: "03:15 PM"},
-    {value: "15:30:00", label: "03:30 PM"},
-    {value: "15:45:00", label: "03:45 PM"},
-    {value: "16:00:00", label: "04:00 PM"},
-    {value: "16:15:00", label: "04:15 PM"},
-    {value: "16:30:00", label: "04:30 PM"},
-    {value: "16:45:00", label: "04:45 PM"},
-    {value: "17:00:00", label: "05:00 PM"},
-    {value: "17:15:00", label: "05:15 PM"},
-    {value: "17:30:00", label: "05:30 PM"},
-    {value: "17:45:00", label: "05:45 PM"},
-    {value: "18:00:00", label: "06:00 PM"},
-    {value: "18:15:00", label: "06:15 PM"},
-    {value: "18:30:00", label: "06:30 PM"},
-    {value: "18:45:00", label: "06:45 PM"},
-    {value: "19:00:00", label: "07:00 PM"},
-    {value: "19:15:00", label: "07:15 PM"},
-    {value: "19:30:00", label: "07:30 PM"},
-    {value: "19:45:00", label: "07:45 PM"},
-    {value: "20:00:00", label: "08:00 PM"},
-    {value: "20:15:00", label: "08:15 PM"},
-    {value: "20:30:00", label: "08:30 PM"},
-    {value: "20:45:00", label: "08:45 PM"},
-    {value: "21:00:00", label: "09:00 PM"},
-    {value: "21:15:00", label: "09:15 PM"},
-    {value: "21:30:00", label: "09:30 PM"},
-    {value: "21:45:00", label: "09:45 PM"},
-    {value: "22:00:00", label: "10:00 PM"},
-    {value: "22:15:00", label: "10:15 PM"},
-    {value: "22:30:00", label: "10:30 PM"},
-    {value: "22:45:00", label: "10:45 PM"},
-    {value: "23:00:00", label: "11:00 PM"},
-    {value: "23:15:00", label: "11:15 PM"},
-    {value: "23:30:00", label: "11:30 PM"},
-    {value: "23:45:00", label: "11:45 PM"},
-  ]  
+  const { register, control, handleSubmit, formState: {errors}, clearErrors } = useForm();  
     
   const gmtStrings = [
     { value: "-12GMT", label: "-12 GMT" },
@@ -265,7 +166,7 @@ const Modal = () => {
                           )}
                           
                         />
-                        <FaAngleDown className="event-field-icon"/>
+                        <img className="event-field-icon" src={chevronDown} alt=""></img>
                     </div>
                     <div className={`dateInput icon-enabled-date-picker ${errors.endDate? 'input-error': ""}`}>
                         <img className="event-field-icon" src={icon2} alt=""></img>
@@ -283,37 +184,53 @@ const Modal = () => {
                             />
                           )}
                         />
-                        <FaAngleDown className="event-field-icon"/>
+                        <img className="event-field-icon" src={chevronDown} alt=""></img>
                     </div>
                   </div>
                   <div className="row thirdRow">
-                    <div className={`timeInput ${errors.startTime? 'input-error': ""}`}>
+                    <div className={`timeInput icon-enabled-date-picker ${errors.startTime? 'input-error': ""}`}>
                         <img className="event-field-icon" src={icon} alt=""></img>
-                        <select  
-                          className="time-select"
-                          {...register("startTime", {required: "Select a Start Time"})}
-                        >
-                          <option value="">Start Time</option>
-                          {
-                            timeStrings.map((timeString)=>(
-                              <option value={timeString.value}>{timeString.label}</option>
-                              ))
-                            }
-                        </select>
+                        <Controller
+                          control={control}
+                          name="startTime"
+                          rules={{required: "Select a Start Time"}}
+                          render={({field: { onChange, onBlur, value, ref }}) => (
+                            <DatePicker
+                              placeholderText="Start Time"
+                              onChange={onChange}
+                              onBlur={onBlur}
+                              selected={value}
+                              showTimeSelect
+                              showTimeSelectOnly
+                              timeIntervals={15}
+                              timeCaption=""
+                              dateFormat="h:mm aa"
+                            />
+                          )}
+                        />
+                        <img className="event-field-icon" src={chevronDown} alt=""></img>
                     </div>
-                    <div className={`timeInput ${errors.endTime? 'input-error': ""}`}>
+                    <div className={`timeInput icon-enabled-date-picker ${errors.endTime? 'input-error': ""}`}>
                         <img className="event-field-icon" src={icon} alt=""></img>
-                        <select 
-                          className="time-select"
-                          {...register("endTime", {required: "Select an End Time"})}
-                        >
-                          <option value="">End Time</option>
-                          {
-                            timeStrings.map((timeString)=>(
-                              <option value={timeString.value}>{timeString.label}</option>
-                              ))
-                            }
-                        </select>
+                        <Controller
+                          control={control}
+                          name="endTime"
+                          rules={{required: "Select an End Time"}}
+                          render={({field: { onChange, onBlur, value, ref }}) => (
+                            <DatePicker
+                              placeholderText="End Time"
+                              onChange={onChange}
+                              onBlur={onBlur}
+                              selected={value}
+                              showTimeSelect
+                              showTimeSelectOnly
+                              timeIntervals={15}
+                              timeCaption=""
+                              dateFormat="h:mm aa"
+                            />
+                          )}
+                        />
+                        <img className="event-field-icon" src={chevronDown} alt=""></img>
                     </div>
                     <div className={`gmtInput ${errors.gmt? 'input-error': ""}`}>
                       <select
