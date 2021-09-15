@@ -1,0 +1,17 @@
+.home-page {
+  padding: 20px;
+}
+.date-icons {
+  display: flex;
+  justify-content: space-between;
+}
+.holiday-list {
+  list-style: none;
+  padding: 10px;
+  background-color: #fff;
+  margin-bottom: 5px;
+}
+.fa-pen,
+.fa-trash-alt {
+  color: #00b87c;
+}
