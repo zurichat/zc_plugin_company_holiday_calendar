@@ -7,12 +7,10 @@ from rest_framework.decorators import api_view
 import requests
 from requests import exceptions
 from .serializers import EventSerializer
-from environ import Env
 from drf_yasg.utils import swagger_auto_schema
 from .serializers import *
-
-env=Env()
-env.read_env()
+from .datastore import DataBase
+from calendar_backend.settings import PLUGIN_ID, ORGANIZATION_ID
 
 
 
@@ -94,7 +92,7 @@ def ping_view(request):
 """
 This is  a create view for creating an event . The method allowed  is POST 
 """
-class CreateEventView(generics.GenericAPIView):
+class CreateEventView(generics.CreateAPIView):
     serializer_class = EventSerializer
 
     def post(self, request):
@@ -104,57 +102,52 @@ class CreateEventView(generics.GenericAPIView):
         # posting data to zuri core after validation
         # the organization_id would be dynamic; based on the request data
         event = serializer.data
-        plugin_id =  "6140c878d3f77e5cebc285f7"
-        payload = {
-            "plugin_id": "6140c878d3f77e5cebc285f7",
-            "organization_id": "6133c5a68006324323416896",
-            "collection_name": "events",
+        plugin_id =  PLUGIN_ID
+        org_id = ORGANIZATION_ID
+        coll_name = "event"
+        event_payload = {
+            "plugin_id": plugin_id,
+            "organization_id": org_id,
+            "collection_name": coll_name,
             "bulk_write": False,
             "object_id": "",
             "filter": {},
             "payload": event
         }
-        url = 'https://zccore.herokuapp.com/data/write'
+        print(event_payload)
+        url = 'https://api.zuri.chat/data/write'
 
         try:
-            response = requests.post(url=url, json=payload)
+            response = requests.post(url=url, json=event_payload)
 
             if response.status_code == 201:
-                return Response(status=status.HTTP_201_CREATED)
+                return Response({"message":"event created successfully"}, status=status.HTTP_201_CREATED)
             else:
                 return Response({"error": response.json()['message']}, status=response.status_code)
-
+                print()
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
         
 
 
-
-
+# Fetch list of events from zuri core
 @api_view(['GET'])
-def event_list_view(request):
+def event_list(request):
+    plugin_id = PLUGIN_ID
+    organization_id = ORGANIZATION_ID
+    collection_name = "event"
+    
     if request.method == "GET":
-        # getting data from zuri core
-        # /data/read/{plugin_id}/{collection_name}/{organization_id}
-        url = 'https://zccore.herokuapp.com//data/read/6140c878d3f77e5cebc285f7/events/6133c5a68006324323416896'
-
+        
+        #getting data from zuri core
+        # api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}
+        url = "https://api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}/"
         try:
             response = requests.get(url=url)
-
-            if response.status_code == 200:
-                events_data = response.json()['data']
-                return Response(events_data, status=status.HTTP_200_OK)
+            if response.status_code == 201:
+                events_list = response.json(['data'])
+                return JsonResponse(events_list, status=status.HTTP_200_OK)
             else:
-                return Response({"error": response.json()['message']}, status=response.status_code)
-
+                return Response({"error": response.json()["message"]}, status=response.status_code)
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
-
-
-
-
-
-
-
-
-
