@@ -89,11 +89,6 @@ This is  a create view for creating an event . The method allowed  is POST
 """
 
 
-plugin_id = "614117a96173056af01b4cf8"
-org_id = "6133c5a68006324323416896"
-coll_name = "events"
-
-
 class CreateEventView(generics.CreateAPIView):
     serializer_class = EventSerializer
 
@@ -104,10 +99,13 @@ class CreateEventView(generics.CreateAPIView):
         # posting data to zuri core after validation
         # the organization_id would be dynamic; based on the request data
         event = serializer.data
+        plugin_id = PLUGIN_ID
+        org_id = ORGANIZATION_ID
+        coll_name = "events"
         event_payload = {
-            "plugin_id": "614117a96173056af01b4cf8",
-            "organization_id": "6133c5a68006324323416896",
-            "collection_name": "events",
+            "plugin_id": plugin_id,
+            "organization_id": org_id,
+            "collection_name": coll_name,
             "bulk_write": False,
             "object_id": "",
             "filter": {},
@@ -130,12 +128,15 @@ class CreateEventView(generics.CreateAPIView):
 # Fetch list of events from zuri core
 @api_view(['GET'])
 def event_list(request):
+    plugin_id = PLUGIN_ID
+    org_id = ORGANIZATION_ID
+    coll_name = "events"
 
     if request.method == "GET":
 
         # getting data from zuri core
         # api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}
-        url = "https://api.zuri.chat/data/read/614117a96173056af01b4cf8/events/6133c5a68006324323416896"
+        url = "https://api.zuri.chat/data/read/{plugin_id}/{coll_name}/{ord_id}"
         try:
             response = requests.get(url=url)
             if response.status_code == 201:
@@ -147,6 +148,7 @@ def event_list(request):
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
 
+# test data
 {
     "event_title": "Team lead test",
     "start_date": "2021-09-17",
