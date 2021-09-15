@@ -1,37 +1,37 @@
-import React, { useContext, useState } from 'react';
-import { format } from 'date-fns';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import React, { useContext, useState } from 'react'
+import { format } from 'date-fns'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import {
   FaRegCalendar,
   FaAngleDown,
   FaRegEdit,
   FaRegClock,
-} from 'react-icons/fa';
-import { useForm, Controller } from 'react-hook-form';
-import { AppContext } from '../../App';
-import './Modal.css';
-import { HiOutlinePencilAlt, HiOutlineClockCircle } from 'react-icons/hi';
-import icon from './clock-icon.png';
-import icon2 from './calendar-icon.png';
+} from 'react-icons/fa'
+import { useForm, Controller } from 'react-hook-form'
+import { AppContext } from '../../App'
+import './Modal.css'
+import { HiOutlinePencilAlt, HiOutlineClockCircle } from 'react-icons/hi'
+import icon from './clock-icon.png'
+import icon2 from './calendar-icon.png'
 // import { format } from "date-fns";
-import { CirclePicker } from 'react-color';
-import chevronDown from './Shape.png';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
-import Repeat from './Repeat';
+import { CirclePicker } from 'react-color'
+import chevronDown from './Shape.png'
+import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
+import Snackbar from '@material-ui/core/Snackbar'
+import MuiAlert from '@material-ui/lab/Alert'
+import Repeat from './Repeat'
 
 function Alert(props) {
-  return <MuiAlert elevation={6} variant='filled' {...props} />;
+  return <MuiAlert elevation={6} variant='filled' {...props} />
 }
 
 const Modal = () => {
-  const states = useContext(AppContext);
+  const states = useContext(AppContext)
   const { isModalOpen, setIsModalOpen, showEventPage, setShowEventPage } =
-    states;
-  const { control } = useForm();
+    states
+  const { control } = useForm()
 
   const timeStrings = [
     { value: '00:00', label: '12:00 AM' },
@@ -130,7 +130,7 @@ const Modal = () => {
     { value: '23:15', label: '11:15 PM' },
     { value: '23:30', label: '11:30 PM' },
     { value: '23:45', label: '11:45 PM' },
-  ];
+  ]
 
   const gmtStrings = [
     { value: '-12GMT', label: '-12 GMT' },
@@ -158,7 +158,7 @@ const Modal = () => {
     { value: '+10GMT', label: '+10 GMT' },
     { value: '+11GMT', label: '+11 GMT' },
     { value: '+12GMT', label: '+12 GMT' },
-  ];
+  ]
 
   const colors = [
     '#2573F6',
@@ -171,34 +171,67 @@ const Modal = () => {
     '#D0E888',
     '#454545',
     '#999999',
-  ];
-  const [color, setColor] = useState('#00B87C');
-  const [isColorBoxOpen, setIsColorBoxOpen] = useState(false);
-  const [eventTag, setEventTag] = useState('');
+  ]
+  const [color, setColor] = useState('#00B87C')
+  const [isColorBoxOpen, setIsColorBoxOpen] = useState(false)
+  const [eventTag, setEventTag] = useState('')
+  const [eventTitle, setEventTitle] = useState('Weekend Get Away')
 
   const handleNewEventSubmit = (evt) => {
-    evt.preventDefault();
-    setOpenSnackbar(true);
+    evt.preventDefault()
+    setOpenSnackbar(true)
     // Check input fields
-    console.log({
-      Event_Tag: eventTag,
-      Event_Color: color,
-    });
+    const update = {
+      _id: new Date().getTime().toString(),
+      event_title: eventTitle,
+      start_date: '2021-09-25',
+      end_date: '2021-09-22',
+      start_time: '18:24:00',
+      end_time: '23:04:00',
+      time_zone: 'Antarctica/DumontDUrville',
+      description: 'zuri holiday',
+      all_day: false,
+      event_tag: eventTag,
+      event_colour: color,
+    }
+    console.log(update)
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(update),
+    }
+    fetch(
+      'https://sheltered-ocean-11512.herokuapp.com/https://calendar.zuri.chat/api/v1/create-event/',
+      options
+    )
+      .then((data) => {
+        if (!data.ok) {
+          throw Error(data.status)
+        }
+        return data
+      })
+      .then((update) => {
+        console.log(update)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
     // clear inputs
-    setEventTag('');
-    setColor('00B87C');
-  };
+    setEventTag('')
+    setColor('00B87C')
+    setEventTitle('Weekend Get Away')
+  }
 
-  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false)
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
-      return;
+      return
     }
-    setOpenSnackbar(false);
-  };
-
-  
+    setOpenSnackbar(false)
+  }
 
   return (
     <>
@@ -235,7 +268,11 @@ const Modal = () => {
                   <div className='firstRow'>
                     <div className='evenForm-title'>
                       <FaRegEdit className='event-field-icon' />
-                      <input name='title' placeholder='Weekend Get Away' />
+                      <input
+                        name='title'
+                        value={eventTitle}
+                        onChange={(e) => setEventTitle(e.target.value)}
+                      />
                     </div>
                   </div>
                   <div className='secondRow'>
@@ -356,8 +393,8 @@ const Modal = () => {
                           circleSize={25}
                           circleSpacing={12}
                           onChangeComplete={(color, event) => {
-                            setColor(color.hex);
-                            setIsColorBoxOpen(false);
+                            setColor(color.hex)
+                            setIsColorBoxOpen(false)
                           }}
                         />
                       </div>
@@ -459,8 +496,6 @@ const Modal = () => {
                       />
                       <i className='far fa-angle-down faIcons'></i>
                     </div>
-                        
-                    
 
                     {/* <div className='calendar'>
                       
@@ -472,8 +507,6 @@ const Modal = () => {
                       <input type='text' placeholder='10:30am'></input>
                     </div> */}
                   </div>
-
-                  
                 </form>
                 <Repeat />
               </div>
@@ -482,7 +515,7 @@ const Modal = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal
