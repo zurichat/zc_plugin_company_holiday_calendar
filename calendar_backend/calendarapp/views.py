@@ -136,12 +136,12 @@ def event_list(request):
 
         # getting data from zuri core
         # api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}
-        url = "https://api.zuri.chat/data/read/{plugin_id}/{coll_name}/{ord_id}"
+        url = f"https://api.zuri.chat/data/read/{plugin_id}/{coll_name}/{org_id}/"
         try:
             response = requests.get(url=url)
-            if response.status_code == 201:
-                events_list = response.json(['data'])
-                return JsonResponse(events_list, status=status.HTTP_200_OK)
+            if response.status_code == 200:
+                events_list = response.json()['data']
+                return Response(events_list, status=status.HTTP_200_OK)
             else:
                 return Response({"error": response.json()["message"]}, status=response.status_code)
         except exceptions.ConnectionError as e:
