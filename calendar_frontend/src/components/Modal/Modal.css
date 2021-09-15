@@ -134,6 +134,10 @@
 }
 
 /* Event form */
+.input-error{
+  border-bottom: 1px solid #FF0000 !important;
+}
+
 .evenForm{
   margin-top: 30px;
 }
