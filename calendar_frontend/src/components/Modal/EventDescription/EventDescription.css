@@ -1,0 +1,17 @@
+.ql-toolbar.ql-snow {
+  border: none;
+  position: relative;
+  right: 14px;
+}
+
+.ql-editor.ql-blank::before {
+  font-style: normal;
+}
+.quill > .ql-container {
+  border: none;
+  border-bottom: 1px solid grey;
+  width: 70%;
+}
+.quill {
+  margin-bottom: 12px;
+}
