@@ -13,11 +13,10 @@ from .datastore import DataBase
 from calendar_backend.settings import PLUGIN_ID, ORGANIZATION_ID
 
 
-
-
 """
 Creating a view for calendar
 """
+
 
 def calendar_view(request):
     return HttpResponse("<h1>This is where all calender activities are performed and displayed</h1>")
@@ -30,24 +29,24 @@ def plugin_info_view(request):
     """
     get:
     Get info about the plugin in JSON format
-    """        
+    """
     plugin_information = [
         {'plug_name': 'holiday calendar',
          'type': 'Calendar',
-         'version':'v1',
+         'version': 'v1',
          'developer_name': 'HNG-8.0/Team-plugin-holiday-calendar',
          'scaffold_structure': 'Monolith',
-         'description':'''Zurichat Company Holiday Calendar helps you and your team to stay organized with a shared calendar. 
+         'description': '''Zurichat Company Holiday Calendar helps you and your team to stay organized with a shared calendar. 
          From viewing your company monthly events in one screen to receiving up-to-the-minute reminders, 
          the company holiday calendar has everything you need to create and manage events''',
          'template_url': "http://calendar.zuri.chat/",
-         'information_url':'http://calendar.zuri.chat/api/v1/info/',
+         'information_url': 'http://calendar.zuri.chat/api/v1/info/',
          'sidebar_url': 'http://calendar.zuri.chat/api/v1/sidebar',
          'install_url': 'http://calendar.zuri.chat/install',
          'ping_url': 'http://calendar.zuri.chat/ping',
          'icon_url': 'https://drive.google.com/file/d/15iq9nWBdEOsiB2rnU17GtiTSxlAK2oyj/view?usp=sharing',
-         'photos_list':''
-        }   
+         'photos_list': ''
+         }
     ]
 
     return JsonResponse({'plugin_information': plugin_information})
@@ -85,13 +84,16 @@ def ping_view(request):
     return JsonResponse({'server': server})
 
 
-
-
-
-
 """
 This is  a create view for creating an event . The method allowed  is POST 
 """
+
+
+plugin_id = "614117a96173056af01b4cf8"
+org_id = "6133c5a68006324323416896"
+coll_name = "events"
+
+
 class CreateEventView(generics.CreateAPIView):
     serializer_class = EventSerializer
 
@@ -102,46 +104,38 @@ class CreateEventView(generics.CreateAPIView):
         # posting data to zuri core after validation
         # the organization_id would be dynamic; based on the request data
         event = serializer.data
-        plugin_id = plugin_id
-        org_id = ORGANIZATION_ID
-        coll_name = "event"
         event_payload = {
-            "plugin_id": plugin_id,
-            "organization_id": org_id,
-            "collection_name": coll_name,
+            "plugin_id": "614117a96173056af01b4cf8",
+            "organization_id": "6133c5a68006324323416896",
+            "collection_name": "events",
             "bulk_write": False,
             "object_id": "",
             "filter": {},
             "payload": event
         }
-        print(event_payload)
-        url = 'https://api.zuri.chat/data/write'
+        url = "https://api.zuri.chat/data/write"
 
         try:
             response = requests.post(url=url, json=event_payload)
 
             if response.status_code == 201:
-                return Response({"message":"event created successfully"}, status=status.HTTP_201_CREATED)
+                return Response({"message": "event created successfully"}, status=status.HTTP_201_CREATED)
             else:
                 return Response({"error": response.json()['message']}, status=response.status_code)
                 print()
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
-        
 
 
 # Fetch list of events from zuri core
 @api_view(['GET'])
 def event_list(request):
-    plugin_id = PLUGIN_ID
-    organization_id = ORGANIZATION_ID
-    collection_name = "event"
-    
+
     if request.method == "GET":
 
-        #getting data from zuri core
+        # getting data from zuri core
         # api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}
-        url = "https://api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}"
+        url = "https://api.zuri.chat/data/read/614117a96173056af01b4cf8/events/6133c5a68006324323416896"
         try:
             response = requests.get(url=url)
             if response.status_code == 201:
@@ -154,14 +148,14 @@ def event_list(request):
 
 
 {
-"event_title": "Team lead test", 
-"start_date": "2021-09-17", 
-"end_date": "2021-09-18", 
-"start_time": "20:47:00", 
-"end_time": "20:47:00", 
-"time_zone": "Africa/Ceuta", 
-"description": "writing data to zuri core", 
-"all_day": True, 
-"event_tag": "Writing data",
-"event_colour": 0
- }
+    "event_title": "Team lead test",
+    "start_date": "2021-09-17",
+    "end_date": "2021-09-18",
+    "start_time": "20:47:00",
+    "end_time": "20:47:00",
+    "time_zone": "Africa/Ceuta",
+    "description": "writing data to zuri core",
+    "all_day": "True",
+    "event_tag": "Writing data",
+    "event_colour": "0"
+}
