@@ -363,27 +363,20 @@
   align-items: center;
 }
 
-.time-select {
-  border: none;
-  background: #ffffff;
-  color: #616061;
-  padding: 4px 8px;
-  border-radius: 5px;
-  width: 100%;
-  margin: 0;
-  font-family: 'Lato', sans-serif;
-}
-
-.time-select:focus {
-  outline: none;
-}
-
 .gmtInput {
   width: 23%;
   border-bottom: 1px solid #f6f6f6;
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.time-select{
+  border: none;
+}
+
+.time-select:focus{
+  outline: none;
 }
 
 .fourthRow div {
@@ -429,4 +422,22 @@
   ul.react-datepicker__time-list::-webkit-scrollbar-thumb {
   background: #00b87c;
   border-radius: 6px;
+}
+
+.react-datepicker__time-container 
+.react-datepicker__time 
+.react-datepicker__time-box 
+ul.react-datepicker__time-list 
+li.react-datepicker__time-list-item--selected{
+  background: #f6f6f6;
+  color: #000;
+}
+
+.react-datepicker__time-container 
+.react-datepicker__time 
+.react-datepicker__time-box 
+ul.react-datepicker__time-list 
+li.react-datepicker__time-list-item--selected:hover{
+  background: #f6f6f6;
+  color: #000;
 }
