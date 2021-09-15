@@ -149,15 +149,15 @@ def event_list(request):
 
 
 # test data
-{
-    "event_title": "Team lead test",
-    "start_date": "2021-09-17",
-    "end_date": "2021-09-18",
-    "start_time": "20:47:00",
-    "end_time": "20:47:00",
-    "time_zone": "Africa/Ceuta",
-    "description": "writing data to zuri core",
-    "all_day": "True",
-    "event_tag": "Writing data",
-    "event_colour": "0"
-}
+# {
+#     "event_title": "Team lead test",
+#     "start_date": "2021-09-17",
+#     "end_date": "2021-09-18",
+#     "start_time": "20:47:00",
+#     "end_time": "20:47:00",
+#     "time_zone": "Africa/Ceuta",
+#     "description": "writing data to zuri core",
+#     "all_day": "True",
+#     "event_tag": "Writing data",
+#     "event_colour": "0"
+# }
