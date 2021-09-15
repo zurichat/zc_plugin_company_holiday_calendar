@@ -1,16 +1,29 @@
+# from datastore import DataBase
 from django.shortcuts import HttpResponse, render
 from django.http import JsonResponse
-from rest_framework import generics, filters, permissions
-from rest_framework.generics import DestroyAPIView
+from rest_framework import generics, status
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
+import requests
+from requests import exceptions
+from .serializers import EventSerializer
+from environ import Env
 from drf_yasg.utils import swagger_auto_schema
 from .serializers import *
-from .models import *
+
+env=Env()
+env.read_env()
 
 
+
+
+"""
+Creating a view for calendar
+"""
 
 def calendar_view(request):
     return HttpResponse("<h1>This is where all calender activities are performed and displayed</h1>")
+
 
 # creating a  view for  displaying  the plugin information as a static Json object.
 
@@ -74,136 +87,74 @@ def ping_view(request):
     return JsonResponse({'server': server})
 
 
-class DeleteEventView(DestroyAPIView):
-    """
-    delete:
-    Delete event by ID
-    """
-    model = Event
-    queryset = Event.objects.all()
-
-    
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        payload = {"message": "Deleted event successfully"}
-        return Response(payload)
 
 
-class EventListView(generics.ListAPIView):
-    """
-    get: 
-    a list of all Events
-    """
-    queryset = Event.objects.all()
+
+
+"""
+This is  a create view for creating an event . The method allowed  is POST 
+"""
+class CreateEventView(generics.GenericAPIView):
     serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny,]
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # posting data to zuri core after validation
+        # the organization_id would be dynamic; based on the request data
+        event = serializer.data
+        plugin_id =  "6140c878d3f77e5cebc285f7"
+        payload = {
+            "plugin_id": "6140c878d3f77e5cebc285f7",
+            "organization_id": "6133c5a68006324323416896",
+            "collection_name": "events",
+            "bulk_write": False,
+            "object_id": "",
+            "filter": {},
+            "payload": event
+        }
+        url = 'https://zccore.herokuapp.com/data/write'
+
+        try:
+            response = requests.post(url=url, json=payload)
+
+            if response.status_code == 201:
+                return Response(status=status.HTTP_201_CREATED)
+            else:
+                return Response({"error": response.json()['message']}, status=response.status_code)
+
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+        
 
 
-class EventDetailView(generics.RetrieveAPIView):
-    """
-    get: 
-    Details of individual events by ID
-    """
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny,]
 
 
-class EventUpdateView(generics.UpdateAPIView):
-    """
-    patch:
-    Update Specific fields of individual events by ID without affecting others
+@api_view(['GET'])
+def event_list_view(request):
+    if request.method == "GET":
+        # getting data from zuri core
+        # /data/read/{plugin_id}/{collection_name}/{organization_id}
+        url = 'https://zccore.herokuapp.com//data/read/6140c878d3f77e5cebc285f7/events/6133c5a68006324323416896'
 
-    """
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny,]
+        try:
+            response = requests.get(url=url)
 
+            if response.status_code == 200:
+                events_data = response.json()['data']
+                return Response(events_data, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": response.json()['message']}, status=response.status_code)
 
-
-class EventSearch(generics.ListAPIView):
-    """
-    post:
-    Search or filter event by event name and start time
-    
-    """
-    search_fields = ['event_name', 'end']
-    filter_backends = (filters.SearchFilter,)
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny,]
-    
-
-class ReminderListView(generics.ListAPIView):
-    """
-    get: 
-    a List of all Reminders
-    """
-    queryset = Reminder.objects.all()
-    serializer_class = ReminderSerializer
-    permission_classes = [permissions.AllowAny,]
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
 
-class ReminderDetailView(generics.RetrieveAPIView):
-    """
-    get: 
-    Get Reminder details by ID
-    """
-    queryset = Reminder.objects.all()
-    serializer_class = ReminderSerializer
-    permission_classes = [permissions.AllowAny,]
 
 
-class CreateEventView(generics.CreateAPIView):
-    """
-    post:
-    Create an event
-    """
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny,]
 
 
-class CreateReminder(generics.CreateAPIView):
-    """
-    post:
-    Create new reminders
-    """
-    queryset = Reminder.objects.all()
-    serializer_class = ReminderSerializer
-    permission_classes = [permissions.AllowAny,]
 
 
-class ReminderUpdateView(generics.UpdateAPIView):
-    """
-    patch:
-    Update specific fields of individual reminder by ID without affecting others
-    """
-    serializer_class = ReminderSerializer
-    permission_classes = [permissions.AllowAny,]
 
-    def get_queryset(self):
-        queryset = Reminder.objects.filter(id=self.kwargs['pk'])
-        return queryset
-
-
-class DeleteReminderView(DestroyAPIView):
-    """
-    delete: 
-    Delete individual Reminders by ID
-    """
-    serializer_class = ReminderSerializer
-
-    def get_queryset(self):
-        queryset = Reminder.objects.filter(id=self.kwargs['pk'])
-        return queryset
-
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        print(instance)
-        instance_id = instance.id
-        self.perform_destroy(instance)
-        payload = {"message": "Reminder({}) deleted successfully".format(instance_id)}
-
-        return Response(payload)

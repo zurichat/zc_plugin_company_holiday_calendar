@@ -23,6 +23,8 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import EventDescription from "./EventDescription/EventDescription";
 
+import Repeat from "./Repeat";
+
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -273,7 +275,6 @@ const Modal = () => {
                           />
                         )}
                       />
-
                       <FaAngleDown className="event-field-icon" />
                     </div>
                   </div>
@@ -315,7 +316,6 @@ const Modal = () => {
                     <div>
                       <input type="checkbox" name="allDay" value="Bike" />
                       <label htmlFor="allDay"> All Day</label>
-                      <br />
                     </div>
                   </div>
                   <div className="event__tag">
@@ -401,22 +401,77 @@ const Modal = () => {
               </div>
             ) : (
               <div className="reminder-tab ">
+                {/* Reminder form */}
+
                 <form>
-                  <div className="reminder-tab__title">
-                    <HiOutlinePencilAlt />
-                    <input type="text" placeholder="Enter event title"></input>
+                  <div className="reminderRow eventTitleRow">
+                    <div className="remRowGrp">
+                      <i className="far fa-edit faIcons"></i>
+                      <input
+                        name="eventTitle"
+                        placeholder="Add Title"
+                        className="eventTitle"
+                      />
+                    </div>
                   </div>
-                  <div className="reminder-tab__timer">
-                    <div className="calendar">
-                      <img className="calendar-icon" src={icon2}></img>
-                      <input type="text" placeholder="Sep 4, 2021"></input>
+                  <div className="reminderRow inlineGrp">
+                    <div className="dateInput icon-enabled-date-picker reminderItemInline">
+                      <i className="far fa-calendar faIcons"></i>
+
+                      <Controller
+                        control={control}
+                        name="reminderDate"
+                        render={({
+                          field: { onChange, onBlur, value, ref },
+                        }) => (
+                          <DatePicker
+                            placeholderText="Sep 4, 2021"
+                            dateFormat="MMM d yyyy"
+                            onChange={onChange}
+                            onBlur={onBlur}
+                            selected={value}
+                          />
+                        )}
+                      />
+                      <i className="far fa-angle-down faIcons"></i>
                     </div>
-                    <div className="clock">
-                      <img className="clock-icon" src={icon}></img>
-                      <input type="text" placeholder="10:30am"></input>
+                    <div className="dateInput icon-enabled-date-picker reminderItemInline">
+                      <i className="far fa-clock faIcons"></i>
+
+                      <Controller
+                        control={control}
+                        name="reminderTime"
+                        render={({
+                          field: { onChange, onBlur, value, ref },
+                        }) => (
+                          <DatePicker
+                            placeholderText="10:30am"
+                            onChange={onChange}
+                            onBlur={onBlur}
+                            selected={value}
+                            showTimeSelect
+                            showTimeSelectOnly
+                            timeIntervals={15}
+                            timeCaption=""
+                            dateFormat="h:mm aa"
+                          />
+                        )}
+                      />
+                      <i className="far fa-angle-down faIcons"></i>
                     </div>
+
+                    {/* <div className='calendar'>
+                      
+                      <img className='calendar-icon' src={icon2}></img>
+                      <input type='text' placeholder='Sep 4, 2021'></input>
+                    </div>
+                    <div className='clock'>
+                      <img className='clock-icon' src={icon}></img>
+                      <input type='text' placeholder='10:30am'></input>
+                    </div> */}
                   </div>
                 </form>
+                <Repeat />
               </div>
             )}
           </section>

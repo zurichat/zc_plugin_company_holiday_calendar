@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import { AppContext } from '../../App'
-import './Navbar.css'
+import React, { useContext } from 'react';
+import { AppContext } from '../../App';
+import './Navbar.css';
 
 const Navbar = () => {
-  const states = useContext(AppContext)
+  const states = useContext(AppContext);
   const {
     month,
     setMonth,
@@ -14,7 +14,7 @@ const Navbar = () => {
     setShowMonth,
     showYear,
     setShowYear,
-  } = states
+  } = states;
   const months = [
     {
       id: 'January',
@@ -64,13 +64,21 @@ const Navbar = () => {
       id: 'December',
       name: 'Dec',
     },
-  ]
-  const currentYear = new Date().getFullYear()
-  const startYear = currentYear - 8
+  ];
+  const currentYear = new Date().getFullYear();
+  const startYear = currentYear - 8;
   return (
     <>
       <nav className='nav'>
-        <div className='calendar' onClick={() => setShowMonth(!showMonth)}>
+        <div
+          className='calendar'
+          onClick={() => {
+            setShowMonth(!showMonth);
+            if (showYear !== false) {
+              setShowYear(false);
+            }
+          }}
+        >
           <i className='far fa-bars'></i>
           <i className='fal fa-calendar-alt'></i>
           <span className='month'>{month}</span>
@@ -95,15 +103,15 @@ const Navbar = () => {
                   className='monthItem'
                   key={month.id}
                   onClick={() => {
-                    setMonth(month.id)
+                    setMonth(month.id);
                     if (showYear !== false) {
-                      setShowYear(false)
+                      setShowYear(false);
                     }
                   }}
                 >
                   {month.name}
                 </span>
-              )
+              );
             })}
           </div>
         </div>
@@ -117,20 +125,20 @@ const Navbar = () => {
                   className='yearItem'
                   key={startYear + i}
                   onClick={() => {
-                    setYear(startYear + i)
-                    setShowMonth(!showMonth)
-                    setShowYear(!showYear)
+                    setYear(startYear + i);
+                    setShowMonth(!showMonth);
+                    setShowYear(!showYear);
                   }}
                 >
                   {startYear + i}
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
