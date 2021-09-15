@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+.dropbtn {
+  background-color: #fff;
+  color: #616061;
+  padding: 1rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 130%;
+}
+.save{
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 18px;
+    position: absolute;
+    width: 139px;
+    height: 48px;
+    left: 259px;
+    top: 313px;
+    background: #00B87C;
+    border-radius: 3px;
+    margin-top: 1rem;
+    border: #00B87C;
+    font-family: 'Lato', sans-serif;
+}
+.day{
+    font-family: 'Lato', sans-serif;
+    color: #616061;
+}

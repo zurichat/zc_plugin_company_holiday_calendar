@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -147,6 +148,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 # PLUGIN DETAILS
 PLUGIN_ID = "613cfdfee4010959c8dc0bca"
 ORGANIZATION_ID = "6133c5a68006324323416896"
