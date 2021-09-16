@@ -161,3 +161,45 @@ def event_list(request):
 #     "event_tag": "Writing data",
 #     "event_colour": "0"
 # }
+
+
+class CreateReminderView(generics.GenericAPIView):
+    serializer_class = ReminderSerializer
+
+    def post(self, request):
+        event_id = request.query_params.get('_id')
+        user_id = request.query_params.get('user')
+
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        # posting data to zuri core after validation
+        plugin_id = PLUGIN_ID
+        org_id = ORGANIZATION_ID
+        coll_name = "reminders"
+
+        reminder = serializer.data
+        reminder['event_id'] = event_id
+        reminder['user_id'] = user_id
+
+        reminder_payload = {
+            "plugin_id": plugin_id,
+            "organization_id": org_id,
+            "collection_name": coll_name,
+            "bulk_write": False,
+            "object_id": "",
+            "filter": {},
+            "payload": reminder
+        }
+        url = 'https://api.zuri.chat/data/write'
+
+        try:
+            response = requests.post(url=url, json=reminder_payload)
+
+            if response.status_code == 201:
+                return Response(reminder, status=status.HTTP_201_CREATED)
+            else:
+                return Response({"error": response.json()['message']}, status=response.status_code)
+
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
