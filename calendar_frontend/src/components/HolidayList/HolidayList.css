@@ -1,36 +1,17 @@
-.holiday {
-  background-color: #fff;
-  margin-bottom: 8px;
-  padding: 15px;
-  list-style: none;
+.home-page {
+  padding: 20px;
 }
 .date-icons {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
 }
-.home-page {
-  padding: 20px 20px 100px 20px;
+.holiday-list {
+  list-style: none;
+  padding: 10px;
+  background-color: #fff;
+  margin-bottom: 5px;
 }
-.event-time {
-  margin-bottom: 3px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 13px;
-}
-.edit-del {
+.fa-pen,
+.fa-trash-alt {
   color: #00b87c;
-  cursor: pointer;
-}
-.event-date {
-  font-family: Lato;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 18px;
-}
-.event-title {
-  font-family: Lato;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 13px;
 }
