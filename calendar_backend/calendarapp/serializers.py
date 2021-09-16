@@ -20,9 +20,9 @@ class ReminderSerializer(serializers.Serializer):
     )
 
     _id = serializers.ReadOnlyField()
-    title = serializers.CharField(required=True)
-    date = serializers.DateField(required=True)
-    time = serializers.TimeField(required=True)
+    title = serializers.CharField(required=False)
+    date = serializers.DateField(required=False)
+    time = serializers.TimeField(required=False)
     repeat = serializers.ChoiceField(required=True, choices=repeat_choices)
     all_day = serializers.BooleanField(required=False)
 
@@ -39,13 +39,12 @@ class EventSerializer(serializers.Serializer):
     end_date = serializers.DateField(required=True)
     start_time = serializers.TimeField(required=True)
     end_time = serializers.TimeField(required=True)
-    time_zone = serializers.ChoiceField(
-        choices=get_timezones(), default=DEFAULT_TIMEZONE)
+    time_zone = serializers.ChoiceField(choices=get_timezones(), default=DEFAULT_TIMEZONE)
     description = serializers.CharField(max_length=250, required=True)
     all_day = serializers.BooleanField(required=False)
     event_tag = serializers.CharField(required=True)
     event_colour = serializers.CharField(required=True)
-    reminder = serializers.ListField(allow_empty=True, child=ReminderSerializer(many=True))
+    reminder = ReminderSerializer('_id')
     images = serializers.ImageField(required=False)
 
     def __str__(self):
