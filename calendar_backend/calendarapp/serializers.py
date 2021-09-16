@@ -45,9 +45,7 @@ class ReminderSerializer(serializers.Serializer):
 
     _id = serializers.ReadOnlyField()
     title = serializers.CharField(required=True)
-    date = serializers.DateField(required=True, default=_timezone.now)
-    time = serializers.TimeField(required=True, default=_timezone.now)
+    date = serializers.DateField(required=True)
+    time = serializers.TimeField(required=True)
     repeat = serializers.ChoiceField(required=True, choices=repeat_choices)
     all_day = serializers.BooleanField(required=True)
-
-
