@@ -140,7 +140,7 @@ def event_list(request):
         try:
             response = requests.get(url=url)
             if response.status_code == 200:
-                events_list = response.json()['data']
+                events_list = response.json()
                 return Response(events_list, status=status.HTTP_200_OK)
             else:
                 return Response({"error": response.json()["message"]}, status=response.status_code)

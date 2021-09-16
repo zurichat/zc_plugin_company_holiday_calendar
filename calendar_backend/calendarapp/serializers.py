@@ -4,12 +4,11 @@ from Core.utils import get_timezones, DEFAULT_TIMEZONE
 from rest_framework import serializers
 
 
-
-
-
 """
 Creating  a serializer class for events
 """
+
+
 class EventSerializer(serializers.Serializer):
     id = serializers.ReadOnlyField()
     event_title = serializers.CharField(required=True)
@@ -22,7 +21,8 @@ class EventSerializer(serializers.Serializer):
     all_day = serializers.BooleanField(required=True)
     event_tag = serializers.CharField(required=True)
     event_colour = serializers.CharField(required=True)
+    images = serializers.ImageField(required=False)
 
 
 class ReminderSerializer(serializers.Serializer):
-        pass
+    pass
