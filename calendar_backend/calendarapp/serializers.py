@@ -16,12 +16,16 @@ class EventSerializer(serializers.Serializer):
     end_date = serializers.DateField(required=True)
     start_time = serializers.TimeField(required=True)
     end_time = serializers.TimeField(required=True)
-    time_zone = serializers.ChoiceField(choices=get_timezones(), default=DEFAULT_TIMEZONE)
+    time_zone = serializers.ChoiceField(
+        choices=get_timezones(), default=DEFAULT_TIMEZONE)
     description = serializers.CharField(max_length=250, required=True)
     all_day = serializers.BooleanField(required=True)
     event_tag = serializers.CharField(required=True)
     event_colour = serializers.CharField(required=True)
     images = serializers.ImageField(required=False)
+
+    def __str__(self):
+        return f"{self.event_title} created successfully"
 
 
 class ReminderSerializer(serializers.Serializer):
