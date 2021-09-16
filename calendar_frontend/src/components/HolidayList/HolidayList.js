@@ -1,69 +1,72 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../App'
 import './HolidayList.css'
+import { FiEdit2 } from 'react-icons/fi'
+import { RiDeleteBin5Line } from 'react-icons/ri'
 
-const url = 'https://calendar.zuri.chat/api/v1/list-events/'
+const url = 'https://calendar.zuri.chat/api/v1/event-list/'
 
 const HolidayList = () => {
   const states = useContext(AppContext)
-  const { month, setMonth, year, setYear, days } = states
-
+  const { month, setMonth, year, setYear } = states
   const [holidays, setHolidays] = useState([])
-  // const getHolidays = async () => {
-  //   const response = await fetch(url)
-  //   const holidays = await response.json()
-  //   const actualHolidays = holidays.filter((holiday) => holiday)
-  //   console.log(actualHolidays)
-  //   setHolidays(actualHolidays)
-  // }
-
-  // useEffect(() => {
-  //   getHolidays()
-  // }, [url])
+  const getHolidays = async () => {
+    const response = await fetch(url)
+    const holidays = await response.json()
+    return holidays.data.slice(11, 22)
+  }
+  const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ]
+  useEffect(() => {
+    getHolidays().then((data) => {
+      setHolidays(data)
+    })
+  }, [url])
+  console.log(holidays)
   return (
     <div className='home-page'>
-      {/* {holidays.map((holiday) => {
+      {holidays.map((holiday) => {
         const {
           _id,
-          all_day,
-          description,
-          end_date,
-          end_time,
-          event_colour,
-          event_tag,
-          event_title,
           start_date,
+          all_day,
           start_time,
-          time_zone,
+          end_time,
+          event_title,
+          event_colour,
         } = holiday
         return (
           <li
             key={_id}
-            className='holiday-list'
+            className='holiday'
             style={{ borderLeft: `8px solid ${event_colour}` }}
           >
-            <div className='date_icons'>
-              <p>
-                {days[new Date(`${start_date}`).getDay()]}{' '}
-                {new Date(`${start_date}`).getDate()}
-              </p>
-              <div>
-                <i className='fal fa-pen'></i>
-                <i className='far fa-trash-alt'></i>
-              </div>
+            <div className='date-icons'>
+              <span className='event-date'>
+                {days[new Date(start_date).getDay()]}{' '}
+                {new Date(start_date).getDate()}
+              </span>
+              <span className='edit-del'>
+                <FiEdit2 style={{ marginRight: '5px' }} />
+                <RiDeleteBin5Line />
+              </span>
             </div>
-
-            {all_day ? (
-              <p>All Day</p>
-            ) : (
-              <p>
-                {start_time}-{end_time}
-              </p>
-            )}
-            <p>{event_title}</p>
+            <p className='event-time' style={{ color: `${event_colour}` }}>
+              {all_day ? 'All Day' : ''}
+            </p>
+            <p className='event-title' style={{ color: `${event_colour}` }}>
+              {event_title}
+            </p>
           </li>
         )
-      })} */}
+      })}
     </div>
   )
 }

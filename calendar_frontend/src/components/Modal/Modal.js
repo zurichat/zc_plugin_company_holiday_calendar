@@ -108,39 +108,41 @@ const Modal = () => {
     // }
     const eventFormData = {
       event_title: data.title,
-      start_date: data.startDate,
-      end_date: data.endDate,
-      start_time: data.startTime,
-      end_time: data.endTime,
-      time_zone: 'Africa/Accra',
+      start_date: `${data.startDate.getFullYear()}-${
+        data.startDate.getMonth() + 1 > 9
+          ? data.startDate.getMonth() + 1
+          : `0${data.startDate.getMonth() + 1}`
+      }-${data.startDate.getDate()}`,
+      end_date: `${data.endDate.getFullYear()}-${
+        data.endDate.getMonth() + 1 > 9
+          ? data.endDate.getMonth() + 1
+          : `0${data.endDate.getMonth() + 1}`
+      }-${data.endDate.getDate()}`,
+      start_time: `${data.startTime.getHours()}:${data.startTime.getMinutes()}:00`,
+      end_time: `${data.endTime.getHours()}:${data.endTime.getMinutes()}:00`,
+      time_zone: 'Africa/Ceuta',
       all_day: data.allDay,
       event_tag: eventTag,
       description: 'zuri holday hng internship',
       event_colour: color,
       images: null,
     }
-    console.log(typeof data.startDate)
-    // Send a POST request
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(eventFormData),
+
+    console.log(eventFormData)
+
+    const post = async () => {
+      try {
+        const result = await axios({
+          method: 'POST',
+          url: 'https://calendar.zuri.chat/api/v1/create-event/',
+          data: eventFormData,
+        })
+        console.log(result)
+      } catch (error) {
+        console.log(error.message)
+      }
     }
-    fetch('https://calendar.zuri.chat/api/v1/create-event/', options)
-      .then((data) => {
-        if (!data.ok) {
-          throw Error(data.status)
-        }
-        return data.json()
-      })
-      .then((update) => {
-        console.log(update)
-      })
-      .catch((e) => {
-        console.log(e)
-      })
+    post()
     setOpenSnackbar(true)
     // Check input fields
     // clear inputs
