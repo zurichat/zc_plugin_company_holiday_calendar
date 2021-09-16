@@ -3,14 +3,13 @@ from django.utils import timezone as _timezone
 from Core.utils import get_timezones, DEFAULT_TIMEZONE
 from rest_framework import serializers
 
-
 """
 Creating  a serializer class for events
 """
 
 
 class EventSerializer(serializers.Serializer):
-    id = serializers.ReadOnlyField()
+    _id = serializers.ReadOnlyField()
     event_title = serializers.CharField(required=True)
     start_date = serializers.DateField(required=True)
     end_date = serializers.DateField(required=True)
@@ -28,5 +27,27 @@ class EventSerializer(serializers.Serializer):
         return f"{self.event_title} created successfully"
 
 
+"""
+Creating  a serializer class for reminders.
+"""
+
+
 class ReminderSerializer(serializers.Serializer):
-    pass
+
+    repeat_choices = (
+        ('DO_NOT', 'Do not repeat'),
+        ('ED', 'Daily'),
+        ('EW', 'Weekly on Wednesday'),
+        ('EM', 'Monthly'),
+        ('EY', 'Yearly'),
+        ('EWD', 'Every week day')
+    )
+
+    _id = serializers.ReadOnlyField()
+    title = serializers.CharField(required=True)
+    date = serializers.DateField(required=True, default=_timezone.now)
+    time = serializers.TimeField(required=True, default=_timezone.now)
+    repeat = serializers.ChoiceField(required=True, choices=repeat_choices)
+    all_day = serializers.BooleanField(required=True)
+
+
