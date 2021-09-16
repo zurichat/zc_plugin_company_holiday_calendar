@@ -2,29 +2,27 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../App'
 import './HolidayList.css'
 
-const url =
-  'https://sheltered-ocean-11512.herokuapp.com/https://calendar.zuri.chat/api/v1/list-events/'
+const url = 'https://calendar.zuri.chat/api/v1/list-events/'
 
 const HolidayList = () => {
   const states = useContext(AppContext)
   const { month, setMonth, year, setYear, days } = states
-  console.log(month, year)
 
   const [holidays, setHolidays] = useState([])
-  const getHolidays = async () => {
-    const response = await fetch(url)
-    const holidays = await response.json()
-    const actualHolidays = holidays.filter((holiday) => holiday)
-    console.log(actualHolidays)
-    setHolidays(actualHolidays)
-  }
+  // const getHolidays = async () => {
+  //   const response = await fetch(url)
+  //   const holidays = await response.json()
+  //   const actualHolidays = holidays.filter((holiday) => holiday)
+  //   console.log(actualHolidays)
+  //   setHolidays(actualHolidays)
+  // }
 
-  useEffect(() => {
-    getHolidays()
-  }, [url])
+  // useEffect(() => {
+  //   getHolidays()
+  // }, [url])
   return (
     <div className='home-page'>
-      {holidays.map((holiday) => {
+      {/* {holidays.map((holiday) => {
         const {
           _id,
           all_day,
@@ -45,10 +43,10 @@ const HolidayList = () => {
             style={{ borderLeft: `8px solid ${event_colour}` }}
           >
             <div className='date_icons'>
-              <div>
+              <p>
                 {days[new Date(`${start_date}`).getDay()]}{' '}
                 {new Date(`${start_date}`).getDate()}
-              </div>
+              </p>
               <div>
                 <i className='fal fa-pen'></i>
                 <i className='far fa-trash-alt'></i>
@@ -65,7 +63,7 @@ const HolidayList = () => {
             <p>{event_title}</p>
           </li>
         )
-      })}
+      })} */}
     </div>
   )
 }
