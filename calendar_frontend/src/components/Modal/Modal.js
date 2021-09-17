@@ -24,7 +24,7 @@ function Alert(props) {
 const Modal = () => {
   const states = useContext(AppContext);
 
-  const { isModalOpen, setIsModalOpen, showEventPage, setShowEventPage } =
+  const { isModalOpen, setIsModalOpen, showEventPage, setShowEventPage, currentFormData, setCurrentFormData } =
     states;
 
   const [color, setColor] = useState("#00B87C");
@@ -45,6 +45,7 @@ const Modal = () => {
     clearErrors,
   } = useForm();
 
+  console.log('ModalCurrent', currentFormData)
   const [description, setDescription] = useState("");
 
   const handleFormSubmission = (data) => {
