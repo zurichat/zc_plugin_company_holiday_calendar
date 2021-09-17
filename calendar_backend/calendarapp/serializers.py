@@ -1,5 +1,3 @@
-from types import DynamicClassAttribute
-from django.utils import timezone as _timezone
 from Core.utils import get_timezones, DEFAULT_TIMEZONE
 from rest_framework import serializers
 
@@ -20,11 +18,14 @@ class ReminderSerializer(serializers.Serializer):
     )
 
     _id = serializers.ReadOnlyField()
-    title = serializers.CharField(required=False)
+    title = serializers.CharField(required=True)
     date = serializers.DateField(required=False)
     time = serializers.TimeField(required=False)
-    repeat = serializers.ChoiceField(required=True, choices=repeat_choices)
+    repeat = serializers.ChoiceField(required=False, choices=repeat_choices)
     all_day = serializers.BooleanField(required=False)
+
+    def __str__(self):
+        return f"{self.title} created successfully"
 
 
 """
@@ -44,7 +45,6 @@ class EventSerializer(serializers.Serializer):
     all_day = serializers.BooleanField(required=False)
     event_tag = serializers.CharField(required=True)
     event_colour = serializers.CharField(required=True)
-    reminder = ReminderSerializer('_id')
     images = serializers.ImageField(required=False)
 
     def __str__(self):
