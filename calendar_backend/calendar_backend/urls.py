@@ -29,7 +29,7 @@ urlpatterns = [
     path('swagger/', schema_view.with_ui('swagger'), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc'), name='schema-redoc'),
     path('api/v1/', include('calendarapp.urls')),
-    path('calendar/', homepage, name="home_page"),
+    path('', homepage, name="home_page"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
