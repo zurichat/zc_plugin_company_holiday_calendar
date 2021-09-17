@@ -93,10 +93,17 @@ const Navbar = () => {
       {showMonth && (
         <div className='grpHolder'>
           <div className='yearHeadGrp' onClick={() => setShowYear(!showYear)}>
-            <h3 className='yearHeadItem'>2021</h3>
+            <h3 className='yearHeadItem'>{year}</h3>
             <i className='fal fa-angle-down'></i>
           </div>
-          <div className='monthGrp'>
+          <div
+            className='monthGrp'
+            onClick={() => {
+              if (showYear !== false) {
+                setShowYear(false);
+              }
+            }}
+          >
             {months.map((month) => {
               return (
                 <span
@@ -104,9 +111,6 @@ const Navbar = () => {
                   key={month.id}
                   onClick={() => {
                     setMonth(month.id);
-                    if (showYear !== false) {
-                      setShowYear(false);
-                    }
                   }}
                 >
                   {month.name}
