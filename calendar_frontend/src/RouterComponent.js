@@ -5,7 +5,7 @@ import Landing from './Landing'
 
 const RouterComponent = () => {
   return (
-    <HashRouter>
+    <Router>
       <Switch>
         <Route exact path='/'>
           <Landing />
@@ -14,7 +14,7 @@ const RouterComponent = () => {
           <App />
         </Route>
       </Switch>
-    </HashRouter>
+    </Router>
   )
 }
 
