@@ -7,7 +7,7 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 const HolidayList = () => {
   const url = 'https://calendar.zuri.chat/api/v1/event-list/';
   const states = useContext(AppContext);
-  const { month, year, setShowMonth, setShowYear } = states;
+  const { month, year, months, setShowMonth, setShowYear } = states;
   const [holidays, setHolidays] = useState([]);
 
   const getHolidays = async () => {
@@ -27,10 +27,17 @@ const HolidayList = () => {
   ];
   useEffect(() => {
     getHolidays().then((data) => {
-      setHolidays(data);
+      setHolidays(
+        data.filter((holiday) => {
+          return (
+            holiday.start_date.slice(0, 4) === year.toString() &&
+            months.indexOf(month) + 1 ===
+              parseInt(holiday.start_date.slice(5, 7))
+          );
+        })
+      );
     });
-  }, [url, month, year]);
-
+  }, [url, month, year, months]);
   return (
     <div
       className='home-page'
@@ -40,7 +47,15 @@ const HolidayList = () => {
       }}
     >
       {holidays.map((holiday) => {
-        const { _id, start_date, all_day, event_title, event_colour } = holiday;
+        const {
+          _id,
+          start_date,
+          all_day,
+          event_title,
+          event_colour,
+          start_time,
+          end_time,
+        } = holiday;
         return (
           <li
             key={_id}
@@ -58,7 +73,21 @@ const HolidayList = () => {
               </span>
             </div>
             <p className='event-time' style={{ color: `${event_colour}` }}>
-              {all_day ? 'All Day' : ''}
+              {all_day
+                ? 'All Day'
+                : `${
+                    +start_time.slice(0, 2) >= 12
+                      ? +start_time.slice(0, 2) - 12
+                      : +start_time.slice(0, 2)
+                  }:${start_time.slice(3, 5).padStart(2, '0')} ${
+                    +start_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
+                  }-${
+                    +end_time.slice(0, 2) >= 12
+                      ? +end_time.slice(0, 2) - 12
+                      : +end_time.slice(0, 2)
+                  }:${end_time.slice(3, 5).padStart(2, '0')} ${
+                    +end_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
+                  }`}
             </p>
             <p className='event-title' style={{ color: `${event_colour}` }}>
               {event_title}

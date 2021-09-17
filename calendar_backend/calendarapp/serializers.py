@@ -40,7 +40,7 @@ class EventSerializer(serializers.Serializer):
     end_date = serializers.DateField(required=True)
     start_time = serializers.TimeField(required=True)
     end_time = serializers.TimeField(required=True)
-    time_zone = serializers.ChoiceField(choices=get_timezones(), default=DEFAULT_TIMEZONE)
+    time_zone = serializers.CharField(required=True)
     description = serializers.CharField(max_length=250, required=True)
     all_day = serializers.BooleanField(required=False)
     event_tag = serializers.CharField(required=True)
