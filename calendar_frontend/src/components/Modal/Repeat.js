@@ -1,5 +1,11 @@
 import React, { useState } from 'react'
 import './Repeat.css'
+import './Modal.css'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import Select from 'react-select'
+
+
 
 const weekDays = [
   {
@@ -32,10 +38,78 @@ const weekDays = [
   },
 ]
 
+
+
+const everyStyles = {
+  menuList: styles => ({
+    ...styles,
+    background: 'white'
+  }),
+  option: (styles, {isFocused, isSelected}) => ({
+    ...styles,
+    "&:hover": {
+      backgroundColor: "#ACFFE6;"
+    },
+    
+    zIndex: 1,
+
+    color: 'black',
+    backgroundColor: 'white',
+    color: '#616061',
+    fontFamily: 'Lato', 
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: '13px',
+    lineHeight: '130%'
+    
+  }),
+  menu: base => ({
+    ...base,
+    zIndex: 100,
+    width: '67%'
+  }),
+  control: (provided) => ({
+    ...provided,
+    backgroundColor: '#F6F6F6;',
+    border: 0,
+    boxShadow: 'none',
+  }),
+  indicatorSeparator: () => ({
+    display:'none'
+  }),
+  container: base => ({
+    ...base,
+    width: '20px'
+  })
+}
+
+
+const every = [
+  {
+    value: 1,
+    label: "Days"
+  },
+  {
+    value: 2,
+    label: "Week"
+  },
+  {
+    value: 2,
+    label: "Month"
+  },
+  {
+    value: 2,
+    label: "Years"
+  }
+]
+
+
 const Repeat = () => {
   const [frequent, setFrequent] = useState('Repeat')
   const [ifOption, setIfOption] = useState(false)
   const [showCustom, setShowCustom] = useState(false)
+  const [selectedDate, setSelectedDate] = useState(new Date())
+  const [repeatEvery, setRepeatEvery] = useState(false)                  
 
   return (
     <div>
@@ -92,6 +166,21 @@ const Repeat = () => {
             {showCustom && (
               <div>
                 {/* everything related to the custom ocurrence goes here*/}
+
+              <div className="repeat-every">
+                <p id="repeat-every">Repeat every</p>
+                <p id="repeat-every-1">1</p>
+              </div>
+              <Select
+                id="select-repeat-every" 
+                names= "colors"
+                value={repeatEvery}
+                placeholder={"Week"}
+                styles={everyStyles}
+                options={every}
+                onChange={everyObj => setRepeatEvery(everyObj)}
+              />
+             
                 <div className=''></div>
                 <div className='repeat_days'>
                   <p className='block_title'>Repeat on</p>
@@ -147,6 +236,14 @@ const Repeat = () => {
                   <div className='radio__circle'></div>
                   After
                 </label>
+
+                <br />
+                <DatePicker 
+                  id="repeat-on-particular-day" 
+                  selected={selectedDate} 
+                  onChange={date => setSelectedDate(date)}
+                  dateFormat='MMM dd, yyyy'
+                />
 
                 {/* write your code above */}
               </div>
