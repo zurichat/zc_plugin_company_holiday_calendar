@@ -3,12 +3,15 @@ import { AppContext } from '../../App'
 import './HolidayList.css'
 import { FiEdit2 } from 'react-icons/fi'
 import { RiDeleteBin5Line } from 'react-icons/ri'
+import EventDelBtn from "./EventDelBtn"
 
 const HolidayList = () => {
   const url = 'https://calendar.zuri.chat/api/v1/event-list/'
   const states = useContext(AppContext)
   const { month, year, months } = states
   const [holidays, setHolidays] = useState([])
+  const { isModalOpen, setIsModalOpen } = states
+  const [openDeleteEvent, setDeleteEvent] = useState(false)
 
   const getHolidays = async () => {
     const response = await fetch(url)
@@ -32,7 +35,7 @@ const HolidayList = () => {
           return (
             holiday.start_date.slice(0, 4) === year.toString() &&
             months.indexOf(month) + 1 ===
-              parseInt(holiday.start_date.slice(5, 7))
+            parseInt(holiday.start_date.slice(5, 7))
           )
         })
       )
@@ -63,32 +66,38 @@ const HolidayList = () => {
               </span>
               <span className='edit-del'>
                 <FiEdit2 style={{ marginRight: '5px' }} />
-                <RiDeleteBin5Line />
+                {/* <RiDelBtn /> */}
+                <RiDeleteBin5Line onClick={() => setDeleteEvent(true)} />
+
+
               </span>
             </div>
             <p className='event-time' style={{ color: `${event_colour}` }}>
               {all_day
                 ? 'All Day'
                 : `${
-                    +start_time.slice(0, 2) >= 12
-                      ? +start_time.slice(0, 2) - 12
-                      : +start_time.slice(0, 2)
-                  }:${start_time.slice(3, 5).padStart(2, '0')} ${
-                    +start_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
-                  }-${
-                    +end_time.slice(0, 2) >= 12
-                      ? +end_time.slice(0, 2) - 12
-                      : +end_time.slice(0, 2)
-                  }:${end_time.slice(3, 5).padStart(2, '0')} ${
-                    +end_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
-                  }`}
+                +start_time.slice(0, 2) >= 12
+                  ? +start_time.slice(0, 2) - 12
+                  : +start_time.slice(0, 2)
+                }:${start_time.slice(3, 5).padStart(2, '0')} ${
+                +start_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
+                }-${
+                +end_time.slice(0, 2) >= 12
+                  ? +end_time.slice(0, 2) - 12
+                  : +end_time.slice(0, 2)
+                }:${end_time.slice(3, 5).padStart(2, '0')} ${
+                +end_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
+                }`}
             </p>
             <p className='event-title' style={{ color: `${event_colour}` }}>
               {event_title}
             </p>
           </li>
+
         )
       })}
+      {openDeleteEvent && <EventDelBtn cancelDelEvent={setDeleteEvent} />}
+
     </div>
   )
 }
