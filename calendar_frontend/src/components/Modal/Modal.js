@@ -109,6 +109,7 @@ const Modal = () => {
 
   return (
     <>
+      {JSON.Stringify(currentFormData)}
       {isModalOpen && (
         <div className="modal">
           <header>

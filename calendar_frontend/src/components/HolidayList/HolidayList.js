@@ -104,7 +104,9 @@ function HolidayListCard({
   currentFormData, 
   setCurrentFormData
 }) {
-  
+  // let formNewData = setCurrentFormData(holiday)
+
+  // const findData = holiday.find(datafind => datafind === _id)
   
   console.log('Current', currentFormData)
   return (
@@ -118,7 +120,10 @@ function HolidayListCard({
           {days[new Date(start_date).getDay()]} {new Date(start_date).getDate()}
         </span>
         <span className="edit-del">
-          <FiEdit2 onClick={() => clickBehavior(!isModalOpen)} style={{ marginRight: "5px" }} />
+          <FiEdit2 onClick={() => {
+            clickBehavior(!isModalOpen)
+            setCurrentFormData(holiday)
+          }} style={{ marginRight: "5px" }} />
           <RiDeleteBin5Line />
         </span>
       </div>
