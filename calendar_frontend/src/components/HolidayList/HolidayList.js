@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../../App'
-import './HolidayList.css'
+import './HolidayListt.css'
 import { FiEdit2 } from 'react-icons/fi'
-import { RiDeleteBin5Line } from 'react-icons/ri'
+import { RiDeleteBinLine } from 'react-icons/ri'
 
 const url = 'https://calendar.zuri.chat/api/v1/event-list/'
 
@@ -14,15 +14,16 @@ const HolidayList = () => {
     const response = await fetch(url)
     const holidays = await response.json()
     return holidays.data.slice(11, 22)
+  
   }
   const days = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
+   'Sunday',
+   'Monday',
+   'Tuesday',
+   'Wednesday',
+   'Thursday',
+   'Friday',
+   'Saturday',
   ]
   useEffect(() => {
     getHolidays().then((data) => {
@@ -53,9 +54,11 @@ const HolidayList = () => {
                 {days[new Date(start_date).getDay()]}{' '}
                 {new Date(start_date).getDate()}
               </span>
+              
               <span className='edit-del'>
-                <FiEdit2 style={{ marginRight: '5px' }} />
-                <RiDeleteBin5Line />
+              <FiEdit2 style={{ marginRight: '5px' }} />
+                                <RiDeleteBinLine style={{ marginRight: '5px' }} />
+                           
               </span>
             </div>
             <p className='event-time' style={{ color: `${event_colour}` }}>

@@ -18,19 +18,10 @@
   font-weight: normal;
   font-size: 13px;
 }
-.edit {
+
+.edit-del {
   color: #00b87c;
   cursor: pointer;
-  width: 13.5px;
-  height: 13.5px;
-  border: 1.23px solid #00b87c;
-}
-.del {
-  color: #00b87c;
-  cursor: pointer;
-  width: 0.75px;
-  height: 4.5px;
-  border: 1.23px solid #00b87c;
 }
 .event-date {
   font-family: "Lato";
