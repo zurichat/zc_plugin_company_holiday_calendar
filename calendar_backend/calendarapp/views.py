@@ -184,10 +184,23 @@ def event_detail_view(request, id):
                 # to retrieve reminder(s) for this particular event
                 # that belongs to the current user.
 
+                user_id = request.query_params.get('user')
+                url_reminder = f'https://api.zuri.chat/data/read/{plugin_id}/reminders/{organization_id}?event_id={id}&user_id={user_id}'
 
+                try:
+                    response_reminder = requests.get(url=url_reminder)
+
+                    if response_reminder.status_code == 200:
+                        reminder_data = response_reminder.json()['data']
+                    else:
+                        reminder_data = f"{response_reminder.status_code} Error: {response_reminder.json()['message']}"
+
+                except exceptions.ConnectionError as e:
+                    reminder_data = f"502 Error: {e}"
 
                 # adding the user-specific event reminder(s) to the event.
                 event_data['reminders'] = reminder_data
+
                 return Response(event_data, status=status.HTTP_200_OK)
             else:
                 return Response({'error': response_event.json()['message']}, status=response_event.status_code)
