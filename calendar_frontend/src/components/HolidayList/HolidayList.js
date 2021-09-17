@@ -4,18 +4,19 @@ import './HolidayListt.css'
 import { FiEdit2 } from 'react-icons/fi'
 import { RiDeleteBinLine } from 'react-icons/ri'
 
-const url = 'https://calendar.zuri.chat/api/v1/event-list/'
-
 const HolidayList = () => {
+  const url = 'https://calendar.zuri.chat/api/v1/event-list/'
   const states = useContext(AppContext)
-  const { month, setMonth, year, setYear } = states
+  const { month, year, months } = states
   const [holidays, setHolidays] = useState([])
+
   const getHolidays = async () => {
     const response = await fetch(url)
     const holidays = await response.json()
     return holidays.data.slice(11, 22)
   
   }
+
   const days = [
    'Sunday',
    'Monday',
@@ -27,10 +28,17 @@ const HolidayList = () => {
   ]
   useEffect(() => {
     getHolidays().then((data) => {
-      setHolidays(data)
+      setHolidays(
+        data.filter((holiday) => {
+          return (
+            holiday.start_date.slice(0, 4) === year.toString() &&
+            months.indexOf(month) + 1 ===
+              parseInt(holiday.start_date.slice(5, 7))
+          )
+        })
+      )
     })
   }, [url, month, year])
-  console.log(holidays)
   return (
     <div className='home-page'>
       {holidays.map((holiday) => {
@@ -38,10 +46,10 @@ const HolidayList = () => {
           _id,
           start_date,
           all_day,
-          start_time,
-          end_time,
           event_title,
           event_colour,
+          start_time,
+          end_time,
         } = holiday
         return (
           <li
@@ -62,7 +70,21 @@ const HolidayList = () => {
               </span>
             </div>
             <p className='event-time' style={{ color: `${event_colour}` }}>
-              {all_day ? 'All Day' : ''}
+              {all_day
+                ? 'All Day'
+                : `${
+                    +start_time.slice(0, 2) >= 12
+                      ? +start_time.slice(0, 2) - 12
+                      : +start_time.slice(0, 2)
+                  }:${start_time.slice(3, 5).padStart(2, '0')} ${
+                    +start_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
+                  }-${
+                    +end_time.slice(0, 2) >= 12
+                      ? +end_time.slice(0, 2) - 12
+                      : +end_time.slice(0, 2)
+                  }:${end_time.slice(3, 5).padStart(2, '0')} ${
+                    +end_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
+                  }`}
             </p>
             <p className='event-title' style={{ color: `${event_colour}` }}>
               {event_title}

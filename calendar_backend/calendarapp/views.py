@@ -163,6 +163,40 @@ def event_list(request):
 # }
 
 
+'''
+event detail view with a list of event-specific reminder(s) previously 
+set by a particular user.
+'''
+@api_view(['GET'])
+def event_detail_view(request, id):
+    plugin_id = PLUGIN_ID
+    organization_id = ORGANIZATION_ID
+
+    if request.method == 'GET':
+        url_event = f'https://api.zuri.chat/data/read/{plugin_id}/event/{organization_id}?_id={id}'
+        
+        try:
+            response_event = requests.get(url=url_event)
+
+            if response_event.status_code == 200:
+                event_data = response_event.json()['data']
+
+                # to retrieve reminder(s) for this particular event
+                # that belongs to the current user.
+
+
+
+                # adding the user-specific event reminder(s) to the event.
+                event_data['reminders'] = reminder_data
+                return Response(event_data, status=status.HTTP_200_OK)
+            else:
+                return Response({'error': response_event.json()['message']}, status=response_event.status_code)
+
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+
+
+
 class CreateReminderView(generics.GenericAPIView):
     serializer_class = ReminderSerializer
 

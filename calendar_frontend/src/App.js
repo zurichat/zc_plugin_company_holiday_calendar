@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import HolidayList from './components/HolidayList/HolidayList';
-import Navbar from './components/Navbar/Navbar';
-import Overlay from './components/Overlay/Overlay';
-import Modal from './components/Modal/Modal';
-import './App.css';
+import React, { useState } from 'react'
+import HolidayList from './components/HolidayList/HolidayList'
+import Navbar from './components/Navbar/Navbar'
+import Overlay from './components/Overlay/Overlay'
+import Modal from './components/Modal/Modal'
+import './App.css'
 
-export const AppContext = React.createContext();
+export const AppContext = React.createContext()
 
 const months = [
   'January',
@@ -20,17 +20,17 @@ const months = [
   'October',
   'November',
   'December',
-];
+]
 function App() {
-  let monthIndex = new Date().getMonth();
-  const [month, setMonth] = useState(months[monthIndex]);
-  const [year, setYear] = useState(new Date().getFullYear());
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showEventPage, setShowEventPage] = useState(true);
-  const [showMonth, setShowMonth] = useState(false);
-  const [showYear, setShowYear] = useState(false);
+  let monthIndex = new Date().getMonth()
+  const [month, setMonth] = useState(months[monthIndex])
+  const [year, setYear] = useState(new Date().getFullYear())
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [showEventPage, setShowEventPage] = useState(true)
+  const [showMonth, setShowMonth] = useState(false)
+  const [showYear, setShowYear] = useState(false)
   return (
-    <div className='App'>
+    <div className='Zuri_Calendar_Plugin'>
       <AppContext.Provider
         value={{
           month,
@@ -45,6 +45,7 @@ function App() {
           setShowMonth,
           showYear,
           setShowYear,
+          months,
         }}
       >
         <Overlay />
@@ -53,7 +54,7 @@ function App() {
         <HolidayList />
       </AppContext.Provider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
