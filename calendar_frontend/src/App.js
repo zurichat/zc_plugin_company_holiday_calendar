@@ -30,7 +30,7 @@ function App() {
   const [showMonth, setShowMonth] = useState(false)
   const [showYear, setShowYear] = useState(false)
   return (
-    <div className='App'>
+    <div className='Zuri_Calendar_Plugin'>
       <AppContext.Provider
         value={{
           month,

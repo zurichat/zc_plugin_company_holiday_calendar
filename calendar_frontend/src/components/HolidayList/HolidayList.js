@@ -38,17 +38,6 @@ const HolidayList = () => {
       )
     })
   }, [url, month, year])
-  // const start_hours =
-  //   +start_time.slice(0, 2) >= 12
-  //     ? +start_time.slice(0, 2) - 12
-  //     : +start_time.slice(0, 2)
-  // const end_hours =
-  //   +end_time.slice(0, 2) >= 12
-  //     ? +end_time.slice(0, 2) - 12
-  //     : +end_time.slice(0, 2)
-
-  // const start_min = start_time.slice(3, 5).padStart(2, '0')
-  // const end_min = end_time.slice(3, 5).padStart(2, '0')
   return (
     <div className='home-page'>
       {holidays.map((holiday) => {
