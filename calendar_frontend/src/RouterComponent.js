@@ -6,14 +6,14 @@ import Landing from './Landing'
 const RouterComponent = () => {
   return (
     <Router>
-      
+      <Switch>
         <Route exact path='/'>
           <Landing />
         </Route>
         <Route path='/calendar'>
           <App />
         </Route>
-      
+      </Switch>
     </Router>
   )
 }
