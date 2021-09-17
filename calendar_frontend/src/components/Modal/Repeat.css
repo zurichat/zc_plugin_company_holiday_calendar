@@ -10,12 +10,12 @@
     position: absolute;
     width: 139px;
     height: 48px;
-    left: 225px;
+    left: 160px;
     top: 204px; 
     margin-left: auto;
     background: #00B87C;
     border-radius: 3px;
-    margin-top: 1rem;
+    margin-top: 7rem;
     border: #00B87C;
     font-family: 'Lato', sans-serif;
 }
@@ -193,4 +193,71 @@
 .ends-opt{
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+
+/**date picker*/
+#repeat-on-particular-day{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px 10px 10px;
+  margin: -86px 50px;
+  position: absolute;
+  width: 120px;
+  height: 24px;
+  left: 105px;
+  background: #F6F6F6;
+  border-radius: 3px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 130%;
+  color: #616061;
+}
+
+/** repeat-every*/
+.repeat-every{
+  margin-top: 24px;
+  margin-bottom: 40px;
+}
+
+#repeat-every{
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 130%;
+  color: #616061;
+}
+
+#repeat-every-1{
+  margin: -20px 30px 0px 160px;
+}
+
+#select-repeat-every{
+  box-sizing: border-box;
+  width: 140px;
+  margin-top: -34px;
+  margin-bottom: 40px;
+
+  padding: 18px 25px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 130%;
+  color: #616061;
+
+  left: 190.25px;
+  top: 51.75px;
+  text-align: center;
+
+  cursor: pointer;
+
 }

@@ -7,7 +7,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 const HolidayList = () => {
   const url = "https://calendar.zuri.chat/api/v1/event-list/";
   const states = useContext(AppContext);
-  const { month, year, months, isModalOpen, setIsModalOpen, currentFormData, setCurrentFormData } = states;
+  const { month, year, months, isModalOpen, setShowMonth, setShowYear, setIsModalOpen, currentFormData, setCurrentFormData } = states;
   const [holidays, setHolidays] = useState([]);
 
   const getHolidays = async () => {
@@ -17,13 +17,13 @@ const HolidayList = () => {
   };
 
   const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
   ];
   useEffect(() => {
     getHolidays().then((data) => {
@@ -37,6 +37,7 @@ const HolidayList = () => {
         })
       );
     });
+
   }, [url, month, year]);
   // const start_hours =
   //   +start_time.slice(0, 2) >= 12
@@ -51,7 +52,14 @@ const HolidayList = () => {
   // const end_min = end_time.slice(3, 5).padStart(2, '0')
   console.log('holidays', holidays)
   return (
-    <div className="home-page">
+    <div
+    className='home-page'
+    onClick={() => {
+      setShowMonth(false);
+      setShowYear(false);
+      
+    }}>
+
       {holidays.map((holiday) => {
         const {
           _id,
@@ -86,6 +94,7 @@ const HolidayList = () => {
   );
 };
 
+
 export default HolidayList;
 
 //HolidayList Card
@@ -103,7 +112,9 @@ function HolidayListCard({
   clickBehavior,
   currentFormData, 
   setCurrentFormData
-}) {
+}) 
+
+{
   // let formNewData = setCurrentFormData(holiday)
 
   // const findData = holiday.find(datafind => datafind === _id)

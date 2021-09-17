@@ -49,6 +49,7 @@ const Modal = () => {
     handleSubmit,
     formState: { errors },
     clearErrors,
+    getValues
   } = useForm();
 
   console.log('ModalCurrent', currentFormData)
@@ -93,6 +94,7 @@ const Modal = () => {
         });
         console.log(data);
         setOpenSnackbar(true);
+        getValues(data)
       } catch (error) {
         console.log(error.message);
       }
@@ -100,6 +102,7 @@ const Modal = () => {
     greg();
   };
 
+  console.log('getValue', getValues)
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -109,14 +112,17 @@ const Modal = () => {
 
   return (
     <>
-      {JSON.Stringify(currentFormData)}
+      
       {isModalOpen && (
         <div className="modal">
           <header>
             <h4>Add New Event</h4>
             <i
               className="far fa-times-circle"
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => {
+                setIsModalOpen(false)
+                setCurrentFormData()
+              }}
               aria-hidden="true"
             ></i>
           </header>
@@ -144,6 +150,7 @@ const Modal = () => {
                   onSubmit={handleSubmit(handleFormSubmission)}
                   className="evenForm"
                 >
+                  {JSON.stringify(currentFormData, 2)}
                   <div className="row firstRow">
                     <div
                       className={`evenForm-title ${
