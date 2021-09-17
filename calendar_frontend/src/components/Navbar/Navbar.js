@@ -66,10 +66,20 @@ const Navbar = () => {
     },
   ];
   const currentYear = new Date().getFullYear();
-  const startYear = currentYear - 8;
+  const startYear = currentYear;
   return (
     <>
-      <nav className='nav'>
+      <nav
+        className='nav'
+        onClick={() => {
+          if (showMonth !== false) {
+            setShowMonth(false);
+          }
+          if (showMonth !== false) {
+            setShowYear(false);
+          }
+        }}
+      >
         <div
           className='calendar'
           onClick={() => {
