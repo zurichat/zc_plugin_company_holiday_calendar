@@ -104,7 +104,7 @@ function HolidayListCard({
   currentFormData, 
   setCurrentFormData
 }) {
-  let formNewData = setCurrentFormData(holiday)
+  
   
   console.log('Current', currentFormData)
   return (

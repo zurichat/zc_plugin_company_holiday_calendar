@@ -33,7 +33,7 @@ function App() {
   //Event Present Data
   const [currentFormData, setCurrentFormData] = useState({});
   return (
-    <div className="App">
+    <div className='Zuri_Calendar_Plugin'>
       <AppContext.Provider
         value={{
           month,

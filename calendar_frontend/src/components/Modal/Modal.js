@@ -38,6 +38,12 @@ const Modal = () => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
 
+
+  //For retrieveing for values
+  const [formValues, setFormValues] = useState({})
+
+  
+
   const {
     register,
     handleSubmit,
