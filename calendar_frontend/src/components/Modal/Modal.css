@@ -69,7 +69,7 @@
   outline: none;
   width: 70%;
   margin-left: 0.9em;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 .reminder-tab__timer {
   display: flex;
@@ -83,7 +83,7 @@
 }
 
 .event__tag--title {
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 1rem;
   color: #616061;
 }
@@ -92,8 +92,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 20rem;
-  height: 2rem;
+}
+
+.event__tag--inputs input {
+  border: none;
+  border-bottom: 0.1px solid #cecece;
+  outline: none;
+  width: 70%;
+  color: #616061;
+  font-size: 0.9rem;
+  padding-bottom: 0.3rem;
 }
 
 .event__tag--color {
@@ -122,7 +130,7 @@
   box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
   position: absolute;
   right: 2rem;
-  top: 0;
+  bottom: 8rem;
 }
 
 .eventButtons {
@@ -134,8 +142,17 @@
 }
 
 /* Event form */
+.input-error {
+  border-bottom: 1px solid #ff0000 !important;
+}
+
 .evenForm {
   margin-top: 30px;
+}
+
+.evenForm .row {
+  position: relative;
+  margin-bottom: 35px;
 }
 
 .evenForm .firstRow,
@@ -157,7 +174,6 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  margin-bottom: 35px;
 }
 
 .evenForm-title input {
@@ -168,7 +184,7 @@
   border-radius: 5px;
   width: 100%;
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .evenForm-title input:focus {
@@ -183,7 +199,6 @@
   justify-content: space-around;
   align-items: center;
   width: 44%;
-  margin-bottom: 35px;
 }
 
 .react-datepicker {
@@ -206,7 +221,7 @@
   border-radius: 5px;
   width: 100%;
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .react-datepicker-wrapper .react-datepicker__input-container input:focus {
@@ -217,7 +232,7 @@
   z-index: 10;
 }
 
-.react-datepicker-popper[data-placement^='bottom'] {
+.react-datepicker-popper[data-placement^="bottom"] {
   padding-top: 10px !important;
 }
 
@@ -255,7 +270,7 @@
   background: #00b87c;
   color: #ffffff;
   padding: 6px 2px !important;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   border-top-right-radius: 0.35rem;
   border-top-left-radius: 0.35rem;
 }
@@ -272,7 +287,7 @@
   width: 35px;
   line-height: 25px;
   text-align: center;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .react-datepicker__day.react-datepicker__day--outside-month {
@@ -294,7 +309,7 @@
   line-height: 25px !important;
   text-align: center;
   color: #616061;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .react-datepicker__day:hover,
@@ -354,22 +369,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 35px;
-}
-
-.time-select {
-  border: none;
-  background: #ffffff;
-  color: #616061;
-  padding: 4px 8px;
-  border-radius: 5px;
-  width: 100%;
-  margin: 0;
-  font-family: 'Lato', sans-serif;
-}
-
-.time-select:focus {
-  outline: none;
 }
 
 .gmtInput {
@@ -378,7 +377,14 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 35px;
+}
+
+.time-select {
+  border: none;
+}
+
+.time-select:focus {
+  outline: none;
 }
 
 .fourthRow div {
@@ -424,4 +430,22 @@
   ul.react-datepicker__time-list::-webkit-scrollbar-thumb {
   background: #00b87c;
   border-radius: 6px;
+}
+
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li.react-datepicker__time-list-item--selected {
+  background: #f6f6f6;
+  color: #000;
+}
+
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li.react-datepicker__time-list-item--selected:hover {
+  background: #f6f6f6;
+  color: #000;
 }
