@@ -3,12 +3,14 @@ import { AppContext } from '../../App';
 import './HolidayList.css';
 import { FiEdit2 } from 'react-icons/fi';
 import { RiDeleteBin5Line } from 'react-icons/ri';
+import EventDelBtn from "./EventDelBtn";
 
 const HolidayList = () => {
   const url = 'https://calendar.zuri.chat/api/v1/event-list/';
   const states = useContext(AppContext);
   const { month, year, months, setShowMonth, setShowYear } = states;
   const [holidays, setHolidays] = useState([]);
+  const [openDeleteEvent, setDeleteEvent] = useState(false);
 
   const getHolidays = async () => {
     const response = await fetch(url);
@@ -69,7 +71,13 @@ const HolidayList = () => {
               </span>
               <span className='edit-del'>
                 <FiEdit2 style={{ marginRight: '5px' }} />
-                <RiDeleteBin5Line />
+                <RiDeleteBin5Line onClick={() => setDeleteEvent(true)} />
+                
+                {openDeleteEvent && (
+                  <div>
+                    <EventDelBtn cancelDelEvent={setDeleteEvent} />
+                  </div>
+                )}
               </span>
             </div>
             <p className='event-time' style={{ color: `${event_colour}` }}>
