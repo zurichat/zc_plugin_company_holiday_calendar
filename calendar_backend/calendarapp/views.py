@@ -119,7 +119,6 @@ class CreateEventView(generics.CreateAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-
         # posting data to zuri core after validation
         # the organization_id would be dynamic; based on the request data
         event = serializer.data
@@ -187,14 +186,12 @@ def event_list(request):
 # }
 
 
-'''
-event detail view with a list of event-specific reminder(s) previously
-set by a particular user.
-'''
-
-
 @ api_view(['GET'])
 def event_detail_view(request, id):
+    '''
+    event detail view with a list of event-specific reminder(s) previously
+    set by a particular user.
+    '''
     plugin_id = PLUGIN_ID
     organization_id = ORGANIZATION_ID
 
@@ -277,7 +274,7 @@ class CreateReminderView(generics.GenericAPIView):
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
 
-@ api_view(['DELETE'])
+@api_view(['DELETE'])
 def delete_reminder(request, id):
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
@@ -292,9 +289,7 @@ def delete_reminder(request, id):
             "bulk_delete": False,
             "object_id": id,
             "filter": {}
-
         }
-
     try:
         response = requests.post(url=url, json=payload)
 
