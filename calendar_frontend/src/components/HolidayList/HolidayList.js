@@ -13,7 +13,7 @@ const HolidayList = () => {
   const getHolidays = async () => {
     const response = await fetch(url);
     const holidays = await response.json();
-    return holidays.data.slice(11, 22);
+    return holidays.data.slice(11);
   };
 
   const days = [
