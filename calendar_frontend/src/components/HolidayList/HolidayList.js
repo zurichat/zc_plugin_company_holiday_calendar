@@ -1,73 +1,102 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AppContext } from '../../App'
-import './HolidayList.css'
-
-const url =
-  'https://sheltered-ocean-11512.herokuapp.com/https://calendar.zuri.chat/api/v1/list-events/'
+import React, { useContext, useEffect, useState } from 'react';
+import { AppContext } from '../../App';
+import './HolidayList.css';
+import { FiEdit2 } from 'react-icons/fi';
+import { RiDeleteBin5Line } from 'react-icons/ri';
 
 const HolidayList = () => {
-  const states = useContext(AppContext)
-  const { month, setMonth, year, setYear, days } = states
-  console.log(month, year)
+  const url = 'https://calendar.zuri.chat/api/v1/event-list/';
+  const states = useContext(AppContext);
+  const { month, year, months, setShowMonth, setShowYear } = states;
+  const [holidays, setHolidays] = useState([]);
 
-  const [holidays, setHolidays] = useState([])
   const getHolidays = async () => {
-    const response = await fetch(url)
-    const holidays = await response.json()
-    const actualHolidays = holidays.filter((holiday) => holiday)
-    console.log(actualHolidays)
-    setHolidays(actualHolidays)
-  }
+    const response = await fetch(url);
+    const holidays = await response.json();
+    return holidays.data.slice(11);
+  };
 
+  const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
   useEffect(() => {
-    getHolidays()
-  }, [url])
+    getHolidays().then((data) => {
+      setHolidays(
+        data.filter((holiday) => {
+          return (
+            holiday.start_date.slice(0, 4) === year.toString() &&
+            months.indexOf(month) + 1 ===
+              parseInt(holiday.start_date.slice(5, 7))
+          );
+        })
+      );
+    });
+  }, [url, month, year, months]);
   return (
-    <div className='home-page'>
+    <div
+      className='home-page'
+      onClick={() => {
+        setShowMonth(false);
+        setShowYear(false);
+      }}
+    >
       {holidays.map((holiday) => {
         const {
           _id,
-          all_day,
-          description,
-          end_date,
-          end_time,
-          event_colour,
-          event_tag,
-          event_title,
           start_date,
+          all_day,
+          event_title,
+          event_colour,
           start_time,
-          time_zone,
-        } = holiday
+          end_time,
+        } = holiday;
         return (
           <li
             key={_id}
-            className='holiday-list'
+            className='holiday'
             style={{ borderLeft: `8px solid ${event_colour}` }}
           >
-            <div className='date_icons'>
-              <div>
-                {days[new Date(`${start_date}`).getDay()]}{' '}
-                {new Date(`${start_date}`).getDate()}
-              </div>
-              <div>
-                <i className='fal fa-pen'></i>
-                <i className='far fa-trash-alt'></i>
-              </div>
+            <div className='date-icons'>
+              <span className='event-date'>
+                {days[new Date(start_date).getDay()]}{' '}
+                {new Date(start_date).getDate()}
+              </span>
+              <span className='edit-del'>
+                <FiEdit2 style={{ marginRight: '5px' }} />
+                <RiDeleteBin5Line />
+              </span>
             </div>
-
-            {all_day ? (
-              <p>All Day</p>
-            ) : (
-              <p>
-                {start_time}-{end_time}
-              </p>
-            )}
-            <p>{event_title}</p>
+            <p className='event-time' style={{ color: `${event_colour}` }}>
+              {all_day
+                ? 'All Day'
+                : `${
+                    +start_time.slice(0, 2) >= 12
+                      ? +start_time.slice(0, 2) - 12
+                      : +start_time.slice(0, 2)
+                  }:${start_time.slice(3, 5).padStart(2, '0')} ${
+                    +start_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
+                  }-${
+                    +end_time.slice(0, 2) >= 12
+                      ? +end_time.slice(0, 2) - 12
+                      : +end_time.slice(0, 2)
+                  }:${end_time.slice(3, 5).padStart(2, '0')} ${
+                    +end_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
+                  }`}
+            </p>
+            <p className='event-title' style={{ color: `${event_colour}` }}>
+              {event_title}
+            </p>
           </li>
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default HolidayList
+export default HolidayList;
