@@ -170,9 +170,10 @@ def event_detail_view(request, id):
     '''
     plugin_id = PLUGIN_ID
     organization_id = ORGANIZATION_ID
+    coll_name = "events"
 
     if request.method == 'GET':
-        url_event = f'https://api.zuri.chat/data/read/{plugin_id}/event/{organization_id}?_id={id}'
+        url_event = f'https://api.zuri.chat/data/read/{plugin_id}/{coll_name}/{organization_id}?_id={id}'
 
         try:
             response_event = requests.get(url=url_event)
