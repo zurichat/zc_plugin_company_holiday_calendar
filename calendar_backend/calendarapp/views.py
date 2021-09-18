@@ -2,7 +2,6 @@
 from django.shortcuts import HttpResponse, render
 from django.http import JsonResponse
 from rest_framework import generics, status
-from rest_framework import response
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import requests
@@ -323,35 +322,3 @@ class CreateReminderView(generics.GenericAPIView):
 
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
-        
-@api_view(['DELETE'])
-def delete_reminder(request, id):
-        plugin_id = PLUGIN_ID
-        org_id = ORGANIZATION_ID
-        coll_name = "reminders"
-        if request.method == 'DELETE':
-           url ='https://api.zuri.chat/data/delete'
-    
-           payload = {
-                    "plugin_id": plugin_id,
-                    "organization_id": org_id,
-                    "collection_name": coll_name,
-                    "bulk_delete": False,
-                    "object_id": id,
-                    "filter": {}
-                    
-           }
-           
-        try:
-            response = requests.post(url=url, json=payload)
-           
-
-            if response.status_code == 200:
-                return Response({"message": "reminder successfully deleted"},
-                status=status.HTTP_200_OK)
-            else:
-                return Response({"error": response.json()['message']}, status=response.status_code)
-
-        except exceptions.ConnectionError as e:
-            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
-        
