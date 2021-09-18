@@ -122,11 +122,14 @@ class EventDetailView(generics.RetrieveAPIView):
 #     # serializer_class = EventSerializer
 #     # permission_classes = [permissions.AllowAny,]
 
-@api_view(['POST'])
+@api_view(['PUT','PATCH'])
 def update_event_view(request, pk):
     """
     patch:
     Update Specific fields of individual events by ID without affecting others
+
+    put:
+    Update all fields of individual events by ID without affecting others
     """
     serialized_data = EventSerializer(request.data).data
     response = DataBase.put(collection_name=event, data=serialized_data, object_id=pk)
