@@ -11,6 +11,7 @@ jobs:
     - name: Set up Python 3.9
       uses: actions/setup-python@v1
       with:
+        directory: calendar_backend
         python-version: 3.9
     - name: Install dependencies
       run: |
