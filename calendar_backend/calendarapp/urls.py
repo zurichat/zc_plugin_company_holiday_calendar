@@ -10,6 +10,7 @@ urlpatterns = [
     path('create-reminder/', CreateReminderView.as_view(), name='create-reminder'),
     path('event-list/', event_list, name="event_lists"),
     path('event-detail/<str:id>/', event_detail_view),
+    path('event-delete/<str:id>/', event_delete_view),
     path('delete-reminder/<str:id>/', delete_reminder, name='delete-reminder'),
     #path('delete-reminder/<str:id>/', DeleteReminderView.as_view(), name='delete-reminder'),
     path('sidebar/', side_bar_view, name="side_bar"),

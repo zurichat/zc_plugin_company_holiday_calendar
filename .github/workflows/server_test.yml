@@ -11,19 +11,23 @@ jobs:
     - name: Set up Python 3.9
       uses: actions/setup-python@v1
       with:
-        directory: calendar_backend
         python-version: 3.9
     - name: Install dependencies
       run: |
+        cd calendar_backend
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Run migrations
-      run: python manage.py migrate
-      env:
-        # Random key
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+#     - name: Run migrations
+#       run: |
+#        cd calendar_backend
+#        python manage.py migrate
+#       env:
+#         # Random key
+#         SECRET_KEY: ${{ secrets.SECRET_KEY }}
     - name: Runserver
-      run: python manage.py runserver
+      run: |
+       cd calendar_backend
+       gunicorn --bind 0.0.0.0:8000 calendar_backend.wsgi --daemon
       env:
         # Random key
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
