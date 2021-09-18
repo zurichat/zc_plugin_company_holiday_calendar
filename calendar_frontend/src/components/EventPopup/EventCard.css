@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: Lato;
+}
+
+.cards {
+  padding: 25px;
+  width: 400px;
+  z-index: 100;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* position: relative; */
+  background-color: white;
+  border-radius: 10px;
+  transition: 2s;
+}
+
+._overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  top: 0px;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.card_title {
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 21px;
+}
+
+._pointer {
+  position: absolute;
+  top: 140px;
+  left: -32px;
+}
+
+.schedule {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.schedule_title {
+  margin-top: 5px;
+  font-weight: bold;
+}
+._eventImage {
+  width: 100%;
+}
+
+._timeDetails {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+._timeDetails span {
+  color: rgba(97, 96, 97, 1);
+}
+.time_desc {
+  margin-left: 6px;
+}
+
+.loading {
+  display: flex;
+  min-height: auto;
+  align-items: center;
+  justify-content: center;
+}
+.event_desc {
+  text-align: justify;
+  margin-top: 10px;
+}
+
+.event_desc h5 {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.schedule_title {
+  margin-bottom: 5px;
+}
+
+.schedule_title p {
+  color: rgba(97, 96, 97, 1);
+}
+.event_desc p {
+  font-size: 17px;
+  color: rgba(97, 96, 97, 1);
+}
+.schedule p {
+  font-size: 15px;
+  /* font-weight: bold; */
+}
+
+.reminder-dropdown {
+  background: rgba(0, 184, 124, 1);
+  outline: none;
+  padding: 15px 20px;
+  border: none;
+  color: white;
+  margin-top: 30px;
+}
+
+._reminder {
+  margin-top: 35px;
+}
+
+.reminder_details {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.reminder_details2 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.pop_up {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0%) scale(0.7);
+  z-index: 50;
+}
+
+.home-page {
+  position: relative;
+}
+
+.Bell {
+  fill: green !important;
+  width: 20px;
+}
