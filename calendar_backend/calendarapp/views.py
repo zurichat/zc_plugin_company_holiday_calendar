@@ -94,8 +94,9 @@ def update_event_view(request, pk):
     put:
     Update all fields of individual events by ID without affecting others
     """
+    
     serializer = EventSerializer(data=request.data)
-    url = f'https://api.zuri.chat/data/read/{PLUGIN_ID}/event/{ORGANIZATION_ID}?_id={pk}'
+    url = f'https://api.zuri.chat/data/write/{PLUGIN_ID}/event/{ORGANIZATION_ID}?_id={pk}'
 
     try:
         if serializer.is_valid(raise_exception=True):
