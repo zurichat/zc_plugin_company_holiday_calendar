@@ -31,7 +31,7 @@ function App() {
   const [showYear, setShowYear] = useState(false);
 
   //Event Present Data
-  const [currentFormData, setCurrentFormData] = useState({});
+  const [currentFormData, setCurrentFormData] = useState();
   return (
     <div className='Zuri_Calendar_Plugin'>
       <AppContext.Provider

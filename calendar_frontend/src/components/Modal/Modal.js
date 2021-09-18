@@ -39,10 +39,12 @@ const Modal = () => {
   const [endTime, setEndTime] = useState(new Date());
 
 
-  //For retrieveing for values
-  const [formValues, setFormValues] = useState({})
+  const preloadedValues = {
+    title: `${currentFormData == null ? "" : `${currentFormData.event_title}`}`,
+    allDay: `${currentFormData == null ? "" : `${currentFormData.all_day}`}`
+  }
 
-  
+  // console.log('ahahah', typeof `${currentFormData == null ? "" : `${currentFormData.event_title}`}`)
 
   const {
     register,
@@ -50,7 +52,9 @@ const Modal = () => {
     formState: { errors },
     clearErrors,
     getValues
-  } = useForm();
+  } = useForm({
+    defaultValues: preloadedValues
+  });
 
   console.log('ModalCurrent', currentFormData)
   const [description, setDescription] = useState("");
@@ -105,7 +109,7 @@ const Modal = () => {
     greg();
   };
 
-  console.log('getValue', getValues)
+
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -113,6 +117,57 @@ const Modal = () => {
     setOpenSnackbar(false);
   };
 
+
+
+
+  //handle update
+  const updateFormSubmission = (data) =>{
+    const eventFormData = {
+      event_title: data.title,
+
+      start_date: `${startDate.getFullYear()}-${
+        startDate.getMonth() > 9
+          ? startDate.getMonth()
+          : "0" + startDate.getMonth()
+      }-${
+        startDate.getDate() > 9
+          ? startDate.getDate()
+          : "0" + startDate.getDate()
+      }`,
+
+      end_date: `${endDate.getFullYear()}-${
+        endDate.getMonth() > 9 ? endDate.getMonth() : "0" + endDate.getMonth()
+      }-${endDate.getDate() > 9 ? endDate.getDate() : "0" + endDate.getDate()}`,
+
+      start_time: `${startTime.getHours()}:${startTime.getMinutes()}:00`,
+
+      end_time: `${endTime.getHours()}:${endTime.getMinutes()}:00`,
+
+      time_zone: data.gmt,
+
+      description: description,
+
+      all_day: data.allDay,
+      event_tag: eventTag,
+      event_colour: color,
+      images: imgLink === "" ? null : imgLink,
+    };
+    const greg = async () => {
+      try {
+        const { data } = await axios({
+          method: "PUT",
+          url: `https://calendar.zuri.chat/api/v1/update-event/${currentFormData._id}`,
+          data: eventFormData,
+        });
+        console.log(data);
+        setOpenSnackbar(true);
+        getValues(data)
+      } catch (error) {
+        console.log('err', error.message);
+      }
+    };
+    greg();
+  }
   return (
     <>
       
@@ -150,10 +205,10 @@ const Modal = () => {
             {showEventPage ? (
               <div className="event-tab">
                 <form
-                  onSubmit={handleSubmit(handleFormSubmission)}
+                  onSubmit={handleSubmit(updateFormSubmission)}
                   className="evenForm"
                 >
-                  {JSON.stringify(currentFormData, 2)}
+                  {/* {JSON.stringify(currentFormData, 2)} */}
                   <div className="row firstRow">
                     <div
                       className={`evenForm-title ${
@@ -375,7 +430,7 @@ const Modal = () => {
                       style={{ backgroundColor: "#00B87C", color: "#fff" }}
                       className="eventButtons__create"
                     >
-                      Create
+                      {currentFormData == null ? 'Create' : 'Update'}
                     </Button>
                   </div>
 
