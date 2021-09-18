@@ -101,7 +101,7 @@ def update_event_view(request, pk):
     try:
         if serializer.is_valid(raise_exception=True):
             serialized_data = serializer.data
-            response = request.patch(url, data=serialized_data)
+            response = requests.patch(url, json=serialized_data)
 
             if response.status_code != 200:
                 return Response({'success':False, 'errors':response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
