@@ -85,33 +85,33 @@ def ping_view(request):
     return JsonResponse({'server': server})
 
 
-@api_view(['PUT', 'PATCH'])
-def update_event_view(request, pk):
-    """
-    patch:
-    Update Specific fields of individual events by ID without affecting others
+# @api_view(['PUT', 'PATCH'])
+# def update_event_view(request, pk):
+#     """
+#     patch:
+#     Update Specific fields of individual events by ID without affecting others
 
-    put:
-    Update all fields of individual events by ID without affecting others
-    """
-    serializer = EventSerializer(data=request.data)
-    url = f'https://api.zuri.chat/data/read/{PLUGIN_ID}/event/{ORGANIZATION_ID}?_id={pk}'
+#     put:
+#     Update all fields of individual events by ID without affecting others
+#     """
+#     serializer = EventSerializer(data=request.data)
+#     url = f'https://api.zuri.chat/data/read/{PLUGIN_ID}/event/{ORGANIZATION_ID}?_id={pk}'
 
-    try:
-        if serializer.is_valid(raise_exception=True):
-            serialized_data = serializer.data
-            response = request.patch(url, data=serialized_data)
+#     try:
+#         if serializer.is_valid(raise_exception=True):
+#             serialized_data = serializer.data
+#             response = request.patch(url, data=serialized_data)
 
-            if response.status_code != 200:
+#             if response.status_code != 200:
 
-                return Response({'success':False, 'errors':response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
-            return Response({'success':True, 'response':response.json()}, status=status.HTTP_200_OK)
+#                 return Response({'success':False, 'errors':response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
+#             return Response({'success':True, 'response':response.json()}, status=status.HTTP_200_OK)
 
-                return Response({'success': False, 'errors': response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
-            return Response({'success': True, 'response': response.json()}, status=status.HTTP_200_OK)
+#                 return Response({'success': False, 'errors': response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
+#             return Response({'success': True, 'response': response.json()}, status=status.HTTP_200_OK)
 
-    except exceptions.ConnectionError as e:
-        return Response({'success': False, 'errors': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#     except exceptions.ConnectionError as e:
+#         return Response({'success': False, 'errors': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class CreateEventView(generics.CreateAPIView):
@@ -123,7 +123,6 @@ class CreateEventView(generics.CreateAPIView):
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
-
 
         # posting data to zuri core after validation
         # the organization_id would be dynamic; based on the request data
@@ -192,14 +191,12 @@ def event_list(request):
 # }
 
 
-'''
-event detail view with a list of event-specific reminder(s) previously
-set by a particular user.
-'''
-
-
 @ api_view(['GET'])
 def event_detail_view(request, id):
+    '''
+    event detail view with a list of event-specific reminder(s) previously
+    set by a particular user.
+    '''
     plugin_id = PLUGIN_ID
     organization_id = ORGANIZATION_ID
 
@@ -282,7 +279,7 @@ class CreateReminderView(generics.GenericAPIView):
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
 
-@ api_view(['DELETE'])
+@api_view(['DELETE'])
 def delete_reminder(request, id):
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
@@ -297,9 +294,7 @@ def delete_reminder(request, id):
             "bulk_delete": False,
             "object_id": id,
             "filter": {}
-
         }
-
     try:
         response = requests.post(url=url, json=payload)
 
