@@ -5,10 +5,10 @@ on:
   push:
     branches: 
       - develop
-      - master
-  pull_request:
-    branches: 
-      - master
+#       - master
+#   pull_request:
+#     branches: 
+#       - master
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -46,9 +46,6 @@ jobs:
             source venv/bin/activate
             cd calendar_backend
             python3 -m pip install -r requirements.txt
-            python3 manage.py makemigrations calendarapp
-            python3 manage.py makemigrations db_manager
-            python3 manage.py migrate
             python3 manage.py collectstatic --no-input
             pkill -u ${{secrets.USERNAME}} gunicorn
             gunicorn --bind 0.0.0.0:8000 calendar_backend.wsgi --daemon

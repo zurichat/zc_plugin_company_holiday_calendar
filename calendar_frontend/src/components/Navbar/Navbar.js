@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
-import { AppContext } from '../../App'
-import './Navbar.css'
+import React, { useContext } from 'react';
+import { AppContext } from '../../App';
+import './Navbar.css';
 
 const Navbar = () => {
-  const states = useContext(AppContext)
+  const states = useContext(AppContext);
   const {
     month,
     setMonth,
@@ -14,7 +14,7 @@ const Navbar = () => {
     setShowMonth,
     showYear,
     setShowYear,
-  } = states
+  } = states;
   const months = [
     {
       id: 'January',
@@ -64,13 +64,31 @@ const Navbar = () => {
       id: 'December',
       name: 'Dec',
     },
-  ]
-  const currentYear = new Date().getFullYear()
-  const startYear = currentYear - 8
+  ];
+  const currentYear = new Date().getFullYear();
+  const startYear = currentYear;
   return (
     <>
-      <nav className='nav'>
-        <div className='calendar' onClick={() => setShowMonth(!showMonth)}>
+      <nav
+        className='nav'
+        onClick={() => {
+          if (showMonth !== false) {
+            setShowMonth(false);
+          }
+          if (showMonth !== false) {
+            setShowYear(false);
+          }
+        }}
+      >
+        <div
+          className='calendar'
+          onClick={() => {
+            setShowMonth(!showMonth);
+            if (showYear !== false) {
+              setShowYear(false);
+            }
+          }}
+        >
           <i className='far fa-bars'></i>
           <i className='fal fa-calendar-alt'></i>
           <span className='month'>{month}</span>
@@ -85,25 +103,29 @@ const Navbar = () => {
       {showMonth && (
         <div className='grpHolder'>
           <div className='yearHeadGrp' onClick={() => setShowYear(!showYear)}>
-            <h3 className='yearHeadItem'>2021</h3>
+            <h3 className='yearHeadItem'>{year}</h3>
             <i className='fal fa-angle-down'></i>
           </div>
-          <div className='monthGrp'>
+          <div
+            className='monthGrp'
+            onClick={() => {
+              if (showYear !== false) {
+                setShowYear(false);
+              }
+            }}
+          >
             {months.map((month) => {
               return (
                 <span
                   className='monthItem'
                   key={month.id}
                   onClick={() => {
-                    setMonth(month.id)
-                    if (showYear !== false) {
-                      setShowYear(false)
-                    }
+                    setMonth(month.id);
                   }}
                 >
                   {month.name}
                 </span>
-              )
+              );
             })}
           </div>
         </div>
@@ -117,20 +139,20 @@ const Navbar = () => {
                   className='yearItem'
                   key={startYear + i}
                   onClick={() => {
-                    setYear(startYear + i)
-                    setShowMonth(!showMonth)
-                    setShowYear(!showYear)
+                    setYear(startYear + i);
+                    setShowMonth(!showMonth);
+                    setShowYear(!showYear);
                   }}
                 >
                   {startYear + i}
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
