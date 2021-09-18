@@ -85,6 +85,31 @@ def ping_view(request):
     return JsonResponse({'server': server})
 
 
+@api_view(['PUT', 'PATCH'])
+def update_event_view(request, pk):
+    """
+    patch:
+    Update Specific fields of individual events by ID without affecting others
+
+    put:
+    Update all fields of individual events by ID without affecting others
+    """
+    
+    serializer = EventSerializer(data=request.data)
+    url = f'https://api.zuri.chat/data/write/{PLUGIN_ID}/event/{ORGANIZATION_ID}?_id={pk}'
+
+    try:
+        if serializer.is_valid(raise_exception=True):
+            serialized_data = serializer.data
+            response = request.patch(url, data=serialized_data)
+
+            if response.status_code != 200:
+                return Response({'success':False, 'errors':response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'success':True, 'response':response.json()}, status=status.HTTP_200_OK)
+    except exceptions.ConnectionError as e:
+        return Response({'success': False, 'errors': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 class CreateEventView(generics.CreateAPIView):
     """
     This is  a create view for creating an event . The method allowed  is POST
@@ -208,9 +233,12 @@ def event_detail_view(request, id):
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
+
 """
 This is a destroy view for deleting events.
 """
+
+
 @api_view(['DELETE'])
 def event_delete_view(request, id):
     plugin_id = PLUGIN_ID
@@ -225,7 +253,7 @@ def event_delete_view(request, id):
             "bulk_delete": False,
             "object_id": id,
             "filter": {},
-            }
+        }
 
         try:
             response = requests.post(url=url, json=payload)
@@ -237,7 +265,7 @@ def event_delete_view(request, id):
 
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
-            
+
 
 class CreateReminderView(generics.GenericAPIView):
     serializer_class = ReminderSerializer
