@@ -2,6 +2,7 @@
 from django.shortcuts import HttpResponse, render
 from django.http import JsonResponse
 from rest_framework import generics, status
+from rest_framework import response
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import requests
@@ -36,8 +37,8 @@ def plugin_info_view(request):
          'version': 'v1',
          'developer_name': 'HNG-8.0/Team-plugin-holiday-calendar',
          'scaffold_structure': 'Monolith',
-         'description': '''Zurichat Company Holiday Calendar helps you and your team to stay organized with a shared calendar. 
-         From viewing your company monthly events in one screen to receiving up-to-the-minute reminders, 
+         'description': '''Zurichat Company Holiday Calendar helps you and your team to stay organized with a shared calendar.
+         From viewing your company monthly events in one screen to receiving up-to-the-minute reminders,
          the company holiday calendar has everything you need to create and manage events''',
          'template_url': "http://calendar.zuri.chat/",
          'information_url': 'http://calendar.zuri.chat/api/v1/info/',
@@ -84,12 +85,10 @@ def ping_view(request):
     return JsonResponse({'server': server})
 
 
-"""
-This is  a create view for creating an event . The method allowed  is POST 
-"""
-
-
 class CreateEventView(generics.CreateAPIView):
+    """
+    This is  a create view for creating an event . The method allowed  is POST
+    """
     serializer_class = EventSerializer
 
     def post(self, request):
@@ -126,7 +125,7 @@ class CreateEventView(generics.CreateAPIView):
 
 
 # Fetch list of events from zuri core
-@api_view(['GET'])
+@ api_view(['GET'])
 def event_list(request):
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
@@ -163,18 +162,19 @@ def event_list(request):
 # }
 
 
-'''
-event detail view with a list of event-specific reminder(s) previously 
-set by a particular user.
-'''
-@api_view(['GET'])
+@ api_view(['GET'])
 def event_detail_view(request, id):
+    '''
+    event detail view with a list of event-specific reminder(s) previously
+    set by a particular user.
+    '''
     plugin_id = PLUGIN_ID
     organization_id = ORGANIZATION_ID
+    coll_name = "events"
 
     if request.method == 'GET':
-        url_event = f'https://api.zuri.chat/data/read/{plugin_id}/event/{organization_id}?_id={id}'
-        
+        url_event = f'https://api.zuri.chat/data/read/{plugin_id}/{coll_name}/{organization_id}?_id={id}'
+
         try:
             response_event = requests.get(url=url_event)
 
@@ -208,7 +208,36 @@ def event_detail_view(request, id):
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
+"""
+This is a destroy view for deleting events.
+"""
+@api_view(['DELETE'])
+def event_delete_view(request, id):
+    plugin_id = PLUGIN_ID
+    organization_id = ORGANIZATION_ID
+    coll_name = "events"
+    if request.method == "DELETE":
+        url = "https://api.zuri.chat/data/delete"
+        payload = {
+            "plugin_id": plugin_id,
+            "organization_id": organization_id,
+            "collection_name": coll_name,
+            "bulk_delete": False,
+            "object_id": id,
+            "filter": {},
+            }
 
+        try:
+            response = requests.post(url=url, json=payload)
+
+            if response.status_code == 200:
+                return Response({"message": "event successfully deleted"}, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": response.json()["message"]}, status=response.status_code)
+
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+            
 
 class CreateReminderView(generics.GenericAPIView):
     serializer_class = ReminderSerializer
@@ -250,3 +279,32 @@ class CreateReminderView(generics.GenericAPIView):
 
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+
+
+@api_view(['DELETE'])
+def delete_reminder(request, id):
+    plugin_id = PLUGIN_ID
+    org_id = ORGANIZATION_ID
+    coll_name = "reminders"
+    if request.method == 'DELETE':
+        url = 'https://api.zuri.chat/data/delete'
+
+        payload = {
+            "plugin_id": plugin_id,
+            "organization_id": org_id,
+            "collection_name": coll_name,
+            "bulk_delete": False,
+            "object_id": id,
+            "filter": {}
+        }
+    try:
+        response = requests.post(url=url, json=payload)
+
+        if response.status_code == 200:
+            return Response({"message": "reminder successfully deleted"},
+                            status=status.HTTP_200_OK)
+        else:
+            return Response({"error": response.json()['message']}, status=response.status_code)
+
+    except exceptions.ConnectionError as e:
+        return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)

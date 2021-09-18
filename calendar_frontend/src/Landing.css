@@ -1,0 +1,122 @@
+.features {
+  background: #e1fdf4;
+  padding: 20px 100px;
+}
+.features ul {
+  color: #242424;
+  list-style-position: inside;
+  font-family: Lato;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 47px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.features .title {
+  color: #242424;
+  text-align: center;
+  font-family: Lato;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0em;
+  margin-bottom: 20px;
+}
+.features p {
+  margin-bottom: 15px;
+  text-align: justify;
+  color: #8c8c8c;
+}
+.span-color {
+  color: #00b87c;
+}
+.how-it-works {
+  padding: 20px 100px;
+  background: #fff;
+  padding-bottom: 100px;
+}
+.how-it-works .title {
+  color: #242424;
+  text-align: center;
+  font-family: Lato;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0em;
+}
+.how-it-works .sample {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.how-it-works .subtitle {
+  font-size: 26px;
+  color: #242424;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+.how-it-works p,
+.how-it-works ol {
+  color: #8c8c8c;
+}
+.how-it-works ol {
+  list-style-position: inside;
+}
+.landing-page footer {
+  background: #00271a;
+  padding: 10px 100px;
+  color: #fff;
+}
+.landing-page footer h4 {
+  color: #fff;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+.btn-install {
+  background: #00b87c;
+  border-radius: 8px;
+  color: #fff;
+  padding: 8px 15px;
+  letter-spacing: 2px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+.landing-page footer article {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+.landing-page footer article .links span {
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+  .features .title {
+    font-size: 24px;
+  }
+  .features ul {
+    font-size: 18px;
+  }
+  .how-it-works .title {
+    font-size: 24px;
+  }
+  .how-it-works .subtitle {
+    font-size: 18px;
+  }
+  .features,
+  .how-it-works {
+    padding: 20px 40px;
+    padding-bottom: 100px;
+  }
+  .landing-page footer {
+    padding: 5px 40px;
+  }
+  .landing-page footer h4 {
+    font-size: 18px;
+  }
+  .landing-page footer article {
+    font-size: 8px;
+  }
+}
