@@ -85,35 +85,6 @@ def ping_view(request):
     return JsonResponse({'server': server})
 
 
-# @api_view(['PUT', 'PATCH'])
-# def update_event_view(request, pk):
-#     """
-#     patch:
-#     Update Specific fields of individual events by ID without affecting others
-
-#     put:
-#     Update all fields of individual events by ID without affecting others
-#     """
-#     serializer = EventSerializer(data=request.data)
-#     url = f'https://api.zuri.chat/data/read/{PLUGIN_ID}/event/{ORGANIZATION_ID}?_id={pk}'
-
-#     try:
-#         if serializer.is_valid(raise_exception=True):
-#             serialized_data = serializer.data
-#             response = request.patch(url, data=serialized_data)
-
-#             if response.status_code != 200:
-
-#                 return Response({'success':False, 'errors':response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
-#             return Response({'success':True, 'response':response.json()}, status=status.HTTP_200_OK)
-
-#                 return Response({'success': False, 'errors': response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
-#             return Response({'success': True, 'response': response.json()}, status=status.HTTP_200_OK)
-
-#     except exceptions.ConnectionError as e:
-#         return Response({'success': False, 'errors': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
 class CreateEventView(generics.CreateAPIView):
     """
     This is  a create view for creating an event . The method allowed  is POST

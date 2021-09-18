@@ -5,7 +5,6 @@ from .views import *
 
 urlpatterns = [
     path('', calendar_view, name="calendar_view"),
-    path('update-event/<str:pk>/', update_event_view),
     path('create-event/', CreateEventView.as_view(), name='create_event'),
     path('create-reminder/', CreateReminderView.as_view(), name='create-reminder'),
     path('event-list/', event_list, name="event_lists"),
