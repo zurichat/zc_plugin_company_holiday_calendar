@@ -307,7 +307,36 @@ def event_detail_view(request, id):
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
+"""
+This is a destroy view for deleting events.
+"""
+@api_view(['DELETE'])
+def event_delete_view(request, id):
+    plugin_id = PLUGIN_ID
+    organization_id = ORGANIZATION_ID
+    coll_name = "events"
+    if request.method == "DELETE":
+        url = "https://api.zuri.chat/data/delete"
+        payload = {
+            "plugin_id": plugin_id,
+            "organization_id": organization_id,
+            "collection_name": coll_name,
+            "bulk_delete": False,
+            "object_id": id,
+            "filter": {},
+            }
 
+        try:
+            response = requests.post(url=url, json=payload)
+
+            if response.status_code == 200:
+                return Response({"message": "event successfully deleted"}, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": response.json()["message"]}, status=response.status_code)
+
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+            
 
 class CreateReminderView(generics.GenericAPIView):
     serializer_class = ReminderSerializer
