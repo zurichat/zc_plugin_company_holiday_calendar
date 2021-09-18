@@ -14,15 +14,20 @@ jobs:
         python-version: 3.9
     - name: Install dependencies
       run: |
-        ./calendar_backend/python -m pip install --upgrade pip
-        ./calendar_backend/pip install -r requirements.txt
-    - name: Run migrations
-      run: ./calendar_backend/python manage.py migrate
-      env:
-        # Random key
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        cd calendar_backend
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+#     - name: Run migrations
+#       run: |
+#        cd calendar_backend
+#        python manage.py migrate
+#       env:
+#         # Random key
+#         SECRET_KEY: ${{ secrets.SECRET_KEY }}
     - name: Runserver
-      run: ./calendar_backend/python manage.py runserver
+      run: |
+       cd calendar_backend
+       python manage.py runserver
       env:
         # Random key
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
