@@ -46,7 +46,7 @@ def plugin_info_view(request):
          'ping_url': 'http://calendar.zuri.chat/ping',
          'icon_url': 'https://drive.google.com/file/d/15iq9nWBdEOsiB2rnU17GtiTSxlAK2oyj/view?usp=sharing',
          'photos_list': ''
-         }
+        } 
     ]
 
     return JsonResponse({'plugin_information': plugin_information})
@@ -84,51 +84,21 @@ def ping_view(request):
     return JsonResponse({'server': server})
 
 
-class DeleteEventView(DestroyAPIView):
-    """
-    delete:
-    Delete event by ID
-    """
-    model = Event
-    queryset = Event.objects.all()
+# class DeleteEventView(DestroyAPIView):
+#     """
+#     delete:
+#     Delete event by ID
+#     """
+#     model = Event
+#     queryset = Event.objects.all()
 
     
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.perform_destroy(instance)
-        payload = {"message": "Deleted event successfully"}
-        return Response(payload)
+#     def destroy(self, request, *args, **kwargs):
+#         instance = self.get_object()
+#         self.perform_destroy(instance)
+#         payload = {"message": "Deleted event successfully"}
+#         return Response(payload)
 
-
-class EventListView(generics.ListAPIView):
-    """
-    get: 
-    a list of all Events
-    """
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny,]
-
-
-class EventDetailView(generics.RetrieveAPIView):
-    """
-    get: 
-    Details of individual events by ID
-    """
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny,]
-
-
-# class EventUpdateView(generics.UpdateAPIView):
-#     """
-#     patch:
-#     Update Specific fields of individual events by ID without affecting others
-
-#     """
-#     # queryset = Event.objects.all()
-#     # serializer_class = EventSerializer
-#     # permission_classes = [permissions.AllowAny,]
 
 @api_view(['PUT','PATCH'])
 def update_event_view(request, pk):
@@ -140,54 +110,58 @@ def update_event_view(request, pk):
     Update all fields of individual events by ID without affecting others
     """
     serializer = EventSerializer(data=request.data)
+    url = f'https://api.zuri.chat/data/read/{PLUGIN_ID}/event/{ORGANIZATION_ID}?_id={pk}'
     
-    if serializer.is_valid(raise_exception=True):
-        serialized_data = serializer.data
-        response = DataBase.put(collection_name=event, data=serialized_data, object_id=pk)
-        
-        if response['error']:
-            return Response({'success':False, 'errors':response}, status=status.HTTP_400_BAD_REQUEST)
-        return Response({'success':True, 'response':response}, status=status.HTTP_200_OK)
+    try:
+        if serializer.is_valid(raise_exception=True):
+            serialized_data = serializer.data
+            response = request.patch(url, data=serialized_data)
+            
+            if response.status_code != 200:
+                return Response({'success':False, 'errors':response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'success':True, 'response':response.json(), status=status.HTTP_200_OK)
+    except exceptions.ConnectionError as e:
+        return Response({'success':False, 'errors':str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 
-class EventSearch(generics.ListAPIView):
-    """
-    post:
-    Search or filter event by event name and start time
+# class EventSearch(generics.ListAPIView):
+#     """
+#     post:
+#     Search or filter event by event name and start time
     
-    """
-    search_fields = ['event_name', 'end']
-    filter_backends = (filters.SearchFilter,)
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny,]
+#     """
+#     search_fields = ['event_name', 'end']
+#     filter_backends = (filters.SearchFilter,)
+#     queryset = Event.objects.all()
+#     serializer_class = EventSerializer
+#     permission_classes = [permissions.AllowAny,]
     
 
-class ReminderListView(generics.ListAPIView):
-    """
-    get: 
-    a List of all Reminders
-    """
-    queryset = Reminder.objects.all()
-    serializer_class = ReminderSerializer
-    permission_classes = [permissions.AllowAny,]
+# class ReminderListView(generics.ListAPIView):
+#     """
+#     get: 
+#     a List of all Reminders
+#     """
+#     queryset = Reminder.objects.all()
+#     serializer_class = ReminderSerializer
+#     permission_classes = [permissions.AllowAny,]
 
 
-class ReminderDetailView(generics.RetrieveAPIView):
-    """
-    get: 
-    Get Reminder details by ID
-    """
-    queryset = Reminder.objects.all()
-    serializer_class = ReminderSerializer
-    permission_classes = [permissions.AllowAny,]
-"""
-This is  a create view for creating an event . The method allowed  is POST 
-"""
+# class ReminderDetailView(generics.RetrieveAPIView):
+#     """
+#     get: 
+#     Get Reminder details by ID
+#     """
+#     queryset = Reminder.objects.all()
+#     serializer_class = ReminderSerializer
+#     permission_classes = [permissions.AllowAny,]
 
 
 class CreateEventView(generics.CreateAPIView):
+    """
+    This is  a create view for creating an event . The method allowed  is POST 
+    """
     serializer_class = EventSerializer
 
     def post(self, request):
