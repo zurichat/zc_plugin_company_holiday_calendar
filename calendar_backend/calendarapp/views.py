@@ -84,6 +84,104 @@ def ping_view(request):
     return JsonResponse({'server': server})
 
 
+class DeleteEventView(DestroyAPIView):
+    """
+    delete:
+    Delete event by ID
+    """
+    model = Event
+    queryset = Event.objects.all()
+
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        payload = {"message": "Deleted event successfully"}
+        return Response(payload)
+
+
+class EventListView(generics.ListAPIView):
+    """
+    get: 
+    a list of all Events
+    """
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny,]
+
+
+class EventDetailView(generics.RetrieveAPIView):
+    """
+    get: 
+    Details of individual events by ID
+    """
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny,]
+
+
+# class EventUpdateView(generics.UpdateAPIView):
+#     """
+#     patch:
+#     Update Specific fields of individual events by ID without affecting others
+
+#     """
+#     # queryset = Event.objects.all()
+#     # serializer_class = EventSerializer
+#     # permission_classes = [permissions.AllowAny,]
+
+@api_view(['PUT','PATCH'])
+def update_event_view(request, pk):
+    """
+    patch:
+    Update Specific fields of individual events by ID without affecting others
+
+    put:
+    Update all fields of individual events by ID without affecting others
+    """
+    serializer = EventSerializer(data=request.data)
+    
+    if serializer.is_valid(raise_exception=True):
+        serialized_data = serializer.data
+        response = DataBase.put(collection_name=event, data=serialized_data, object_id=pk)
+        
+        if response['error']:
+            return Response({'success':False, 'errors':response}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'success':True, 'response':response}, status=status.HTTP_200_OK)
+
+
+
+class EventSearch(generics.ListAPIView):
+    """
+    post:
+    Search or filter event by event name and start time
+    
+    """
+    search_fields = ['event_name', 'end']
+    filter_backends = (filters.SearchFilter,)
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny,]
+    
+
+class ReminderListView(generics.ListAPIView):
+    """
+    get: 
+    a List of all Reminders
+    """
+    queryset = Reminder.objects.all()
+    serializer_class = ReminderSerializer
+    permission_classes = [permissions.AllowAny,]
+
+
+class ReminderDetailView(generics.RetrieveAPIView):
+    """
+    get: 
+    Get Reminder details by ID
+    """
+    queryset = Reminder.objects.all()
+    serializer_class = ReminderSerializer
+    permission_classes = [permissions.AllowAny,]
 """
 This is  a create view for creating an event . The method allowed  is POST 
 """
