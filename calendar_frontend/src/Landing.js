@@ -1,13 +1,69 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './Landing.css'
-
+import Companyholiday from './features-images/Companyholiday.jpg';
+import AddReminder from './features-images/AddReminders.jpg';
+import PersonalReminder from './features-images/PersonalReminder.jpg';
+import Custom from './features-images/CustomEvent.png';
 const Landing = () => {
   return (
     <div className='landing-page'>
       <Link to='/calendar' className='calendar-plugin'>
         Go To Plugin
       </Link>
+      <div className="main-features-container">
+        <section className="main-features-sections features-topics">
+          <h2>Features</h2>
+          <p> (User-Friendly Features You’ll Love) </p>
+        </section>
+        <section className="main-features-sections main-create-events">
+          <div className="create-events-left"> 
+            <h3> Easily <span>Create Events</span> </h3>
+            <p> Creating events is just by the click of a button. 
+              On the calendar main view, click on the<span>“CREATE EVENT” </span>
+              button at the top right-hand-side of your screen and a simple 
+              popup form will leap out. Input your event details, hit 
+              <span>“CREATE”</span> and viola! Your event is created and ready
+              to be seen company-wide.</p>
+          </div>
+          <div className="create-events-right">
+            <img src={Companyholiday}  />
+          </div>
+          
+        </section>
+        <section className="main-features-sections main-reminder">
+            <div className="reminder-left">
+              <img src={AddReminder}  />
+            </div>
+            <div className="reminder-right">
+              <h3> Add Reminders for All Your Team Members</h3>
+              <p>As a team lead with access, you can easily add reminders 
+                to your events <span>company-wide</span>
+                and help everyone in your organization <span>stay updated</span>.</p>
+            </div>
+        </section>
+        <section className="main-features-sections main-personal-reminder">
+          <div className="personal-reminder-left">
+            <h3> Set Personal Reminders </h3>
+            <p> The tool lets <span>employees set their own reminders.</span>
+               If a team member wants to be reminded about an upcoming event, 
+               all they need is to select the event from the events 
+               list and select <span>“SET REMINDER”.</span></p>
+          </div>
+          <div className="personal-reminder-left">
+            <img src={PersonalReminder} />
+          </div>
+        </section>
+        <section className="main-features-sections main-custom-event">
+          <div className="custom-event-left">
+            <img src={Custom} />
+          </div>
+          <div className="custom-event-right">
+            <p> Reminders can be up to the last minute, 
+              customized and repeated with a single click of a button.</p>
+          </div>
+        </section>
+      </div>
       <section className='features'>
         <h2 className='title'>OTHER FEATURES THAT WILL INTEREST YOU</h2>
         <ul>
