@@ -103,13 +103,8 @@ def update_event_view(request, pk):
             response = request.patch(url, data=serialized_data)
 
             if response.status_code != 200:
-
                 return Response({'success':False, 'errors':response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
             return Response({'success':True, 'response':response.json()}, status=status.HTTP_200_OK)
-
-                return Response({'success': False, 'errors': response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
-            return Response({'success': True, 'response': response.json()}, status=status.HTTP_200_OK)
-
     except exceptions.ConnectionError as e:
         return Response({'success': False, 'errors': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
