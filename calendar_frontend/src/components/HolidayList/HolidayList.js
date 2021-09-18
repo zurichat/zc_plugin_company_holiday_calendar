@@ -1,20 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../App';
-import './HolidayList.css';
-import { FiEdit2 } from 'react-icons/fi';
-import { RiDeleteBin5Line } from 'react-icons/ri';
+import React, { useContext, useEffect, useState } from 'react'
+import { AppContext } from '../../App'
+import './HolidayList.css'
+import { FiEdit2 } from 'react-icons/fi'
+import { RiDeleteBin5Line } from 'react-icons/ri'
 
 const HolidayList = () => {
-  const url = 'https://calendar.zuri.chat/api/v1/event-list/';
-  const states = useContext(AppContext);
-  const { month, year, months, setShowMonth, setShowYear } = states;
-  const [holidays, setHolidays] = useState([]);
+  const url = 'https://calendar.zuri.chat/api/v1/event-list/'
+  const states = useContext(AppContext)
+  const { month, year, months, setShowMonth, setShowYear } = states
+  const [holidays, setHolidays] = useState([])
 
   const getHolidays = async () => {
-    const response = await fetch(url);
-    const holidays = await response.json();
-    return holidays.data.slice(11, 22);
-  };
+    const response = await fetch(url)
+    const holidays = await response.json()
+    return holidays.data.slice(11, 22)
+  }
 
   const days = [
     'Sunday',
@@ -24,7 +24,7 @@ const HolidayList = () => {
     'Thursday',
     'Friday',
     'Saturday',
-  ];
+  ]
   useEffect(() => {
     getHolidays().then((data) => {
       setHolidays(
@@ -33,17 +33,17 @@ const HolidayList = () => {
             holiday.start_date.slice(0, 4) === year.toString() &&
             months.indexOf(month) + 1 ===
               parseInt(holiday.start_date.slice(5, 7))
-          );
+          )
         })
-      );
-    });
-  }, [url, month, year, months]);
+      )
+    })
+  }, [url, month, year, months])
   return (
     <div
       className='home-page'
       onClick={() => {
-        setShowMonth(false);
-        setShowYear(false);
+        setShowMonth(false)
+        setShowYear(false)
       }}
     >
       {holidays.map((holiday) => {
@@ -55,7 +55,7 @@ const HolidayList = () => {
           event_colour,
           start_time,
           end_time,
-        } = holiday;
+        } = holiday
         return (
           <li
             key={_id}
@@ -68,8 +68,8 @@ const HolidayList = () => {
                 {new Date(start_date).getDate()}
               </span>
               <span className='edit-del'>
-                <FiEdit2 style={{ marginRight: '5px' }} />
-                <RiDeleteBin5Line />
+                <FiEdit2 className='edit-btn' style={{ marginRight: '5px' }} />
+                <RiDeleteBin5Line className='del-btn' />
               </span>
             </div>
             <p className='event-time' style={{ color: `${event_colour}` }}>
@@ -93,10 +93,10 @@ const HolidayList = () => {
               {event_title}
             </p>
           </li>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
-export default HolidayList;
+export default HolidayList

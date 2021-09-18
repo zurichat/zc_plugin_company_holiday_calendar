@@ -9,7 +9,7 @@
   font-size: 26px;
   font-style: normal;
   font-weight: 700;
-  line-height: 47px;
+  line-height: 1.4;
   letter-spacing: 0em;
   text-align: left;
 }
@@ -73,6 +73,7 @@
   color: #fff;
   font-size: 26px;
   margin-bottom: 20px;
+  text-align: center;
 }
 .btn-install {
   background: #00b87c;

@@ -18,7 +18,8 @@
   font-weight: normal;
   font-size: 13px;
 }
-.edit-del {
+.edit-del .edit-btn,
+.edit-del .del-btn {
   color: #00b87c;
   cursor: pointer;
 }
