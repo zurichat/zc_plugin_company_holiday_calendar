@@ -2,6 +2,7 @@
 from django.shortcuts import HttpResponse, render
 from django.http import JsonResponse
 from rest_framework import generics, status
+from rest_framework import response
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import requests
@@ -46,7 +47,7 @@ def plugin_info_view(request):
          'ping_url': 'http://calendar.zuri.chat/ping',
          'icon_url': 'https://drive.google.com/file/d/15iq9nWBdEOsiB2rnU17GtiTSxlAK2oyj/view?usp=sharing',
          'photos_list': ''
-         }
+        } 
     ]
 
     return JsonResponse({'plugin_information': plugin_information})
@@ -84,12 +85,84 @@ def ping_view(request):
     return JsonResponse({'server': server})
 
 
-"""
-This is  a create view for creating an event . The method allowed  is POST 
-"""
+# class DeleteEventView(DestroyAPIView):
+#     """
+#     delete:
+#     Delete event by ID
+#     """
+#     model = Event
+#     queryset = Event.objects.all()
+
+    
+#     def destroy(self, request, *args, **kwargs):
+#         instance = self.get_object()
+#         self.perform_destroy(instance)
+#         payload = {"message": "Deleted event successfully"}
+#         return Response(payload)
+
+
+@api_view(['PUT','PATCH'])
+def update_event_view(request, pk):
+    """
+    patch:
+    Update Specific fields of individual events by ID without affecting others
+
+    put:
+    Update all fields of individual events by ID without affecting others
+    """
+    serializer = EventSerializer(data=request.data)
+    url = f'https://api.zuri.chat/data/read/{PLUGIN_ID}/event/{ORGANIZATION_ID}?_id={pk}'
+    
+    try:
+        if serializer.is_valid(raise_exception=True):
+            serialized_data = serializer.data
+            response = request.patch(url, data=serialized_data)
+            
+            if response.status_code != 200:
+                return Response({'success':False, 'errors':response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'success':True, 'response':response.json(), status=status.HTTP_200_OK)
+    except exceptions.ConnectionError as e:
+        return Response({'success':False, 'errors':str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+# class EventSearch(generics.ListAPIView):
+#     """
+#     post:
+#     Search or filter event by event name and start time
+    
+#     """
+#     search_fields = ['event_name', 'end']
+#     filter_backends = (filters.SearchFilter,)
+#     queryset = Event.objects.all()
+#     serializer_class = EventSerializer
+#     permission_classes = [permissions.AllowAny,]
+    
+
+# class ReminderListView(generics.ListAPIView):
+#     """
+#     get: 
+#     a List of all Reminders
+#     """
+#     queryset = Reminder.objects.all()
+#     serializer_class = ReminderSerializer
+#     permission_classes = [permissions.AllowAny,]
+
+
+# class ReminderDetailView(generics.RetrieveAPIView):
+#     """
+#     get: 
+#     Get Reminder details by ID
+#     """
+#     queryset = Reminder.objects.all()
+#     serializer_class = ReminderSerializer
+#     permission_classes = [permissions.AllowAny,]
 
 
 class CreateEventView(generics.CreateAPIView):
+    """
+    This is  a create view for creating an event . The method allowed  is POST 
+    """
     serializer_class = EventSerializer
 
     def post(self, request):
@@ -250,3 +323,35 @@ class CreateReminderView(generics.GenericAPIView):
 
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+        
+@api_view(['DELETE'])
+def delete_reminder(request, id):
+        plugin_id = PLUGIN_ID
+        org_id = ORGANIZATION_ID
+        coll_name = "reminders"
+        if request.method == 'DELETE':
+           url ='https://api.zuri.chat/data/delete'
+    
+           payload = {
+                    "plugin_id": plugin_id,
+                    "organization_id": org_id,
+                    "collection_name": coll_name,
+                    "bulk_delete": False,
+                    "object_id": id,
+                    "filter": {}
+                    
+           }
+           
+        try:
+            response = requests.post(url=url, json=payload)
+           
+
+            if response.status_code == 200:
+                return Response({"message": "reminder successfully deleted"},
+                status=status.HTTP_200_OK)
+            else:
+                return Response({"error": response.json()['message']}, status=response.status_code)
+
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+        
