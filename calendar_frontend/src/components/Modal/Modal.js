@@ -46,6 +46,7 @@ const Modal = () => {
   } = useForm();
 
   const [description, setDescription] = useState("");
+  const [imgLink, setImgLink] = useState("");
 
   const handleFormSubmission = (data) => {
     const eventFormData = {
@@ -70,11 +71,13 @@ const Modal = () => {
       end_time: `${endTime.getHours()}:${endTime.getMinutes()}:00`,
 
       time_zone: data.gmt,
+
       description: description,
 
       all_day: data.allDay,
       event_tag: eventTag,
       event_colour: color,
+      images: imgLink === "" ? null : imgLink,
     };
 
     const greg = async () => {
@@ -196,8 +199,8 @@ const Modal = () => {
                       <img
                         className="event-field-icon"
                         src={chevronDown}
-                        alt=""
-                      ></img>
+                        alt="event-field-icon"
+                      />
                     </div>
                   </div>
 
@@ -282,6 +285,8 @@ const Modal = () => {
                     <EventDescription
                       description={description}
                       setDescription={setDescription}
+                      imgLink={imgLink}
+                      setImgLink={setImgLink}
                     />
                   </div>
 
