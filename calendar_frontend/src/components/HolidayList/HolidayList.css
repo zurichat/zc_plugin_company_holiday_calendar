@@ -7,7 +7,7 @@
 .date-icons {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 .home-page {
   padding: 20px 20px 100px 20px;
@@ -18,20 +18,19 @@
   font-weight: normal;
   font-size: 13px;
 }
-
 .edit-del {
   color: #00b87c;
   cursor: pointer;
 }
 .event-date {
-  font-family: "Lato";
+  font-family: Lato;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
 }
 .event-title {
+  font-family: Lato;
   font-style: normal;
-  font-size: 13px;
   font-weight: bold;
-  font-family: "lato";
+  font-size: 13px;
 }

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../App';
-import './HolidayListt.css';
+import './HolidayList.css';
 import { FiEdit2 } from 'react-icons/fi';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 
@@ -21,11 +21,10 @@ const HolidayList = () => {
     'Monday',
     'Tuesday',
     'Wednesday',
-    'Thurday',
+    'Thursday',
     'Friday',
     'Saturday',
-  ]
- 
+  ];
   useEffect(() => {
     getHolidays().then((data) => {
       setHolidays(
