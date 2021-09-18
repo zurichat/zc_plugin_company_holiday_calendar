@@ -168,6 +168,7 @@ class CreateEventView(generics.CreateAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
+
         # posting data to zuri core after validation
         # the organization_id would be dynamic; based on the request data
         event = serializer.data
