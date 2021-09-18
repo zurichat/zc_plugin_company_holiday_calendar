@@ -1,5 +1,154 @@
+/* main features styling */
+.main-features-container{
+  display: grid;
+  padding: 1.6rem 2.3rem;
+  width: 100%;
+  grid-template-columns: repeat(12, 1fr);
+  grid-row-gap: 20px;
+}
+.main-features-container span {
+  color: #00B87C;
+}
+.main-features-sections h3 {
+  font-family: Lato;
+font-style: normal;
+font-weight: bold;
+font-size: 1.6rem;
+line-height: 130%;
+text-align: center;
+padding: .5rem 0;
+}
+.main-features-sections p {
+  text-align: center;
+  padding: .5rem 0;
+
+}
+.main-features-container img {
+ max-width: 100%;
+}
+.main-features-container > * {
+  grid-column: 1/-1;
+}
+.main-features-sections{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.8rem 0;
+}
+.main-features-sections h2 {
+font-family: Lato;
+font-style: normal;
+font-weight: bold;
+font-size: 48px;
+line-height: 130%;
+margin: 0;
+}
+.features-topics p{
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 130%;
+  color: #00B87C;
+}
+.create-events-left, .create-events-right {
+  padding: 0.2rem 0;
+}
+.main-reminder {
+  flex-direction: column-reverse;
+}
+
+@media screen and (min-width:600px){
+  .main-features-container {
+    padding: 1.8rem 2rem;
+  }
+  .main-features-sections{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .create-events-left, .reminder-left,
+  .personal-reminder-left, .custom-event-left{
+    padding-right: 2rem;
+  }
+  .create-events-right, .reminder-right, 
+  .personal-reminder-right, .custom-event-right {
+    padding-left: 2rem;
+  }
+  .main-features-sections{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .create-events-left, .reminder-left,
+  .personal-reminder-left, .custom-event-left{
+    padding-right: 1.2rem;
+  }
+  .create-events-right, .reminder-right, 
+  .personal-reminder-right, .custom-event-right {
+    padding-left: 1.2rem;
+  }
+  .main-features-sections > * {
+    width: 50%;
+    margin: 1rem 0;
+  }
+  .main-features-sections h3 {
+    font-size: 1.6rem;
+  }
+  .main-features-sections p{
+    font-size: 1.2rem;
+  }
+  .features-topics {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .main-features-container {
+    padding: 20px 100px;
+  }
+  .main-features-sections{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .create-events-left, .reminder-left,
+  .personal-reminder-left, .custom-event-left{
+    padding-right: 2rem;
+  }
+  .create-events-right, .reminder-right, 
+  .personal-reminder-right, .custom-event-right {
+    padding-left: 2rem;
+  }
+  .main-features-sections{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .create-events-left, .reminder-left,
+  .personal-reminder-left, .custom-event-left{
+    padding-right: 2rem;
+  }
+  .create-events-right, .reminder-right, 
+  .personal-reminder-right, .custom-event-right {
+    padding-left: 2rem;
+  }
+  .main-features-sections > * {
+    width: 50%;
+    margin: 1rem 0;
+  }
+  .main-features-sections h3 {
+    font-size: 2rem;
+  }
+  .main-features-sections p{
+    font-size: 1.6rem;
+  }
+  .features-topics {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/*other features styling */
 .features {
-  background: #e1fdf4;
+  background: hsl(161, 88%, 94%);
   padding: 20px 100px;
 }
 .features ul {
