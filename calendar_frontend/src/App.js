@@ -30,6 +30,9 @@ function App() {
   const [showEventPage, setShowEventPage] = useState(true);
   const [showMonth, setShowMonth] = useState(false);
   const [showYear, setShowYear] = useState(false);
+
+  //Event Present Data
+  const [currentFormData, setCurrentFormData] = useState();
   const [isEventOpen, setIsEventOpen] = useState(false);
   const [holidays, setHolidays] = useState([]);
 
@@ -115,6 +118,8 @@ function App() {
           showYear,
           setShowYear,
           months,
+          currentFormData,
+          setCurrentFormData,
           handleModal,
           holidays,
           days,
