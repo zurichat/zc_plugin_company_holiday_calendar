@@ -207,7 +207,6 @@ def event_list(request):
 
 @ api_view(['GET'])
 # @permission_classes((UserIsAuthenticated, ))
-
 def event_detail_view(request, id):
     '''
     event detail view with a list of event-specific reminder(s) previously
@@ -334,6 +333,7 @@ class CreateReminderView(generics.GenericAPIView):
 This is a standalone Reminder ListView
 """
 @api_view(['GET'])
+# @permission_classes((UserIsAuthenticated, ))
 def reminder_list(request):
     plugin_id = PLUGIN_ID
     organization_id = ORGANIZATION_ID
@@ -388,6 +388,7 @@ class ReminderUpdateView(generics.UpdateAPIView):
     serializer_class = ReminderSerializer
     database = DataBase()
     coll_name = "reminders"
+    # permission_classes = [UserIsAuthenticated]
 
     def update(self, request, *args, **kwargs):
         object_id = self.kwargs['pk']
