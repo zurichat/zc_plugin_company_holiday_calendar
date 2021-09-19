@@ -325,7 +325,7 @@ const Modal = () => {
                         >
                           {gmtStrings.map((gmtString, index) => (
                             <option
-                              selected={gmtString.value === "+0GMT"}
+                              defaultValue={gmtString.value === "+0GMT"}
                               style={{ color: "#616061" }}
                               value={gmtString.value}
                               key={index}
