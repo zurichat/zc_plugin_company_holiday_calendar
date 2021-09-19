@@ -30,7 +30,7 @@ function App() {
   const [showEventPage, setShowEventPage] = useState(true);
   const [showMonth, setShowMonth] = useState(false);
   const [showYear, setShowYear] = useState(false);
-  const [fetchData, setFetchData] = useState(false);
+  // const [fetchData, setFetchData] = useState(false);
 
   //Event Present Data
   const [currentFormData, setCurrentFormData] = useState();
@@ -67,7 +67,7 @@ function App() {
         })
       );
     });
-  }, [month, year, fetchData]);
+  }, [month, year]);
 
   const handleOverlay = () => {
     setIsEventOpen(false);

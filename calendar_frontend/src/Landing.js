@@ -130,12 +130,12 @@ const Landing = () => {
             </p>
           </div>
           <div className="create-events-right">
-            <img src={Companyholiday} />
+            <img src={Companyholiday} alt="" />
           </div>
         </section>
         <section className="main-features-sections main-reminder">
           <div className="reminder-left">
-            <img src={AddReminder} />
+            <img src={AddReminder} alt="" />
           </div>
           <div className="reminder-right">
             <h3> Add Reminders for All Your Team Members</h3>
@@ -158,12 +158,12 @@ const Landing = () => {
             </p>
           </div>
           <div className="personal-reminder-left">
-            <img src={PersonalReminder} />
+            <img src={PersonalReminder} alt="" />
           </div>
         </section>
         <section className="main-features-sections main-custom-event">
           <div className="custom-event-left">
-            <img src={Custom} />
+            <img src={Custom} alt="" />
           </div>
           <div className="custom-event-right">
             <p>
