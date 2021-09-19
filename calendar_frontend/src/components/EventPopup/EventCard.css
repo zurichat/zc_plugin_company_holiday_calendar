@@ -11,7 +11,7 @@
   width: 400px;
   z-index: 100;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  /* position: relative; */
+   /*position: relative;*/
   background-color: white;
   border-radius: 10px;
   transition: 2s;
@@ -137,4 +137,92 @@
 .Bell {
   fill: green !important;
   width: 20px;
+}
+
+.input {
+  border-bottom: 1px solid #f6f6f6;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 44%;
+}
+
+.set-time-date {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.occurrence {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.show-me {
+  display: flex;
+  margin: 20px 0;
+}
+
+.show-text, .visible-text{
+  flex-basis: 30%;
+}
+.visible {
+  display: flex;
+  margin: 20px 0;
+}
+
+.visible-radio-button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+}
+
+.occurrence-dropdown input {
+  border: none;
+  outline: none;
+}
+.occurrence-dropdown img {
+  margin-right: 10px;
+}
+
+.checkbox input {
+  margin-right: 10px;
+}
+.show-radio-button {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.radio input {
+  margin-right: 10px;
+}
+
+.checkbox div {
+  margin: auto;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+.button {
+  border: none;
+  outline: none;
+  padding: 12px 18px !important;
+  border-radius: 3px;
+}
+
+.cancel {
+  margin-right: 5px;
+  background-color: #ffffff;
+  border: 1px solid #00B87C;
+  color: #00B87C;
+  padding: 12px 18px !important;
+}
+.create {
+  margin-left: 5px;
+  background-color: #00B87C;
+  color: #ffffff;
 }
