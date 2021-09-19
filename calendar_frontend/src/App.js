@@ -63,7 +63,7 @@ function App() {
         })
       );
     });
-  }, [url, month, year, months]);
+  }, []);
 
   const handleOverlay = () => {
     setIsEventOpen(false);
