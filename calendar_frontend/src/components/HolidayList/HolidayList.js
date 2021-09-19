@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../../App";
 import "./HolidayList.css";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import EventCard from "../EventPopup/EventCard";
 import { set } from "date-fns";
-import EventDelBtn from "./EventDelBtn";
 
 const HolidayList = () => {
   const states = useContext(AppContext);
@@ -22,8 +21,6 @@ const HolidayList = () => {
   } = states;
 
   // const []
-  
-  const [openDeleteEvent, setDeleteEvent] = useState(false);
 
   return (
     <div
