@@ -168,7 +168,7 @@ class CreateEventView(generics.CreateAPIView):
 
 
 @api_view(['GET'])
-@permission_classes((UserIsAuthenticated, ))
+#@permission_classes((UserIsAuthenticated, ))
 def event_list(request):
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
