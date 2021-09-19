@@ -39,7 +39,7 @@
 }
 .bannerImage {
   position: absolute;
-  top: 50px;
+  top: 100px;
   left: 1000px;
 }
 .bannerImage > img {
@@ -120,10 +120,12 @@ button {
 }
 .logoText {
   margin: auto;
+  font-weight: bolder;
 }
 .videoContainer {
   margin: auto;
 }
+
 /* .bigCircle {
   width: 800px;
   height: 800px;

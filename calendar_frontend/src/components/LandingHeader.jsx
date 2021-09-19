@@ -5,6 +5,7 @@ import events from "./landing-header-assets/events.png";
 import human from "./landing-header-assets/human.png";
 import fb from "./landing-header-assets/reviews.png";
 import logo from "./landing-header-assets/logo512.png";
+import arrow from "./landing-header-assets/arrow.png";
 
 const LandingHeader = () => {
   const reviews = [
@@ -17,7 +18,9 @@ const LandingHeader = () => {
       <div className={classes.logoContainer}>
         {" "}
         <img className={classes.logo} src={logo} alt="" />
-        <p className={classes.logoText}>company holiday calendar plugin</p>
+        <p className={classes.logoText}>
+          company <span className={classes.green}>holiday calendar</span> plugin
+        </p>
       </div>
       <div className={classes.bigCircle}></div>
       <nav className={classes.navContainer}>
