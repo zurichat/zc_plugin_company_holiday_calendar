@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import "./HolidayList.css";
 import { FiEdit2 } from "react-icons/fi";
@@ -8,6 +8,7 @@ import { set } from "date-fns";
 
 const HolidayList = () => {
   const states = useContext(AppContext);
+  const [openDeleteEvent, setDeleteEvent] = useState(false);
   const {
     setShowMonth,
     setShowYear,
@@ -114,12 +115,7 @@ function HolidayListCard({
             clickBehavior(!isModalOpen)
             setCurrentFormData(holiday)
           }} style={{ marginRight: "5px" }} />
-          <RiDeleteBin5Line onClick={() => deleteBehavior(true)} />
-                {openDeleteEvent && (
-                  <div>
-                    <EventDelBtn cancelDelEvent={deleteBehavior} />
-                  </div>
-                )}
+          <RiDeleteBin5Line/>
         </span>
       </div>
       <p className="event-time" style={{ color: `${event_colour}` }}>

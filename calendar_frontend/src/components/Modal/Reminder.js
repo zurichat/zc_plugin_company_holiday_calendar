@@ -47,7 +47,7 @@ const Reminder = () => {
           </div>
         </div>
       </form>
-      {/* <Repeat /> */}
+      <Repeat />
     </div>
   );
 };
