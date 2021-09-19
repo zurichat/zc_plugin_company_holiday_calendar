@@ -25,7 +25,7 @@ jobs:
       - name: Use cached node_modules
         uses: c-hive/gha-yarn-cache@v2
         with:
-         directory: zc_plugin_company_holiday_calendar/calendar_frontend
+         directory: ~/zc_plugin_company_holiday_calendar/calendar_frontend
          
          #this job installs intalls yarn dependencies on the github runner
          #and also to build the static files that would be transferred to server later
