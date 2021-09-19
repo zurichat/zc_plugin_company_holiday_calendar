@@ -359,7 +359,7 @@ const Modal = () => {
                       variant="contained"
                       style={{ backgroundColor: "#00B87C", color: "#fff" }}
                       className="eventButtons__create"
-                    >
+                    >git
                       Create
                     </Button>
                   </div>
