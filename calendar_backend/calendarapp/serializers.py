@@ -1,4 +1,4 @@
-from core.utils import get_timezones, DEFAULT_TIMEZONE
+from Core.utils import get_timezones, DEFAULT_TIMEZONE
 from rest_framework import serializers
 
 
