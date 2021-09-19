@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import requests
 from requests import exceptions
-from .serializers import EventSerializer
+from .serializers import EventSerializer, UpdateEventSerializer
 from drf_yasg.utils import swagger_auto_schema
 from .serializers import *
 from .datastore import DataBase
@@ -92,7 +92,7 @@ def update_event_view(request, pk):
     Update Specific fields of individual events by ID without affecting others
     """
     
-    serializer = EventSerializer(data=request.data)
+    serializer = UpdateEventSerializer(data=request.data)
     url = 'https://api.zuri.chat/data/write'
 
     try:
