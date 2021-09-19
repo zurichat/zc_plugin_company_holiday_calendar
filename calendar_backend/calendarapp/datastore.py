@@ -6,8 +6,10 @@ from calendar_backend import settings
 
 
 def confirm(data):
-    if type(data) == list or dict:
+    if type(data) == list:
         return True
+    elif type(data) == dict:
+        return False
     else:
         return False
 
@@ -88,10 +90,10 @@ class DataBase:
         if 200 <= response.status_code < 300:
             if not bulk_write:
                 obj = {"_id": object_id}
-                response = DataBase.get(collection_name, obj)
-                return response[0]
+                response = self.get(collection_name, obj)
+                return response
             else:
-                response = DataBase.get(collection_name)
+                response = self.get(collection_name)
                 return response
         return {"error": response}
 

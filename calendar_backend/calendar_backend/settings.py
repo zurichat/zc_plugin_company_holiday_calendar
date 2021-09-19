@@ -3,6 +3,7 @@ import os
 import environ
 
 
+
 env = environ.Env()
 environ.Env.read_env()
 
@@ -15,6 +16,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -24,12 +26,6 @@ CORS_ALLOWED_ORIGINS = [
     "https://calendar.zuri.chat",
     "http://calendar.zuri.chat",
 ]
-
-REST_FRAMEWORK = {
-    "DEFAULT_PARSER_CLASSES": [
-        'rest_framework.parsers.JSONParser',
-    ]
-}
 
 # Application definition
 
@@ -130,7 +126,11 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny'
     ],
 
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+
+    "DEFAULT_PARSER_CLASSES": [
+        'rest_framework.parsers.JSONParser',
+    ]
 }
 
 # Password validation
