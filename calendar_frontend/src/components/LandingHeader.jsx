@@ -5,7 +5,7 @@ import events from "./landing-header-assets/events.png";
 import human from "./landing-header-assets/human.png";
 import fb from "./landing-header-assets/reviews.png";
 import logo from "./landing-header-assets/logo512.png";
-import arrow from "./landing-header-assets/arrow.png";
+// import arrow from "./landing-header-assets/arrow.png";
 
 const LandingHeader = () => {
   const reviews = [
@@ -32,10 +32,10 @@ const LandingHeader = () => {
             <a href="#how-it-works">How it works</a>
           </li>
           <li>
-            <a href="">Contact us</a>
+            <a href="/">Contact us</a>
           </li>
           <li>
-            <a href="">FAQs</a>
+            <a href="/">FAQs</a>
           </li>
           <li>
             <button>Install</button>
