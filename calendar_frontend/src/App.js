@@ -30,12 +30,12 @@ function App() {
   const [showEventPage, setShowEventPage] = useState(true);
   const [showMonth, setShowMonth] = useState(false);
   const [showYear, setShowYear] = useState(false);
-  // const [fetchData, setFetchData] = useState(false);
+  const [fetchData, setFetchData] = useState(false);
 
   //Event Present Data
   const [currentFormData, setCurrentFormData] = useState();
   const [isEventOpen, setIsEventOpen] = useState(false);
-  const [holidays, setHolidays] = useState([]);
+  let [holidays, setHolidays] = useState([]);
 
   const days = [
     "Sunday",
@@ -55,19 +55,26 @@ function App() {
     return holidays.data.slice(11);
   };
 
+  // const sortedActivities = activities.sort((a, b) => b.date - a.date)
+
+
   useEffect(() => {
     getHolidays().then((data) => {
-      setHolidays(
-        data.filter((holiday) => {
-          return (
-            holiday.start_date.slice(0, 4) === year.toString() &&
-            months.indexOf(month) + 1 ===
-              parseInt(holiday.start_date.slice(5, 7))
-          );
-        })
-      );
+      data.map(data=>{
+        data.start_date = new Date(data.start_date);
+      })
+      const sortedActivities = data.sort((a, b) =>a.start_date - b.start_date)
+      data.map(data=>{
+        data.start_date = data.start_date.toString()
+      })
+      
+      var sortedDays= [];
+      sortedActivities.forEach(i => {
+        sortedDays.push(i)
+      });     
+      setHolidays(sortedActivities);
     });
-  }, [month, year]);
+  }, [month, year, fetchData]);
 
   const handleOverlay = () => {
     setIsEventOpen(false);
