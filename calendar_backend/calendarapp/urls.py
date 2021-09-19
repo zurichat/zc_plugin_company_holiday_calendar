@@ -8,6 +8,7 @@ urlpatterns = [
     path('update-event/<str:pk>/', update_event_view),
     path('create-event/', CreateEventView.as_view(), name='create_event'),
     path('create-reminder/', CreateReminderView.as_view(), name='create-reminder'),
+    path('list-reminder/', reminder_list, name='list-reminder'),
     path('event-list/', event_list, name="event_lists"),
     path('event-detail/<str:id>/', event_detail_view),
     path('event-delete/<str:id>/', event_delete_view),
