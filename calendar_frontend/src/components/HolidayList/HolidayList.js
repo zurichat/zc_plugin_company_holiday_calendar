@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { AppContext } from "../../App";
 import "./HolidayList.css";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import EventCard from "../EventPopup/EventCard";
-import { set } from "date-fns";
+import EventDelBtn from "./EventDelete/EventDelBtn";
+import DeleteModal from "react-modal";
 
 const HolidayList = () => {
   const states = useContext(AppContext);
@@ -12,13 +13,26 @@ const HolidayList = () => {
     setShowMonth,
     setShowYear,
     holidays,
+    setHolidays,
     days,
     handleOverlay,
     isEventOpen,
     handleEventPopups,
+    handleDel,
+    openDeleteEvent,
+    setDeleteEvent,
   } = states;
 
-  // const []
+  DeleteModal.setAppElement("#root");
+
+  const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
+
+  function handleDelete(e, id) {
+    console.log(e);
+    console.log(id);
+    setDeleteModalIsOpen(false);
+    handleDel(id, e);
+  }
 
   return (
     <div
@@ -43,19 +57,37 @@ const HolidayList = () => {
             key={_id}
             className="holiday"
             style={{ borderLeft: `8px solid ${event_colour}` }}
-            onClick={() => handleEventPopups(index)}
+            onClick={(e) => handleEventPopups(index, e)}
           >
-            <div className="date-icons">
-              <span className="event-date">
+            <div className="date-icons wealth">
+              <span className="event-date wealth">
                 {days[new Date(start_date).getDay()]}{" "}
                 {new Date(start_date).getDate()}
               </span>
-              <span className="edit-del">
-                <FiEdit2 style={{ marginRight: "5px" }} />
-                <RiDeleteBin5Line />
-              </span>
+              <div className="navss">
+                <p>
+                  <FiEdit2
+                    className="_deleteIcon navss"
+                    style={{ marginRight: "5px" }}
+                  />
+                </p>
+                <p
+                  className="edit-del navss"
+                  onClick={(e) => setDeleteModalIsOpen(true)}
+                >
+                  <RiDeleteBin5Line className="_deleteIcon navss" />
+                </p>
+              </div>
+              {openDeleteEvent && (
+                <div>
+                  <EventDelBtn id={_id} />
+                </div>
+              )}
             </div>
-            <p className="event-time" style={{ color: `${event_colour}` }}>
+            <p
+              className="event-time wealth"
+              style={{ color: `${event_colour}` }}
+            >
               {all_day
                 ? "All Day"
                 : `${
@@ -72,7 +104,10 @@ const HolidayList = () => {
                     +end_time.slice(0, 2) >= 12 ? "PM" : "AM"
                   }`}
             </p>
-            <p className="event-title" style={{ color: `${event_colour}` }}>
+            <p
+              className="event-title wealth"
+              style={{ color: `${event_colour}` }}
+            >
               {event_title}
             </p>
             <div className="pop_up">
@@ -83,6 +118,40 @@ const HolidayList = () => {
       })}
 
       {isEventOpen && <div onClick={handleOverlay} className="_overlay"></div>}
+
+      {deleteModalIsOpen ? (
+        <DeleteModal
+          isOpen={deleteModalIsOpen}
+          onRequestClose={() => setDeleteModalIsOpen(false)}
+          style={{
+            content: {
+              height: "155px",
+              width: "383px",
+              marginRight: "auto",
+              marginLeft: "auto",
+              marginTop: "auto",
+              marginBottom: "auto",
+            },
+          }}
+        >
+          <div className="evtDeleteBckGrd">
+            <div className="title">
+              <h3>Are you sure you want to delete this event?</h3>
+            </div>
+            <div className="cancel_del_btn">
+              <button
+                className="cancel_btn"
+                onClick={() => setDeleteModalIsOpen(false)}
+              >
+                Cancel
+              </button>
+              <button className="del_btn" onClick={() => handleDelete()}>
+                Delete
+              </button>
+            </div>
+          </div>
+        </DeleteModal>
+      ) : null}
     </div>
   );
 };
