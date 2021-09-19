@@ -11,7 +11,7 @@ on:
 #       - master
 
   # Allows you to run this workflow manually from the Actions tab
-  wrkflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
