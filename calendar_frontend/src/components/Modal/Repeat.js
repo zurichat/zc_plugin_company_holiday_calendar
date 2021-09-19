@@ -53,7 +53,7 @@ const everyStyles = {
     
     zIndex: 1,
 
-    color: 'black',
+    // color: 'black',
     backgroundColor: 'white',
     color: '#616061',
     fontFamily: 'Lato', 
