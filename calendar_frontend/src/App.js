@@ -135,6 +135,7 @@ function App() {
         <Modal />
         <Navbar />
         <HolidayList />
+
       </AppContext.Provider>
     </div>
   );
