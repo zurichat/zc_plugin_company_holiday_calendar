@@ -61,7 +61,7 @@ jobs:
           host: ${{ secrets.HOST }}
           password: ${{ secrets.PASSWORD }}
           localPath: 'calendar_frontend/build/'
-          remotePath: '~/zc_plugin_company_holiday_calendar/calendar_frontend/build'
+          remotePath: 'zc_plugin_company_holiday_calendar/calendar_frontend/build'
   deploy:
     needs: build
     runs-on: ubuntu-latest
