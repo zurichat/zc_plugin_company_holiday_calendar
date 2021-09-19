@@ -157,7 +157,7 @@ const Modal = () => {
         const { data } = await axios({
           method: "PUT",
           url: `https://calendar.zuri.chat/api/v1/update-event/${currentFormData._id}`,
-          data: eventFormData,
+          data: JSON.stringify(eventFormData),
         });
         console.log(data);
         setOpenSnackbar(true);
