@@ -4,7 +4,7 @@ import "./HolidayList.css";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import EventCard from "../EventPopup/EventCard";
-import { set } from "date-fns";
+// import { set } from "date-fns";
 
 const HolidayList = () => {
   const states = useContext(AppContext);
@@ -18,20 +18,21 @@ const HolidayList = () => {
     isEventOpen,
     isModalOpen,
     handleEventPopups,
-    setIsModalOpen, currentFormData, setCurrentFormData
+    setIsModalOpen,
+    currentFormData,
+    setCurrentFormData,
   } = states;
 
   // const []
 
   return (
     <div
-    className='home-page'
-    onClick={() => {
-      setShowMonth(false);
-      setShowYear(false);
-      
-    }}>
-
+      className="home-page"
+      onClick={() => {
+        setShowMonth(false);
+        setShowYear(false);
+      }}
+    >
       {holidays.map((holiday, index) => {
         const {
           _id,
@@ -43,27 +44,29 @@ const HolidayList = () => {
           end_time,
         } = holiday;
         return (
-          <HolidayListCard
-            _id={_id}
-            start_date={start_date}
-            all_day={all_day}
-            event_title={event_title}
-            event_colour={event_colour}
-            start_time={start_time}
-            end_time={end_time}
-            days={days}
-            isModalOpen={isModalOpen}
-            clickBehavior={() => {
-              setIsModalOpen(!isModalOpen);
-            }}
-            currentFormData={currentFormData} 
-            setCurrentFormData={setCurrentFormData}
-            holiday={holiday}
-            deleteBehavior={() => setDeleteEvent(!openDeleteEvent)}
-            openDeleteEvent={openDeleteEvent}
-            handleEventPopups={() => handleEventPopups(index)}
-            index={index}
-          />
+          <div key={_id}>
+            <HolidayListCard
+              _id={_id}
+              start_date={start_date}
+              all_day={all_day}
+              event_title={event_title}
+              event_colour={event_colour}
+              start_time={start_time}
+              end_time={end_time}
+              days={days}
+              isModalOpen={isModalOpen}
+              clickBehavior={() => {
+                setIsModalOpen(!isModalOpen);
+              }}
+              currentFormData={currentFormData}
+              setCurrentFormData={setCurrentFormData}
+              holiday={holiday}
+              deleteBehavior={() => setDeleteEvent(!openDeleteEvent)}
+              openDeleteEvent={openDeleteEvent}
+              handleEventPopups={() => handleEventPopups(index)}
+              index={index}
+            />
+          </div>
         );
       })}
 
@@ -71,7 +74,6 @@ const HolidayList = () => {
     </div>
   );
 };
-
 
 export default HolidayList;
 
@@ -88,17 +90,13 @@ function HolidayListCard({
   end_time,
   isModalOpen,
   clickBehavior,
-  currentFormData, 
+  currentFormData,
   setCurrentFormData,
   deleteBehavior,
   openDeleteEvent,
   handleEventPopups,
-  index
-}) 
-
-{
-  
-  console.log('Current', currentFormData)
+  index,
+}) {
   return (
     <li
       key={_id}
@@ -111,11 +109,14 @@ function HolidayListCard({
           {days[new Date(start_date).getDay()]} {new Date(start_date).getDate()}
         </span>
         <span className="edit-del">
-          <FiEdit2 onClick={() => {
-            clickBehavior(!isModalOpen)
-            setCurrentFormData(holiday)
-          }} style={{ marginRight: "5px" }} />
-          <RiDeleteBin5Line/>
+          <FiEdit2
+            onClick={() => {
+              clickBehavior(!isModalOpen);
+              setCurrentFormData(holiday);
+            }}
+            style={{ marginRight: "5px" }}
+          />
+          <RiDeleteBin5Line />
         </span>
       </div>
       <p className="event-time" style={{ color: `${event_colour}` }}>
@@ -139,8 +140,8 @@ function HolidayListCard({
         {event_title}
       </p>
       <div className="pop_up">
-              {holiday.event ? <EventCard id={_id} /> : null}
-            </div>
+        {holiday.event ? <EventCard id={_id} /> : null}
+      </div>
     </li>
   );
 }

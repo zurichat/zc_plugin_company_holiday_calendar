@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
 import PluginLogo from "./assets/images/pluginLogo.png";
@@ -21,7 +21,9 @@ const Landing = () => {
         setNavOpen(true)
     }
   }
-
+  
+  const features = useRef(null)
+  const howItWorks = useRef(null)
 
   return (
     <div className="landing-page">
@@ -51,10 +53,10 @@ const Landing = () => {
           </div>
           <div className="nav-list-wrapper">
             <div className="nav-list">
-              <Link to ="home" className="list">Features</Link>
-              <Link to ="about" className="list">How It Works</Link>
-              <Link to = "contact" className="list">Contact Us</Link>
-              <Link to = "pricing" className="list">FAQs</Link>
+              <span onClick={()=>{features.current.scrollIntoView({behavior: 'smooth'})}} className="list">Features</span>
+              <span onClick={()=>{howItWorks.current.scrollIntoView({behavior: 'smooth'})}} className="list">How It Works</span>
+              <span className="list">Contact Us</span>
+              <span className="list">FAQs</span>
               <button>Install</button>
             </div>
           </div>
@@ -105,12 +107,12 @@ const Landing = () => {
         <p>Video Tutorial</p>
         <video className="landing-video" src="" controls></video>
       </div>  
-      <div className="main-features-container">
+      <div ref={features} className="main-features-container">
         <section
           id="features"
           className="main-features-sections features-topics"
         >
-          <h2>Features</h2>
+          <h2>FEATURES</h2>
           <p> (User-Friendly Features You’ll Love) </p>
         </section>
         <section className="main-features-sections main-create-events">
@@ -130,25 +132,25 @@ const Landing = () => {
             </p>
           </div>
           <div className="create-events-right">
-            <img src={Companyholiday} />
+            <img src={Companyholiday} alt="" />
           </div>
         </section>
         <section className="main-features-sections main-reminder">
-          <div className="reminder-left">
-            <img src={AddReminder} />
-          </div>
           <div className="reminder-right">
-            <h3> Add Reminders for All Your Team Members</h3>
+            <h3> <span clasName="green-text">Add Reminders</span> for All Your Team Members</h3>
             <p>
               As a team lead with access, you can easily add reminders to your
-              events <span>company-wide</span>
+              events <span>company-wide </span>
               and help everyone in your organization <span>stay updated</span>.
             </p>
+          </div>
+          <div className="reminder-left">
+            <img src={AddReminder} />
           </div>
         </section>
         <section className="main-features-sections main-personal-reminder">
           <div className="personal-reminder-left">
-            <h3> Set Personal Reminders </h3>
+            <h3> Set <span className="green-text">Personal Reminders</span> </h3>
             <p>
               {" "}
               The tool lets <span>employees set their own reminders.</span>
@@ -158,19 +160,20 @@ const Landing = () => {
             </p>
           </div>
           <div className="personal-reminder-left">
-            <img src={PersonalReminder} />
+            <img src={PersonalReminder} alt="" />
           </div>
         </section>
         <section className="main-features-sections main-custom-event">
           <div className="custom-event-left">
-            <img src={Custom} />
-          </div>
-          <div className="custom-event-right">
             <p>
               {" "}
-              Reminders can be up to the last minute, customized and repeated
-              with a single click of a button.
+              Reminders can be up to the last minute, <span className="green-text">customized </span> 
+              and <span className="green-text">repeated </span>
+              with <span className="green-text">a single click of a button.</span>
             </p>
+          </div>
+          <div className="custom-event-right">
+            <img src={Custom} />
           </div>
         </section>
       </div>
@@ -244,7 +247,7 @@ const Landing = () => {
           according to their preferred time zones.
         </p>
       </section>
-      <section id="how-it-works" className="how-it-works">
+      <section ref={howItWorks} id="how-it-works" className="how-it-works">
         <h2 className="title">HOW IT WORKS</h2>
         <p className="sample">
           <span className="span-color">(Simple Walkthrough)</span>
