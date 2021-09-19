@@ -11,7 +11,7 @@ on:
 #       - master
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+workflow_dispatch:
 
 jobs:
   build:
@@ -20,13 +20,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
-        
+
         # This job is to cache the node modules in order to reduce the time it would take to run
       - name: Use cached node_modules
         uses: c-hive/gha-yarn-cache@v2
         with:
-         directory: zc_frontend
+         directory: zc_plugin_company_holiday_calendar/calendar_frontend
          
          #this job installs intalls yarn dependencies on the github runner
          #and also to build the static files that would be transferred to server later
@@ -37,12 +36,11 @@ jobs:
           yarn install
           yarn build
           
-          
         # in the server your normal workflow except omitting yarn build
       - name: Git Pull on Server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.ZURI_MAIN_HOST }}
+          host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
@@ -61,7 +59,7 @@ jobs:
         uses: Creepios/sftp-action@v1.0.1
         with:
           username: ${{ secrets.USERNAME }}
-          host: ${{ secrets.ZURI_MAIN_HOST }}
+          host: ${{ secrets.HOST }}
           password: ${{ secrets.PASSWORD }}
           localPath: '~/zc_plugin_company_holiday_calendar/calendar_frontend/build/'
           remotePath: '~/zc_plugin_company_holiday_calendar/calendar_frontend/build'
