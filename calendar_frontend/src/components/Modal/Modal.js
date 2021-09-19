@@ -184,6 +184,8 @@ const Modal = () => {
                       />
                     </div>
 
+                    <p>to</p>
+
                     <div
                       className={`dateInput icon-enabled-date-picker ${
                         errors.endDate ? "input-error" : ""
@@ -228,6 +230,9 @@ const Modal = () => {
                         alt=""
                       />
                     </div>
+
+                    <p>to</p>
+
                     <div
                       className={`timeInput icon-enabled-date-picker ${
                         errors.endTime ? "input-error" : ""
@@ -251,29 +256,35 @@ const Modal = () => {
                         alt="event-field-icon"
                       />
                     </div>
-
-                    <div
-                      className={`gmtInput ${errors.gmt ? "input-error" : ""}`}
-                    >
-                      <select
-                        style={{ color: "#616061" }}
-                        className="time-select"
-                        {...register("gmt", { required: "Select GMT" })}
-                      >
-                        {gmtStrings.map((gmtString, index) => (
-                          <option
-                            style={{ color: "#616061" }}
-                            value={gmtString.value}
-                            key={index}
-                          >
-                            {gmtString.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
                   </div>
 
                   <div className="row fourthRow">
+                    <div className="gmtInput-wrapper">
+                      <label>Time Zone</label>
+                      <div
+                        className={`gmtInput ${errors.gmt ? "input-error" : ""}`}
+                      >
+                        <select
+                          style={{ color: "#616061" }}
+                          className="time-select"
+                          {...register("gmt", { required: "Select GMT" })}
+                        >
+                          {gmtStrings.map((gmtString, index) => (
+                            <option
+                              selected = {gmtString.value === "+0GMT"}
+                              style={{ color: "#616061" }}
+                              value={gmtString.value}
+                              key={index}
+                            >
+                              {gmtString.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="row fifthRow">
                     <div>
                       <input type="checkbox" {...register("allDay")} />
                       <label htmlFor="allDay"> All Day</label>
@@ -281,7 +292,7 @@ const Modal = () => {
                     </div>
                   </div>
 
-                  <div className="row fifthRow">
+                  <div className="row sixthRow">
                     <EventDescription
                       description={description}
                       setDescription={setDescription}
