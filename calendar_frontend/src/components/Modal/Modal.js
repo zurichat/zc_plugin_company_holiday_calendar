@@ -24,7 +24,7 @@ function Alert(props) {
 const Modal = () => {
   const states = useContext(AppContext);
 
-  const { isModalOpen, setIsModalOpen, showEventPage, setShowEventPage, currentFormData, setCurrentFormData } =
+  const { isModalOpen, setIsModalOpen, showEventPage, setShowEventPage, currentFormData, setCurrentFormData, fetchData, setFetchData } =
     states;
 
   const [color, setColor] = useState("#00B87C");
@@ -440,6 +440,7 @@ const Modal = () => {
                       variant="contained"
                       style={{ backgroundColor: "#00B87C", color: "#fff" }}
                       className="eventButtons__create"
+                      onClick={ setTimeout(()=>setFetchData(!fetchData), 3000)}
                     >
                       {currentFormData == null ? 'Create' : 'Update'}
                     </Button>
