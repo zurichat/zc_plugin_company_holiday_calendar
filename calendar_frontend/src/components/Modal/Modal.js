@@ -174,7 +174,7 @@ const Modal = () => {
       {isModalOpen && (
         <div className="modal">
           <header>
-            <h4>Add New Event</h4>
+            <h4>{currentFormData == null ? 'Add New Event' : 'Update Event'}</h4>
             <i
               className="far fa-times-circle"
               onClick={() => {
@@ -205,7 +205,7 @@ const Modal = () => {
             {showEventPage ? (
               <div className="event-tab">
                 <form
-                  onSubmit={handleSubmit(updateFormSubmission)}
+                  onSubmit={currentFormData == null ? handleSubmit(handleFormSubmission) : handleSubmit(updateFormSubmission)}
                   className="evenForm"
                 >
                   {/* {JSON.stringify(currentFormData, 2)} */}
