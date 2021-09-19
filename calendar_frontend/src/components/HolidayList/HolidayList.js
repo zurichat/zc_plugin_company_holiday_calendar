@@ -15,7 +15,14 @@ const HolidayList = () => {
     const holidays = await response.json();
     return holidays.data.slice(11);
   };
-
+  
+  function holidaysSorter(holidays){
+    var sortedDays= [];
+    holidays.forEach(holiday => {
+      sortedDays.push(holiday.start_date.slice(5,7))
+    });     
+  }
+  
   const days = [
     'Sunday',
     'Monday',
@@ -32,12 +39,14 @@ const HolidayList = () => {
           return (
             holiday.start_date.slice(0, 4) === year.toString() &&
             months.indexOf(month) + 1 ===
-              parseInt(holiday.start_date.slice(5, 7))
-          );
+              parseInt(holiday.start_date.slice(5, 10))
+          )
         })
       );
     });
+
   }, [url, month, year, months]);
+  
   return (
     <div
       className='home-page'
@@ -50,11 +59,11 @@ const HolidayList = () => {
         const {
           _id,
           start_date,
-          all_day,
-          event_title,
-          event_colour,
           start_time,
           end_time,
+          all_day,
+          event_title,
+          event_colour,          
         } = holiday;
         return (
           <li
@@ -64,8 +73,10 @@ const HolidayList = () => {
           >
             <div className='date-icons'>
               <span className='event-date'>
+                
                 {days[new Date(start_date).getDay()]}{' '}
                 {new Date(start_date).getDate()}
+                
               </span>
               <span className='edit-del'>
                 <FiEdit2 style={{ marginRight: '5px' }} />
@@ -96,6 +107,8 @@ const HolidayList = () => {
         );
       })}
     </div>
+  
+  
   );
 };
 
