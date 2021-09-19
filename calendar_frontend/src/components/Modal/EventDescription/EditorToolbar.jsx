@@ -1,5 +1,7 @@
+import { FormatBoldOutlined, Link } from "@material-ui/icons";
 import React from "react";
 import { Quill } from "react-quill";
+import "./EditorToolbar.css";
 
 // Custom Undo button icon component for Quill editor. You can import it directly
 // from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
@@ -41,6 +43,10 @@ Font.whitelist = [
   "helvetica",
   "lucida",
 ];
+const icons = Quill.import("ui/icons");
+icons.bold = null;
+
+icons.link = null;
 Quill.register(Font, true);
 
 // Modules object for setting up the Quill editor
@@ -76,12 +82,16 @@ export const formats = [
 const QuillToolbar = () => (
   <div id="toolbar">
     <span className="ql-formats">
-      <button className="ql-bold" />
+      <button className="ql-bold">
+        <FormatBoldOutlined />
+      </button>
       <button className="ql-italic" />
       <button className="ql-underline" />
       <button className="ql-list" value="ordered" />
       <button className="ql-list" value="bullet" />
-      <button className="ql-link" />
+      <button className="ql-link">
+        <Link />
+      </button>
     </span>
   </div>
 );

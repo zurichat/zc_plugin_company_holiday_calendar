@@ -6,6 +6,7 @@ import Bell from "./Shape.png";
 import { FaClock } from "react-icons/fa";
 import { useEffect } from "react";
 import axios from "axios";
+import parse from "html-react-parser";
 
 const EventCard = ({ id }) => {
   const [eventData, setEventData] = useState({
@@ -55,6 +56,7 @@ const EventCard = ({ id }) => {
   eventData.loading && (content = <p>Loading....</p>);
 
   eventData.error && (content = <p> An Error Occured</p>);
+
   return (
     <div className="cards">
       {eventData.data ? (
@@ -94,7 +96,7 @@ const EventCard = ({ id }) => {
           </div>
           <div className="event_desc">
             <h5>Description</h5>
-            <p>{description}</p>
+            {description ? parse(`${description}`) : <p>Loading</p>}
           </div>
 
           <div className="_reminder">
