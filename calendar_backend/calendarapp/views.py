@@ -14,6 +14,13 @@ from .datastore import DataBase
 from calendar_backend.settings import PLUGIN_ID, ORGANIZATION_ID
 
 
+
+# new imports (authentication task)
+from rest_framework.decorators import permission_classes
+from .permissions import UserIsAuthenticated
+
+
+
 """
 Creating a view for calendar
 """
@@ -86,26 +93,33 @@ def ping_view(request):
 
 
 @api_view(['PUT', 'PATCH'])
+# @permission_classes((UserIsAuthenticated, ))
 def update_event_view(request, pk):
     """
     patch:
     Update Specific fields of individual events by ID without affecting others
-
-    put:
-    Update all fields of individual events by ID without affecting others
     """
-    
+
     serializer = EventSerializer(data=request.data)
-    url = f'https://api.zuri.chat/data/write/{PLUGIN_ID}/event/{ORGANIZATION_ID}?_id={pk}'
+    url = 'https://api.zuri.chat/data/write'
 
     try:
         if serializer.is_valid(raise_exception=True):
-            serialized_data = serializer.data
-            response = request.patch(url, data=serialized_data)
+            event_payload = {
+                "plugin_id": PLUGIN_ID,
+                "organization_id": ORGANIZATION_ID,
+                "collection_name": "events",
+                "bulk_write": False,
+                "object_id": pk,
+                "filter": {},
+                "payload": serializer.data
+            }
+            response = requests.put(url=url, json=event_payload)
 
             if response.status_code != 200:
-                return Response({'success':False, 'errors':response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)
-            return Response({'success':True, 'response':response.json()}, status=status.HTTP_200_OK)
+                return Response({'success': False, 'errors': response.json()['message']},
+                                status=status.HTTP_400_BAD_REQUEST)
+            return Response({'success': True, 'response': response.json()}, status=status.HTTP_200_OK)
     except exceptions.ConnectionError as e:
         return Response({'success': False, 'errors': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -115,6 +129,7 @@ class CreateEventView(generics.CreateAPIView):
     This is  a create view for creating an event . The method allowed  is POST
     """
     serializer_class = EventSerializer
+    # permission_classes = [UserIsAuthenticated]
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -150,7 +165,10 @@ class CreateEventView(generics.CreateAPIView):
 
 
 # Fetch list of events from zuri core
-@ api_view(['GET'])
+
+
+@api_view(['GET'])
+#@permission_classes((UserIsAuthenticated, ))
 def event_list(request):
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
@@ -188,6 +206,8 @@ def event_list(request):
 
 
 @ api_view(['GET'])
+# @permission_classes((UserIsAuthenticated, ))
+
 def event_detail_view(request, id):
     '''
     event detail view with a list of event-specific reminder(s) previously
@@ -240,6 +260,7 @@ This is a destroy view for deleting events.
 
 
 @api_view(['DELETE'])
+# @permission_classes((UserIsAuthenticated, ))
 def event_delete_view(request, id):
     plugin_id = PLUGIN_ID
     organization_id = ORGANIZATION_ID
@@ -269,6 +290,7 @@ def event_delete_view(request, id):
 
 class CreateReminderView(generics.GenericAPIView):
     serializer_class = ReminderSerializer
+    # permission_classes = [UserIsAuthenticated]
 
     def post(self, request):
         event_id = request.query_params.get('_id')
@@ -308,8 +330,32 @@ class CreateReminderView(generics.GenericAPIView):
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
+"""
+This is a standalone Reminder ListView
+"""
+@api_view(['GET'])
+def reminder_list(request):
+    plugin_id = PLUGIN_ID
+    organization_id = ORGANIZATION_ID
+    collection_name = "reminders"
+    
+    if request.method == "GET":
+        #getting data from zuri core
+        url = f"https://api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}/"
+
+        try:
+            response = requests.get(url=url)
+            if response.status_code == 200:
+                reminders_list = response.json()['data']
+                return Response(reminders_list, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": response.json()["message"]}, status=response.status_code)
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+
 
 @api_view(['DELETE'])
+# @permission_classes((UserIsAuthenticated, ))
 def delete_reminder(request, id):
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
@@ -336,3 +382,37 @@ def delete_reminder(request, id):
 
     except exceptions.ConnectionError as e:
         return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+
+
+class ReminderUpdateView(generics.UpdateAPIView):
+    serializer_class = ReminderSerializer
+    database = DataBase()
+    coll_name = "reminders"
+
+    def update(self, request, *args, **kwargs):
+        object_id = self.kwargs['pk']
+
+        instance = self.database.get(self.coll_name, {"_id": object_id})
+        if instance.get("error"):
+            return instance
+        #
+        # instance = None
+        # if response.get('_id') == object_id:
+        #     instance = response
+        # print(instance)
+        # if not instance:
+        #     return
+
+        object_id = instance.pop('_id')
+        partial = kwargs.pop('partial', False)
+
+        serializer = self.get_serializer(data=request.data, instance=instance, partial=partial)
+
+        if serializer.is_valid():
+            serializer.save()
+
+        event_update = serializer.data
+
+        response = self.database.put(self.coll_name, event_update, object_id=object_id)
+        print(response)
+        return Response(data=response)
