@@ -67,7 +67,7 @@ function App() {
         })
       );
     });
-  }, [month, year]);
+  }, [month, year, fetchData]);
 
   const handleOverlay = () => {
     setIsEventOpen(false);
