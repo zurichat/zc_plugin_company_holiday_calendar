@@ -313,6 +313,29 @@ class CreateReminderView(generics.GenericAPIView):
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
+"""
+This is a standalone Reminder ListView
+"""
+@api_view(['GET'])
+def reminder_list(request):
+    plugin_id = PLUGIN_ID
+    organization_id = ORGANIZATION_ID
+    collection_name = "reminders"
+    
+    if request.method == "GET":
+        #getting data from zuri core
+        url = f"https://api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}/"
+
+        try:
+            response = requests.get(url=url)
+            if response.status_code == 200:
+                reminders_list = response.json()['data']
+                return Response(reminders_list, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": response.json()["message"]}, status=response.status_code)
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+
 
 @api_view(['DELETE'])
 def delete_reminder(request, id):
