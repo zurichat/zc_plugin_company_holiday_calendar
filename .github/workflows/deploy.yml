@@ -31,8 +31,8 @@ jobs:
          #and also to build the static files that would be transferred to server later
       - name: install Dependencies
         run: |
-          yarn install
           cd calendar_frontend
+          export CI=false
           yarn install
           yarn build
           
