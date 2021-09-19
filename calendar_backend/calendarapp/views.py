@@ -417,3 +417,9 @@ class ReminderUpdateView(generics.UpdateAPIView):
         response = self.database.put(self.coll_name, event_update, object_id=object_id)
         print(response)
         return Response(data=response)
+
+@api_view(['GET'])
+def reminder_detail(request, id):
+    response =  {"status": True, "message": f"You have reached the API endpoint to retrieve the reminder with id : {id}"}
+
+    return Response(response, status= status.HTTP_200_OK)
