@@ -90,18 +90,23 @@ def update_event_view(request, pk):
     """
     patch:
     Update Specific fields of individual events by ID without affecting others
-
-    put:
-    Update all fields of individual events by ID without affecting others
     """
     
     serializer = EventSerializer(data=request.data)
-    url = f'https://api.zuri.chat/data/write/{PLUGIN_ID}/event/{ORGANIZATION_ID}?_id={pk}'
+    url = 'https://api.zuri.chat/data/write'
 
     try:
         if serializer.is_valid(raise_exception=True):
-            serialized_data = serializer.data
-            response = request.patch(url, data=serialized_data)
+            event_payload = {
+            "plugin_id": PLUGIN_ID,
+            "organization_id": ORGANIZATION_ID,
+            "collection_name": "events",
+            "bulk_write": False,
+            "object_id": pk,
+            "filter": {},
+            "payload": serializer.data
+        }
+            response = requests.put(url=url, json=event_payload)
 
             if response.status_code != 200:
                 return Response({'success':False, 'errors':response.json()['message']}, status=status.HTTP_400_BAD_REQUEST)

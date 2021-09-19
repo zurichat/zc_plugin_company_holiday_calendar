@@ -1,7 +1,7 @@
 .modal {
   position: absolute;
   width: 425px;
-  min-height: 744px;
+  min-height: 800px;
   background: #ffffff;
   z-index: 3;
   left: 0;
@@ -141,6 +141,10 @@
   bottom: 0;
 }
 
+.eventButtons .MuiButton-root{
+  text-transform: none !important;
+}
+
 /* Event form */
 .input-error {
   border-bottom: 1px solid #ff0000 !important;
@@ -158,9 +162,11 @@
 .evenForm .firstRow,
 .evenForm .secondRow,
 .evenForm .thirdRow,
-.evenForm .fourthRow {
+.evenForm .fourthRow,
+.evenForm .fifthRow {
   display: flex;
   justify-content: space-between;
+  color: #616061;
 }
 
 .event-field-icon {
@@ -198,7 +204,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 44%;
+  width: 43%;
 }
 
 .react-datepicker {
@@ -364,19 +370,33 @@
 /* Time Input and GMT */
 
 .timeInput {
-  width: 30%;
+  width: 43%;
   border-bottom: 1px solid #f6f6f6;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
+.gmtInput-wrapper {
+  width: 35%;
+}
+
+.gmtInput-wrapper label{
+  color: #000;
+  font-weight: bold;
+}
+
 .gmtInput {
-  width: 23%;
+  width: 100%;
+  margin-top: 10px;
   border-bottom: 1px solid #f6f6f6;
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.gmtInput select{
+  width: 100%;
 }
 
 .time-select {
@@ -387,13 +407,13 @@
   outline: none;
 }
 
-.fourthRow div {
+.fifthRow div {
   display: flex;
   align-items: center;
   color: #616061;
   font-size: 14px;
 }
-.fourthRow div input {
+.fifthRow div input {
   margin-right: 5px;
 }
 /** Reminder date and time**/
