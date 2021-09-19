@@ -14,6 +14,11 @@ from .datastore import DataBase
 from calendar_backend.settings import PLUGIN_ID, ORGANIZATION_ID
 
 
+# new imports (authentication task)
+from rest_framework.decorators import permission_classes
+from .permissions import UserIsAuthenticated
+
+
 """
 Creating a view for calendar
 """
@@ -86,6 +91,7 @@ def ping_view(request):
 
 
 @api_view(['PUT', 'PATCH'])
+# @permission_classes((UserIsAuthenticated, ))
 def update_event_view(request, pk):
     """
     patch:
@@ -120,6 +126,7 @@ class CreateEventView(generics.CreateAPIView):
     This is  a create view for creating an event . The method allowed  is POST
     """
     serializer_class = EventSerializer
+    # permission_classes = [UserIsAuthenticated]
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -156,6 +163,7 @@ class CreateEventView(generics.CreateAPIView):
 
 # Fetch list of events from zuri core
 @ api_view(['GET'])
+@permission_classes((UserIsAuthenticated, ))
 def event_list(request):
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
@@ -193,6 +201,7 @@ def event_list(request):
 
 
 @ api_view(['GET'])
+# @permission_classes((UserIsAuthenticated, ))
 def event_detail_view(request, id):
     '''
     event detail view with a list of event-specific reminder(s) previously
@@ -245,6 +254,7 @@ This is a destroy view for deleting events.
 
 
 @api_view(['DELETE'])
+# @permission_classes((UserIsAuthenticated, ))
 def event_delete_view(request, id):
     plugin_id = PLUGIN_ID
     organization_id = ORGANIZATION_ID
@@ -274,6 +284,7 @@ def event_delete_view(request, id):
 
 class CreateReminderView(generics.GenericAPIView):
     serializer_class = ReminderSerializer
+    # permission_classes = [UserIsAuthenticated]
 
     def post(self, request):
         event_id = request.query_params.get('_id')
@@ -338,6 +349,7 @@ def reminder_list(request):
 
 
 @api_view(['DELETE'])
+# @permission_classes((UserIsAuthenticated, ))
 def delete_reminder(request, id):
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
