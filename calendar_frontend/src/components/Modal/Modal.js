@@ -31,8 +31,8 @@ const Modal = () => {
     setShowEventPage,
     currentFormData,
     setCurrentFormData,
-    // fetchData,
-    // setFetchData,
+    fetchData,
+    setFetchData,
   } = states;
 
   const [color, setColor] = useState("#00B87C");
@@ -425,7 +425,7 @@ const Modal = () => {
                       variant="contained"
                       style={{ backgroundColor: "#00B87C", color: "#fff" }}
                       className="eventButtons__create"
-                      // onClick={() => setTimeout(setFetchData(!fetchData), 3000)}
+                      onClick={() => setTimeout(()=>setFetchData(!fetchData), 2000)}
                     >
                       {currentFormData == null ? "Create" : "Update"}
                     </Button>
