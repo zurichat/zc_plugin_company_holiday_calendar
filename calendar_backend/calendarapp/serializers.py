@@ -32,16 +32,16 @@ class EventSerializer(serializers.Serializer):
     Creating  a serializer class for events
     """
     _id = serializers.ReadOnlyField()
-    event_title = serializers.CharField(required=True)
-    start_date = serializers.DateField(required=True)
-    end_date = serializers.DateField(required=True)
-    start_time = serializers.TimeField(required=True)
-    end_time = serializers.TimeField(required=True)
-    time_zone = serializers.CharField(required=True)
-    description = serializers.CharField(max_length=250, required=True)
+    event_title = serializers.CharField(required=False)
+    start_date = serializers.DateField(required=False)
+    end_date = serializers.DateField(required=False)
+    start_time = serializers.TimeField(required=False)
+    end_time = serializers.TimeField(required=False)
+    time_zone = serializers.CharField(required=False)
+    description = serializers.CharField(max_length=250, required=False)
     all_day = serializers.BooleanField(required=False)
-    event_tag = serializers.CharField(required=True)
-    event_colour = serializers.CharField(required=True)
+    event_tag = serializers.CharField(required=False)
+    event_colour = serializers.CharField(required=False)
     images = serializers.ImageField(required=False)
 
     def __str__(self):
