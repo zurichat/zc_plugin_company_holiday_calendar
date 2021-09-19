@@ -1,15 +1,12 @@
 /* header navigation styling */
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@500&display=swap');
-.landing-page{
-  background: #FFFFFF;
-}
 .landing-nav {
   padding: 0px 100px;
   min-height: 10vh;
   transition: .5s ease-in-out;
   overflow: hidden;
   height: 0;
-  background: #FFFFFF;
+  z-index: 1000;
 }
 .nav-content{
   width: 100%;
@@ -66,10 +63,11 @@
 }
 .landing-nav button {
   background: #00B87C;
-  border-radius: 15px;
+  border-radius: 3px;
   color: #fff;
   padding: 10px 30px;
   border: none;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1300px){
@@ -79,6 +77,9 @@
 }
 
 @media screen and (max-width: 1100px) {
+  .landing-nav {
+    padding: 0px 40px;
+  }
   .nav-content{
     flex-direction: column;
   }
@@ -88,8 +89,8 @@
     justify-content: space-between;
     align-items: center;
   }
-  .logo {
-    width: 80px;
+  .logo-wrapper .pluginLogo {
+    width: 60px;
   }
   .nav-list-wrapper {
     margin-top: 3rem;
@@ -106,43 +107,27 @@
   .collapse {
     height: 30rem;
   }
-  /*
-  .collapse .nav-content{
-    padding-top: 0px;
-  } */
   .toggle-icon {
     display: block;
   }
 }
-  /*
-  .nav-row {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
+
+@media screen and (max-width: 400px) {
+  .landing-nav {
+    padding: 0px 40px;
   }
-  
-  .nav-list .list {
-    padding-bottom: 10px;
-    padding-left: 0;
+  .logo-wrapper .pluginLogo{
+    width: 50px;
   }
-  
-}
-@media screen and (max-width: 450px) {
-  .logo {
-    width: 150px;
+  .logo-wrapper .logo-text{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
   }
-  .nav {
-    padding: 0 10px;
-  }
-  .toggle-icon .menu-icon {
-    padding: 1rem 0;
+  .toggle-icon .menu-icon .drop-icon {
+    width: 1.6rem;
   }
 }
- */
-
-
-
-/* landing intro */
 
 .landing-intro{
   display: flex;
@@ -166,11 +151,12 @@
 .intro-left button{
   font-family: 'Lato', sans-serif;
   background: #00B87C;
-  border-radius: 15px;
+  border-radius: 3px;
   color: #fff;
   padding: 8px 30px;
   font-size: 16px;
   border: none;
+  cursor: pointer;
 }
 
 .intro-right .semi-circle{
@@ -181,6 +167,7 @@
   height: 50rem;
   width: 50rem;
   border-bottom-left-radius: 80rem;
+  z-index: -1;
 }
 
 .landing-numbers{
@@ -194,7 +181,8 @@
   border-radius: 15px;
   display: flex;
   justify-content: space-around;
-  padding: 0 0 30px 0;
+  flex-wrap: wrap;
+  padding: 0 30px 30px 30px;
 }
 .landing-numbers-container div{
   display: flex;
@@ -217,9 +205,10 @@
   padding: 0 100px;
 }
 .landing-short-description p{
-  font-weight: bold;
+  font-weight: 700;
   font-family: 'Lato', sans-serif;
-  font-size: 18px;
+  font-size: 17px;
+  color: #242424;
 }
 
 .landing-video-tutorial{
@@ -228,7 +217,8 @@
 }
 .landing-video-tutorial p{
   font-weight: bold;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 30px;
 }
 
 .landing-video{
@@ -246,17 +236,53 @@
 }
 
 @media screen and (max-width: 1100px) {
+  .intro-left{
+    width: 70%;
+  }
   .intro-left h1{
     font-weight: 900;
     font-family: 'Lato', sans-serif;
     font-size: 2.9rem;
-    width: 60%;
     margin-bottom: 3rem; 
   }
   .intro-device-img{
     display: none;
   }
+  .intro-right .semi-circle{
+    display: none;
+  }
+  .landing-intro{
+    padding: 50px 0px 0px 40px;
+  }
+  .landing-numbers{
+    padding: 0 40px;
+  }
+  .landing-short-description{
+    padding: 0 40px;
+  }
+  .landing-video-tutorial{
+    padding: 0 40px;
+  }
 
+}
+
+@media screen and (max-width: 600px){
+  .intro-left{
+    width: 90%;
+  }
+  .intro-left h1{
+    font-size: 2rem;
+  }
+  .landing-numbers-container{
+    padding: 50px;
+  }
+  .landing-numbers-container div{
+    margin-bottom: 3rem;
+  }
+  .landing-numbers-icon{
+    width: 8rem;
+    margin-bottom: 1rem;
+  }
 }
 
 /* main features styling */
@@ -273,17 +299,16 @@
 }
 .main-features-sections h3 {
   font-family: Lato;
-font-style: normal;
-font-weight: bold;
-font-size: 1.6rem;
-line-height: 130%;
-text-align: center;
-padding: .5rem 0;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.6rem;
+  line-height: 130%;
+  padding: .5rem 0;
 }
 .main-features-sections p {
-  text-align: center;
   padding: .5rem 0;
-
+  margin-bottom: 1rem;
+  color: #8C8C8C;
 }
 .main-features-container img {
  max-width: 100%;
@@ -291,10 +316,23 @@ padding: .5rem 0;
 .main-features-container > * {
   grid-column: 1/-1;
 }
-.main-features-sections{
+.main-features-sections.features-topics{
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2rem;
+}
+.main-features-sections.features-topics h2{
+  margin: 0;
+  line-height: 40px;
+}
+.main-features-sections.features-topics p{
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+}
+
+.main-features-sections{
   padding: 0.8rem 0;
 }
 .main-features-sections h2 {
@@ -316,51 +354,41 @@ margin: 0;
 .create-events-left, .create-events-right {
   padding: 0.2rem 0;
 }
-.main-reminder {
-  flex-direction: column-reverse;
-}
+
 
 @media screen and (min-width:600px){
   .main-features-container {
     padding: 1.8rem 2rem;
-  }
-  .main-features-sections{
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .create-events-left, .reminder-left,
-  .personal-reminder-left, .custom-event-left{
-    padding-right: 2rem;
-  }
-  .create-events-right, .reminder-right, 
-  .personal-reminder-right, .custom-event-right {
-    padding-left: 2rem;
-  }
-  .main-features-sections{
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .create-events-left, .reminder-left,
-  .personal-reminder-left, .custom-event-left{
-    padding-right: 1.2rem;
-  }
-  .create-events-right, .reminder-right, 
-  .personal-reminder-right, .custom-event-right {
-    padding-left: 1.2rem;
   }
   .main-features-sections > * {
     width: 50%;
     margin: 1rem 0;
   }
   .main-features-sections h3 {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
   }
   .main-features-sections p{
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .features-topics {
     flex-direction: column;
     text-align: center;
+  }
+  .main-features-sections > * {
+    width: 45%;
+    margin: 1rem 0;
+  }
+  .main-create-events,
+  .main-reminder,
+  .main-personal-reminder,
+  .main-custom-event{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  .main-reminder, .main-custom-event{
+    flex-direction: row-reverse;
   }
 }
 
@@ -368,39 +396,8 @@ margin: 0;
   .main-features-container {
     padding: 20px 100px;
   }
-  .main-features-sections{
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .create-events-left, .reminder-left,
-  .personal-reminder-left, .custom-event-left{
-    padding-right: 2rem;
-  }
-  .create-events-right, .reminder-right, 
-  .personal-reminder-right, .custom-event-right {
-    padding-left: 2rem;
-  }
-  .main-features-sections{
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  .create-events-left, .reminder-left,
-  .personal-reminder-left, .custom-event-left{
-    padding-right: 2rem;
-  }
-  .create-events-right, .reminder-right, 
-  .personal-reminder-right, .custom-event-right {
-    padding-left: 2rem;
-  }
-  .main-features-sections > * {
-    width: 50%;
-    margin: 1rem 0;
-  }
-  .main-features-sections h3 {
-    font-size: 2rem;
-  }
-  .main-features-sections p{
-    font-size: 1.6rem;
+  .main-features-sections {
+    width: 100%;
   }
   .features-topics {
     flex-direction: column;
@@ -477,23 +474,22 @@ margin: 0;
 }
 .landing-page footer {
   background: #00271a;
-  padding: 10px 100px;
+  padding: 30px 100px 20px 100px;
   color: #fff;
 }
 .landing-page footer h4 {
   color: #fff;
   font-size: 26px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .btn-install {
-  background: #00b87c;
-  border-radius: 8px;
+  background: rgba(0, 184, 124, 1);
+  border-radius: 3px;
   color: #fff;
-  padding: 8px 15px;
-  letter-spacing: 2px;
+  padding: 10px 30px;
   border: none;
   cursor: pointer;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 .landing-page footer article {
   display: flex;
