@@ -23,9 +23,21 @@ class ReminderSerializer(serializers.Serializer):
     repeat = serializers.ChoiceField(required=False, choices=repeat_choices)
     all_day = serializers.BooleanField(required=False)
 
+    def update(self, instance, validated_data):
+        for data in validated_data:
+            instance[data] = validated_data[data]
+
+        return self.instance
+
     def __str__(self):
         return f"{self.title} created successfully"
 
+
+class Event(object):
+    def __init__(self, files, image):
+        self.files = files
+        self.image = image
+        
 
 class EventSerializer(serializers.Serializer):
     """
@@ -42,7 +54,7 @@ class EventSerializer(serializers.Serializer):
     all_day = serializers.BooleanField(required=False)
     event_tag = serializers.CharField(required=True)
     event_colour = serializers.CharField(required=True)
-    images = serializers.ImageField(required=False)
-
+    images = serializers.CharField(required=False)
+    
     def __str__(self):
         return f"{self.event_title} created successfully"

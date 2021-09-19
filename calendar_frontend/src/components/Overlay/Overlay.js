@@ -4,11 +4,14 @@ import './Overlay.css'
 
 const Overlay = () => {
   const states = useContext(AppContext)
-  const { isModalOpen, setIsModalOpen } = states
+  const { isModalOpen, setIsModalOpen, setCurrentFormData } = states
   return (
     <>
       {isModalOpen && (
-        <div className='overlay' onClick={() => setIsModalOpen(false)}></div>
+        <div className='overlay' onClick={() => {
+          setIsModalOpen(false)
+          setCurrentFormData()
+        }}></div>
       )}
     </>
   )
