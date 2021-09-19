@@ -1,3 +1,264 @@
+/* header navigation styling */
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Poppins:wght@500&display=swap');
+.landing-page{
+  background: #FFFFFF;
+}
+.landing-nav {
+  padding: 0px 100px;
+  min-height: 10vh;
+  transition: .5s ease-in-out;
+  overflow: hidden;
+  height: 0;
+  background: #FFFFFF;
+}
+.nav-content{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.green-text{
+  color: #00B87C;
+}
+.logo-wrapper{
+  display: flex;
+  align-items: center;
+}
+.logo-wrapper .pluginLogo{
+  width: 70px;
+}
+.logo-wrapper .logo-text{
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+.toggle-icon {
+  cursor: pointer;
+  display: none;
+}
+.toggle-icon .menu-icon {
+  display: flex;
+}
+.toggle-icon .menu-icon .drop-icon {
+  width: 2rem;
+}
+.nav-list-wrapper{
+  width: 46%;
+}
+.nav-list {
+  width: 100%;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-list .list {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+.nav-list .list:hover {
+  color: #00B87C;
+}
+.landing-nav button {
+  background: #00B87C;
+  border-radius: 15px;
+  color: #fff;
+  padding: 10px 30px;
+  border: none;
+}
+
+@media screen and (max-width: 1300px){
+  .nav-list-wrapper{
+    width: 49%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .nav-content{
+    flex-direction: column;
+  }
+  .nav-left{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    width: 80px;
+  }
+  .nav-list-wrapper {
+    margin-top: 3rem;
+    height: 20rem;
+  }
+  .nav-list {
+    width: 100%;
+    padding: 20px 0;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+  }
+  .collapse {
+    height: 30rem;
+  }
+  /*
+  .collapse .nav-content{
+    padding-top: 0px;
+  } */
+  .toggle-icon {
+    display: block;
+  }
+}
+  /*
+  .nav-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  
+  .nav-list .list {
+    padding-bottom: 10px;
+    padding-left: 0;
+  }
+  
+}
+@media screen and (max-width: 450px) {
+  .logo {
+    width: 150px;
+  }
+  .nav {
+    padding: 0 10px;
+  }
+  .toggle-icon .menu-icon {
+    padding: 1rem 0;
+  }
+}
+ */
+
+
+
+/* landing intro */
+
+.landing-intro{
+  display: flex;
+  align-items: center;
+  padding: 50px 0px 0px 100px;
+}
+
+.intro-left h1{
+  font-weight: 900;
+  font-family: 'Lato', sans-serif;
+  font-size: 2.9rem;
+  margin-bottom: 3rem; 
+}
+
+.intro-left p{
+  font-family: 'Lato', sans-serif;
+  color: rgba(140, 140, 140, 1);
+  margin-bottom: 2rem;
+}
+
+.intro-left button{
+  font-family: 'Lato', sans-serif;
+  background: #00B87C;
+  border-radius: 15px;
+  color: #fff;
+  padding: 8px 30px;
+  font-size: 16px;
+  border: none;
+}
+
+.intro-right .semi-circle{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(0, 245, 167, 0.15);
+  height: 50rem;
+  width: 50rem;
+  border-bottom-left-radius: 80rem;
+}
+
+.landing-numbers{
+  padding: 0 100px;
+  margin: 6rem 0;
+}
+.landing-numbers-container{
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 1px 1px 44px rgba(0, 184, 124, 0.25);
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 0 30px 0;
+}
+.landing-numbers-container div{
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: 150px;
+  text-align: center;
+}
+.landing-numbers-icon{
+  width: 5rem;
+}
+.landing-numbers-container div h3{
+  margin-bottom: 8px;
+}
+.landing-numbers-container div p{
+  color: rgba(140, 140, 140, 1);
+}
+
+.landing-short-description{
+  padding: 0 100px;
+}
+.landing-short-description p{
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+}
+
+.landing-video-tutorial{
+  padding: 0 100px;
+  margin: 5rem 0;
+}
+.landing-video-tutorial p{
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.landing-video{
+  width: 100%;
+  height: 500px;
+}
+
+@media screen and (max-width: 1300px){
+  .intro-left h1{
+    font-weight: 900;
+    font-family: 'Lato', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 3rem; 
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .intro-left h1{
+    font-weight: 900;
+    font-family: 'Lato', sans-serif;
+    font-size: 2.9rem;
+    width: 60%;
+    margin-bottom: 3rem; 
+  }
+  .intro-device-img{
+    display: none;
+  }
+
+}
+
 /* main features styling */
 .main-features-container{
   display: grid;
@@ -5,6 +266,7 @@
   width: 100%;
   grid-template-columns: repeat(12, 1fr);
   grid-row-gap: 20px;
+  background: #FFFFFF;
 }
 .main-features-container span {
   color: #00B87C;
