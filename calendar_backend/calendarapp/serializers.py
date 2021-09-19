@@ -1,4 +1,4 @@
-from Core.utils import get_timezones, DEFAULT_TIMEZONE
+from core.utils import get_timezones, DEFAULT_TIMEZONE
 from rest_framework import serializers
 
 
@@ -27,6 +27,14 @@ class ReminderSerializer(serializers.Serializer):
         return f"{self.title} created successfully"
 
 
+
+
+class Event(object):
+    def __init__(self, files, image):
+        self.files = files
+        self.image = image
+        
+
 class EventSerializer(serializers.Serializer):
     """
     Creating  a serializer class for events
@@ -42,7 +50,7 @@ class EventSerializer(serializers.Serializer):
     all_day = serializers.BooleanField(required=False)
     event_tag = serializers.CharField(required=True)
     event_colour = serializers.CharField(required=True)
-    images = serializers.ImageField(required=False)
-
+    images = serializers.CharField(required=False)
+    
     def __str__(self):
         return f"{self.event_title} created successfully"
