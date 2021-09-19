@@ -23,10 +23,14 @@ class ReminderSerializer(serializers.Serializer):
     repeat = serializers.ChoiceField(required=False, choices=repeat_choices)
     all_day = serializers.BooleanField(required=False)
 
+    def update(self, instance, validated_data):
+        for data in validated_data:
+            instance[data] = validated_data[data]
+
+        return self.instance
+
     def __str__(self):
         return f"{self.title} created successfully"
-
-
 
 
 class Event(object):
