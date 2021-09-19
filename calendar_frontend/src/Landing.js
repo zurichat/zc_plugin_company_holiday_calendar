@@ -132,7 +132,7 @@ const Landing = () => {
             </p>
           </div>
           <div className="create-events-right">
-            <img src={Companyholiday} />
+            <img src={Companyholiday} alt="" />
           </div>
         </section>
         <section className="main-features-sections main-reminder">
@@ -160,7 +160,7 @@ const Landing = () => {
             </p>
           </div>
           <div className="personal-reminder-left">
-            <img src={PersonalReminder} />
+            <img src={PersonalReminder} alt="" />
           </div>
         </section>
         <section className="main-features-sections main-custom-event">
