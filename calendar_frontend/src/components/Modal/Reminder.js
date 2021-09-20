@@ -25,6 +25,7 @@ const Reminder = () => {
             <DatePicker
             // onChange={onChange}
             // selected={value}
+            placeholderText="Date"
             />
 
             <i className="far fa-angle-down faIcons"></i>
@@ -35,6 +36,7 @@ const Reminder = () => {
             <DatePicker
               // onChange={onChange}
               // selected={value}
+              placeholderText="Time"
               showTimeSelect
               showTimeSelectOnly
               timeIntervals={15}

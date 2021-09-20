@@ -2,7 +2,6 @@ from pathlib import Path
 import os
 import environ
 
-
 env = environ.Env()
 environ.Env.read_env()
 
@@ -13,7 +12,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv(('SECRET_KEY'))
+SECRET_KEY = env('SECRET_KEY', default='bz7NtvhdBMKEgkUq3tct7CvYCeL8F331ucuOKFn2Y47RRAWdm4')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -24,12 +23,6 @@ CORS_ALLOWED_ORIGINS = [
     "https://calendar.zuri.chat",
     "http://calendar.zuri.chat",
 ]
-
-REST_FRAMEWORK = {
-    "DEFAULT_PARSER_CLASSES": [
-        'rest_framework.parsers.JSONParser',
-    ]
-}
 
 # Application definition
 
@@ -70,7 +63,6 @@ CORS_PREFLIGHT_MAX_AGE = 86400
 
 CORS_REPLACE_HTTPS_REFERER = True
 
-
 CORS_ALLOW_METHODS = [
     'DELETE',
     'GET',
@@ -87,7 +79,6 @@ CORS_ORIGIN_WHITELIST = [
     'https://calendar.zuri.chat',
     'http://calendar.zuri.chat'
 ]
-
 
 ROOT_URLCONF = 'calendar_backend.urls'
 
@@ -130,7 +121,11 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny'
     ],
 
-    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+
+    "DEFAULT_PARSER_CLASSES": [
+        'rest_framework.parsers.JSONParser',
+    ]
 }
 
 # Password validation
@@ -183,4 +178,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # PLUGIN DETAILS
 PLUGIN_ID = "614117a96173056af01b4cf8"
 ORGANIZATION_ID = "6133c5a68006324323416896"
-CENTRIFUGO_TOKEN = ""
+CENTRIFUGO_HOST = "https://realtime.zuri.chat/api"
+CENTRIFUGO_PORT = None
+CENTRIFUGO_HMAC_KEY = "3c109fee-e8d8-4a65-b4c8-b4b6d7f1dc64"
+CENTRIFUGO_API_KEY = "58c2400b-831d-411d-8fe8-31b6e337738b"

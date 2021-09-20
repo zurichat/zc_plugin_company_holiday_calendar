@@ -6,8 +6,10 @@ from calendar_backend import settings
 
 
 def confirm(data):
-    if type(data) == list or dict:
+    if type(data) == list:
         return True
+    elif type(data) == dict:
+        return False
     else:
         return False
 
@@ -21,7 +23,7 @@ class DataBase:
             self.org_id = settings.ORGANIZATION_ID
         else:
             self.plgn_id = request.data.get("plugin_id")
-            self.org_id = request.data.get("organization_id")
+            self.org_id = request.data.get("org_id")
 
     def post(self, collection_name, data):
         body = dict(
@@ -88,17 +90,34 @@ class DataBase:
         if 200 <= response.status_code < 300:
             if not bulk_write:
                 obj = {"_id": object_id}
-                response = DataBase.get(collection_name, obj)
-                return response[0]
+                response = self.get(collection_name, obj)
+                return response
             else:
-                response = DataBase.get(collection_name)
+                response = self.get(collection_name)
                 return response
         return {"error": response}
+
+    def delete(self, collection_name, _id):
+        body = dict(
+            plugin_id=self.plgn_id,
+            organization_id=self.org_id,
+            collection_name=collection_name,
+            object_id=_id,
+        )
+        try:
+            response = requests.post(url=self.deleteUrl, json=body)
+        except requests.exceptions.RequestException as x:
+            print(x)
+            return None
+        if 200 <= response.status_code < 300:
+            return response.json()
+        else:
+            return {"error": response.json()}
 
 
 def send_data2centrifugo(room, data):
     url = "https://realtime.zuri.chat/api"
-    headers = {'Content-type': 'application/json', 'Authorization': 'apikey ' + settings.CENTRIFUGO_TOKEN}
+    headers = {'Content-type': 'application/json', 'Authorization': 'apikey ' + settings.CENTRIFUGO_API_KEY}
     command = {
         "method": "publish",
         "params": {
@@ -114,19 +133,3 @@ def send_data2centrifugo(room, data):
         }
     except Exception as x:
         print(x)
-
-
-# Gets the rooms that a user is in
-def get_user_rooms(collection_name, org_id, user):
-    room_list = list()
-    rooms = DataBase.get(collection_name, {"org_id": org_id})
-    if rooms is None or "status_code" in rooms:
-        return rooms
-    else:
-        for room in rooms:
-            if "room_user_ids" in room:
-                if user in room["room_user_ids"]:
-                    room_list.append(room)
-                else:
-                    return room_list
-        return room_list
