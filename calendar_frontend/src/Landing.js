@@ -367,7 +367,7 @@ const Landing = () => {
 
         <Link to="/calendar" className="calendar-plugin">
               <button className="btn-install">Install</button>
-          
+          <Link/>
  
         <article>
           <span>
