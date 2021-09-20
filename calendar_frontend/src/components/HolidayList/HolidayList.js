@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import "./HolidayList.css";
 import { FiEdit2 } from "react-icons/fi";
@@ -7,8 +7,12 @@ import EventCard from "../EventPopup/EventCard";
 import EventDelBtn from "./EventDelete/EventDelBtn";
 import DeleteModal from "react-modal";
 
+// import { set } from "date-fns";
+
+
 const HolidayList = () => {
   const states = useContext(AppContext);
+  const [openDeleteEvent, setDeleteEvent] = useState(false);
   const {
     setShowMonth,
     setShowYear,
@@ -17,12 +21,12 @@ const HolidayList = () => {
     days,
     handleOverlay,
     isEventOpen,
+    isModalOpen,
     handleEventPopups,
     handleDel,
     openDeleteEvent,
     setDeleteEvent,
     setIsModalOpen,
-    isModalOpen,
     currentFormData,
     setCurrentFormData,
   } = states;
@@ -131,6 +135,7 @@ const HolidayList = () => {
               {holiday.event ? <EventCard id={_id} /> : null}
             </div>
           </li>
+
         );
       })}
 
@@ -174,3 +179,4 @@ const HolidayList = () => {
 };
 
 export default HolidayList;
+

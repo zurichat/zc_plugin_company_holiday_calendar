@@ -6,7 +6,6 @@
 *.pot
 *.pyc
 .__pycache__/
-.__pycache__
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -129,8 +128,6 @@ env/
 venv/
 .vscode/
 __pycache__
-venv/
-venv
 
 ENV/
 env.bak/

@@ -2,10 +2,16 @@ import React, { useState } from "react";
 import "./EventCard.css";
 import image from "./Rectangle.png";
 import Bell from "./Shape.png";
-
+import DatePicker from "react-datepicker";
 import { FaClock } from "react-icons/fa";
 import { useEffect } from "react";
 import axios from "axios";
+import { useForm } from "react-hook-form";
+import dropDown from "../Modal/Icons/Shape.png";
+import calendar from "../Modal/Icons/calendar-icon.png";
+import clock from "../Modal/Icons/clock-icon.png"
+import sync from "../Modal/Icons/Sync.png";
+
 
 const EventCard = ({ id }) => {
   const [eventData, setEventData] = useState({
@@ -13,6 +19,28 @@ const EventCard = ({ id }) => {
     data: [],
     error: false,
   });
+
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
+  const [occurrenceVal, setOccurrenceVal] = useState("Do not repeat");
+  const [addReminder, setAddReminder] = useState(false);
+  const [isButtonClick, setIsButtonClick] = useState(false);
+  //Import necessary function from useForm Hooks.
+  const { register, handleSubmit, formState: { errors }, clearErrors } = useForm();
+
+  // Form Handler.
+
+  const submitFormHandler = (reminderData) => {
+    const reminderFormData = {
+      date: `${date.getFullYear()} - ${date.getMonth() > 9 ? date.getMonth() : "0" + date.getMonth()} - 
+      ${date.getDate() > 9 ? date.getDate : "0" + date.getDate()}`,
+
+      time: `${time.getHours()}:${time.getMinutes()}:00`,
+      // allDay: `${checked.value}`,
+      // showMe: `${checked.value}`,
+      // visibility: `${checked.value}`,
+    }
+  }
 
   let content = null;
 
@@ -107,10 +135,114 @@ const EventCard = ({ id }) => {
                 </div>
               ) : (
                 <span className="reminder">
-                  <button className="reminder-dropdown"> Set Reminder</button>
+                  <button className="reminder-dropdown" onClick={() => {setAddReminder(!addReminder)}}> Set Reminder</button>
                 </span>
               )}
             </div>
+          </div>
+
+          <div className="reminder-form" style={{display: `${addReminder ? "block" : "none"}`}}>
+            <form onSubmit={handleSubmit(submitFormHandler)}>
+              <div className="set-reminder">
+                <div className="set-time-date">
+                    <div className="dateInput input">
+                      <img className="calendar-icon" src={calendar} alt="calendar-icon"/>
+
+                      <DatePicker
+                        onSelect={(dateVal) => setDate(dateVal)}
+                        selected={date}/>
+
+                      <img className="dropdown-icon" src={dropDown} alt="dropdown-icon"/>
+                    </div>
+
+                    <div className="timeInput input">
+                      <img className="clock-icon" src={clock} alt="clock-icon"/>
+
+                      <DatePicker
+                        selected={time}
+                        onchange={(timeVal) => setTime(timeVal)}
+                        showTimeSelect
+                        showTimeSelectOnly
+                        timeIntervals={15}
+                        timeCaption="Time"
+                        dateFormat="h:mm aa"/>
+
+                      <img className="dropdown-icon" src={dropDown} alt="dropdown-icon"/>
+                    </div>
+                </div>
+
+                <div className="occurrence">
+                  <div className="occurrence-dropdown">
+                    <img className="sync-icon" src={sync} alt="sync-icon"/>
+
+                    <input type="text" value={occurrenceVal} onClick={() => {setIsButtonClick(!isButtonClick)}}
+                           onChange={(e) => setOccurrenceVal(e.target.value)}/>
+                    <img className="dropdown-icon" src={dropDown} alt="dropdown-icon"/>
+                      <div className="dropdown-contents" style={{display: `${isButtonClick ? "block" : "none"}`}}>
+                        <option value="Do not repeat">Do not repeat</option>
+                        <option value="Daily">Daily</option>
+                        <option value="Weekly on Wednesday">Weekly on Wednesday</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Yearly">Yearly</option>
+                        <option value="Every week day (Monday to Friday)">Every week day (Monday to Friday)</option>
+                        <option>Custom...</option>
+                      </div>
+
+
+                  </div>
+
+                  <div className="checkbox">
+                    <div>
+                      <input type="checkbox" {...register("allDay")}/>
+                      <label htmlFor="allDay">All Day</label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="radio">
+                  <div className="show-me">
+                    <div className="show-text">
+                      <p>Show me:</p>
+                    </div>
+                    <div className="show-radio-button">
+                      <div className="busy-radio show">
+                        <input type="radio" value="Busy" id="Busy"/>
+                        <label htmlFor="Busy">Busy</label>
+                      </div>
+                      <div className="avail-radio show">
+                        <input type="radio" value="Available" id="Available"/>
+                        <label htmlFor="Available">Available</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="visible">
+                    <div className="visible-text">
+                      <p>Visibility:</p>
+                    </div>
+                    <div className="visible-radio-button">
+                      <div className="default-radio visibility">
+                        <input type="radio" value="Default" id="Default"/>
+                        <label htmlFor="Default">Default</label>
+                      </div>
+                      <div className="private-radio visibility">
+                        <input type="radio" value="Private" id="Private"/>
+                        <label htmlFor="Private">Private</label>
+                      </div>
+                      <div className="public-radio visibility">
+                        <input type="radio" value="Public" id="Public"/>
+                        <label htmlFor="Public">Public</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="buttons">
+                  <button className="button cancel" onClick={() => {clearErrors(); setAddReminder(false)}}>Cancel</button>
+                  <button className="button create">Create</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       ) : (
