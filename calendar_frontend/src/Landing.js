@@ -7,57 +7,62 @@ import AddReminder from "./assets/images/AddReminders.jpg";
 import PersonalReminder from "./assets/images/PersonalReminder.jpg";
 import Custom from "./assets/images/CustomEvent.png";
 import devices from "./assets/images/devices.png"
-import { ReactComponent as  Human} from "./assets/svgs/human.svg";
-import { ReactComponent as  Reviews} from "./assets/svgs/reviews.svg";
-import { ReactComponent as  Events} from "./assets/svgs/events.svg";
-import { ReactComponent as  Menu} from "./assets/svgs/menu.svg";
+// import { ReactComponent as  Human} from "./assets/svgs/human.svg";
+// import { ReactComponent as  Reviews} from "./assets/svgs/reviews.svg";
+// import { ReactComponent as  Events} from "./assets/svgs/events.svg";
+// import { ReactComponent as  Menu} from "./assets/svgs/menu.svg";
 const Landing = () => {
   const [navOpen, setNavOpen] = useState(false);
 
-  const openNav = ()=>{
-    if(navOpen){
-        setNavOpen(false)
-    }else{
-        setNavOpen(true)
+  const openNav = () => {
+    if (navOpen) {
+      setNavOpen(false)
+    } else {
+      setNavOpen(true)
     }
   }
-  
+
+
   const features = useRef(null)
   const howItWorks = useRef(null)
 
   return (
     <div className="landing-page">
-      <Link to="/calendar" className="calendar-plugin">
-        Go To Plugin
-      </Link>
-      <div className={`landing-nav${navOpen? ' collapse': ''}`}>
+
+      <div className={`landing-nav${navOpen ? ' collapse' : ''}`}>
+
         <div className="nav-content">
           <div className="nav-left">
             <div className="logo-wrapper">
               <div className="logo">
-                  <img className="pluginLogo" src={PluginLogo} alt="" />
+                <img className="pluginLogo" src={PluginLogo} alt="" />
+
               </div>
               <div className="logo-text">
                 <p>COMPANY <span className="green-text">HOLIDAY</span></p>
                 <p><span className="green-text">CALENDAR</span> PLUGIN</p>
               </div>
             </div>
-            <div 
-                className="toggle-icon"
-                onClick = {()=>{openNav()}}
+            <div
+              className="toggle-icon"
+              onClick={() => { openNav() }}
             >
-                <div className="menu-icon">
-                    <Menu className="drop-icon"/>
-                </div>
+              <div className="menu-icon">
+                {/* <Menu className="drop-icon"/> */}
+              </div>
+
             </div>
           </div>
           <div className="nav-list-wrapper">
             <div className="nav-list">
-              <span onClick={()=>{features.current.scrollIntoView({behavior: 'smooth'})}} className="list">Features</span>
-              <span onClick={()=>{howItWorks.current.scrollIntoView({behavior: 'smooth'})}} className="list">How It Works</span>
+              <span onClick={() => { features.current.scrollIntoView({ behavior: 'smooth' }) }} className="list">Features</span>
+              <span onClick={() => { howItWorks.current.scrollIntoView({ behavior: 'smooth' }) }} className="list">How It Works</span>
               <span className="list">Contact Us</span>
               <span className="list">FAQs</span>
+              <Link to="/calendar" className="calendar-plugin">
               <button>Install</button>
+              </Link>
+
             </div>
           </div>
         </div>
@@ -69,44 +74,52 @@ const Landing = () => {
             <h1>The most simplified and <span className="green-text">easy-to-use</span> company events tool you will ever use!</h1>
           </div>
           <div>
-            <p>This simple tool allows you and your team to easily create and manage company events. Its user-friendly calendar 
+            <p>This simple tool allows you and your team to easily create and manage company events. Its user-friendly calendar
               list view gives you and your team a helicopter view of company events for a particular month.</p>
           </div>
-          <button>Install</button>
-        </div>
+          <Link to="/calendar" className="calendar-plugin">
+              <button>Install</button>
+              </Link>
+          </div>
         <div className="intro-right">
-          <img className="intro-device-img" src={devices} alt = ""/>
+          <img className="intro-device-img" src={devices} alt="" />
+
           <div className="semi-circle">{""}</div>
         </div>
       </div>
       <div className="landing-numbers">
         <div className="landing-numbers-container">
           <div>
-            <Human className="landing-numbers-icon"/>
+            {/* <Human className="landing-numbers-icon"/> */}
+
             <h3>2,000+</h3>
             <p>Happy Customers</p>
           </div>
           <div>
-            <Reviews className="landing-numbers-icon"/>
+            {/* <Reviews className="landing-numbers-icon"/> */}
+
             <h3>50+</h3>
             <p>Reviews</p>
           </div>
           <div>
-            <Events className="landing-numbers-icon"/>
+            {/* <Events className="landing-numbers-icon"/> */}
+
             <h3>1,000+</h3>
             <p>Events/Reminders created</p>
           </div>
         </div>
       </div>
       <div className="landing-short-description">
-        <p>Whether your events are in-person or virtual, this powerful tool boasts professional features that your 
-          team will love. The company holiday 
+        <p>Whether your events are in-person or virtual, this powerful tool boasts professional features that your
+          team will love. The company holiday
+
           calendar plugin is <span className="green-text">ready to go out of the box</span>, just install and start creating and managing events.</p>
       </div>
       <div className="landing-video-tutorial">
         <p>Video Tutorial</p>
         <video className="landing-video" src="" controls></video>
-      </div>  
+      </div>
+
       <div ref={features} className="main-features-container">
         <section
           id="features"
@@ -137,7 +150,8 @@ const Landing = () => {
         </section>
         <section className="main-features-sections main-reminder">
           <div className="reminder-right">
-            <h3> <span clasName="green-text">Add Reminders</span> for All Your Team Members</h3>
+            <h3> <span className="green-text">Add Reminders</span> for All Your Team Members</h3>
+
             <p>
               As a team lead with access, you can easily add reminders to your
               events <span>company-wide </span>
@@ -167,7 +181,8 @@ const Landing = () => {
           <div className="custom-event-left">
             <p>
               {" "}
-              Reminders can be up to the last minute, <span className="green-text">customized </span> 
+              Reminders can be up to the last minute, <span className="green-text">customized </span>
+
               and <span className="green-text">repeated </span>
               with <span className="green-text">a single click of a button.</span>
             </p>
@@ -349,7 +364,11 @@ const Landing = () => {
           Ready To Start Creating Your First Company Event? Click "Install" Now
           And Let Us Begin!
         </h4>
-        <button className="btn-install">Install</button>
+
+        <Link to="/calendar" className="calendar-plugin">
+              <button className="btn-install">Install</button>
+          
+ 
         <article>
           <span>
             &copy; {new Date().getFullYear()} Zuri, Team Hemingway, All Rights

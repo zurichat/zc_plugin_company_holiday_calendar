@@ -1,0 +1,369 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap");
+:root {
+  --white: #ffffff;
+  --green: #00b87c;
+  --light-green: #acffe6;
+  --grey: #f1f3f4;
+  --color: #3a3a3a;
+}
+
+.custom_recurrence_modal {
+  max-width: 353px;
+  width: 100%;
+  height: 330px;
+  margin: 0 auto;
+  padding: 14px;
+  background-color: var(--white);
+}
+
+.custom_recurrence_modal *,
+.custom_recurrence_modal ::after,
+.custom_recurrence_modal ::before {
+  margin: 0px;
+  padding: 0px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "Lato";
+  line-height: 16px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.custom_recurrence_modal input,
+.custom_recurrence_modal select {
+  outline: none !important;
+  background: #f1f3f4 !important;
+  border-radius: 3px !important;
+  border: none !important;
+}
+
+.custom_recurrence_modal h1,
+.custom_recurrence_modal h2,
+.custom_recurrence_modal h3,
+.custom_recurrence_modal h4,
+.custom_recurrence_modal h5,
+.custom_recurrence_modal h6,
+.custom_recurrence_modal p,
+.custom_recurrence_modal span,
+.custom_recurrence_modal small,
+.custom_recurrence_modal label,
+.custom_recurrence_modal button {
+  color: var(--color);
+}
+
+.custom_recurrence_modal h4 {
+  margin: 0px 0px 14px !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+.custom_recurrence_modal .block_title {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.repeat_frequency,
+.repeat_days {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 8px 0px;
+}
+
+.repeat_days {
+  margin: 22px 0px 10px;
+}
+
+.repeat_frequency {
+  -webkit-box-pack: unset;
+  -ms-flex-pack: unset;
+  justify-content: unset;
+}
+
+.repeat_frequency .repeat_frequency_inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  margin-left: 30px;
+}
+
+.repeat_frequency .repeat_frequency_inputs input,
+.repeat_frequency .repeat_frequency_inputs select {
+  width: 50px !important;
+  font-size: 12px !important;
+  line-height: 20px !important;
+  text-align: center !important;
+  width: 80px !important;
+  height: 34px !important;
+}
+
+.repeat_frequency .repeat_frequency_inputs select {
+  font-size: 12px !important;
+  padding: 0px 15px !important;
+  width: auto !important;
+  color: unset !important;
+  font-weight: unset !important;
+}
+
+.repeat_frequency .repeat_frequency_inputs option {
+  padding: 0px 15px;
+  background-color: transparent;
+}
+
+.repeat_frequency .repeat_frequency_inputs input[type="numeric"] {
+  margin-right: 10px;
+  border: none;
+}
+
+.repeat_frequency .repeat_frequency_inputs input:nth-child(1) {
+  background-color: transparent !important;
+}
+
+.check_day {
+  margin: 0px 7px;
+  cursor: pointer;
+}
+
+.check_day input[type="radio"] {
+  opacity: 0;
+  display: none;
+}
+
+.check_day label {
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.check_day input[type="radio"]:focus ~ span {
+  background-color: var(--light-green);
+}
+
+.check_day input[type="radio"]:focus ~ span label {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.check_day span {
+  height: 18px;
+  width: 18px;
+  background-color: var(--grey);
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.check_day input[type="radio"]:checked ~ span {
+  background-color: var(--light-green);
+}
+
+.check_day input[type="radio"]:checked ~ span label {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.day_checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  margin-left: 1px;
+}
+
+.repeat_end {
+  margin-top: 15px;
+}
+
+.repeat_end p {
+  font-size: 12px;
+}
+
+.repeat_end .react-datepicker-wrapper .react-datepicker__input-container input {
+  margin: 0px;
+  margin-left: 26px;
+}
+
+.repeat_end input[type=text], .repeat_end input[type=number] {
+  padding: 7px;
+  border-radius: 3px;
+  font-size: 11px;
+  display: block;
+  margin-left: 26px;
+}
+
+.repeat_end .after_picker {
+  width: 45px;
+  text-align: center;
+}
+
+.repeat_end .never_pick {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.repeat_end .other_details {
+  max-width: 280px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.repeat_end .other_details input {
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+
+.repeat_end .other_details p {
+  padding: 7px 10px;
+  background-color: var(--grey);
+  line-height: unset;
+}
+
+.repeat_end .end_titles {
+  width: 110px;
+}
+
+.repeat_end .end_titles label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  line-height: unset;
+}
+
+.repeat_end .small {
+  width: 12px;
+  height: 12px;
+  display: block;
+  border-radius: 50%;
+}
+
+.repeat_end input[type=radio] {
+  opacity: 0;
+  display: none;
+}
+
+.repeat_end label {
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.repeat_end label p {
+  margin-left: 7px;
+}
+
+.repeat_end input[type=radio]:focus ~ label span .small * {
+  background-color: var(--green);
+}
+
+.repeat_end .span_class {
+  height: 18px;
+  width: 18px;
+  border: 1px solid var(--green);
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.repeat_end input[type=radio]:checked ~ label * {
+  font-weight: 700;
+}
+
+.repeat_end input[type=radio]:checked ~ label span .small {
+  background-color: var(--green);
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.buttons button {
+  font-size: 13px;
+  font-weight: 700;
+  height: 36px;
+  width: 80px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  -webkit-transition: 0.25s ease-in-out all;
+  transition: 0.25s ease-in-out all;
+}
+
+.buttons button:hover {
+  cursor: pointer;
+}
+
+.buttons .cancel_button {
+  background-color: transparent;
+  margin-right: 10px;
+}
+
+.buttons .cancel_button:hover {
+  background-color: var(--grey);
+}
+
+.buttons .done_button {
+  background-color: var(--green);
+  color: var(--white);
+}
+/*# sourceMappingURL=CustomRecurrence.css.map */

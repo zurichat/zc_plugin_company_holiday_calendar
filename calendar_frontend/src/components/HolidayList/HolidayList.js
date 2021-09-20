@@ -30,7 +30,8 @@ const HolidayList = () => {
     setCurrentFormData,
   } = states;
 
-  DeleteModal.setAppElement("#root");
+  // DeleteModal.setAppElement("#root");
+
 
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
