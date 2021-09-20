@@ -163,8 +163,11 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = ['../calendar_frontend/dist','../calendar_frontend/build/static']
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = ['../calendar_frontend/public',
+                    '../calendar_frontend/public']
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
