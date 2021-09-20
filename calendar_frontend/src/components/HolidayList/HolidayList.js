@@ -1,3 +1,19 @@
+
+import React, { useContext, useEffect, useState } from 'react'
+import { AppContext } from '../../App'
+import './HolidayList.css'
+import { FiEdit2 } from 'react-icons/fi'
+import { RiDeleteBin5Line } from 'react-icons/ri'
+import EventDelBtn from "./EventDelBtn"
+
+const HolidayList = () => {
+  const url = 'https://calendar.zuri.chat/api/v1/event-list/'
+  const states = useContext(AppContext)
+  const { month, year, months } = states
+  const [holidays, setHolidays] = useState([])
+  const { isModalOpen, setIsModalOpen } = states
+  const [openDeleteEvent, setDeleteEvent] = useState(false)
+
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../App";
 import "./HolidayList.css";
@@ -36,6 +52,7 @@ const HolidayList = () => {
 
   const [id, setId] = useState();
 
+
   function handleDelete(e) {
     setDeleteModalIsOpen(false);
     handleDel(id, e);
@@ -46,6 +63,30 @@ const HolidayList = () => {
     console.log(check);
     setCurrentFormData(check);
   }
+
+
+  const days = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ]
+  useEffect(() => {
+    getHolidays().then((data) => {
+      setHolidays(
+        data.filter((holiday) => {
+          return (
+            holiday.start_date.slice(0, 4) === year.toString() &&
+            months.indexOf(month) + 1 ===
+            parseInt(holiday.start_date.slice(5, 7))
+          )
+        })
+      )
+    })
+  }, [url, month, year])
 
   return (
     <div
@@ -77,6 +118,15 @@ const HolidayList = () => {
                 {days[new Date(start_date).getDay()]}{" "}
                 {new Date(start_date).getDate()}
               </span>
+
+              <span className='edit-del'>
+                <FiEdit2 style={{ marginRight: '5px' }} />
+                {/* <RiDelBtn /> */}
+                <RiDeleteBin5Line onClick={() => setDeleteEvent(true)} />
+
+
+              </span>
+
               <div className="navss">
                 <p
                   className="_editIcon"
@@ -103,6 +153,7 @@ const HolidayList = () => {
                   <EventDelBtn id={_id} />
                 </div>
               )}
+
             </div>
             <p
               className="event-time wealth"
@@ -111,6 +162,20 @@ const HolidayList = () => {
               {all_day
                 ? "All Day"
                 : `${
+
+                +start_time.slice(0, 2) >= 12
+                  ? +start_time.slice(0, 2) - 12
+                  : +start_time.slice(0, 2)
+                }:${start_time.slice(3, 5).padStart(2, '0')} ${
+                +start_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
+                }-${
+                +end_time.slice(0, 2) >= 12
+                  ? +end_time.slice(0, 2) - 12
+                  : +end_time.slice(0, 2)
+                }:${end_time.slice(3, 5).padStart(2, '0')} ${
+                +end_time.slice(0, 2) >= 12 ? 'PM' : 'AM'
+                }`}
+
                     +start_time.slice(0, 2) >= 12
                       ? +start_time.slice(0, 2) - 12
                       : +start_time.slice(0, 2)
@@ -123,6 +188,7 @@ const HolidayList = () => {
                   }:${end_time.slice(3, 5).padStart(2, "0")} ${
                     +end_time.slice(0, 2) >= 12 ? "PM" : "AM"
                   }`}
+
             </p>
             <p
               className="event-title wealth"
@@ -134,6 +200,12 @@ const HolidayList = () => {
               {holiday.event ? <EventCard id={_id} /> : null}
             </div>
           </li>
+
+        )
+      })}
+      {openDeleteEvent && <EventDelBtn cancelDelEvent={setDeleteEvent} />}
+
+
         );
       })}
 
