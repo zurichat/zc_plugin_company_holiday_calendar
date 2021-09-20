@@ -31,10 +31,6 @@ function App() {
   const [showEventPage, setShowEventPage] = useState(true);
   const [showMonth, setShowMonth] = useState(false);
   const [showYear, setShowYear] = useState(false);
-  //const [fetchData, setFetchData] = useState(false);
-
-  //Event Present Data
-  const [currentFormData, setCurrentFormData] = useState();
   const [isEventOpen, setIsEventOpen] = useState(false);
   const [holidays, setHolidays] = useState([]);
   const [openDeleteEvent, setDeleteEvent] = useState(false);
@@ -71,7 +67,7 @@ function App() {
         })
       );
     });
-  }, [month, year]);
+  }, [url, month, year, months]);
 
   const handleOverlay = () => {
     setIsEventOpen(false);
@@ -143,8 +139,6 @@ function App() {
           showYear,
           setShowYear,
           months,
-          currentFormData,
-          setCurrentFormData,
           handleModal,
           holidays,
           days,
@@ -162,7 +156,6 @@ function App() {
         <Modal />
         <Navbar />
         <HolidayList />
-
       </AppContext.Provider>
     </div>
   );
