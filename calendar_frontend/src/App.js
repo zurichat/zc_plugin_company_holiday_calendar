@@ -34,7 +34,12 @@ function App() {
   const [isEventOpen, setIsEventOpen] = useState(false);
   const [holidays, setHolidays] = useState([]);
   const [openDeleteEvent, setDeleteEvent] = useState(false);
-  const [currentFormData, setCurrentFormData] = useState([]);
+  const [currentFormData, setCurrentFormData] = useState({});
+  const [id, setId] = useState();
+
+  const thisData = currentFormData
+
+  
 
   const days = [
     "Sunday",
@@ -151,6 +156,7 @@ function App() {
           openDeleteEvent,
           setDeleteEvent,
           setCurrentFormData,
+          thisData
         }}
       >
         <Overlay />
