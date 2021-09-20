@@ -1,0 +1,38 @@
+name: Server Test
+on:
+   push:
+     branches: [ develop ]
+jobs:
+  test_vote:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        cd calendar_backend
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+#     - name: Run migrations
+#       run: |
+#        cd calendar_backend
+#        python manage.py migrate
+#       env:
+#         # Random key
+#         SECRET_KEY: ${{ secrets.SECRET_KEY }}
+    - name: Runserver
+      run: |
+       cd calendar_backend
+       gunicorn --bind 0.0.0.0:8000 calendar_backend.wsgi --daemon
+      env:
+        # Random key
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+    # - name: Test
+    #   run: python manage.py test
+    #   env:
+    #     # Random key
+    #     SECRET_KEY: ${{ secrets.SSH_PASSWORD }}
