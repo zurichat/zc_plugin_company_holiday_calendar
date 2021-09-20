@@ -5,7 +5,7 @@ from rest_framework import generics, status
 from rest_framework import response
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-import requests
+import requests,json
 from requests import exceptions
 from .serializers import EventSerializer, UpdateEventSerializer
 from drf_yasg.utils import swagger_auto_schema
@@ -13,13 +13,9 @@ from .serializers import *
 from .datastore import DataBase
 from calendar_backend.settings import PLUGIN_ID, ORGANIZATION_ID
 
-
-
 # new imports (authentication task)
 from rest_framework.decorators import permission_classes
 from .permissions import UserIsAuthenticated
-
-
 
 """
 Creating a view for calendar
@@ -58,6 +54,24 @@ def plugin_info_view(request):
     ]
 
     return JsonResponse({'plugin_information': plugin_information})
+
+
+def verify_user(token):
+    """
+    Call Endpoint for verification of user
+    """
+    url = "https://api.zuri.chat/auth/verify-token"
+
+    headers = {}
+    if "...." in token:
+        headers["Authorization"] = f"Bearer {token}"
+    else:
+        headers["Cookie"] = token
+
+    res = requests.get(url, headers=headers)
+    resp = res.json()
+
+    return resp
 
 
 # creating a  view for  displaying  the plugin side bar as a static Json object.
@@ -99,7 +113,7 @@ def update_event_view(request, pk):
     patch:
     Update Specific fields of individual events by ID without affecting others
     """
-    
+
     serializer = UpdateEventSerializer(data=request.data)
     url = 'https://api.zuri.chat/data/write'
 
@@ -129,9 +143,10 @@ class CreateEventView(generics.CreateAPIView):
     This is  a create view for creating an event . The method allowed  is POST
     """
     serializer_class = EventSerializer
+
     # permission_classes = [UserIsAuthenticated]
 
-    def post(self, request):
+    def post(self, request, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -168,7 +183,7 @@ class CreateEventView(generics.CreateAPIView):
 
 
 @api_view(['GET'])
-#@permission_classes((UserIsAuthenticated, ))
+# @permission_classes((UserIsAuthenticated, ))
 def event_list(request):
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
@@ -184,6 +199,36 @@ def event_list(request):
             if response.status_code == 200:
                 events_list = response.json()
                 return Response(events_list, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": response.json()["message"]}, status=response.status_code)
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+
+@api_view(['GET'])
+#@permission_classes((UserIsAuthenticated, ))
+def event_filter(request, pk):
+    """
+    Filter events to be displayed by month and year so that each calendar view can display only the events for that month.
+    pk is the Year-month variable e.g. 2021-04 for April 2021. Events displayed include events that start or end in that month.
+    """
+    plugin_id = PLUGIN_ID
+    org_id = ORGANIZATION_ID
+    coll_name = "events"
+
+    if request.method == "GET":
+
+        # getting data from zuri core
+        # api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}
+        url = f"https://api.zuri.chat/data/read/{plugin_id}/{coll_name}/{org_id}/"
+        try:
+            response = requests.get(url=url)
+            if response.status_code == 200:
+                events_list = response.json()
+                filtered_list = []
+                for event in events_list["data"]:
+                    if 'start_date' in event and (event['start_date'][0:7] == pk or event['end_date'][0:7] == pk):
+                        filtered_list.append(event)
+                return Response(filtered_list, status=status.HTTP_200_OK)
             else:
                 return Response({"error": response.json()["message"]}, status=response.status_code)
         except exceptions.ConnectionError as e:
@@ -205,7 +250,7 @@ def event_list(request):
 # }
 
 
-@ api_view(['GET'])
+@api_view(['GET'])
 # @permission_classes((UserIsAuthenticated, ))
 def event_detail_view(request, id):
     '''
@@ -289,6 +334,7 @@ def event_delete_view(request, id):
 
 class CreateReminderView(generics.GenericAPIView):
     serializer_class = ReminderSerializer
+
     # permission_classes = [UserIsAuthenticated]
 
     def post(self, request):
@@ -329,18 +375,21 @@ class CreateReminderView(generics.GenericAPIView):
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
+
 """
 This is a standalone Reminder ListView
 """
+
+
 @api_view(['GET'])
 # @permission_classes((UserIsAuthenticated, ))
 def reminder_list(request):
     plugin_id = PLUGIN_ID
     organization_id = ORGANIZATION_ID
     collection_name = "reminders"
-    
+
     if request.method == "GET":
-        #getting data from zuri core
+        # getting data from zuri core
         url = f"https://api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}/"
 
         try:
@@ -388,6 +437,7 @@ class ReminderUpdateView(generics.UpdateAPIView):
     serializer_class = ReminderSerializer
     database = DataBase()
     coll_name = "reminders"
+
     # permission_classes = [UserIsAuthenticated]
 
     def update(self, request, *args, **kwargs):
@@ -418,8 +468,96 @@ class ReminderUpdateView(generics.UpdateAPIView):
         print(response)
         return Response(data=response)
 
+
 @api_view(['GET'])
 def reminder_detail(request, id):
-    response =  {"status": True, "message": f"You have reached the API endpoint to retrieve the reminder with id : {id}"}
+    response = {"status": True, "message": f"You have reached the API endpoint to retrieve the reminder with id : {id}"}
 
-    return Response(response, status= status.HTTP_200_OK)
+    return Response(response, status=status.HTTP_200_OK)
+
+
+class CreateCustomReminderView(generics.GenericAPIView):
+    serializer_class = CustomReminderSerializer
+
+    def post(self, request):
+        event_id = request.query_params.get('_id')
+        user_id = request.query_params.get('user')
+
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            """
+              Posting data to zuri core after validation
+               """
+
+        customReminder = serializer.data
+        customReminder['event_id'] = event_id
+        customReminder['user_id'] = user_id
+        data = customReminder
+        plugin_id = PLUGIN_ID
+        org_id = ORGANIZATION_ID
+        coll_name = "custom"
+        body = {
+            "plugin_id": plugin_id,
+            "organization_id": org_id,
+            "collection_name": coll_name,
+            "bulk_write": False,
+            "object_id": "",
+            "filter": {},
+            "payload": data
+        }
+        url = "https://api.zuri.chat/data/write"
+
+        try:
+            response = requests.post(url=url, json=body)
+
+            if response.status_code == 201:
+                return Response({"message": "done!"}, status=status.HTTP_201_CREATED)
+            else:
+                return Response({"error": response.json()['message']}, status=response.status_code)
+                print()
+        except exceptions.ConnectionError as x:
+            return Response(str(x), status=status.HTTP_502_BAD_GATEWAY)
+
+
+@api_view(['GET'])
+def CustomReminderList(request):
+    plugin_id = PLUGIN_ID
+    organization_id = ORGANIZATION_ID
+    collection_name = "custom"
+
+    if request.method == "GET":
+        # getting data from zuri core
+        url = f"https://api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}/"
+
+        try:
+            response = requests.get(url=url)
+            if response.status_code == 200:
+                custom_list = response.json()['data']
+                return Response(custom_list, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": response.json()["message"]}, status=response.status_code)
+        except exceptions.ConnectionError as x:
+            return Response(str(x), status=status.HTTP_502_BAD_GATEWAY)
+
+
+@api_view(['DELETE'])
+def DeleteCustomReminder(id):
+    plugin_id = PLUGIN_ID
+    org_id = ORGANIZATION_ID
+    coll_name = "custom"
+
+    url = "https://api.zuri.chat/data/delete"
+    body = {
+        "plugin_id": plugin_id,
+        "organization_id": org_id,
+        "collection_name": "custom",
+        "object_id": id
+    }
+    response = requests.request("POST", url, data=json.dumps(body))
+    r = response.json()
+    if response.status_code == 200:
+        if r["data"]["deleted_count"] == 0:
+            return Response(data={'message': 'There is no rmi with this object id you supplied'},
+                            status=status.HTTP_400_BAD_REQUEST)
+        return Response(data={'message': 'successful'}, status=status.HTTP_200_OK)
+    return Response(data={"message": "Try again later"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

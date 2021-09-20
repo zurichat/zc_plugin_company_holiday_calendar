@@ -28,13 +28,16 @@ const HolidayList = () => {
     setIsModalOpen,
     currentFormData,
     setCurrentFormData,
+    id,
+    setId
   } = states;
 
-  DeleteModal.setAppElement("#root");
+  // DeleteModal.setAppElement("#root");
+
 
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
-  const [id, setId] = useState();
+  
 
   function handleDelete(e) {
     setDeleteModalIsOpen(false);
@@ -43,9 +46,10 @@ const HolidayList = () => {
 
   function editData(ids) {
     const check = holidays.find((item) => item._id === ids);
-    console.log(check);
-    setCurrentFormData(check);
   }
+
+
+  
 
   return (
     <div
@@ -83,6 +87,7 @@ const HolidayList = () => {
                   onClick={() => {
                     editData(_id);
                     setIsModalOpen(!isModalOpen);
+                    
                   }}
                 >
                   <FiEdit2 style={{ marginRight: "5px" }} />
@@ -91,7 +96,6 @@ const HolidayList = () => {
                   className="_mydelete navss"
                   onClick={(e) => {
                     setDeleteModalIsOpen(true);
-
                     setId(_id);
                   }}
                 >
