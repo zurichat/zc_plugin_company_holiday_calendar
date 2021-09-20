@@ -46,6 +46,14 @@ const Modal = () => {
 
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
+  const [allDay, setAllDay] = useState(false);
+
+  const preloadedValues = {
+    title: `${currentFormData == null ? "" : `${currentFormData.event_title}`}`,
+    allDay: allDay,
+  };
+
+  // console.log('ahahah', typeof `${currentFormData == null ? "" : `${currentFormData.event_title}`}`)
 
   const {
     register,
@@ -56,7 +64,10 @@ const Modal = () => {
   } = useForm();
 
   const [description, setDescription] = useState("");
-  const [imgLink, setImgLink] = useState("");
+
+  const [imgLink, setImgLink] = useState(
+    "https://cdn.pixabay.com/photo/2017/08/30/01/05/milky-way-2695569_960_720.jpg"
+  );
 
   const handleFormSubmission = (data) => {
     const eventFormData = {
@@ -69,10 +80,10 @@ const Modal = () => {
 
       time_zone: data.gmt,
       description: description,
-      all_day: data.allDay,
+      all_day: allDay,
       event_tag: eventTag,
       event_colour: color,
-      images: imgLink === "" ? null : imgLink,
+      images: imgLink,
     };
 
     const greg = async () => {
@@ -114,11 +125,12 @@ const Modal = () => {
 
       description: description,
 
-      all_day: data.allDay,
+      all_day: allDay,
       event_tag: eventTag,
       event_colour: color,
       images: imgLink === "" ? null : imgLink,
     };
+
     const greg = async () => {
       try {
         const { data } = await axios({
@@ -332,7 +344,12 @@ const Modal = () => {
 
                   <div className="row fifthRow">
                     <div>
-                      <input type="checkbox" {...register("allDay")} />
+                      <input
+                        type="checkbox"
+                        value={allDay}
+                        onChange={() => setAllDay(!allDay)}
+                        defaultChecked={false}
+                      />
                       <label htmlFor="allDay"> All Day</label>
                       <br />
                     </div>
