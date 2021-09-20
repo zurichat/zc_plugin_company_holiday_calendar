@@ -7,6 +7,10 @@ import AddReminder from './assets/images/AddReminders.jpg';
 import PersonalReminder from './assets/images/PersonalReminder.jpg';
 import Custom from './assets/images/CustomEvent.png';
 import devices from './assets/images/devices.png';
+import Vector from './assets/images/Vector.jpg';
+import Vector2 from './assets/images/Vector2.jpg';
+import { FaBars } from 'react-icons/fa';
+import Vector1 from './assets/images/Vector1.jpg';
 // import { ReactComponent as  Human} from "./assets/svgs/human.svg";
 // import { ReactComponent as  Reviews} from "./assets/svgs/reviews.svg";
 // import { ReactComponent as  Events} from "./assets/svgs/events.svg";
@@ -50,7 +54,7 @@ const Landing = () => {
               }}
             >
               <div className='menu-icon'>
-                {/* <Menu className="drop-icon"/> */}
+                <FaBars className='drop-icon' />
               </div>
             </div>
           </div>
@@ -112,20 +116,17 @@ const Landing = () => {
       <div className='landing-numbers'>
         <div className='landing-numbers-container'>
           <div>
-            {/* <Human className="landing-numbers-icon"/> */}
-
+            <img src={Vector} alt='' className='landing-numbers-icon' />
             <h3>2,000+</h3>
             <p>Happy Customers</p>
           </div>
           <div>
-            {/* <Reviews className="landing-numbers-icon"/> */}
-
+            <img src={Vector2} alt='' className='landing-numbers-icon' />
             <h3>50+</h3>
             <p>Reviews</p>
           </div>
           <div>
-            {/* <Events className="landing-numbers-icon"/> */}
-
+            <img src={Vector1} alt='' className='landing-numbers-icon' />
             <h3>1,000+</h3>
             <p>Events/Reminders created</p>
           </div>
