@@ -189,6 +189,36 @@ def event_list(request):
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
 
+@api_view(['GET'])
+#@permission_classes((UserIsAuthenticated, ))
+def event_filter(request, pk):
+    """
+    Filter events to be displayed by month and year so that each calendar view can display only the events for that month.
+    pk is the Year-month variable e.g. 2021-04 for April 2021. Events displayed include events that start or end in that month.
+    """
+    plugin_id = PLUGIN_ID
+    org_id = ORGANIZATION_ID
+    coll_name = "events"
+
+    if request.method == "GET":
+
+        # getting data from zuri core
+        # api.zuri.chat/data/read/{plugin_id}/{collection_name}/{organization_id}
+        url = f"https://api.zuri.chat/data/read/{plugin_id}/{coll_name}/{org_id}/"
+        try:
+            response = requests.get(url=url)
+            if response.status_code == 200:
+                events_list = response.json()
+                filtered_list = []
+                for event in events_list["data"]:
+                    if 'start_date' in event and (event['start_date'][0:7] == pk or event['end_date'][0:7] == pk):
+                        filtered_list.append(event)
+                return Response(filtered_list, status=status.HTTP_200_OK)
+            else:
+                return Response({"error": response.json()["message"]}, status=response.status_code)
+        except exceptions.ConnectionError as e:
+            return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+
 
 # test data
 # {
