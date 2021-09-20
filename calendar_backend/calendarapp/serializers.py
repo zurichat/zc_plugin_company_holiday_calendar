@@ -33,11 +33,37 @@ class ReminderSerializer(serializers.Serializer):
         return f"{self.title} created successfully"
 
 
+class CustomReminderSerializer(serializers.Serializer):
+    """
+      Creating  a serializer class for custom reminders.
+      """
+    etc = (
+        ('W', 'Week'),
+        ('M', 'Month'),
+        ('Y', 'Year')
+    )
+
+    weekday = (
+        ('mon', 'M'), ('tue', 'T'), ('wed', 'W'), ('thur', 'T'), ('fri', 'F'), ('sat', 'S'), ('sun', 'S')
+    )
+    _id = serializers.ReadOnlyField()
+    Repeat_every = serializers.ChoiceField(required=False, choices=etc)
+    Repeat_on = serializers.ChoiceField(required=False, choices=weekday)
+    Never = serializers.BooleanField(required=False)
+    On = serializers.BooleanField(required=False)
+    After = serializers.BooleanField(required=False)
+    Date = serializers.DateField(required=False)
+    Occurrence = serializers.IntegerField(max_value=10, min_value=1)
+
+    def __str__(self):
+        return "created successfully"
+
+
 class Event(object):
     def __init__(self, files, image):
         self.files = files
         self.image = image
-        
+
 
 class EventSerializer(serializers.Serializer):
     """
@@ -55,9 +81,10 @@ class EventSerializer(serializers.Serializer):
     event_tag = serializers.CharField(required=True)
     event_colour = serializers.CharField(required=True)
     images = serializers.CharField(required=False)
-    
+
     def __str__(self):
         return f"{self.event_title} created successfully"
+
 
 class UpdateEventSerializer(serializers.Serializer):
     """
@@ -75,6 +102,6 @@ class UpdateEventSerializer(serializers.Serializer):
     event_tag = serializers.CharField(required=False)
     event_colour = serializers.CharField(required=False)
     images = serializers.CharField(required=False)
-    
+
     def __str__(self):
         return f"{self.event_title} updated successfully"
