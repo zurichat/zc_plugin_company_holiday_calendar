@@ -31,7 +31,9 @@ const Modal = () => {
     setShowEventPage,
     currentFormData,
     setCurrentFormData,
-    
+    id, 
+    setId,
+    thisData
   } = states;
 
   const [color, setColor] = useState("#00B87C");
@@ -45,22 +47,13 @@ const Modal = () => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
 
-  const preloadedValues = {
-    title: `${currentFormData == null ? "" : `${currentFormData.event_title}`}`,
-    allDay: `${currentFormData == null ? "" : `${currentFormData.all_day}`}`,
-  };
-
-  // console.log('ahahah', typeof `${currentFormData == null ? "" : `${currentFormData.event_title}`}`)
-
   const {
     register,
     handleSubmit,
     formState: { errors },
     clearErrors,
     getValues,
-  } = useForm({
-    defaultValues: preloadedValues,
-  });
+  } = useForm();
 
   const [description, setDescription] = useState("");
   const [imgLink, setImgLink] = useState("");
@@ -130,7 +123,7 @@ const Modal = () => {
       try {
         const { data } = await axios({
           method: "PUT",
-          url: `https://calendar.zuri.chat/api/v1/update-event/${currentFormData._id}`,
+          url: `https://calendar.zuri.chat/api/v1/update-event/${thisData._id}`,
           data: JSON.stringify(eventFormData),
         });
         console.log(data);
@@ -148,7 +141,7 @@ const Modal = () => {
         <div className="modal">
           <header>
             <h4>
-              {currentFormData == null ? "Add New Event" : "Update Event"}
+              {thisData == null ? "Add New Event" : "Update Event"}
             </h4>
             <i
               className="far fa-times-circle"
@@ -181,7 +174,7 @@ const Modal = () => {
               <div className="event-tab">
                 <form
                   onSubmit={
-                    currentFormData == null
+                    thisData == null
                       ? handleSubmit(handleFormSubmission)
                       : handleSubmit(updateFormSubmission)
                   }
@@ -425,7 +418,7 @@ const Modal = () => {
                       style={{ backgroundColor: "#00B87C", color: "#fff" }}
                       className="eventButtons__create"
                     >
-                      {currentFormData == null ? "Create" : "Update"}
+                      {thisData == null ? "Create" : "Update"}
                     </Button>
                   </div>
 
