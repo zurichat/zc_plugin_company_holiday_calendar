@@ -194,6 +194,7 @@ def event_list(request):
 def event_filter(request, pk):
     """
     Filter events to be displayed by month and year so that each calendar view can display only the events for that month.
+    pk is the Year-month variable e.g. 2021-04 for April 2021.
     """
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
