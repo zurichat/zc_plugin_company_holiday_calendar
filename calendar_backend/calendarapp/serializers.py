@@ -88,11 +88,8 @@ class EventSerializer(serializers.Serializer):
     event_colour = serializers.CharField(required=True)
     images = serializers.CharField(required=False)
 
-<<<<<<< HEAD
-=======
     def __str__(self):
         return f"{self.event_title} created successfully"
->>>>>>> 3305d9c98f1327441f611310ef18c5eb9f9730bf
 
 
 class UpdateEventSerializer(serializers.Serializer):
