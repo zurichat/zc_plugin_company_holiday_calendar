@@ -9,10 +9,9 @@ import DeleteModal from "react-modal";
 
 // import { set } from "date-fns";
 
-
 const HolidayList = () => {
   const states = useContext(AppContext);
-  const [openDeleteEvent, setDeleteEvent] = useState(false);
+  // const [openDeleteEvent, setDeleteEvent] = useState(false);
   const {
     setShowMonth,
     setShowYear,
@@ -45,7 +44,7 @@ const HolidayList = () => {
   function editData(ids) {
     const check = holidays.find((item) => item._id === ids);
     console.log(check);
-    // setCurrentFormData(check);
+    setCurrentFormData(check);
   }
 
   return (
@@ -135,7 +134,6 @@ const HolidayList = () => {
               {holiday.event ? <EventCard id={_id} /> : null}
             </div>
           </li>
-
         );
       })}
 
@@ -179,4 +177,3 @@ const HolidayList = () => {
 };
 
 export default HolidayList;
-

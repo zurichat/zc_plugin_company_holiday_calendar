@@ -150,6 +150,7 @@ function App() {
           handleDel,
           openDeleteEvent,
           setDeleteEvent,
+          setCurrentFormData,
         }}
       >
         <Overlay />
