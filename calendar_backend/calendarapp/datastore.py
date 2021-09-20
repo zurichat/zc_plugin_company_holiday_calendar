@@ -18,6 +18,7 @@ class DataBase:
     def __init__(self, request=None):
         self.writeUrl = "https://api.zuri.chat/data/write"
         self.readUrl = "https://api.zuri.chat/data/read/{plug_id}/{coll_name}/{org_id}?{query}"
+        self.deleteUrl = "https://api.zuri.chat/data/delete"
         if request is None:
             self.plgn_id = settings.PLUGIN_ID
             self.org_id = settings.ORGANIZATION_ID
@@ -26,6 +27,9 @@ class DataBase:
             self.org_id = request.data.get("org_id")
 
     def post(self, collection_name, data):
+        self.plgn_id = settings.PLUGIN_ID
+        self.org_id = settings.ORGANIZATION_ID
+        self.writeUrl = "https://api.zuri.chat/data/write"
         body = dict(
             plugin_id=self.plgn_id,
             organization_id=self.org_id,
