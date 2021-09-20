@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap');
+
+.navbar {
+  background-color: #00b87c;
+  padding: 20px 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 96px;
+  position: relative;
+}
+.select {
+  display: inline;
+  font-size: 24px;
+  border: none;
+  outline: none;
+  background-color: #00b87c;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  padding: 0 8px;
+  font-weight: 600;
+}
+.fal {
+  font-size: 22px;
+  color: white;
+}
+.open-btn {
+  border: none;
+  padding: 10px 14px;
+  background: #fff;
+  color: #00b87c;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 3px;
+  height: 36px;
+}
+.event-form {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  min-height: 871px;
+  min-width: 425px;
+  max-width: 425px;
+  background-color: #fff;
+  z-index: 5;
+  border-radius: 3px;
+  overflow-x: hidden;
+}
+.event-form-date {
+  display: flex;
+  justify-content: space-around;
+}
+.start-date {
+  width: 170px;
+  margin-left: 20px;
+}
+.end-date {
+  width: 170px;
+  margin-right: 20px;
+}
+.event-form h2 {
+  color: #f6f6f6;
+  font-family: Lato;
+  font-weight: 900;
+  margin-left: 30px;
+  font-size: 25px;
+}
+.event-form header {
+  height: 76px;
+  background-color: #00b87c;
+  width: 100%;
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+}
+.overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 2;
+}
+
+.far {
+  cursor: pointer;
+  font-size: 25px;
+  color: #fff;
+  margin-right: 20px;
+}
+
+/* event form styles */
+
+.btn__group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 11rem;
+  margin: 2rem 0 1rem 3rem;
+}
+
+.btn {
+  color: #00b87c;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
+
+.btn.active {
+  background: #acffe6;
+  height: 36px;
+  border-radius: 5px;
+  box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.1);
+}
+
+
+@media only screen and (max-width: 425px) {
+  .event-form {
+    width: 100vw;
+  }
+  .navbar {
+    padding: 20px 15px;
+  }
+  .start-date {
+    font-size: 13px;
+    width: 150px;
+  }
+  .end-date {
+    font-size: 13px;
+    width: 150px;
+  }
+}
+.reminder-contents{
+  width: 198px;
+  height: 13px;
+  margin: 60px 20px 100px 80px;
+  font-family: Lato;
+  font-style: normal;
+}
+
+#no-reminder{
+  font-size: 20px;
+  line-height: 18px;
+  color: #3A3A3A;
+}
+
+#remember{
+  color: #999999;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 5px 0px;
+}
+
+#bell-off-active{
+  position: absolute;
+  margin-top: 50px -80px;
+  left: 40px;
+  color: #999999;
+}
+.reminder-button {
+  margin-left: 40px;
+}
