@@ -1,0 +1,18 @@
+.create-button {
+  border: none;
+  padding: 10px 30px;
+  color: #fff;
+  background: #00b87c;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 10px;
+}
+
+.cancel-create {
+	margin-top: 60px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
