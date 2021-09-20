@@ -24,8 +24,15 @@ function Alert(props) {
 const Modal = () => {
   const states = useContext(AppContext);
 
-  const { isModalOpen, setIsModalOpen, showEventPage, setShowEventPage, currentFormData, setCurrentFormData, fetchData, setFetchData } =
-    states;
+  const {
+    isModalOpen,
+    setIsModalOpen,
+    showEventPage,
+    setShowEventPage,
+    currentFormData,
+    setCurrentFormData,
+    
+  } = states;
 
   const [color, setColor] = useState("#00B87C");
   const [isColorBoxOpen, setIsColorBoxOpen] = useState(false);
@@ -38,11 +45,10 @@ const Modal = () => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
 
-
   const preloadedValues = {
     title: `${currentFormData == null ? "" : `${currentFormData.event_title}`}`,
-    allDay: `${currentFormData == null ? "" : `${currentFormData.all_day}`}`
-  }
+    allDay: `${currentFormData == null ? "" : `${currentFormData.all_day}`}`,
+  };
 
   // console.log('ahahah', typeof `${currentFormData == null ? "" : `${currentFormData.event_title}`}`)
 
@@ -51,41 +57,25 @@ const Modal = () => {
     handleSubmit,
     formState: { errors },
     clearErrors,
-    getValues
+    getValues,
   } = useForm({
-    defaultValues: preloadedValues
+    defaultValues: preloadedValues,
   });
 
-  console.log('ModalCurrent', currentFormData)
   const [description, setDescription] = useState("");
   const [imgLink, setImgLink] = useState("");
 
   const handleFormSubmission = (data) => {
     const eventFormData = {
       event_title: data.title,
-
-      start_date: `${startDate.getFullYear()}-${
-        startDate.getMonth() > 9
-          ? startDate.getMonth()
-          : "0" + startDate.getMonth()
-      }-${
-        startDate.getDate() > 9
-          ? startDate.getDate()
-          : "0" + startDate.getDate()
-      }`,
-
-      end_date: `${endDate.getFullYear()}-${
-        endDate.getMonth() > 9 ? endDate.getMonth() : "0" + endDate.getMonth()
-      }-${endDate.getDate() > 9 ? endDate.getDate() : "0" + endDate.getDate()}`,
+      start_date: startDate.toISOString().slice(0, 10),
+      end_date: endDate.toISOString().slice(0, 10),
 
       start_time: `${startTime.getHours()}:${startTime.getMinutes()}:00`,
-
       end_time: `${endTime.getHours()}:${endTime.getMinutes()}:00`,
 
       time_zone: data.gmt,
-
       description: description,
-
       all_day: data.allDay,
       event_tag: eventTag,
       event_colour: color,
@@ -101,14 +91,13 @@ const Modal = () => {
         });
         console.log(data);
         setOpenSnackbar(true);
-        getValues(data)
+        getValues(data);
       } catch (error) {
         console.log(error.message);
       }
     };
     greg();
   };
-
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -117,27 +106,12 @@ const Modal = () => {
     setOpenSnackbar(false);
   };
 
-
-
-
   //handle update
-  const updateFormSubmission = (data) =>{
+  const updateFormSubmission = (data) => {
     const eventFormData = {
       event_title: data.title,
-
-      start_date: `${startDate.getFullYear()}-${
-        startDate.getMonth() > 9
-          ? startDate.getMonth()
-          : "0" + startDate.getMonth()
-      }-${
-        startDate.getDate() > 9
-          ? startDate.getDate()
-          : "0" + startDate.getDate()
-      }`,
-
-      end_date: `${endDate.getFullYear()}-${
-        endDate.getMonth() > 9 ? endDate.getMonth() : "0" + endDate.getMonth()
-      }-${endDate.getDate() > 9 ? endDate.getDate() : "0" + endDate.getDate()}`,
+      start_date: startDate.toISOString().slice(0, 10),
+      end_date: endDate.toISOString().slice(0, 10),
 
       start_time: `${startTime.getHours()}:${startTime.getMinutes()}:00`,
 
@@ -157,29 +131,30 @@ const Modal = () => {
         const { data } = await axios({
           method: "PUT",
           url: `https://calendar.zuri.chat/api/v1/update-event/${currentFormData._id}`,
-          data: eventFormData,
+          data: JSON.stringify(eventFormData),
         });
         console.log(data);
         setOpenSnackbar(true);
-        getValues(data)
+        getValues(data);
       } catch (error) {
-        console.log('err', error.message);
+        console.log("err", error.message);
       }
     };
     greg();
-  }
+  };
   return (
     <>
-      
       {isModalOpen && (
         <div className="modal">
           <header>
-            <h4>{currentFormData == null ? 'Add New Event' : 'Update Event'}</h4>
+            <h4>
+              {currentFormData == null ? "Add New Event" : "Update Event"}
+            </h4>
             <i
               className="far fa-times-circle"
               onClick={() => {
-                setIsModalOpen(false)
-                setCurrentFormData()
+                setIsModalOpen(false);
+                setCurrentFormData();
               }}
               aria-hidden="true"
             ></i>
@@ -205,7 +180,11 @@ const Modal = () => {
             {showEventPage ? (
               <div className="event-tab">
                 <form
-                  onSubmit={currentFormData == null ? handleSubmit(handleFormSubmission) : handleSubmit(updateFormSubmission)}
+                  onSubmit={
+                    currentFormData == null
+                      ? handleSubmit(handleFormSubmission)
+                      : handleSubmit(updateFormSubmission)
+                  }
                   className="evenForm"
                 >
                   {/* {JSON.stringify(currentFormData, 2)} */}
@@ -330,9 +309,13 @@ const Modal = () => {
 
                   <div className="row fourthRow">
                     <div className="gmtInput-wrapper">
-                      <label>Time Zone</label>
+                      <label style={{ fontWeight: "500", color: "#616061" }}>
+                        Time Zone
+                      </label>
                       <div
-                        className={`gmtInput ${errors.gmt ? "input-error" : ""}`}
+                        className={`gmtInput ${
+                          errors.gmt ? "input-error" : ""
+                        }`}
                       >
                         <select
                           style={{ color: "#616061" }}
@@ -341,7 +324,7 @@ const Modal = () => {
                         >
                           {gmtStrings.map((gmtString, index) => (
                             <option
-                              selected = {gmtString.value === "+0GMT"}
+                              defaultValue={gmtString.value === "+0GMT"}
                               style={{ color: "#616061" }}
                               value={gmtString.value}
                               key={index}
@@ -435,14 +418,14 @@ const Modal = () => {
                     >
                       Cancel
                     </Button>
+
                     <Button
                       type="submit"
                       variant="contained"
                       style={{ backgroundColor: "#00B87C", color: "#fff" }}
                       className="eventButtons__create"
-                      onClick={ setTimeout(()=>setFetchData(!fetchData), 3000)}
                     >
-                      {currentFormData == null ? 'Create' : 'Update'}
+                      {currentFormData == null ? "Create" : "Update"}
                     </Button>
                   </div>
 

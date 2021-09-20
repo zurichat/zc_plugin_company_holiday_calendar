@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import requests
 from requests import exceptions
-from .serializers import EventSerializer
+from .serializers import EventSerializer, UpdateEventSerializer
 from drf_yasg.utils import swagger_auto_schema
 from .serializers import *
 from .datastore import DataBase
@@ -99,8 +99,8 @@ def update_event_view(request, pk):
     patch:
     Update Specific fields of individual events by ID without affecting others
     """
-
-    serializer = EventSerializer(data=request.data)
+    
+    serializer = UpdateEventSerializer(data=request.data)
     url = 'https://api.zuri.chat/data/write'
 
     try:
@@ -207,7 +207,6 @@ def event_list(request):
 
 @ api_view(['GET'])
 # @permission_classes((UserIsAuthenticated, ))
-
 def event_detail_view(request, id):
     '''
     event detail view with a list of event-specific reminder(s) previously
@@ -334,6 +333,7 @@ class CreateReminderView(generics.GenericAPIView):
 This is a standalone Reminder ListView
 """
 @api_view(['GET'])
+# @permission_classes((UserIsAuthenticated, ))
 def reminder_list(request):
     plugin_id = PLUGIN_ID
     organization_id = ORGANIZATION_ID
@@ -388,6 +388,7 @@ class ReminderUpdateView(generics.UpdateAPIView):
     serializer_class = ReminderSerializer
     database = DataBase()
     coll_name = "reminders"
+    # permission_classes = [UserIsAuthenticated]
 
     def update(self, request, *args, **kwargs):
         object_id = self.kwargs['pk']
@@ -416,3 +417,9 @@ class ReminderUpdateView(generics.UpdateAPIView):
         response = self.database.put(self.coll_name, event_update, object_id=object_id)
         print(response)
         return Response(data=response)
+
+@api_view(['GET'])
+def reminder_detail(request, id):
+    response =  {"status": True, "message": f"You have reached the API endpoint to retrieve the reminder with id : {id}"}
+
+    return Response(response, status= status.HTTP_200_OK)

@@ -1,24 +1,118 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
-import Companyholiday from "./features-images/Companyholiday.jpg";
-import AddReminder from "./features-images/AddReminders.jpg";
-import PersonalReminder from "./features-images/PersonalReminder.jpg";
-import Custom from "./features-images/CustomEvent.png";
-import LandingHeader from "./components/LandingHeader";
+import PluginLogo from "./assets/images/pluginLogo.png";
+import Companyholiday from "./assets/images/Companyholiday.jpg";
+import AddReminder from "./assets/images/AddReminders.jpg";
+import PersonalReminder from "./assets/images/PersonalReminder.jpg";
+import Custom from "./assets/images/CustomEvent.png";
+import devices from "./assets/images/devices.png"
+import { ReactComponent as  Human} from "./assets/svgs/human.svg";
+import { ReactComponent as  Reviews} from "./assets/svgs/reviews.svg";
+import { ReactComponent as  Events} from "./assets/svgs/events.svg";
+import { ReactComponent as  Menu} from "./assets/svgs/menu.svg";
 const Landing = () => {
+  const [navOpen, setNavOpen] = useState(false);
+
+  const openNav = ()=>{
+    if(navOpen){
+        setNavOpen(false)
+    }else{
+        setNavOpen(true)
+    }
+  }
+  
+  const features = useRef(null)
+  const howItWorks = useRef(null)
+
   return (
     <div className="landing-page">
       <Link to="/calendar" className="calendar-plugin">
         Go To Plugin
       </Link>
-      <LandingHeader />
-      <div className="main-features-container">
+      <div className={`landing-nav${navOpen? ' collapse': ''}`}>
+        <div className="nav-content">
+          <div className="nav-left">
+            <div className="logo-wrapper">
+              <div className="logo">
+                  <img className="pluginLogo" src={PluginLogo} alt="" />
+              </div>
+              <div className="logo-text">
+                <p>COMPANY <span className="green-text">HOLIDAY</span></p>
+                <p><span className="green-text">CALENDAR</span> PLUGIN</p>
+              </div>
+            </div>
+            <div 
+                className="toggle-icon"
+                onClick = {()=>{openNav()}}
+            >
+                <div className="menu-icon">
+                    <Menu className="drop-icon"/>
+                </div>
+            </div>
+          </div>
+          <div className="nav-list-wrapper">
+            <div className="nav-list">
+              <span onClick={()=>{features.current.scrollIntoView({behavior: 'smooth'})}} className="list">Features</span>
+              <span onClick={()=>{howItWorks.current.scrollIntoView({behavior: 'smooth'})}} className="list">How It Works</span>
+              <span className="list">Contact Us</span>
+              <span className="list">FAQs</span>
+              <button>Install</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="landing-intro">
+        <div className="intro-left">
+          <div>
+            <h1>The most simplified and <span className="green-text">easy-to-use</span> company events tool you will ever use!</h1>
+          </div>
+          <div>
+            <p>This simple tool allows you and your team to easily create and manage company events. Its user-friendly calendar 
+              list view gives you and your team a helicopter view of company events for a particular month.</p>
+          </div>
+          <button>Install</button>
+        </div>
+        <div className="intro-right">
+          <img className="intro-device-img" src={devices} alt = ""/>
+          <div className="semi-circle">{""}</div>
+        </div>
+      </div>
+      <div className="landing-numbers">
+        <div className="landing-numbers-container">
+          <div>
+            <Human className="landing-numbers-icon"/>
+            <h3>2,000+</h3>
+            <p>Happy Customers</p>
+          </div>
+          <div>
+            <Reviews className="landing-numbers-icon"/>
+            <h3>50+</h3>
+            <p>Reviews</p>
+          </div>
+          <div>
+            <Events className="landing-numbers-icon"/>
+            <h3>1,000+</h3>
+            <p>Events/Reminders created</p>
+          </div>
+        </div>
+      </div>
+      <div className="landing-short-description">
+        <p>Whether your events are in-person or virtual, this powerful tool boasts professional features that your 
+          team will love. The company holiday 
+          calendar plugin is <span className="green-text">ready to go out of the box</span>, just install and start creating and managing events.</p>
+      </div>
+      <div className="landing-video-tutorial">
+        <p>Video Tutorial</p>
+        <video className="landing-video" src="" controls></video>
+      </div>  
+      <div ref={features} className="main-features-container">
         <section
           id="features"
           className="main-features-sections features-topics"
         >
-          <h2>Features</h2>
+          <h2>FEATURES</h2>
           <p> (User-Friendly Features You’ll Love) </p>
         </section>
         <section className="main-features-sections main-create-events">
@@ -38,25 +132,25 @@ const Landing = () => {
             </p>
           </div>
           <div className="create-events-right">
-            <img src={Companyholiday} />
+            <img src={Companyholiday} alt="" />
           </div>
         </section>
         <section className="main-features-sections main-reminder">
-          <div className="reminder-left">
-            <img src={AddReminder} />
-          </div>
           <div className="reminder-right">
-            <h3> Add Reminders for All Your Team Members</h3>
+            <h3> <span clasName="green-text">Add Reminders</span> for All Your Team Members</h3>
             <p>
               As a team lead with access, you can easily add reminders to your
-              events <span>company-wide</span>
+              events <span>company-wide </span>
               and help everyone in your organization <span>stay updated</span>.
             </p>
+          </div>
+          <div className="reminder-left">
+            <img src={AddReminder} />
           </div>
         </section>
         <section className="main-features-sections main-personal-reminder">
           <div className="personal-reminder-left">
-            <h3> Set Personal Reminders </h3>
+            <h3> Set <span className="green-text">Personal Reminders</span> </h3>
             <p>
               {" "}
               The tool lets <span>employees set their own reminders.</span>
@@ -66,19 +160,20 @@ const Landing = () => {
             </p>
           </div>
           <div className="personal-reminder-left">
-            <img src={PersonalReminder} />
+            <img src={PersonalReminder} alt="" />
           </div>
         </section>
         <section className="main-features-sections main-custom-event">
           <div className="custom-event-left">
-            <img src={Custom} />
-          </div>
-          <div className="custom-event-right">
             <p>
               {" "}
-              Reminders can be up to the last minute, customized and repeated
-              with a single click of a button.
+              Reminders can be up to the last minute, <span className="green-text">customized </span> 
+              and <span className="green-text">repeated </span>
+              with <span className="green-text">a single click of a button.</span>
             </p>
+          </div>
+          <div className="custom-event-right">
+            <img src={Custom} />
           </div>
         </section>
       </div>
@@ -152,7 +247,7 @@ const Landing = () => {
           according to their preferred time zones.
         </p>
       </section>
-      <section id="how-it-works" className="how-it-works">
+      <section ref={howItWorks} id="how-it-works" className="how-it-works">
         <h2 className="title">HOW IT WORKS</h2>
         <p className="sample">
           <span className="span-color">(Simple Walkthrough)</span>
