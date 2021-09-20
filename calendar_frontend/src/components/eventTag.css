@@ -1,0 +1,59 @@
+.eventHeader {
+  display: flex;
+  justify-content: space-between;
+  
+}
+.eventHeader span {
+  margin-right: 7rem;
+  line-height: 13px;
+}
+span .arrowIcon {
+  color:  #999999;
+  cursor: pointer;
+}
+.event-tag h6 {
+  width: 48px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 11px;
+  line-height: 13px;
+  color: #3a3a3a;
+}
+.event-tag .eventTagInputContainer input {
+  border: none;
+  outline: none;
+  width: 50%;
+  border-bottom: 1px solid #999999;
+  padding: 0.5em 0;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18px;
+  color: #242424;
+}
+.event-tag {
+  margin-left: 1.7rem;
+  margin-top: 1.2rem;
+}
+.eventTagInputContainer{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+ .eventTagInputContainer .eventTagActive {
+  margin-right: 10rem;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    padding: 0 .8rem;
+    background-color: #00B87C;
+    cursor:default;
+}
+.event-tag {
+  margin-top: 2rem;
+  position: relative;
+}

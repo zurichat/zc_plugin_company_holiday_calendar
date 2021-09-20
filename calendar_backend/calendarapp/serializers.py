@@ -20,7 +20,7 @@ class ReminderSerializer(serializers.Serializer):
     title = serializers.CharField(required=True)
     date = serializers.DateField(required=False)
     time = serializers.TimeField(required=False)
-    repeat = serializers.ChoiceField(required=False, choices=repeat_choices)
+    repeat = serializers.CharField(required=False)
     all_day = serializers.BooleanField(required=False)
 
     def update(self, instance, validated_data):
@@ -31,6 +31,38 @@ class ReminderSerializer(serializers.Serializer):
 
     def __str__(self):
         return f"{self.title} created successfully"
+
+
+class CustomReminderSerializer(serializers.Serializer):
+    """
+      Creating  a serializer class for custom reminders.
+      """
+    etc = (
+        ('W', 'Week'),
+        ('M', 'Month'),
+        ('Y', 'Year')
+    )
+
+    weekday = (
+        ('mon', 'M'), ('tue', 'T'), ('wed', 'W'), ('thur', 'T'), ('fri', 'F'), ('sat', 'S'), ('sun', 'S')
+    )
+    _id = serializers.ReadOnlyField()
+    Repeat_every = serializers.CharField(required=False)
+    Repeat_on = serializers.CharField(required=False)
+    Never = serializers.BooleanField(required=False)
+    On = serializers.BooleanField(required=False)
+    After = serializers.BooleanField(required=False)
+    Date = serializers.DateField(required=False)
+    Occurrence = serializers.IntegerField(max_value=10, min_value=1)
+
+    def __str__(self):
+        return "created successfully"
+
+    def update(self, instance, validated_data):
+        print(validated_data)
+        for data in validated_data:
+            instance[data] = validated_data.get(data, instance[data])
+            return instance
 
 
 class Event(object):
@@ -55,6 +87,12 @@ class EventSerializer(serializers.Serializer):
     event_tag = serializers.CharField(required=True)
     event_colour = serializers.CharField(required=True)
     images = serializers.CharField(required=False)
+
+<<<<<<< HEAD
+=======
+    def __str__(self):
+        return f"{self.event_title} created successfully"
+>>>>>>> 3305d9c98f1327441f611310ef18c5eb9f9730bf
 
 
 class UpdateEventSerializer(serializers.Serializer):
