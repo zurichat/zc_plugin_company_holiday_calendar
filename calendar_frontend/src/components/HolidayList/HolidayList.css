@@ -43,12 +43,13 @@
 
 /* ._deleteIcon {
 } */
-.edit-del,
-._deleteIcon {
+._mydelete,
+._editIcon {
   /* padding: 10px 10px; */
   object-fit: contain;
   display: inline-block;
   font-size: large;
+  cursor: pointer;
 }
 
 .edit-del {

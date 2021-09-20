@@ -34,6 +34,7 @@ function App() {
   const [isEventOpen, setIsEventOpen] = useState(false);
   const [holidays, setHolidays] = useState([]);
   const [openDeleteEvent, setDeleteEvent] = useState(false);
+  const [currentFormData, setCurrentFormData] = useState([]);
 
   const days = [
     "Sunday",
@@ -57,13 +58,14 @@ function App() {
   useEffect(() => {
     getHolidays().then((data) => {
       setHolidays(
-        data.filter((holiday) => {
-          return (
-            holiday.start_date.slice(0, 4) === year.toString() &&
-            months.indexOf(month) + 1 ===
-              parseInt(holiday.start_date.slice(5, 7))
-          );
-        })
+        // data.filter((holiday) => {
+        //   return (
+        //     holiday.start_date.slice(0, 4) === year.toString() &&
+        //     months.indexOf(month) + 1 ===
+        //       parseInt(holiday.start_date.slice(5, 7))
+        //   );
+        // })
+        data
       );
     });
   }, [url, month, year, months]);
@@ -103,26 +105,23 @@ function App() {
     }
   };
 
-  const handleDel = (id, e) => {
-    if (e.target.classList.contains("navss")) {
-      console.log(id);
-
-      axios
-        .delete(` https://calendar.zuri.chat/api/v1/event-delete/${id}`)
-        .then(() =>
-          getHolidays().then((data) => {
-            setHolidays(
-              data.filter((holiday) => {
-                return (
-                  holiday.start_date.slice(0, 4) === year.toString() &&
-                  months.indexOf(month) + 1 ===
-                    parseInt(holiday.start_date.slice(5, 7))
-                );
-              })
-            );
-          })
-        );
-    }
+  const handleDel = (id) => {
+    axios
+      .delete(` https://calendar.zuri.chat/api/v1/event-delete/${id}`)
+      .then(() =>
+        getHolidays().then((data) => {
+          setHolidays(
+            // data.filter((holiday) => {
+            //   return (
+            //     holiday.start_date.slice(0, 4) === year.toString() &&
+            //     months.indexOf(month) + 1 ===
+            //       parseInt(holiday.start_date.slice(5, 7))
+            //   );
+            // })
+            data
+          );
+        })
+      );
   };
 
   return (

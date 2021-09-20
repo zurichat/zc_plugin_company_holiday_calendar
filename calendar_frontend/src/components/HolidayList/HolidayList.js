@@ -21,17 +21,27 @@ const HolidayList = () => {
     handleDel,
     openDeleteEvent,
     setDeleteEvent,
+    setIsModalOpen,
+    isModalOpen,
+    currentFormData,
+    setCurrentFormData,
   } = states;
 
   DeleteModal.setAppElement("#root");
 
   const [deleteModalIsOpen, setDeleteModalIsOpen] = useState(false);
 
-  function handleDelete(e, id) {
-    console.log(e);
-    console.log(id);
+  const [id, setId] = useState();
+
+  function handleDelete(e) {
     setDeleteModalIsOpen(false);
     handleDel(id, e);
+  }
+
+  function editData(ids) {
+    const check = holidays.find((item) => item._id === ids);
+    console.log(check);
+    // setCurrentFormData(check);
   }
 
   return (
@@ -65,15 +75,22 @@ const HolidayList = () => {
                 {new Date(start_date).getDate()}
               </span>
               <div className="navss">
-                <p>
-                  <FiEdit2
-                    className="_deleteIcon navss"
-                    style={{ marginRight: "5px" }}
-                  />
+                <p
+                  className="_editIcon"
+                  onClick={() => {
+                    editData(_id);
+                    setIsModalOpen(!isModalOpen);
+                  }}
+                >
+                  <FiEdit2 style={{ marginRight: "5px" }} />
                 </p>
                 <p
-                  className="edit-del navss"
-                  onClick={(e) => setDeleteModalIsOpen(true)}
+                  className="_mydelete navss"
+                  onClick={(e) => {
+                    setDeleteModalIsOpen(true);
+
+                    setId(_id);
+                  }}
                 >
                   <RiDeleteBin5Line className="_deleteIcon navss" />
                 </p>
