@@ -37,7 +37,7 @@ class Event(object):
     def __init__(self, files, image):
         self.files = files
         self.image = image
-        
+
 
 class EventSerializer(serializers.Serializer):
     """
@@ -55,9 +55,7 @@ class EventSerializer(serializers.Serializer):
     event_tag = serializers.CharField(required=True)
     event_colour = serializers.CharField(required=True)
     images = serializers.CharField(required=False)
-    
-    def __str__(self):
-        return f"{self.event_title} created successfully"
+
 
 class UpdateEventSerializer(serializers.Serializer):
     """
@@ -75,6 +73,6 @@ class UpdateEventSerializer(serializers.Serializer):
     event_tag = serializers.CharField(required=False)
     event_colour = serializers.CharField(required=False)
     images = serializers.CharField(required=False)
-    
+
     def __str__(self):
         return f"{self.event_title} updated successfully"
