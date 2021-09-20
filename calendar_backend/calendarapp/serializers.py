@@ -20,7 +20,7 @@ class ReminderSerializer(serializers.Serializer):
     title = serializers.CharField(required=True)
     date = serializers.DateField(required=False)
     time = serializers.TimeField(required=False)
-    repeat = serializers.ChoiceField(required=False, choices=repeat_choices)
+    repeat = serializers.CharField(required=False)
     all_day = serializers.BooleanField(required=False)
 
     def update(self, instance, validated_data):
@@ -47,8 +47,8 @@ class CustomReminderSerializer(serializers.Serializer):
         ('mon', 'M'), ('tue', 'T'), ('wed', 'W'), ('thur', 'T'), ('fri', 'F'), ('sat', 'S'), ('sun', 'S')
     )
     _id = serializers.ReadOnlyField()
-    Repeat_every = serializers.ChoiceField(required=False, choices=etc)
-    Repeat_on = serializers.ChoiceField(required=False, choices=weekday)
+    Repeat_every = serializers.CharField(required=False)
+    Repeat_on = serializers.CharField(required=False)
     Never = serializers.BooleanField(required=False)
     On = serializers.BooleanField(required=False)
     After = serializers.BooleanField(required=False)
@@ -57,6 +57,12 @@ class CustomReminderSerializer(serializers.Serializer):
 
     def __str__(self):
         return "created successfully"
+
+    def update(self, instance, validated_data):
+        print(validated_data)
+        for data in validated_data:
+            instance[data] = validated_data.get(data, instance[data])
+            return instance
 
 
 class Event(object):
