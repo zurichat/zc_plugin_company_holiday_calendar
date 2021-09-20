@@ -194,7 +194,7 @@ def event_list(request):
 def event_filter(request, pk):
     """
     Filter events to be displayed by month and year so that each calendar view can display only the events for that month.
-    pk is the Year-month variable e.g. 2021-04 for April 2021.
+    pk is the Year-month variable e.g. 2021-04 for April 2021. Events displayed include events that start or end in that month.
     """
     plugin_id = PLUGIN_ID
     org_id = ORGANIZATION_ID
@@ -211,7 +211,7 @@ def event_filter(request, pk):
                 events_list = response.json()
                 filtered_list = []
                 for event in events_list["data"]:
-                    if 'start_date' in event and event['start_date'][0:7] == pk:
+                    if 'start_date' in event and (event['start_date'][0:7] == pk or event['end_date'][0:7] == pk):
                         filtered_list.append(event)
                 # pk = pk
                 # filtered_list = [event for event in events_list["data"] if event['start_date'] == pk]
