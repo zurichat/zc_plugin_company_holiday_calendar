@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Overlay from "./components/Overlay/Overlay";
 import Modal from "./components/Modal/Modal";
 import "./App.css";
+import axios from "axios";
 
 export const AppContext = React.createContext();
 
@@ -31,6 +32,7 @@ function App() {
   const [showMonth, setShowMonth] = useState(false);
   const [showYear, setShowYear] = useState(false);
 
+
   //const [fetchData, setFetchData] = useState(false);
 
 
@@ -38,6 +40,12 @@ function App() {
   const [currentFormData, setCurrentFormData] = useState();
   const [isEventOpen, setIsEventOpen] = useState(false);
   let [holidays, setHolidays] = useState([]);
+
+  const [isEventOpen, setIsEventOpen] = useState(false);
+  const [holidays, setHolidays] = useState([]);
+  const [openDeleteEvent, setDeleteEvent] = useState(false);
+  const [currentFormData, setCurrentFormData] = useState([]);
+
 
   const days = [
     "Sunday",
@@ -54,6 +62,7 @@ function App() {
   const getHolidays = async () => {
     const response = await fetch(url);
     const holidays = await response.json();
+    console.log(holidays.data);
     return holidays.data.slice(11);
   };
 
@@ -76,7 +85,7 @@ function App() {
       });     
       setHolidays(sortedActivities);
     });
-  }, [month, year]);
+  }, [url, month, year, months]);
 
   const handleOverlay = () => {
     setIsEventOpen(false);
@@ -92,23 +101,43 @@ function App() {
     handleOverlay();
   };
 
-  const handleEventPopups = (id) => {
-    setIsEventOpen(true);
-    const lastActiveIndex = holidays.findIndex((card) => card.event === true);
+  const handleEventPopups = (id, e) => {
+    console.log(e);
+    if (
+      e.target.classList.contains("holiday") ||
+      e.target.classList.contains("wealth")
+    ) {
+      const lastActiveIndex = holidays.findIndex((card) => card.event === true);
 
-    if (lastActiveIndex !== -1) {
-      holidays[lastActiveIndex].event = false;
+      if (lastActiveIndex === id) {
+        holidays[lastActiveIndex].event = !holidays[lastActiveIndex].event;
+      }
+      setIsEventOpen(true);
+
+      return setHolidays(
+        holidays.map((card, index) =>
+          index === id ? { ...card, event: !card.event } : card
+        )
+      );
     }
+  };
 
-    // if (lastActiveIndex === id) {
-    //   holidays[lastActiveIndex].event = !holidays[lastActiveIndex].event;
-    // }
-
-    return setHolidays(
-      holidays.map((card, index) =>
-        index === id ? { ...card, event: !card.event } : card
-      )
-    );
+  const handleDel = (id) => {
+    axios
+      .delete(` https://calendar.zuri.chat/api/v1/event-delete/${id}`)
+      .then(() =>
+        getHolidays().then((data) => {
+          setHolidays(
+            data.filter((holiday) => {
+              return (
+                holiday.start_date.slice(0, 4) === year.toString() &&
+                months.indexOf(month) + 1 ===
+                  parseInt(holiday.start_date.slice(5, 7))
+              );
+            })
+          );
+        })
+      );
   };
 
   return (
@@ -128,8 +157,6 @@ function App() {
           showYear,
           setShowYear,
           months,
-          currentFormData,
-          setCurrentFormData,
           handleModal,
           holidays,
           days,
@@ -138,13 +165,16 @@ function App() {
           isEventOpen,
           setIsEventOpen,
           handleEventPopups,
+          handleDel,
+          openDeleteEvent,
+          setDeleteEvent,
+          setCurrentFormData,
         }}
       >
         <Overlay />
         <Modal />
         <Navbar />
         <HolidayList />
-
       </AppContext.Provider>
     </div>
   );

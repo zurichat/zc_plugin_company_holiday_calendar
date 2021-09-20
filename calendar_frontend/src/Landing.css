@@ -422,6 +422,8 @@ margin: 0;
   text-align: left;
 }
 .features .title {
+  position: relative;
+  top: 10px;
   color: #242424;
   text-align: center;
   font-family: Lato;
@@ -446,6 +448,9 @@ margin: 0;
   padding-bottom: 100px;
 }
 .how-it-works .title {
+  position: relative;
+  top: 5px;
+  left: 10px;
   color: #242424;
   text-align: center;
   font-family: Lato;
