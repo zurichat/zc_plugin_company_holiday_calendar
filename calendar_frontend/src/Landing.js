@@ -22,6 +22,7 @@ const Landing = () => {
     }
   }
 
+
   const features = useRef(null)
   const howItWorks = useRef(null)
 
@@ -29,11 +30,13 @@ const Landing = () => {
     <div className="landing-page">
 
       <div className={`landing-nav${navOpen ? ' collapse' : ''}`}>
+
         <div className="nav-content">
           <div className="nav-left">
             <div className="logo-wrapper">
               <div className="logo">
                 <img className="pluginLogo" src={PluginLogo} alt="" />
+
               </div>
               <div className="logo-text">
                 <p>COMPANY <span className="green-text">HOLIDAY</span></p>
@@ -47,6 +50,7 @@ const Landing = () => {
               <div className="menu-icon">
                 {/* <Menu className="drop-icon"/> */}
               </div>
+
             </div>
           </div>
           <div className="nav-list-wrapper">
@@ -58,6 +62,7 @@ const Landing = () => {
               <Link to="/calendar" className="calendar-plugin">
               <button>Install</button>
               </Link>
+
             </div>
           </div>
         </div>
@@ -78,6 +83,7 @@ const Landing = () => {
           </div>
         <div className="intro-right">
           <img className="intro-device-img" src={devices} alt="" />
+
           <div className="semi-circle">{""}</div>
         </div>
       </div>
@@ -85,16 +91,19 @@ const Landing = () => {
         <div className="landing-numbers-container">
           <div>
             {/* <Human className="landing-numbers-icon"/> */}
+
             <h3>2,000+</h3>
             <p>Happy Customers</p>
           </div>
           <div>
             {/* <Reviews className="landing-numbers-icon"/> */}
+
             <h3>50+</h3>
             <p>Reviews</p>
           </div>
           <div>
             {/* <Events className="landing-numbers-icon"/> */}
+
             <h3>1,000+</h3>
             <p>Events/Reminders created</p>
           </div>
@@ -103,12 +112,14 @@ const Landing = () => {
       <div className="landing-short-description">
         <p>Whether your events are in-person or virtual, this powerful tool boasts professional features that your
           team will love. The company holiday
+
           calendar plugin is <span className="green-text">ready to go out of the box</span>, just install and start creating and managing events.</p>
       </div>
       <div className="landing-video-tutorial">
         <p>Video Tutorial</p>
         <video className="landing-video" src="" controls></video>
       </div>
+
       <div ref={features} className="main-features-container">
         <section
           id="features"
@@ -140,6 +151,7 @@ const Landing = () => {
         <section className="main-features-sections main-reminder">
           <div className="reminder-right">
             <h3> <span className="green-text">Add Reminders</span> for All Your Team Members</h3>
+
             <p>
               As a team lead with access, you can easily add reminders to your
               events <span>company-wide </span>
@@ -170,6 +182,7 @@ const Landing = () => {
             <p>
               {" "}
               Reminders can be up to the last minute, <span className="green-text">customized </span>
+
               and <span className="green-text">repeated </span>
               with <span className="green-text">a single click of a button.</span>
             </p>
@@ -351,9 +364,11 @@ const Landing = () => {
           Ready To Start Creating Your First Company Event? Click "Install" Now
           And Let Us Begin!
         </h4>
+
         <Link to="/calendar" className="calendar-plugin">
               <button className="btn-install">Install</button>
-              </Link>
+          
+ 
         <article>
           <span>
             &copy; {new Date().getFullYear()} Zuri, Team Hemingway, All Rights
