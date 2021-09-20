@@ -213,8 +213,6 @@ def event_filter(request, pk):
                 for event in events_list["data"]:
                     if 'start_date' in event and (event['start_date'][0:7] == pk or event['end_date'][0:7] == pk):
                         filtered_list.append(event)
-                # pk = pk
-                # filtered_list = [event for event in events_list["data"] if event['start_date'] == pk]
                 return Response(filtered_list, status=status.HTTP_200_OK)
             else:
                 return Response({"error": response.json()["message"]}, status=response.status_code)
