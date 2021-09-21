@@ -37,10 +37,10 @@ urlpatterns = [
 urlpatterns += staticfiles_urlpatterns()
 
 
-# urlpatterns += [
-#     path('', homepage, name="home_page"),
-# ]
-
 urlpatterns += [
-    re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
+    path('', homepage, name="home_page"),
 ]
+
+# urlpatterns += [
+#     re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
+# ]
