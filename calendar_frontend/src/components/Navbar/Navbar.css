@@ -23,6 +23,8 @@
 .fa-plus {
   display: none;
   color: #00b87c;
+  font-weight: bold;
+  font-size: 20px;
 }
 .fa-bars {
   color: #00b87c;
@@ -34,6 +36,7 @@
 .fa-angle-down {
   display: inline-block;
   color: #00b87c;
+  font-size: 25px;
 }
 .month,
 .year,
