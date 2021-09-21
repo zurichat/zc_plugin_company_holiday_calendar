@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { AppContext } from '../../App'
+import { AppContext } from '../../Plugin'
 import './Overlay.css'
 
 const Overlay = () => {
@@ -8,10 +8,13 @@ const Overlay = () => {
   return (
     <>
       {isModalOpen && (
-        <div className='overlay' onClick={() => {
-          setIsModalOpen(false)
-          setCurrentFormData()
-        }}></div>
+        <div
+          className='overlay'
+          onClick={() => {
+            setIsModalOpen(false)
+            setCurrentFormData()
+          }}
+        ></div>
       )}
     </>
   )
