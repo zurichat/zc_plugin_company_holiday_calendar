@@ -1,10 +1,6 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../../Plugin'
 import './Navbar.css'
-import { BiCalendar } from 'react-icons/bi'
-import { FaBars } from 'react-icons/fa'
-import { RiArrowDropDownLine } from 'react-icons/ri'
-import { AiOutlinePlus } from 'react-icons/ai'
 
 const Navbar = () => {
   const states = useContext(AppContext)
@@ -93,16 +89,16 @@ const Navbar = () => {
             }
           }}
         >
-          <FaBars className='far fa-bars' />
-          <BiCalendar className='fal fa-calendar-alt' />
+          <i className='far fa-bars'></i>
+          <i className='fal fa-calendar-alt'></i>
           <span className='month'>{month}</span>
           <span className='year'>{year}</span>
-          <RiArrowDropDownLine className='fal fa-angle-down' />
+          <i className='fal fa-angle-down'></i>
         </div>
         <button className='open-modal-btn' onClick={handleModal}>
           Add Event
         </button>
-        <AiOutlinePlus className='fas fa-plus' onClick={handleModal} />
+        <i className='fas fa-plus' onClick={handleModal}></i>
       </nav>
       {showMonth && (
         <div className='grpHolder'>
