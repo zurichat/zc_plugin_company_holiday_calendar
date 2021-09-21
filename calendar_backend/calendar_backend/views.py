@@ -3,4 +3,4 @@ from django.shortcuts import render
 
 
 def homepage(request):
-    return render(request, "zuri-zuri-plugin-holiday-calendar.js")
+    return render(request, "index.html")

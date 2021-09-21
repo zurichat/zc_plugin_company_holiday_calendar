@@ -86,7 +86,7 @@ ROOT_URLCONF = 'calendar_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static')],
+        'DIRS': [os.path.join(BASE_DIR, '../root/dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -160,13 +160,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS = ['../calendar_frontend/public',
-                    '../calendar_frontend/public']
+
+#STATICFILES_DIRS = ['../calendar_frontend/dist', '../root/dist',]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '../calendar_frontend/dist'),
+    os.path.join(BASE_DIR, '../root/dist'),
+]
 
 
 # Default primary key field type
