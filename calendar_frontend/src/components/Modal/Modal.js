@@ -16,7 +16,6 @@ import EventDescription from './EventDescription/EventDescription'
 import { gmtStrings, colors } from './helpers'
 import axios from 'axios'
 import Reminder from './Reminder'
-import { FaTimes } from 'react-icons/fa'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant='filled' {...props} />
@@ -154,13 +153,14 @@ const Modal = () => {
         <div className='modal'>
           <header>
             <h4>{thisData == null ? 'Add New Event' : 'Update Event'}</h4>
-            <FaTimes
+            <i
               className='far fa-times-circle'
               onClick={() => {
                 setIsModalOpen(false)
                 setCurrentFormData()
               }}
-            />
+              aria-hidden='true'
+            ></i>
           </header>
           <section>
             <button

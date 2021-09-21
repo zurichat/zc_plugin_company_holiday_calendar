@@ -16,7 +16,8 @@
 }
 .modal header {
   padding: 20px;
-  color: #222;
+  background: #00b87c;
+  color: #f6f6f6;
   display: flex;
   justify-content: space-between;
 }
@@ -68,7 +69,7 @@
   outline: none;
   width: 70%;
   margin-left: 0.9em;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 .reminder-tab__timer {
   display: flex;
@@ -140,7 +141,7 @@
   bottom: 0;
 }
 
-.eventButtons .MuiButton-root {
+.eventButtons .MuiButton-root{
   text-transform: none !important;
 }
 
@@ -189,7 +190,7 @@
   border-radius: 5px;
   width: 100%;
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .evenForm-title input:focus {
@@ -226,7 +227,7 @@
   border-radius: 5px;
   width: 100%;
   margin: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .react-datepicker-wrapper .react-datepicker__input-container input:focus {
@@ -237,7 +238,7 @@
   z-index: 10;
 }
 
-.react-datepicker-popper[data-placement^='bottom'] {
+.react-datepicker-popper[data-placement^="bottom"] {
   padding-top: 10px !important;
 }
 
@@ -275,7 +276,7 @@
   background: #00b87c;
   color: #ffffff;
   padding: 6px 2px !important;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   border-top-right-radius: 0.35rem;
   border-top-left-radius: 0.35rem;
 }
@@ -292,7 +293,7 @@
   width: 35px;
   line-height: 25px;
   text-align: center;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 .react-datepicker__day.react-datepicker__day--outside-month {
@@ -314,7 +315,7 @@
   line-height: 25px !important;
   text-align: center;
   color: #616061;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .react-datepicker__day:hover,
@@ -380,7 +381,7 @@
   width: 35%;
 }
 
-.gmtInput-wrapper label {
+.gmtInput-wrapper label{
   color: #000;
   font-weight: bold;
 }
@@ -394,7 +395,7 @@
   align-items: center;
 }
 
-.gmtInput select {
+.gmtInput select{
   width: 100%;
 }
 
