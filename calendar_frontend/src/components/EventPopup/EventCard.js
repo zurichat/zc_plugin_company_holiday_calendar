@@ -148,13 +148,10 @@ const EventCard = ({ id }) => {
             <div>
               {remind ? (
                 <div className="reminder_details">
-                  <div className="reminder_box">
-                    <img src={Bell} alt="bell" />
-                    <span> {new Date(start_date).toDateString()}</span>
-                    <span>{myTime}</span>
-                    <img src= {Cancel} alt="cancel" onClick={() => {setTrigger(true)}} />
-                  </div>
-                  
+                  <img src={Bell} alt="bell" />
+                  <span> {new Date(start_date).toDateString()}</span>
+                  <span>{myTime}</span>
+                  <img src= {Cancel} alt="cancel" onClick={() => {setTrigger(true)}} />
                   <div>
                     <ReminderAlert trigger={trigger} cancel={() => {setTrigger(false)}} delete={notify}></ReminderAlert>
                   </div>
