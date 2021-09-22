@@ -11,7 +11,12 @@ import dropDown from "../Modal/Icons/Shape.png";
 import calendar from "../Modal/Icons/calendar-icon.png";
 import clock from "../Modal/Icons/clock-icon.png"
 import sync from "../Modal/Icons/Sync.png";
+import Cancel from "./active.png";
+import ReminderAlert from "../reminderalert";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+toast.configure();
 
 const EventCard = ({ id }) => {
   const [eventData, setEventData] = useState({
@@ -25,6 +30,20 @@ const EventCard = ({ id }) => {
   const [occurrenceVal, setOccurrenceVal] = useState("Do not repeat");
   const [addReminder, setAddReminder] = useState(false);
   const [isButtonClick, setIsButtonClick] = useState(false);
+
+  const [trigger, setTrigger] = useState(false);
+
+  const [remind, setRemind] = useState(true);
+
+    const notify = () => {
+      setRemind(false);
+      setTrigger(false);
+      toast.error('Reminder deleted', {
+        position: toast.POSITION.BOTTOM_CENTER,
+        autoClose: 1000
+      });
+
+  }
   //Import necessary function from useForm Hooks.
   const { register, handleSubmit, formState: { errors }, clearErrors } = useForm();
 
@@ -127,11 +146,16 @@ const EventCard = ({ id }) => {
 
           <div className="_reminder">
             <div>
-              {reminders ? (
+              {remind ? (
                 <div className="reminder_details">
                   <img src={Bell} alt="bell" />
                   <span> {new Date(start_date).toDateString()}</span>
                   <span>{myTime}</span>
+                  <img src= {Cancel} alt="cancel" onClick={() => {setTrigger(true)}} />
+                  <div>
+                    <ReminderAlert trigger={trigger} cancel={() => {setTrigger(false)}} delete={notify}></ReminderAlert>
+                  </div>
+                  
                 </div>
               ) : (
                 <span className="reminder">
