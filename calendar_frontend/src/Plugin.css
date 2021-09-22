@@ -1,0 +1,18 @@
+.Zuri_Calendar_Plugin {
+  position: relative;
+  background-color: #f6f6f6;
+  min-height: 100vh;
+}
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Lato;
+  font-size: 1rem;
+}

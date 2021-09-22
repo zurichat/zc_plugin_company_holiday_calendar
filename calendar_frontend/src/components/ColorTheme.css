@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&display=swap');
+
+.main-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0rem;
+    position: absolute;
+    right: 50px;
+    top: 20px;
+    z-index: 8;
+}
+.colorThemeContainer {
+    display: flex;
+    width: 100%;
+    height: 50%;
+    padding: 1rem 0.5rem;
+    flex-direction: column;
+    background-color: white;
+    border-radius: .5rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.colorThemeBtn {
+    display: flex;
+    justify-content: space-between;
+}
+.colortheme {
+    margin: 0.3rem;
+    width: 20%;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    padding: 0.6rem;
+
+}
+.blue {
+    background-color: #2573F6;
+}
+.light-blue {
+    background-color: #8CB7FF;
+}
+.purple {
+   background-color:  #8F3985;
+}
+.red {
+    background-color: #C2185B;
+}
+.orange {
+    background-color: #FF9800;
+}
+.yellow {
+    background-color: #FFEB3B;
+}
+.green {
+    background-color: #00B87C;
+}
+
+.mint {
+    background-color: #D0E888;
+}
+.black {
+    background-color: #454545;
+}
+.grey {
+    background-color: #999999;
+}
