@@ -1,33 +1,33 @@
-import React, { useState, useRef } from 'react'
-import { Link } from 'react-router-dom'
-import './Landing.css'
-import PluginLogo from './assets/images/pluginLogo.png'
-import Companyholiday from './assets/images/Companyholiday.jpg'
-import AddReminder from './assets/images/AddReminders.jpg'
-import PersonalReminder from './assets/images/PersonalReminder.jpg'
-import Custom from './assets/images/CustomEvent.png'
-import devices from './assets/images/devices.png'
-import Vector from './assets/images/Vector.jpg'
-import Vector2 from './assets/images/Vector2.jpg'
-import { FaBars } from 'react-icons/fa'
-import Vector1 from './assets/images/Vector1.jpg'
+import React, { useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import './Landing.css';
+import PluginLogo from './assets/images/pluginLogo.png';
+import Companyholiday from './assets/images/Companyholiday.jpg';
+import AddReminder from './assets/images/AddReminders.jpg';
+import PersonalReminder from './assets/images/PersonalReminder.jpg';
+import Custom from './assets/images/CustomEvent.png';
+import devices from './assets/images/devices.png';
+import Vector from './assets/images/Vector.jpg';
+import Vector2 from './assets/images/Vector2.jpg';
+import { FaBars } from 'react-icons/fa';
+import Vector1 from './assets/images/Vector1.jpg';
 // import { ReactComponent as  Human} from "./assets/svgs/human.svg";
 // import { ReactComponent as  Reviews} from "./assets/svgs/reviews.svg";
 // import { ReactComponent as  Events} from "./assets/svgs/events.svg";
 // import { ReactComponent as  Menu} from "./assets/svgs/menu.svg";
 const Landing = () => {
-  const [navOpen, setNavOpen] = useState(false)
+  const [navOpen, setNavOpen] = useState(false);
 
   const openNav = () => {
     if (navOpen) {
-      setNavOpen(false)
+      setNavOpen(false);
     } else {
-      setNavOpen(true)
+      setNavOpen(true);
     }
-  }
+  };
 
-  const features = useRef(null)
-  const howItWorks = useRef(null)
+  const features = useRef(null);
+  const howItWorks = useRef(null);
 
   return (
     <div className='landing-page'>
@@ -50,7 +50,7 @@ const Landing = () => {
             <div
               className='toggle-icon'
               onClick={() => {
-                openNav()
+                openNav();
               }}
             >
               <div className='menu-icon'>
@@ -62,7 +62,7 @@ const Landing = () => {
             <div className='nav-list'>
               <span
                 onClick={() => {
-                  features.current.scrollIntoView({ behavior: 'smooth' })
+                  features.current.scrollIntoView({ behavior: 'smooth' });
                 }}
                 className='list'
               >
@@ -70,7 +70,7 @@ const Landing = () => {
               </span>
               <span
                 onClick={() => {
-                  howItWorks.current.scrollIntoView({ behavior: 'smooth' })
+                  howItWorks.current.scrollIntoView({ behavior: 'smooth' });
                 }}
                 className='list'
               >
@@ -417,7 +417,7 @@ const Landing = () => {
         </article>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;
