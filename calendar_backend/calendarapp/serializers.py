@@ -86,7 +86,7 @@ class EventSerializer(serializers.Serializer):
     all_day = serializers.BooleanField(required=False)
     event_tag = serializers.CharField(required=True)
     event_colour = serializers.CharField(required=True)
-    images = serializers.CharField(required=False)
+    images = serializers.URLField(required=False)
 
     def __str__(self):
         return f"{self.event_title} created successfully"

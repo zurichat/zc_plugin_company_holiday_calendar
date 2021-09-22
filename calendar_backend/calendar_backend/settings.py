@@ -15,6 +15,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -86,7 +87,7 @@ ROOT_URLCONF = 'calendar_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static')],
+        'DIRS': [os.path.join(BASE_DIR, '../root/dist')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -160,11 +161,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = ['../calendar_frontend/dist','../calendar_frontend/build/static']
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+#STATICFILES_DIRS = ['../calendar_frontend/dist', '../root/dist',]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '../calendar_frontend/dist'),
+    os.path.join(BASE_DIR, '../root/dist'),
+]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
