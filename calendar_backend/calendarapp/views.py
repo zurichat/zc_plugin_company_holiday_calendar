@@ -4,18 +4,29 @@ from django.http import JsonResponse
 from rest_framework import generics, status
 from rest_framework import response
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
-import requests,json
+from rest_framework.decorators import api_view, parser_classes
+from rest_framework.parsers import MultiPartParser, FormParser
+from django.core.files.storage import default_storage
+from rest_framework.views import APIView
+import requests,json, uuid, re
 from requests import exceptions
 from .serializers import EventSerializer, UpdateEventSerializer
 from drf_yasg.utils import swagger_auto_schema
 from .serializers import *
 from .datastore import DataBase
 from calendar_backend.settings import PLUGIN_ID, ORGANIZATION_ID
+from .login import login_user
 
 # new imports (authentication task)
 from rest_framework.decorators import permission_classes
 from .permissions import UserIsAuthenticated
+
+
+
+
+header={
+    'Authorization': f'Bearer {login_user()}'
+}
 
 """
 Creating a view for calendar
@@ -142,17 +153,35 @@ class CreateEventView(generics.CreateAPIView):
     """
     This is  a create view for creating an event . The method allowed  is POST
     """
+    parser_classes=(MultiPartParser, FormParser)
     serializer_class = EventSerializer
 
-    # permission_classes = [UserIsAuthenticated]
+    # permission_classes -= [UserIsAuthenticated]
 
     def post(self, request, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
+        if request.FILES:
+            file = request.FILES["file"]
+            files = {
+                "file" : file,
+
+            }
+            file_response = requests.post(url="https://api.zuri.chat/upload/files/{plugin_id}", files=files, headers= header)
+            files_urls =[]
+            data = file_response.json()["data"]["files_info"]
+            for url_link in data:
+                files_urls.append(url_link["file_url"])
+
+
 
         # posting data to zuri core after validation
         # the organization_id would be dynamic; based on the request data
         event = serializer.data
+        if request.FILES:
+            event["images"]= files_urls[0]
+        
+
         plugin_id = PLUGIN_ID
         org_id = ORGANIZATION_ID
         coll_name = "events"
@@ -171,12 +200,21 @@ class CreateEventView(generics.CreateAPIView):
             response = requests.post(url=url, json=event_payload)
 
             if response.status_code == 201:
-                return Response({"message": "event created successfully"}, status=status.HTTP_201_CREATED)
+                return Response({"message": "event created successfully" }, status=status.HTTP_201_CREATED)
             else:
                 return Response({"error": response.json()['message']}, status=response.status_code)
                 print()
         except exceptions.ConnectionError as e:
             return Response(str(e), status=status.HTTP_502_BAD_GATEWAY)
+
+
+
+
+
+
+
+
+
 
 
 # Fetch list of events from zuri core
