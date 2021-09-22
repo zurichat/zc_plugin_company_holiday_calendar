@@ -167,18 +167,13 @@ class CreateEventView(generics.CreateAPIView):
                 "file" : file,
 
             }
-            file_response = requests.post(url="https://api.zuri.chat/upload/files/614117a96173056af01b4cf8", files=files, headers= header)
+            file_response = requests.post(url="https://api.zuri.chat/upload/files/{plugin_id}", files=files, headers= header)
             files_urls =[]
             data = file_response.json()["data"]["files_info"]
             for url_link in data:
                 files_urls.append(url_link["file_url"])
 
 
-
-        
-
-        
-        
 
         # posting data to zuri core after validation
         # the organization_id would be dynamic; based on the request data
