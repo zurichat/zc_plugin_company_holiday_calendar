@@ -138,5 +138,3 @@ def send_data2centrifugo(room, data):
     except Exception as x:
         print(x)
 
-
-# def na
