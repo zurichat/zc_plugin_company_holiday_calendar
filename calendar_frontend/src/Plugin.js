@@ -34,10 +34,11 @@ function Plugin() {
   const [isEventOpen, setIsEventOpen] = useState(false)
   const [holidays, setHolidays] = useState([])
   const [openDeleteEvent, setDeleteEvent] = useState(false)
-  const [currentFormData, setCurrentFormData] = useState({})
+  const [currentFormData, setCurrentFormData] = useState(null)
   const [id, setId] = useState()
 
-  const thisData = currentFormData
+  const thisData = currentFormData 
+ 
 
   const days = [
     'Sunday',
