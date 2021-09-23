@@ -108,13 +108,12 @@ function CustomRecurrence() {
 
             <div className="other_details">
               
-              {/* Date Input goes here */}
               <DateInput
                 style={{ marginTop: "0" }}
                 selected={pickDate}
                 onChange={date => setPickDate(date)}
                 placeholder="Sept 1, 2021"
-              /> 
+              />
             </div>
           </div>
           <div className="never_pick">

@@ -1,13 +1,21 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
-import Card from "./components/Card";
+import React from 'react'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import Plugin from './Plugin'
+import Landing from './Landing'
 
-function App() {
+const RouterComponent = () => {
   return (
-    <div className="App">
-      <Navbar />
-      <Card></Card>
-    </div>
-  );
+    <Router>
+      <Switch>
+        <Route exact path='/'>
+          <Landing />
+        </Route>
+        <Route path='/calendar'>
+          <Plugin />
+        </Route>
+      </Switch>
+    </Router>
+  )
 }
-export default App;
+
+export default RouterComponent

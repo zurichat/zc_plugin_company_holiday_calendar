@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+.save{
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 18px;
+    position: absolute;
+    width: 139px;
+    height: 48px;
+    left: 218px;
+    top: 0px;
+    margin-left: auto;
+    background: #00B87C;
+    border-radius: 3px;
+    margin-top: 7rem;
+    border: #00B87C;
+    font-family: 'Lato', sans-serif;
+    z-index: 1000;
+}
+.day{
+    font-family: 'Lato', sans-serif;
+    color: #616061;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.dropbtn{
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 16px;
+    color: #616061;
+    border:none;
+    background-color: transparent;
+  }
+  
+  .dropdown-content{
+    background: #f9f9f9;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    border-radius: 8px;
+    width: 235px;
+    position: relative;
+  
+  }
+  option{
+    cursor: pointer;
+    font-family: Lato;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 130%;
+    color: #3f3e3f;
+    border-radius: 4px;
+    padding-left: 35px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 5px;
+  }
+  option:hover{
+    background: #ACFFE6;
+  }
+  .icons{
+    padding: 0px 10px;
+    color: #616061;
+    font-size: 14px;
+  
+  }
+  #radio-btn{
+    position: relative;
+  }
+  #radio-btn::before + ::after{
+    position: absolute;
+    content: '';
+    border: 1px solid black;
+  
+  
+  }
+  .repeat_days{
+      margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 375px;
+  }
+  .day_checkbox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    margin-left: 1px;
+  }
+  .custom-radio input{
+    display: none;
+  
+  }
+  
+  .custom-radio{
+    width: 25px;
+    height: 20px;
+    padding: 5px 7px;
+    border-radius: 100%;
+    background-color: #eeeeee;
+    margin-right: 10px;
+    font-size: 10px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    position: relative;
+    z-index: 9999;
+  
+  }
+  
+  .custom-radio input:checked + .checkmark{
+    display: inline-block;
+    position: absolute;
+    padding: 5px 7px;
+    top: 0;
+    left: 0;
+    background-color: #07f1a396; 
+    color: #00b87c;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    z-index: 1;
+  }
+  
+  
+  
+  .radio-btn{
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 15px;
+  
+  }
+  .radio__input{
+    display: none;
+  
+  }
+  .radio__circle{
+    width: 1.25em;
+    height: 1.25em;
+    border: 2px solid #00B87C;
+    border-radius: 50%;
+    margin-right: 10px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    box-sizing: border-box;
+    padding: 2px;
+  }
+  .radio__circle::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: #00B87C;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.15s;
+   
+  }
+  .radio__input:checked + .radio__circle::after{
+         transform: scale(1);
+        
+  }
+  .align{
+      display: flex;
+      align-items: center;
+      margin-top: 27px;
+      justify-content: space-between;
+      width: 280px;
+      position: absolute;
+      top: 0;
+      left: 0;
+  }
+.m-5{
+    margin-right: 5px;
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+ 
+}
+.select-container{
+  position: relative;
+}
+.ends-opt{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+/**date picker*/
+#repeat-on-particular-day{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 13px 20px 15px 10px;
+  margin: -120px 50px;
+  position: absolute;
+  width: 164px;
+  height: 24px;
+  left: 105px;
+  background: #F6F6F6;
+  border-radius: 3px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 130%;
+  color: #616061;
+}
+
+/** repeat-every*/
+.repeat-every{
+  margin-top: 35px;
+  margin-bottom: 40px;
+
+}
+
+#repeat-every{
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 130%;
+  color: #616061;
+  z-index: -1;
+}
+
+#repeat-every-1{
+  margin: -20px 30px 0px 160px;
+}
+
+#select-repeat-every{
+  box-sizing: border-box;
+  width: 140px;
+  margin-top: -77px;
+  margin-bottom: 40px;
+
+  padding: 18px 25px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 130%;
+  color: #616061;
+
+  left: 190.25px;
+  top: 51.75px;
+  text-align: center;
+
+  cursor: pointer;
+
+}
+
+.other_details input[type=text], .other_details input[type=number] {
+  padding: 7px;
+  border-radius: 3px;
+  font-size: 11px;
+  display: block;
+  margin-left: 3px;
+  border: none;
+  outline: none;
+  background: #F6F6F6;
+
+}
+
+.other_details .after_picker {
+  width: 45px;
+  text-align: center;
+}
+
+ .other_details {
+  position: relative;
+  top: -77px;
+  left: 155px;
+  max-width: 280px;
+  width: 36%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #F6F6F6;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius:3px ;
+
+}
+
+ .other_details p {
+  padding: 7px 10px;
+  background: #F6F6F6;
+  line-height: unset;
+  font-size: 12px;
+  color: #585858;
+}
+.cover{
+  background-color: #ffffff;
+  position: relative;
+  z-index: 9999;
+}
+.done{
+  color: #fff;
+  padding: 12px 18px;
+   width: 139px;
+  background: #00B87C;
+  border-radius: 3px;
+  border: #00B87C;
+  font-family: 'Lato', sans-serif;
+  margin: 5px;
+  font-size: 17px;
+}
+.cancel{
+  color: #00B87C;
+  padding: 11px 17px;
+  width: 139px;
+  background: #ffffff;
+  border-radius: 4px;
+  border:2px solid #00B87C;
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  margin-right: 35px;
+  margin-left: 21px;
+
+}

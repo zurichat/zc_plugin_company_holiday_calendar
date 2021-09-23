@@ -6,12 +6,11 @@
 *.pot
 *.pyc
 .__pycache__/
-.__pycache__
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media
-migrations
+.migrations
 
 
 
@@ -30,7 +29,7 @@ migrations
 
 # Distribution / packaging
 .Python
-build/
+.build/
 develop-eggs/
 dist/
 downloads/
@@ -129,8 +128,6 @@ env/
 venv/
 .vscode/
 __pycache__
-venv/
-venv
 
 ENV/
 env.bak/

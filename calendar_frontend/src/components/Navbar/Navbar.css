@@ -1,0 +1,198 @@
+/* victor's css */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 25px 10px 15px;
+  align-items: center;
+  background: #e1fdf4;
+}
+.calendar {
+  display: flex;
+  align-items: center;
+}
+.open-modal-btn {
+  padding: 12px 18px;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  background: #00b87c;
+  border: none;
+}
+.fa-plus {
+  display: none;
+  color: #00b87c;
+  font-weight: bold;
+  font-size: 20px;
+}
+.fa-bars {
+  color: #00b87c;
+  display: none;
+}
+.month,
+.year,
+.fa-calendar-alt,
+.fa-angle-down {
+  display: inline-block;
+  color: #00b87c;
+  font-size: 25px;
+}
+.month,
+.year,
+.fa-angle-down {
+  font-weight: bold;
+  margin-left: 4px;
+}
+.month,
+.year {
+  font-size: 18px;
+}
+@media only screen and (max-width: 425px) {
+  .fa-calendar-alt {
+    display: none;
+  }
+  .open-modal-btn {
+    display: none;
+  }
+  .fa-plus {
+    display: block;
+  }
+  .nav {
+    padding: 15px;
+  }
+  .fa-bars {
+    display: block;
+  }
+}
+/* victor's css */
+
+/*** MONTH AND YEAR POP UPS ***
+******* by mormeni ***********/
+
+.grpHolder {
+  --clr-pri: #00b87c;
+  --clr-pri-100: hsla(160, 100%, 36%, 0.1);
+  --clr-accent: #fff;
+  --clr-text: hsla(300, 1%, 38%, 1);
+  --clr-text-hover: hsla(300, 2%, 11%, 1);
+  --transition-effect: all 600ms ease-in-out;
+
+  display: flex;
+  flex-direction: column;
+  width: 243px;
+  height: 165px;
+  background: var(--clr-accent);
+  border-radius: 4px;
+  /** box-shadow: 0.5px 0.5px 1px var(--clr-text-hover); **/
+  position: absolute;
+  left: 15px;
+  top: 50px;
+  z-index: 2;
+}
+
+.yearHeadGrp {
+  display: flex;
+  width: 100%;
+  height: 25px;
+  background: var(--clr-pri);
+  color: var(--clr-accent);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  padding: 0 11.88px;
+}
+.yearHeadGrp > * {
+  color: var(--clr-accent);
+  margin: auto 0;
+}
+.yearHeadGrp:hover {
+  cursor: pointer;
+}
+.yearHeadItem {
+  font-size: 18px;
+  font-weight: 700;
+}
+.yearHeadItem + i {
+  margin-left: 5px;
+}
+
+.monthGrp {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  padding: 0 11.88px;
+  margin: auto 0;
+}
+.monthItem {
+  font-weight: 400;
+  font-size: 15px;
+  text-align: center;
+  padding: 4px;
+  margin: 6px;
+  color: var(--clr-text);
+}
+.monthItem:hover {
+  background: var(--clr-pri-100);
+  color: var(--clr-text-hover);
+  cursor: pointer;
+}
+.calendar {
+  position: relative;
+}
+:is(.calendar, .open-modal-btn):hover {
+  cursor: pointer;
+}
+
+/* Year Dropdown */
+
+.yearGrp {
+  --clr-pri: #00b87c;
+  --clr-pri-100: hsla(160, 100%, 36%, 0.1);
+  --clr-accent: #fff;
+  --clr-text: hsla(300, 1%, 38%, 1);
+  --clr-text-hover: hsla(300, 2%, 11%, 1);
+  --clr-accent-100: hsla(160, 100%, 36%, 0.1);
+  --clr-gray-600: hsl(0, 0%, 60%);
+  --clr-gray-100: hsl(0, 0%, 90%);
+  --transition-effect: all 600ms ease-in-out;
+  position: absolute;
+  left: calc(15px + 11.88px);
+  top: 75px;
+  width: 83px;
+  height: 400px;
+  background-color: #fff;
+  overflow-y: scroll;
+  color: var(--clr-gray-600);
+  font-family: 'Lato', sans-serif;
+  font-size: calc(1rem - 1px);
+  font-weight: 400;
+  z-index: 3;
+}
+.yearGrp::-webkit-scrollbar {
+  background: var(--clr-pri-100);
+  width: 5px;
+  transition: var(--transition-effect);
+}
+
+.yearGrp::-webkit-scrollbar-thumb {
+  background: var(--clr-pri);
+  border-radius: 6px;
+  transition: var(--transition-effect);
+}
+
+.yearList {
+  display: flex;
+  flex-direction: column;
+}
+.yearItem {
+  cursor: pointer;
+  width: 100%;
+  height: 35.68px;
+  text-align: center;
+  padding: Calc(35.68px / 5);
+  transition: var(--transition-effect);
+}
+.yearItem:hover {
+  background: var(--clr-accent-100);
+  color: #333;
+}

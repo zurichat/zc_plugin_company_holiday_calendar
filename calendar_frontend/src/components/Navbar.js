@@ -5,10 +5,8 @@ import CancelButton from "./CancelButton";
 import "./reminder.css";
 import ShowMe from "./showMe/ShowMe";
 import DateInput from "./DateInput";
-import EventTitle from "./EventTitle";
 import StartDate from "./Startdate";
 import EventDescription from "./EventDescription";
-import Timezone from "./Timezone";
 
 import "./CancelBtn.css";
 import EventTag from "./EventTag";
@@ -18,11 +16,10 @@ function Navbar() {
   const [isEventOpen, setIsEventOpen] = useState(false);
   const [showEventPage, setShowEventPage] = useState(true);
 
-
   return (
-    <div >
-      <div className='navbar'>
-        <div className='month'>
+    <div>
+      <div className="navbar">
+        <div className="month">
           <label>
             <i className="fal fa-calendar-alt"></i>
           </label>
@@ -46,12 +43,10 @@ function Navbar() {
         <button className="open-btn" onClick={() => setIsEventOpen(true)}>
           Add Event
         </button>
-        {isEventOpen && <div className='overlay' onClick={
-          () => setIsEventOpen(false)}></div>}
+        {isEventOpen && <div className="overlay"></div>}
         {isEventOpen && (
-
-          <div className='event-form'>
-            <header >
+          <div className="event-form">
+            <header>
               <h2>Add New Event</h2>
               <i
                 class="far fa-times-circle"
@@ -77,7 +72,6 @@ function Navbar() {
 
             {showEventPage ? (
               <>
-                <EventTitle />
                 <div className="event-form-date">
                   <DateInput
                     className="start-date"
@@ -91,20 +85,17 @@ function Navbar() {
                   />
                 </div>
                 <StartDate></StartDate>
-                <Timezone />
                 <EventDescription />
-
+                
                 <EventTag />
                 <ShowMe />
                 <section className="cancel-create">
-                  <button
-                    className="event_btn_cancel"
-                    onClick={() => setIsEventOpen(false)}
-                  >
-                    {" "}
-                    Cancel
-                  </button>
-                  <CreateButton />
+                	<button
+                		className="event_btn_cancel"
+                		onClick={() => setIsEventOpen(false)}>{" "}
+                		Cancel
+                	</button>
+                	<CreateButton / >
                 </section>
               </>
             ) : (
@@ -123,7 +114,7 @@ function Navbar() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

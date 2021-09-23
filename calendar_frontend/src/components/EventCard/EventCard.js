@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import "./EventCard.css";
 import image from "./Rectangle.png";
 import pointer from "./Polygon.png";
 import { FaClock } from "react-icons/fa";
+import CustomRecurrence from "../customRecurrence";
 
 const EventCard = ({ eventDesc, eventTime }) => {
+  const [isButtonClick, setIsButtonClick] = useState(false);
+  const [showCustom, setShowCustom] = useState(false)
   return (
     <div className="cards">
       <p className="card_title">{eventDesc}</p>
@@ -36,8 +39,8 @@ const EventCard = ({ eventDesc, eventTime }) => {
       </div>
 
       <div className="reminder">
-        <select className="reminder-dropdown">
-          <option selected className="option-one" value="0">
+        <select className="reminder-dropdown" onClick={() => {setIsButtonClick(!isButtonClick)}}>
+          <option selected className="option-one" value="0"  style={{display: `${isButtonClick ? "block" : "none"}`}}>
             Set Reminder
           </option>
           <option>Do not Repeat</option>
@@ -45,8 +48,14 @@ const EventCard = ({ eventDesc, eventTime }) => {
           <option>Weekly</option>
           <option>Monthly</option>
           <option>Yearly</option>
-          <option>Custom..</option>
+          <option>Every week day (Monday to Friday)</option>
+                <option onClick = {() => {
+                    setShowCustom(!showCustom)
+                    setIsButtonClick(!isButtonClick)
+                }}>Custom...</option>
         </select>
+        {showCustom && <CustomRecurrence/>}
+
       </div>
 
       <img className="_pointer" src={pointer} alt="" />

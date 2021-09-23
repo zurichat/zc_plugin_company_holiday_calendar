@@ -1,0 +1,272 @@
+.holiday {
+  background-color: #fff;
+  margin-bottom: 8px;
+  padding: 15px;
+  list-style: none;
+}
+.date-icons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  align-items: center;
+}
+.home-page {
+  padding: 20px 20px 100px 20px;
+}
+.event-time {
+  margin-bottom: 3px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+}
+.edit-del {
+  color: #00b87c;
+  cursor: pointer;
+}
+.event-date {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+}
+.event-title {
+  font-family: Lato;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.navss {
+  display: flex;
+  gap: 8px;
+}
+
+/* ._deleteIcon {
+} */
+._mydelete,
+._editIcon {
+  /* padding: 10px 10px; */
+  object-fit: contain;
+  display: inline-block;
+  font-size: large;
+  cursor: pointer;
+}
+
+.edit-del {
+  margin-right: 5px;
+}
+
+/* For Modal */
+
+.del_event_overlay {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.evtDeleteBckGrd {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 383px;
+  height: 165px;
+  background: #ffffff;
+  border-radius: 4px;
+}
+.title {
+  position: absolute;
+  left: 4.95%;
+  right: 5.21%;
+  top: 22.42%;
+  bottom: 63.64%;
+
+  /* Heading/H3 */
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 130%;
+  margin: auto;
+}
+
+.cancel_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+
+  position: absolute;
+  left: 11.72%;
+  right: 52.08%;
+  top: 48.48%;
+  bottom: 22.42%;
+
+  /* Primary color */
+  border: 1px solid #00b87c;
+  box-sizing: border-box;
+  border-radius: 3px;
+
+  /* font */
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  /* Primary color */
+  color: #00b87c;
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 5px;
+
+  width: 139px;
+  height: 48px;
+}
+
+.del_btn {
+  width: 139px;
+  height: 48px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 25px;
+
+  position: absolute;
+  left: 51.82%;
+  right: 11.98%;
+  top: 48.48%;
+  bottom: 22.42%;
+
+  background: #d20000;
+  border-radius: 3px;
+
+  /* font */
+  color: #ffffff;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+}
+
+.evtDeleteBckGrd {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 383px;
+  height: 165px;
+  background: #ffffff;
+  border-radius: 8px;
+}
+.title {
+  position: absolute;
+  left: 4.95%;
+  right: 5.21%;
+  top: 22.42%;
+  bottom: 63.64%;
+
+  /* Heading/H3 */
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 130%;
+  margin: auto;
+}
+
+.title h3 {
+  font-size: 15px;
+  text-align: center;
+}
+
+.cancel_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 20px;
+
+  position: absolute;
+  left: 11.72%;
+  right: 52.08%;
+  top: 48.48%;
+  bottom: 22.42%;
+
+  /* Primary color */
+  border: 1px solid #00b87c;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  /* font */
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 24px;
+  /* identical to box height, or 160% */
+
+  /* Primary color */
+  color: #00b87c;
+  cursor: pointer;
+
+  /* Inside Auto Layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 0px 5px;
+  background-color: white;
+  width: 139px;
+  height: 48px;
+}
+
+.del_btn {
+  width: 139px;
+  height: 48px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 25px;
+
+  position: absolute;
+  left: 51.82%;
+  right: 11.98%;
+  top: 48.48%;
+  bottom: 22.42%;
+  border: none;
+  background: #d20000;
+  border-radius: 5px;
+  cursor: pointer;
+  /* font */
+  color: #ffffff;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+}
+.ReactModal__Content.ReactModal__Content--after-open {
+  overflow: hidden !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}

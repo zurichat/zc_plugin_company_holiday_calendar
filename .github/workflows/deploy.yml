@@ -5,21 +5,39 @@ on:
   push:
     branches: 
       - develop
-      - master
-  pull_request:
-    branches: 
-      - master
+#       - master
+#   pull_request:
+#     branches: 
+#       - master
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+    name: yarn build
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Build frontend
+        # This job is to cache the node modules in order to reduce the time it would take to run
+      - name: Use cached node_modules
+        uses: c-hive/gha-yarn-cache@v2
+        with:
+         directory: calendar_frontend
+         
+         #this job installs intalls yarn dependencies on the github runner
+         #and also to build the static files that would be transferred to server later
+      - name: install Dependencies
+        run: |
+          cd calendar_frontend
+          export CI=false
+          yarn install
+          yarn build
+          
+        # in the server your normal workflow except omitting yarn build
+      - name: Git Pull on Server
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -27,13 +45,27 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd zc_plugin_company_holiday_calendar
-            git clean -fd
             git stash
-            git pull
+            git fetch --all
+            git reset --hard origin/develop
+            git pull origin develop
             cd calendar_frontend
             yarn install
-            yarn build
-      
+          
+       
+        # this job copies the build folder from GitHub runners to the server with sftp, make sure the paths are correct      
+      - name: copy build to server
+        uses: Creepios/sftp-action@v1.0.1
+        with:
+          username: ${{ secrets.USERNAME }}
+          host: ${{ secrets.HOST }}
+          password: ${{ secrets.PASSWORD }}
+          localPath: 'calendar_frontend/build/'
+          remotePath: 'zc_plugin_company_holiday_calendar/calendar_frontend/build'
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy backend
         uses: appleboy/ssh-action@master
         with:
@@ -42,13 +74,9 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd zc_plugin_company_holiday_calendar
-            git pull
             source venv/bin/activate
             cd calendar_backend
             python3 -m pip install -r requirements.txt
-            python3 manage.py makemigrations calendarapp
-            python3 manage.py makemigrations db_manager
-            python3 manage.py migrate
             python3 manage.py collectstatic --no-input
             pkill -u ${{secrets.USERNAME}} gunicorn
             gunicorn --bind 0.0.0.0:8000 calendar_backend.wsgi --daemon
