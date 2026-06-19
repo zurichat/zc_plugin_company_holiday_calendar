@@ -136,7 +136,7 @@ const Modal = () => {
       try {
         const { data } = await axios({
           method: 'PUT',
-          url: `https://calendar.zuri.chat/api/v1/update-event/${thisData._id}`,
+          url: `https://calendar.zuri.chat/api/v1/update-event/${thisData}/`,
           data: JSON.stringify(eventFormData),
         })
         console.log(data)

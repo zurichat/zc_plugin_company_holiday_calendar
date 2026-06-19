@@ -43,7 +43,9 @@ const HolidayList = () => {
 
   function editData(ids) {
     const check = holidays.find((item) => item._id === ids)
+    setCurrentFormData(check._id)
   }
+
 
   return (
     <div
